@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Heart, MessageCircle, Phone, TrendingUp, Briefcase, Users, ChevronRight, Menu, X } from 'lucide-react';
 
-export default function App() {
+export default function MoreThanOneWay() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedMajor, setSelectedMajor] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [applications, setApplications] = useState([]);
   const [newApp, setNewApp] = useState({ company: '', position: '', date: '' });
 
+  // Career pivot data
   const careerPivots = {
     'Computer Science': [
       { career: 'Data Analyst', growth: '23%', why: 'Uses your logic and problem-solving skills, less coding-intensive', salary: '$65k-85k' },
@@ -47,6 +48,7 @@ export default function App() {
     ]
   };
 
+  // Sample stories
   const stories = [
     {
       name: 'Alex M.',
@@ -96,6 +98,7 @@ export default function App() {
             </h1>
           </div>
           
+          {/* Mobile menu button */}
           <button 
             className="md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -103,6 +106,7 @@ export default function App() {
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
 
+          {/* Desktop navigation */}
           <div className="hidden md:flex space-x-6">
             <button onClick={() => setCurrentPage('home')} className="hover:text-blue-200">Home</button>
             <button onClick={() => setCurrentPage('stories')} className="hover:text-blue-200">Stories</button>
@@ -112,6 +116,7 @@ export default function App() {
           </div>
         </div>
 
+        {/* Mobile navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden pb-4 space-y-2">
             <button onClick={() => { setCurrentPage('home'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Home</button>
@@ -296,12 +301,23 @@ export default function App() {
     </div>
   );
 
+  const deleteApplication = (id) => {
+    setApplications(applications.filter(app => app.id !== id));
+  };
+
   const TrackerPage = () => (
     <div className="space-y-6">
       <CrisisBanner />
       
       <h2 className="text-3xl font-bold mb-2">Track Your Progress</h2>
       <p className="text-gray-600 mb-6">Job searching is a marathon, not a sprint. Track your applications and celebrate every step forward.</p>
+
+      <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-4">
+        <p className="text-sm text-yellow-800">
+          <strong>Note:</strong> Your application data is only saved in your browser and will be lost if you refresh the page. 
+          For permanent tracking, consider using a spreadsheet or notebook alongside this tool.
+        </p>
+      </div>
 
       <div className="bg-white rounded-lg shadow p-6">
         <h3 className="font-bold text-lg mb-4">Add New Application</h3>
@@ -341,12 +357,19 @@ export default function App() {
           <div className="space-y-3">
             {applications.map(app => (
               <div key={app.id} className="border-l-4 border-blue-500 p-4 bg-gray-50 rounded">
-                <div className="flex justify-between">
-                  <div>
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
                     <p className="font-semibold">{app.company}</p>
                     <p className="text-sm text-gray-600">{app.position}</p>
+                    <p className="text-xs text-gray-500 mt-1">{app.date || 'No date'}</p>
                   </div>
-                  <span className="text-sm text-gray-500">{app.date || 'No date'}</span>
+                  <button
+                    onClick={() => deleteApplication(app.id)}
+                    className="text-red-600 hover:text-red-800 ml-4 text-sm"
+                    aria-label="Delete application"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
