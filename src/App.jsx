@@ -24,7 +24,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
           <button onClick={() => setCurrentPage('home')} className="hover:text-blue-200">Home</button>
           <button onClick={() => setCurrentPage('stories')} className="hover:text-blue-200">Stories</button>
           <button onClick={() => setCurrentPage('pivot')} className="hover:text-blue-200">Find Your Path</button>
-          <button onClick={() => setCurrentPage('tracker')} className="hover:text-blue-200">Track Progress</button>
+          <button onClick={() => { setCurrentPage('tracker'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Track Progress</button>
           <button onClick={() => setCurrentPage('crisis')} className="bg-red-500 px-4 py-2 rounded hover:bg-red-600">Need Help Now?</button>
         </div>
       </div>
@@ -106,7 +106,7 @@ const HomePage = ({ setCurrentPage }) => (
         <Briefcase className="w-10 h-10 text-blue-500 mb-3" />
         <h3 className="text-xl font-bold mb-2">Track Your Progress</h3>
         <p className="text-gray-600">Job searching is brutal. Track your applications and celebrate small wins.</p>
-        <button onClick={() => setCurrentPage('')} className="text-blue-600 font-semibold mt-3 flex items-center">
+        <button onClick={() => setCurrentPage('tracker')} className="text-blue-600 font-semibold mt-3 flex items-center">
           Start Tracking <ChevronRight className="w-4 h-4 ml-1" />
         </button>
       </div>
