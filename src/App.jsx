@@ -349,6 +349,37 @@ const TrackerPage = ({ applications, setApplications, newApp, setNewApp }) => {
     setApplications(applications.filter(app => app.id !== id));
   };
 
+  const downloadCSV = () => {
+    if (applications.length === 0) {
+      alert('No applications to download. Add some applications first!');
+      return;
+    }
+
+    // Create CSV content
+    const headers = ['Company', 'Position', 'Date Applied'];
+    const rows = applications.map(app => [
+      app.company,
+      app.position,
+      app.date || 'No date'
+    ]);
+    
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.join(','))
+    ].join('\n');
+
+    // Create download
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `job-applications-${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="space-y-6">
       <CrisisBanner />
