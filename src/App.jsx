@@ -323,23 +323,28 @@ export default function MoreThanOneWay() {
         <h3 className="font-bold text-lg mb-4">Add New Application</h3>
         <div className="grid md:grid-cols-3 gap-4 mb-4">
           <input
+            key="company-input"
             type="text"
             placeholder="Company name"
             value={newApp.company}
-            onChange={(e) => setNewApp({...newApp, company: e.target.value})}
+            onChange={(e) => setNewApp(prev => ({...prev, company: e.target.value}))}
+            autoComplete="off"
             className="p-3 border rounded-lg"
           />
           <input
+            key="position-input"
             type="text"
             placeholder="Position"
             value={newApp.position}
-            onChange={(e) => setNewApp({...newApp, position: e.target.value})}
+            onChange={(e) => setNewApp(prev => ({...prev, position: e.target.value}))}
+            autoComplete="off"
             className="p-3 border rounded-lg"
           />
           <input
+            key="date-input"
             type="date"
             value={newApp.date}
-            onChange={(e) => setNewApp({...newApp, date: e.target.value})}
+            onChange={(e) => setNewApp(prev => ({...prev, date: e.target.value}))}
             className="p-3 border rounded-lg"
           />
         </div>
