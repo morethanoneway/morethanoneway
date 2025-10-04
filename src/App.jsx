@@ -234,6 +234,54 @@ const PivotPage = () => {
       { career: 'Business Analyst', growth: '14%', why: 'Bridge between business needs and tech solutions', salary: '$65k-90k' },
       { career: 'Financial Analyst', growth: '9%', why: 'Steady field with clear career progression', salary: '$65k-85k' },
       { career: 'Supply Chain Analyst', growth: '18%', why: 'Growing field, especially post-pandemic', salary: '$60k-85k' }
+    ],
+    'Mechanical Engineering': [
+      { career: 'Technical Product Manager', growth: '19%', why: 'Your engineering mindset helps manage product development without endless CAD work', salary: '$85k-120k' },
+      { career: 'Project Manager (Manufacturing)', growth: '11%', why: 'Lead teams and timelines using your technical knowledge', salary: '$75k-100k' },
+      { career: 'Technical Sales Engineer', growth: '8%', why: 'Explain complex products to customers - engineers who can communicate are rare', salary: '$70k-110k' },
+      { career: 'Data Analyst (Manufacturing)', growth: '23%', why: 'Analyze production data and optimize processes', salary: '$65k-90k' }
+    ],
+    'Electrical Engineering': [
+      { career: 'Systems Engineer', growth: '12%', why: 'Bigger picture thinking - integrate components rather than design circuits', salary: '$80k-110k' },
+      { career: 'Technical Product Manager', growth: '19%', why: 'Guide product strategy for hardware/software companies', salary: '$90k-130k' },
+      { career: 'Data Engineer', growth: '21%', why: 'Your logic and systems thinking transfer perfectly to data infrastructure', salary: '$85k-120k' },
+      { career: 'Technical Consultant', growth: '13%', why: 'Solve varied problems for different clients instead of one company', salary: '$75k-110k' }
+    ],
+    'Civil Engineering': [
+      { career: 'Construction Project Manager', growth: '11%', why: 'Lead projects without doing structural calculations all day', salary: '$75k-105k' },
+      { career: 'Urban Planner', growth: '6%', why: 'Shape communities and cities - less math, more impact on people', salary: '$60k-85k' },
+      { career: 'Sustainability Consultant', growth: '15%', why: 'Growing field focused on green building and infrastructure', salary: '$65k-95k' },
+      { career: 'Real Estate Development', growth: '10%', why: 'Understand construction from the business side', salary: '$70k-120k' }
+    ],
+    'Chemical Engineering': [
+      { career: 'Process Engineer (Different Industry)', growth: '14%', why: 'Pharma, food, cosmetics need your skills - not just oil refineries', salary: '$75k-105k' },
+      { career: 'Environmental Engineer', growth: '6%', why: 'Apply chemistry knowledge to sustainability and remediation', salary: '$70k-95k' },
+      { career: 'Quality Assurance Manager', growth: '9%', why: 'Ensure processes work correctly without being in the lab', salary: '$70k-100k' },
+      { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA/EPA requirements for products - technical knowledge needed', salary: '$75k-105k' }
+    ],
+    'Aerospace Engineering': [
+      { career: 'Systems Engineer', growth: '12%', why: 'Integrate complex systems - not just aircraft, any tech product', salary: '$85k-120k' },
+      { career: 'Project Manager (Tech)', growth: '11%', why: 'Your experience with complex projects applies everywhere', salary: '$80k-115k' },
+      { career: 'Data Analyst', growth: '23%', why: 'Analyze performance data - test analysis skills transfer perfectly', salary: '$70k-95k' },
+      { career: 'Technical Program Manager', growth: '15%', why: 'Coordinate between engineering teams at any company', salary: '$95k-140k' }
+    ],
+    'Industrial Engineering': [
+      { career: 'Operations Manager', growth: '11%', why: 'Optimize business processes - your core skill applied broadly', salary: '$75k-110k' },
+      { career: 'Supply Chain Analyst', growth: '18%', why: 'Growing rapidly post-pandemic, uses your optimization skills', salary: '$65k-90k' },
+      { career: 'Business Analyst', growth: '14%', why: 'Bridge tech and business using your systems thinking', salary: '$70k-95k' },
+      { career: 'Management Consultant', growth: '13%', why: 'Help companies improve efficiency - varied work, good pay', salary: '$80k-130k' }
+    ],
+    'Biomedical Engineering': [
+      { career: 'Clinical Engineer', growth: '10%', why: 'Work in hospitals managing medical equipment - patient impact without med school', salary: '$65k-95k' },
+      { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Get medical devices approved - critical role, less competition', salary: '$70k-100k' },
+      { career: 'Medical Device Sales', growth: '8%', why: 'Technical knowledge sells complex products - strong earning potential', salary: '$70k-120k' },
+      { career: 'Quality Assurance (Medical Devices)', growth: '9%', why: 'Ensure device safety without pure R&D stress', salary: '$65k-90k' }
+    ],
+    'Engineering Physics': [
+      { career: 'Data Scientist', growth: '35%', why: 'Your math and modeling skills are exactly what data science needs', salary: '$90k-140k' },
+      { career: 'Quantitative Analyst (Finance)', growth: '11%', why: 'Physics PhDs dominate this field - complex modeling, high pay', salary: '$100k-200k' },
+      { career: 'Software Engineer', growth: '22%', why: 'Your problem-solving and math background translate perfectly', salary: '$85k-130k' },
+      { career: 'Technical Consultant', growth: '13%', why: 'Solve diverse technical problems across industries', salary: '$80k-120k' }
     ]
   };
 
