@@ -390,7 +390,7 @@ const TrackerPage = ({ applications, setApplications, newApp, setNewApp }) => {
       <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-4">
         <p className="text-sm text-yellow-800">
           <strong>Note:</strong> Your application data is only saved in your browser and will be lost if you refresh the page. 
-          For permanent tracking, consider using a spreadsheet or notebook alongside this tool.
+Use the "Download CSV" button to save your list, or consider using a spreadsheet or notebook for permanent tracking.
         </p>
       </div>
 
@@ -426,9 +426,17 @@ const TrackerPage = ({ applications, setApplications, newApp, setNewApp }) => {
         </button>
       </div>
 
-      {applications.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="font-bold text-lg mb-4">Your Applications ({applications.length})</h3>
+{applications.length > 0 && (
+  <div className="bg-white rounded-lg shadow p-6">
+    <div className="flex justify-between items-center mb-4">
+      <h3 className="font-bold text-lg">Your Applications ({applications.length})</h3>
+      <button
+        onClick={downloadCSV}
+        className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm"
+      >
+        Download CSV
+      </button>
+    </div>
           <div className="space-y-3">
             {applications.map(app => (
               <div key={app.id} className="border-l-4 border-blue-500 p-4 bg-gray-50 rounded">
