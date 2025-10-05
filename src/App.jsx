@@ -185,12 +185,96 @@ const StoriesPage = () => {
         </div>
       ))}
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
-        <MessageCircle className="w-12 h-12 text-blue-500 mx-auto mb-3" />
-        <h3 className="font-bold text-lg mb-2">Want to Share Your Story?</h3>
-        <p className="text-gray-600 mb-4">Your experience could help another student who's struggling right now.</p>
-        <p className="text-sm text-gray-500">(Feature coming soon - for now, this is a safe space to know you're not alone)</p>
+     <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+  <MessageCircle className="w-12 h-12 text-blue-500 mx-auto mb-3" />
+  <h3 className="font-bold text-lg mb-4 text-center">Share Your Story</h3>
+  <p className="text-gray-600 mb-6 text-center">Your experience could help another student who's struggling right now.</p>
+  
+  <form onSubmit={(e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const story = {
+      name: formData.get('name') || 'Anonymous',
+      major: formData.get('major'),
+      timeframe: formData.get('timeframe'),
+      struggle: formData.get('struggle'),
+      outcome: formData.get('outcome')
+    };
+    
+    // For now, just show confirmation - you can add backend later
+    alert('Thank you for sharing your story! We\'ll review it and may feature it to help other students.');
+    e.target.reset();
+  }} className="space-y-4">
+    
+    <div className="grid md:grid-cols-2 gap-4">
+      <div>
+        <label className="block text-sm font-semibold mb-2">Name (optional)</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Anonymous is fine"
+          className="w-full p-3 border rounded-lg"
+        />
       </div>
+      
+      <div>
+        <label className="block text-sm font-semibold mb-2">Major</label>
+        <input
+          type="text"
+          name="major"
+          placeholder="e.g., Computer Science"
+          required
+          className="w-full p-3 border rounded-lg"
+        />
+      </div>
+    </div>
+    
+    <div>
+      <label className="block text-sm font-semibold mb-2">Timeframe</label>
+      <input
+        type="text"
+        name="timeframe"
+        placeholder="e.g., Graduated 2 years ago, Currently a senior"
+        required
+        className="w-full p-3 border rounded-lg"
+      />
+    </div>
+    
+    <div>
+      <label className="block text-sm font-semibold mb-2">The Struggle</label>
+      <textarea
+        name="struggle"
+        placeholder="What were you going through? What made you feel hopeless?"
+        required
+        rows="4"
+        className="w-full p-3 border rounded-lg"
+      />
+    </div>
+    
+    <div>
+      <label className="block text-sm font-semibold mb-2">What Happened</label>
+      <textarea
+        name="outcome"
+        placeholder="How did things turn out? What path did you take?"
+        required
+        rows="4"
+        className="w-full p-3 border rounded-lg"
+      />
+    </div>
+    
+    <button
+      type="submit"
+      className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
+    >
+      Submit Your Story
+    </button>
+    
+    <p className="text-xs text-gray-500 text-center">
+      By submitting, you allow us to share your story (anonymously or with your name) to help other students. 
+      We may edit for clarity and length.
+    </p>
+  </form>
+</div>
     </div>
   );
 };
