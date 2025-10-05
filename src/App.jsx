@@ -20,26 +20,25 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
     {mobileMenuOpen ? <X /> : <Menu />}
   </button>
 
-  <div className="hidden md:flex items-center space-x-4">
-          <button onClick={() => setCurrentPage('home')} className="hover:text-blue-200">Home</button>
-          <button onClick={() => setCurrentPage('stories')} className="hover:text-blue-200">Stories</button>
-          <button onClick={() => setCurrentPage('pivot')} className="hover:text-blue-200 whitespace-nowrap">Career Path</button>
-          <button onClick={() => { setCurrentPage('tracker'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Track Progress</button>
-          <button onClick={() => setCurrentPage('resources')} className="hover:text-blue-200">Resources</button>
-          <button onClick={() => setCurrentPage('crisis')} className="bg-red-500 px-4 py-2 rounded hover:bg-red-600">Need Help Now?</button>
-        </div>
-      </div>
+<div className="hidden md:flex items-center space-x-4">
+  <button onClick={() => setCurrentPage('home')} className="hover:text-blue-200">Home</button>
+  <button onClick={() => setCurrentPage('stories')} className="hover:text-blue-200">Stories</button>
+  <button onClick={() => setCurrentPage('pivot')} className="hover:text-blue-200 whitespace-nowrap">Career Path</button>
+  <button onClick={() => setCurrentPage('tracker')} className="hover:text-blue-200 whitespace-nowrap">Track Progress</button>
+  <button onClick={() => setCurrentPage('resources')} className="hover:text-blue-200">Resources</button>
+  <button onClick={() => setCurrentPage('crisis')} className="bg-red-500 px-4 py-2 rounded hover:bg-red-600 whitespace-nowrap">Need Help Now?</button>
+</div>
 
-      {mobileMenuOpen && (
-        <div className="md:hidden pb-4 space-y-2">
-          <button onClick={() => { setCurrentPage('home'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Home</button>
-          <button onClick={() => { setCurrentPage('stories'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Stories</button>
-          <button onClick={() => { setCurrentPage('pivot'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Career Path</button>
-          <button onClick={() => { setCurrentPage(''); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Track Progress</button>
-          <button onClick={() => setCurrentPage('resources')} className="hover:text-blue-200">Resources</button>
-          <button onClick={() => { setCurrentPage('crisis'); setMobileMenuOpen(false); }} className="block w-full text-left bg-red-500 px-4 py-2 rounded hover:bg-red-600">Need Help Now?</button>
-        </div>
-      )}
+{mobileMenuOpen && (
+  <div className="md:hidden pb-4 space-y-2">
+    <button onClick={() => { setCurrentPage('home'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Home</button>
+    <button onClick={() => { setCurrentPage('stories'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Stories</button>
+    <button onClick={() => { setCurrentPage('pivot'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Career Path</button>
+    <button onClick={() => { setCurrentPage('tracker'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Track Progress</button>
+    <button onClick={() => { setCurrentPage('resources'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Resources</button>
+    <button onClick={() => { setCurrentPage('crisis'); setMobileMenuOpen(false); }} className="block w-full text-left bg-red-500 px-4 py-2 rounded hover:bg-red-600">Need Help Now?</button>
+  </div>
+)}
     </div>
   </nav>
 );
