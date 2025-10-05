@@ -190,21 +190,18 @@ const StoriesPage = () => {
   <h3 className="font-bold text-lg mb-4 text-center">Share Your Story</h3>
   <p className="text-gray-600 mb-6 text-center">Your experience could help another student who's struggling right now.</p>
   
-  <form onSubmit={(e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const story = {
-      name: formData.get('name') || 'Anonymous',
-      major: formData.get('major'),
-      timeframe: formData.get('timeframe'),
-      struggle: formData.get('struggle'),
-      outcome: formData.get('outcome')
-    };
-    
-    // For now, just show confirmation - you can add backend later
-    alert('Thank you for sharing your story! We\'ll review it and may feature it to help other students.');
-    e.target.reset();
-  }} className="space-y-4">
+  <form 
+    name="student-stories" 
+    method="POST" 
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    className="space-y-4"
+  >
+    {/* Hidden fields for Netlify */}
+    <input type="hidden" name="form-name" value="student-stories" />
+    <p className="hidden">
+      <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+    </p>
     
     <div className="grid md:grid-cols-2 gap-4">
       <div>
@@ -218,7 +215,7 @@ const StoriesPage = () => {
       </div>
       
       <div>
-        <label className="block text-sm font-semibold mb-2">Major</label>
+        <label className="block text-sm font-semibold mb-2">Major *</label>
         <input
           type="text"
           name="major"
@@ -230,7 +227,7 @@ const StoriesPage = () => {
     </div>
     
     <div>
-      <label className="block text-sm font-semibold mb-2">Timeframe</label>
+      <label className="block text-sm font-semibold mb-2">Timeframe *</label>
       <input
         type="text"
         name="timeframe"
@@ -241,7 +238,7 @@ const StoriesPage = () => {
     </div>
     
     <div>
-      <label className="block text-sm font-semibold mb-2">The Struggle</label>
+      <label className="block text-sm font-semibold mb-2">The Struggle *</label>
       <textarea
         name="struggle"
         placeholder="What were you going through? What made you feel hopeless?"
@@ -252,7 +249,7 @@ const StoriesPage = () => {
     </div>
     
     <div>
-      <label className="block text-sm font-semibold mb-2">What Happened</label>
+      <label className="block text-sm font-semibold mb-2">What Happened *</label>
       <textarea
         name="outcome"
         placeholder="How did things turn out? What path did you take?"
