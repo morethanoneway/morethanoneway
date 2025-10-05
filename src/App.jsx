@@ -5,22 +5,22 @@ import { Heart, MessageCircle, Phone, TrendingUp, Briefcase, Users, ChevronRight
 const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen }) => (
   <nav className="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
     <div className="max-w-6xl mx-auto px-4">
-      <div className="flex justify-between items-center py-4">
-        <div className="flex items-center space-x-2">
-          <Heart className="w-6 h-6" />
-          <h1 className="text-xl font-bold cursor-pointer" onClick={() => setCurrentPage('home')}>
-            More Than One Way
-          </h1>
-        </div>
-        
-        <button 
-          className="md:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
+  <div className="flex justify-between items-center py-4">
+  <div className="flex items-center space-x-2">
+    <Heart className="w-6 h-6" />
+    <h1 className="text-xl font-bold cursor-pointer" onClick={() => setCurrentPage('home')}>
+      More Than One Way
+    </h1>
+  </div>
+  
+  <button 
+    className="md:hidden"
+    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+  >
+    {mobileMenuOpen ? <X /> : <Menu />}
+  </button>
 
-      <div className="hidden md:flex space-x-4">
+  <div className="hidden md:flex items-center space-x-4">
           <button onClick={() => setCurrentPage('home')} className="hover:text-blue-200">Home</button>
           <button onClick={() => setCurrentPage('stories')} className="hover:text-blue-200">Stories</button>
           <button onClick={() => setCurrentPage('pivot')} className="hover:text-blue-200 whitespace-nowrap">Career Path</button>
