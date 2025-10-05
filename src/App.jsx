@@ -126,6 +126,8 @@ const HomePage = ({ setCurrentPage }) => (
 );
 
 const StoriesPage = () => {
+  const [filterMajor, setFilterMajor] = useState('');
+  
   const stories = [
     {
       name: 'Alex M.',
@@ -157,6 +159,14 @@ const StoriesPage = () => {
     }
   ];
 
+  // Get unique majors and sort them
+  const majors = [...new Set(stories.map(s => s.major))].sort();
+  
+  // Filter stories based on selected major
+  const filteredStories = filterMajor 
+    ? stories.filter(s => s.major === filterMajor)
+    : stories;
+
   return (
     <div className="space-y-6">
       <CrisisBanner />
@@ -164,134 +174,155 @@ const StoriesPage = () => {
       <h2 className="text-3xl font-bold mb-2">You're Not Alone</h2>
       <p className="text-gray-600 mb-6">Real stories from students who struggled and made it through. These aren't success stories - they're survival stories.</p>
 
-      {stories.map((story, idx) => (
-        <div key={idx} className="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
-          <div className="flex justify-between items-start mb-3">
-            <div>
-              <h3 className="font-bold text-lg">{story.name}</h3>
-              <p className="text-sm text-gray-500">{story.major} • {story.timeframe}</p>
+      {/* Filter by major */}
+      <div className="bg-white rounded-lg shadow p-4">
+        <label className="block text-sm font-semibold mb-2">Filter by major:</label>
+        <select 
+          value={filterMajor}
+          onChange={(e) => setFilterMajor(e.target.value)}
+          className="w-full md:w-64 p-3 border rounded-lg"
+        >
+          <option value="">All majors ({stories.length} stories)</option>
+          {majors.map(major => (
+            <option key={major} value={major}>
+              {major} ({stories.filter(s => s.major === major).length})
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Display filtered stories */}
+      {filteredStories.length > 0 ? (
+        filteredStories.map((story, idx) => (
+          <div key={idx} className="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
+            <div className="flex justify-between items-start mb-3">
+              <div>
+                <h3 className="font-bold text-lg">{story.name}</h3>
+                <p className="text-sm text-gray-500">{story.major} • {story.timeframe}</p>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div>
+                <p className="text-sm font-semibold text-gray-600">The Struggle:</p>
+                <p className="text-gray-700">{story.struggle}</p>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-gray-600">What Happened:</p>
+                <p className="text-gray-700">{story.outcome}</p>
+              </div>
             </div>
           </div>
-          <div className="space-y-3">
-            <div>
-              <p className="text-sm font-semibold text-gray-600">The Struggle:</p>
-              <p className="text-gray-700">{story.struggle}</p>
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-gray-600">What Happened:</p>
-              <p className="text-gray-700">{story.outcome}</p>
-            </div>
-          </div>
+        ))
+      ) : (
+        <div className="bg-white rounded-lg shadow p-6 text-center text-gray-500">
+          No stories yet for {filterMajor}. Be the first to share your story!
         </div>
-      ))}
+      )}
 
-     <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-  <MessageCircle className="w-12 h-12 text-blue-500 mx-auto mb-3" />
-  <h3 className="font-bold text-lg mb-4 text-center">Share Your Story</h3>
-  <p className="text-gray-600 mb-6 text-center">Your experience could help another student who's struggling right now.</p>
-  
-  <form 
-    name="student-stories" 
-    method="POST" 
-    data-netlify="true"
-    netlify-honeypot="bot-field"
-    className="space-y-4"
-  >
-    {/* Hidden fields for Netlify */}
-    <input type="hidden" name="form-name" value="student-stories" />
-    <p className="hidden">
-      <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-    </p>
-    
-    <div className="grid md:grid-cols-2 gap-4">
-      <div>
-        <label className="block text-sm font-semibold mb-2">Name (optional)</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Anonymous is fine"
-          className="w-full p-3 border rounded-lg"
-        />
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <MessageCircle className="w-12 h-12 text-blue-500 mx-auto mb-3" />
+        <h3 className="font-bold text-lg mb-4 text-center">Share Your Story</h3>
+        <p className="text-gray-600 mb-6 text-center">Your experience could help another student who's struggling right now.</p>
+        
+        <form 
+          name="student-stories" 
+          method="POST" 
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          className="space-y-4"
+        >
+          {/* Hidden fields for Netlify */}
+          <input type="hidden" name="form-name" value="student-stories" />
+          <p className="hidden">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+          
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-semibold mb-2">Name (optional)</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Anonymous is fine"
+                className="w-full p-3 border rounded-lg"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-semibold mb-2">Major *</label>
+              <input
+                type="text"
+                name="major"
+                placeholder="e.g., Computer Science"
+                required
+                className="w-full p-3 border rounded-lg"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-semibold mb-2">Email (optional but recommended)</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="your.email@example.com"
+              className="w-full p-3 border rounded-lg"
+            />
+            <p className="text-xs text-gray-600 mt-1">
+              We'll send you a preview before posting your story. Your email will never be published or shared.
+            </p>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-semibold mb-2">Timeframe *</label>
+            <input
+              type="text"
+              name="timeframe"
+              placeholder="e.g., Graduated 2 years ago, Currently a senior"
+              required
+              className="w-full p-3 border rounded-lg"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-semibold mb-2">The Struggle *</label>
+            <textarea
+              name="struggle"
+              placeholder="What were you going through? What made you feel hopeless?"
+              required
+              rows="4"
+              className="w-full p-3 border rounded-lg"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-semibold mb-2">What Happened *</label>
+            <textarea
+              name="outcome"
+              placeholder="How did things turn out? What path did you take?"
+              required
+              rows="4"
+              className="w-full p-3 border rounded-lg"
+            />
+          </div>
+          
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
+          >
+            Submit Your Story
+          </button>
+          
+          <p className="text-xs text-gray-500 text-center">
+            By submitting, you allow us to share your story to help other students. 
+            If you provide an email, we'll send you a preview before posting. 
+            We may edit for clarity and length. Email addresses will never be published.
+          </p>
+        </form>
       </div>
-      
-      <div>
-        <label className="block text-sm font-semibold mb-2">Major *</label>
-        <input
-          type="text"
-          name="major"
-          placeholder="e.g., Computer Science"
-          required
-          className="w-full p-3 border rounded-lg"
-        />
-      </div>
-    </div>
-
-    <div>
-  <label className="block text-sm font-semibold mb-2">Email (optional but recommended)</label>
-  <input
-    type="email"
-    name="email"
-    placeholder="your.email@example.com"
-    className="w-full p-3 border rounded-lg"
-  />
-  <p className="text-xs text-gray-500 text-center">
-  By submitting, you allow us to share your story to help other students. 
-  If you provide an email, we'll send you a preview before posting. 
-  We may edit for clarity and length. Email addresses will never be published.
-</p>
-</div>
-    
-    <div>
-      <label className="block text-sm font-semibold mb-2">Timeframe *</label>
-      <input
-        type="text"
-        name="timeframe"
-        placeholder="e.g., Graduated 2 years ago, Currently a senior"
-        required
-        className="w-full p-3 border rounded-lg"
-      />
-    </div>
-    
-    <div>
-      <label className="block text-sm font-semibold mb-2">The Struggle *</label>
-      <textarea
-        name="struggle"
-        placeholder="What were you going through? What made you feel hopeless?"
-        required
-        rows="4"
-        className="w-full p-3 border rounded-lg"
-      />
-    </div>
-    
-    <div>
-      <label className="block text-sm font-semibold mb-2">What Happened *</label>
-      <textarea
-        name="outcome"
-        placeholder="How did things turn out? What path did you take?"
-        required
-        rows="4"
-        className="w-full p-3 border rounded-lg"
-      />
-    </div>
-    
-    
-    <button
-      type="submit"
-      className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
-    >
-      Submit Your Story
-    </button>
-    
-    <p className="text-xs text-gray-500 text-center">
-      By submitting, you allow us to share your story (anonymously or with your name) to help other students. 
-      We may edit for clarity and length.
-    </p>
-  </form>
-</div>
     </div>
   );
 };
-
 const PivotPage = () => {
   const [selectedMajor, setSelectedMajor] = useState('');
   
