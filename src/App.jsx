@@ -23,8 +23,9 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
         <div className="hidden md:flex space-x-6">
           <button onClick={() => setCurrentPage('home')} className="hover:text-blue-200">Home</button>
           <button onClick={() => setCurrentPage('stories')} className="hover:text-blue-200">Stories</button>
-         <button onClick={() => setCurrentPage('pivot')} className="hover:text-blue-200 whitespace-nowrap">Career Path</button>
+          <button onClick={() => setCurrentPage('pivot')} className="hover:text-blue-200 whitespace-nowrap">Career Path</button>
           <button onClick={() => { setCurrentPage('tracker'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Track Progress</button>
+          <button onClick={() => setCurrentPage('resources')} className="hover:text-blue-200">Resources</button>
           <button onClick={() => setCurrentPage('crisis')} className="bg-red-500 px-4 py-2 rounded hover:bg-red-600">Need Help Now?</button>
         </div>
       </div>
@@ -35,6 +36,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
           <button onClick={() => { setCurrentPage('stories'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Stories</button>
           <button onClick={() => { setCurrentPage('pivot'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Career Path</button>
           <button onClick={() => { setCurrentPage(''); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-blue-200 py-2">Track Progress</button>
+          <button onClick={() => setCurrentPage('resources')} className="hover:text-blue-200">Resources</button>
           <button onClick={() => { setCurrentPage('crisis'); setMobileMenuOpen(false); }} className="block w-full text-left bg-red-500 px-4 py-2 rounded hover:bg-red-600">Need Help Now?</button>
         </div>
       )}
@@ -741,6 +743,7 @@ export default function App() {
         {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} />}
         {currentPage === 'stories' && <StoriesPage />}
         {currentPage === 'pivot' && <PivotPage />}
+        {currentPage === 'resources' && <ResourcesPage />}
         {currentPage === 'tracker' && (
           <TrackerPage 
             applications={applications}
