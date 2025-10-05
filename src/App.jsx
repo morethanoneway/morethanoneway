@@ -20,7 +20,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
           {mobileMenuOpen ? <X /> : <Menu />}
         </button>
 
-        <div className="hidden md:flex space-x-6">
+      <div className="hidden md:flex space-x-4">
           <button onClick={() => setCurrentPage('home')} className="hover:text-blue-200">Home</button>
           <button onClick={() => setCurrentPage('stories')} className="hover:text-blue-200">Stories</button>
           <button onClick={() => setCurrentPage('pivot')} className="hover:text-blue-200 whitespace-nowrap">Career Path</button>
@@ -515,6 +515,112 @@ const PivotPage = () => {
   );
 };
 
+const ResourcesPage = () => (
+  <div className="space-y-6">
+    <CrisisBanner />
+    
+    <h2 className="text-3xl font-bold mb-2">Resources to Help You Move Forward</h2>
+    <p className="text-gray-600 mb-6">Free tools, guides, and resources for job searching, career building, and mental health.</p>
+
+    {/* Job Search Resources */}
+    <div className="bg-white rounded-lg shadow p-6">
+      <h3 className="text-xl font-bold mb-4 flex items-center">
+        <Briefcase className="w-6 h-6 mr-2 text-blue-600" />
+        Job Search & Applications
+      </h3>
+      <ul className="space-y-3">
+        <li>
+          <a href="https://www.indeed.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">
+            Indeed
+          </a>
+          <p className="text-sm text-gray-600">Major job board - filter by entry level and location</p>
+        </li>
+        <li>
+          <a href="https://wellfound.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">
+            Wellfound (formerly AngelList)
+          </a>
+          <p className="text-sm text-gray-600">Startup jobs - often more open to new grads than big companies</p>
+        </li>
+        <li>
+          <a href="https://builtin.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">
+            Built In
+          </a>
+          <p className="text-sm text-gray-600">Tech jobs at growing companies across the US</p>
+        </li>
+      </ul>
+    </div>
+
+    {/* Resume & Interview Help */}
+    <div className="bg-white rounded-lg shadow p-6">
+      <h3 className="text-xl font-bold mb-4 flex items-center">
+        <TrendingUp className="w-6 h-6 mr-2 text-green-600" />
+        Resume & Interview Prep
+      </h3>
+      <ul className="space-y-3">
+        <li>
+          <a href="https://www.canva.com/resumes/templates/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">
+            Canva Resume Templates
+          </a>
+          <p className="text-sm text-gray-600">Free, professional resume templates</p>
+        </li>
+        <li>
+          <a href="https://resumeworded.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">
+            Resume Worded
+          </a>
+          <p className="text-sm text-gray-600">Free resume scanner shows how ATS will read your resume</p>
+        </li>
+        <li>
+          <a href="https://www.themuse.com/advice/interview-questions-and-answers" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">
+            The Muse - Interview Prep
+          </a>
+          <p className="text-sm text-gray-600">Common interview questions and how to answer them</p>
+        </li>
+      </ul>
+    </div>
+
+    {/* Mental Health Resources */}
+    <div className="bg-white rounded-lg shadow p-6">
+      <h3 className="text-xl font-bold mb-4 flex items-center">
+        <Heart className="w-6 h-6 mr-2 text-red-600" />
+        Mental Health Support
+      </h3>
+      <ul className="space-y-3">
+        <li>
+          <a href="https://www.nami.org/Your-Journey/Teens-Young-Adults/College-Students" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">
+            NAMI - College Students
+          </a>
+          <p className="text-sm text-gray-600">Mental health resources specifically for college students</p>
+        </li>
+        <li>
+          <p className="font-semibold">Your Campus Counseling Center</p>
+          <p className="text-sm text-gray-600">Most colleges offer free counseling - search "[your school] counseling"</p>
+        </li>
+      </ul>
+    </div>
+
+    {/* Career Exploration */}
+    <div className="bg-white rounded-lg shadow p-6">
+      <h3 className="text-xl font-bold mb-4 flex items-center">
+        <Users className="w-6 h-6 mr-2 text-purple-600" />
+        Career Exploration
+      </h3>
+      <ul className="space-y-3">
+        <li>
+          <a href="https://www.bls.gov/ooh/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">
+            Bureau of Labor Statistics
+          </a>
+          <p className="text-sm text-gray-600">Official data on job growth and salaries</p>
+        </li>
+        <li>
+          <a href="https://www.onetonline.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">
+            O*NET Online
+          </a>
+          <p className="text-sm text-gray-600">Explore careers by skills and interests</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+);
 const TrackerPage = ({ applications, setApplications, newApp, setNewApp }) => {
   const addApplication = () => {
     if (newApp.company && newApp.position) {
