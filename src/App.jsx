@@ -341,7 +341,7 @@ const TrackerPage = ({ applications, setApplications, newApp, setNewApp }) => {
   const addApplication = () => {
     if (newApp.company && newApp.position) {
       setApplications([...applications, { ...newApp, id: Date.now(), status: 'Applied' }]);
-      setNewApp({ company: '', position: '', date: '' });
+      setNewApp({ company: '', position: '', date: '', website: '' });
     }
   };
 
@@ -396,28 +396,35 @@ Use the "Download CSV" button to save your list, or consider using a spreadsheet
 
       <div className="bg-white rounded-lg shadow p-6">
         <h3 className="font-bold text-lg mb-4">Add New Application</h3>
-        <div className="grid md:grid-cols-3 gap-4 mb-4">
-          <input
-            type="text"
-            placeholder="Company name"
-            value={newApp.company}
-            onChange={(e) => setNewApp({...newApp, company: e.target.value})}
-            className="p-3 border rounded-lg"
-          />
-          <input
-            type="text"
-            placeholder="Position"
-            value={newApp.position}
-            onChange={(e) => setNewApp({...newApp, position: e.target.value})}
-            className="p-3 border rounded-lg"
-          />
-          <input
-            type="date"
-            value={newApp.date}
-            onChange={(e) => setNewApp({...newApp, date: e.target.value})}
-            className="p-3 border rounded-lg"
-          />
-        </div>
+<div className="grid md:grid-cols-2 gap-4 mb-4">
+  <input
+    type="text"
+    placeholder="Company name"
+    value={newApp.company}
+    onChange={(e) => setNewApp({...newApp, company: e.target.value})}
+    className="p-3 border rounded-lg"
+  />
+  <input
+    type="text"
+    placeholder="Position"
+    value={newApp.position}
+    onChange={(e) => setNewApp({...newApp, position: e.target.value})}
+    className="p-3 border rounded-lg"
+  />
+  <input
+    type="url"
+    placeholder="Job posting URL (optional)"
+    value={newApp.website}
+    onChange={(e) => setNewApp({...newApp, website: e.target.value})}
+    className="p-3 border rounded-lg"
+  />
+  <input
+    type="date"
+    value={newApp.date}
+    onChange={(e) => setNewApp({...newApp, date: e.target.value})}
+    className="p-3 border rounded-lg"
+  />
+</div>
         <button 
           onClick={addApplication}
           className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
@@ -442,10 +449,15 @@ Use the "Download CSV" button to save your list, or consider using a spreadsheet
               <div key={app.id} className="border-l-4 border-blue-500 p-4 bg-gray-50 rounded">
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
-                    <p className="font-semibold">{app.company}</p>
-                    <p className="text-sm text-gray-600">{app.position}</p>
-                    <p className="text-xs text-gray-500 mt-1">{app.date || 'No date'}</p>
-                  </div>
+  <p className="font-semibold">{app.company}</p>
+  <p className="text-sm text-gray-600">{app.position}</p>
+  {app.website && (
+    <a href={app.website} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline block mt-1">
+      View Job Posting →
+    </a>
+  )}
+  <p className="text-xs text-gray-500 mt-1">{app.date || 'No date'}</p>
+</div>
                   <button
                     onClick={() => deleteApplication(app.id)}
                     className="text-red-600 hover:text-red-800 ml-4 text-sm"
@@ -538,7 +550,7 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [applications, setApplications] = useState([]);
-  const [newApp, setNewApp] = useState({ company: '', position: '', date: '' });
+ const [newApp, setNewApp] = useState({ company: '', position: '', date: '', website: '' });
 
   return (
     <div className="min-h-screen bg-gray-50">
