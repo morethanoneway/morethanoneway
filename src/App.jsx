@@ -225,6 +225,21 @@ const StoriesPage = () => {
         />
       </div>
     </div>
+
+    <div>
+  <label className="block text-sm font-semibold mb-2">Email (optional but recommended)</label>
+  <input
+    type="email"
+    name="email"
+    placeholder="your.email@example.com"
+    className="w-full p-3 border rounded-lg"
+  />
+  <p className="text-xs text-gray-500 text-center">
+  By submitting, you allow us to share your story to help other students. 
+  If you provide an email, we'll send you a preview before posting. 
+  We may edit for clarity and length. Email addresses will never be published.
+</p>
+</div>
     
     <div>
       <label className="block text-sm font-semibold mb-2">Timeframe *</label>
@@ -258,6 +273,7 @@ const StoriesPage = () => {
         className="w-full p-3 border rounded-lg"
       />
     </div>
+    
     
     <button
       type="submit"
