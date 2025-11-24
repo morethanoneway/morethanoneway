@@ -959,11 +959,11 @@ Jordan felt that way too. So did the hundreds of students who've reached out sin
 
 ## Final Thoughts
 
-Jordan is now a senior, doing well in her classes, and planning for graduation.
+Jordan is now a senior, doing well in his classes, and planning for graduation.
 
-"I used to think failing meant I was a failure," she said. "Now I know failing is just part of learning. Everyone's timeline is different."
+"I used to think failing meant I was a failure," he said. "Now I know failing is just part of learning. Everyone's timeline is different."
 
-**Her advice to struggling students:**
+**His advice to struggling students:**
 
 "Talk to your professor. Get help early. Use every resource available. Stop comparing yourself to people with different circumstances. And remember: one bad grade doesn't define you."
 
