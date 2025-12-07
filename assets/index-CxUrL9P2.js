@@ -824,7 +824,7 @@ ${w.education.school}
               ${e.category==="Mental Health"?"bg-purple-100 text-purple-700":""}
             `,children:e.category}),t.jsxs("span",{className:"text-xs text-gray-500 flex items-center gap-1",children:[t.jsx(Ga,{className:"w-3 h-3"}),e.date]})]}),t.jsx("h3",{className:`font-bold mb-3 text-gray-900 hover:text-blue-600 transition-colors ${n?"text-2xl":"text-xl"}`,children:e.title}),t.jsx("p",{className:"text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3",children:e.excerpt}),t.jsxs("div",{className:"flex items-center justify-between text-sm",children:[t.jsxs("span",{className:"text-gray-500 flex items-center gap-1",children:[t.jsx(sd,{className:"w-4 h-4"}),e.readTime]}),t.jsxs("span",{className:"text-blue-600 font-medium flex items-center gap-1 group",children:["Read More",t.jsx(ps,{className:"w-4 h-4 group-hover:translate-x-1 transition-transform"})]})]})]})]})},Ob=`---\r
 id: 4\r
-title: "When Your Family Isn't Supportive: Resources for Finding Chosen Family"\r
+title: "When Family Falls Short: Building the Support You Deserve"\r
 slug: chosen-family-resources\r
 date: November 25, 2025\r
 category: Mental Health\r
@@ -840,7 +840,7 @@ readTime: 6 min read\r
 featured: false\r
 ---\r
 \r
-# When Your Family Isn't Supportive: Resources for Finding Chosen Family\r
+# When Family Falls Short: Building the Support You Deserve\r
 \r
 Not every college student has family support.\r
 \r
@@ -1145,6 +1145,81 @@ You can too.\r
 **You don't have to do this alone. There are people who want to show up for you.**\r
 \r
 *Have you found chosen family in college? [Share your story →](/stories)*`,Db=`---\r
+id: 5\r
+title: "The Moment I Realized Everyone Is Faking It (and That’s Okay)"\r
+slug: everyone-fakes-it\r
+date: December 7, 2025\r
+category: Mental Health\r
+tags:\r
+  - mental health\r
+  - anxiety\r
+  - depression\r
+  - college stress\r
+  - crisis resources\r
+excerpt: "This isn’t a post about depression, anxiety, or the deeper struggles that deserve real support (we wrote about that separately). This piece is about something more subtle — the quiet pressure to look like you have it all together when you don’t. It’s a story about comparison, the illusion of “fine,” and the moment you realize you’re not the only one figuring life out as you go."\r
+author: MoreThanOneWay Team\r
+readTime: 1 min read\r
+featured: true\r
+---\r
+\r
+# The Moment I Realized Everyone Is Faking It (and That’s Okay)\r
+\r
+There’s a moment most people have at some point in college — a quiet, almost embarrassing moment — where you look around the room and think:\r
+\r
+**“Is everyone else just… doing better than me?”**\r
+\r
+For me, that moment happened during a random class (many eons ago). I remember sitting there, staring at someone who always seemed put together. They answered questions effortlessly. They took notes like they were preparing to publish a textbook. They never looked stressed, even though the rest of us were unraveling like loose threads.\r
+\r
+Meanwhile, I was fighting a losing battle with my deadlines, my self-doubt, and a calculator that may as well have been written in ancient Greek.\r
+\r
+And I remember thinking:\r
+\r
+**“How are they so on top of everything?”**\r
+**“What’s wrong with me?”**\r
+\r
+## The Shift\r
+\r
+That feeling stuck with me… until one day I overheard that same “perfect” classmate quietly telling someone they were struggling.\r
+\r
+Not just a little — a lot.\r
+Behind the calm face and crisp notes was someone who felt just as overwhelmed, unsure, and stretched thin as the rest of us.\r
+\r
+It hit me harder than I expected:\r
+\r
+That feeling stuck with me… until one day I overheard that same “perfect” classmate quietly telling someone they were struggling.\r
+\r
+Not just a little — a lot.\r
+Behind the calm face and crisp notes was someone who felt just as overwhelmed, unsure, and stretched thin as the rest of us.\r
+\r
+It hit me harder than I expected:\r
+\r
+**No one has it together.**\r
+**Everyone is just trying, guessing, improvising, or hoping they’re doing enough.**\r
+\r
+Some people fake confidence.\r
+Some fake calm.\r
+Some fake knowing what they want to do with their life.\r
+Most of us fake all three.\r
+\r
+And suddenly I felt lighter — not because anything got easier, but because I realized I wasn’t behind. I wasn’t broken. I wasn’t “less than.”\r
+\r
+I was just human.\r
+\r
+## The Takeaway\r
+\r
+If you’ve ever felt like you’re the only one lost… you’re not.\r
+If you’ve ever thought everyone else got the manual… they didn’t.\r
+If you’ve ever wondered why you can’t figure it all out… no one else has, either.\r
+\r
+Some paths are straight.\r
+Most zigzag.\r
+All of them are valid.\r
+\r
+So the next time you look around and think you’re the only one struggling, remember:\r
+**It’s okay to feel lost sometimes.**\r
+**You’re not behind.**\r
+**You’re human.**\r
+**YAnd that’s enough.**`,zb=`---\r
 id: 1\r
 title: "He Failed His Hardest Class - Here's What Happened Next"\r
 slug: failing-hardest-class\r
@@ -1309,7 +1384,7 @@ Jordan is now a senior, doing well in his classes, and planning for graduation.\
 \r
 *Have your own story about overcoming academic struggles? [Share it with us →](/stories)*\r
 \r
-*You have more options than you think. Keep going.*`,zb=`---\r
+*You have more options than you think. Keep going.*`,Fb=`---\r
 id: 2\r
 title: "200+ Applications, 3 Interviews: One Student's Job Search Reality"\r
 slug: job-search-reality\r
@@ -1535,82 +1610,7 @@ Six months into the job, Maya says:\r
 \r
 *Going through the job search? [Share your experience →](/stories)*\r
 \r
-*You're not the only one sending out hundreds of applications. Keep going.*`,Fb=`---\r
-id: 3\r
-title: "The Moment I Realized Everyone Is Faking It (and That’s Okay)"\r
-slug: mental-health-struggles\r
-date: December 7, 2025\r
-category: Mental Health\r
-tags:\r
-  - mental health\r
-  - anxiety\r
-  - depression\r
-  - college stress\r
-  - crisis resources\r
-excerpt: "This isn’t a post about depression, anxiety, or the deeper struggles that deserve real support (we wrote about that separately). This piece is about something more subtle — the quiet pressure to look like you have it all together when you don’t. It’s a story about comparison, the illusion of “fine,” and the moment you realize you’re not the only one figuring life out as you go."\r
-author: MoreThanOneWay Team\r
-readTime: 1 min read\r
-featured: true\r
----\r
-\r
-# The Moment I Realized Everyone Is Faking It (and That’s Okay)\r
-\r
-There’s a moment most people have at some point in college — a quiet, almost embarrassing moment — where you look around the room and think:\r
-\r
-**“Is everyone else just… doing better than me?”**\r
-\r
-For me, that moment happened during a random class (many eons ago). I remember sitting there, staring at someone who always seemed put together. They answered questions effortlessly. They took notes like they were preparing to publish a textbook. They never looked stressed, even though the rest of us were unraveling like loose threads.\r
-\r
-Meanwhile, I was fighting a losing battle with my deadlines, my self-doubt, and a calculator that may as well have been written in ancient Greek.\r
-\r
-And I remember thinking:\r
-\r
-**“How are they so on top of everything?”**\r
-**“What’s wrong with me?”**\r
-\r
-## The Shift\r
-\r
-That feeling stuck with me… until one day I overheard that same “perfect” classmate quietly telling someone they were struggling.\r
-\r
-Not just a little — a lot.\r
-Behind the calm face and crisp notes was someone who felt just as overwhelmed, unsure, and stretched thin as the rest of us.\r
-\r
-It hit me harder than I expected:\r
-\r
-That feeling stuck with me… until one day I overheard that same “perfect” classmate quietly telling someone they were struggling.\r
-\r
-Not just a little — a lot.\r
-Behind the calm face and crisp notes was someone who felt just as overwhelmed, unsure, and stretched thin as the rest of us.\r
-\r
-It hit me harder than I expected:\r
-\r
-**No one has it together.**\r
-**Everyone is just trying, guessing, improvising, or hoping they’re doing enough.**\r
-\r
-Some people fake confidence.\r
-Some fake calm.\r
-Some fake knowing what they want to do with their life.\r
-Most of us fake all three.\r
-\r
-And suddenly I felt lighter — not because anything got easier, but because I realized I wasn’t behind. I wasn’t broken. I wasn’t “less than.”\r
-\r
-I was just human.\r
-\r
-## The Takeaway\r
-\r
-If you’ve ever felt like you’re the only one lost… you’re not.\r
-If you’ve ever thought everyone else got the manual… they didn’t.\r
-If you’ve ever wondered why you can’t figure it all out… no one else has, either.\r
-\r
-Some paths are straight.\r
-Most zigzag.\r
-All of them are valid.\r
-\r
-So the next time you look around and think you’re the only one struggling, remember:\r
-**It’s okay to feel lost sometimes.**\r
-**You’re not behind.**\r
-**You’re human.**\r
-**YAnd that’s enough.**`,Bb=`---\r
+*You're not the only one sending out hundreds of applications. Keep going.*`,Bb=`---\r
 id: 3\r
 title: "When Everyone Seems Fine But You're Drowning"\r
 slug: mental-health-struggles\r
@@ -1868,7 +1868,7 @@ You're not weak for struggling. You're not alone. And you're not "too broken" to
 - **Go to your campus health center**\r
 - **Call a friend/family member**\r
 \r
-*You matter. This is temporary. Please get help.* 💙`,_b=Object.assign({"./posts/chosen-family-resources.md":Ob,"./posts/failing-hardest-class.md":Db,"./posts/job-search-reality.md":zb,"./posts/mental-health-struggles - Copy.md":Fb,"./posts/mental-health-struggles.md":Bb}),ei=Object.entries(_b).map(([e,n])=>{const r=/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/,s=n.match(r);if(!s)return console.error(`No frontmatter found in ${e}`),null;const[,i,a]=s,l={};return i.split(`
+*You matter. This is temporary. Please get help.* 💙`,_b=Object.assign({"./posts/chosen-family-resources.md":Ob,"./posts/everyone-fakes-it.md":Db,"./posts/failing-hardest-class.md":zb,"./posts/job-search-reality.md":Fb,"./posts/mental-health-struggles.md":Bb}),ei=Object.entries(_b).map(([e,n])=>{const r=/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/,s=n.match(r);if(!s)return console.error(`No frontmatter found in ${e}`),null;const[,i,a]=s,l={};return i.split(`
 `).forEach(o=>{const[c,...d]=o.split(":");if(c&&d.length>0){const h=d.join(":").trim();h.startsWith("[")||o.trim().startsWith("-")?(l[c.trim()]||(l[c.trim()]=[]),o.trim().startsWith("-")&&l[c.trim()].push(o.trim().substring(1).trim())):c.trim()==="tags"?l.tags=[]:h==="true"?l[c.trim()]=!0:h==="false"?l[c.trim()]=!1:isNaN(h)?l[c.trim()]=h.replace(/^["']|["']$/g,""):l[c.trim()]=Number(h)}}),{id:l.id,title:l.title,slug:l.slug,date:l.date,category:l.category,tags:l.tags||[],excerpt:l.excerpt,author:l.author||"MoreThanOneWay Team",readTime:l.readTime,featured:l.featured||!1,image:l.image||null,content:a.trim()}}).filter(Boolean);ei.sort((e,n)=>{const r=new Date(e.date);return new Date(n.date)-r});const $b=e=>ei.find(n=>n.slug===e),Wb=()=>[...new Set(ei.map(n=>n.category))],Hb=({setCurrentPage:e,setSelectedPostSlug:n})=>{const[r,s]=z.useState(null),[i,a]=z.useState(""),l=Wb(),o=ei.filter(h=>!r||h.category===r).filter(h=>!i||h.title.toLowerCase().includes(i.toLowerCase())||h.excerpt.toLowerCase().includes(i.toLowerCase())||h.tags.some(u=>u.toLowerCase().includes(i.toLowerCase()))),c=o.find(h=>h.featured),d=o.filter(h=>!h.featured);return t.jsx("div",{className:"min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50",children:t.jsxs("div",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12",children:[t.jsxs("div",{className:"text-center mb-12",children:[t.jsx("h1",{className:"text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent",children:"Blog"}),t.jsx("p",{className:"text-xl text-gray-600 max-w-2xl mx-auto",children:"Real stories, honest advice, and resources from students who've been there."})]}),t.jsxs("div",{className:"bg-white rounded-2xl shadow-soft p-6 mb-8",children:[t.jsxs("div",{className:"flex flex-wrap gap-3 mb-4",children:[t.jsx("button",{onClick:()=>s(null),className:`
                 px-4 py-2 rounded-full font-medium transition-all
                 ${r?"bg-gray-100 text-gray-700 hover:bg-gray-200":"bg-gradient-to-r from-blue-500 to-purple-500 text-white"}
