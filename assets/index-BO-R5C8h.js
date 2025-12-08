@@ -833,9 +833,9 @@ category: Wellness\r
 tags:\r
   - toxic positivity\r
   - personal growth\r
-  - depression\r
-  - “same place as last year quote meaning”\r
-  - feeling stuck in life\r
+  - mindset\r
+  - productivity\r
+  - gentle reminders\r
 excerpt: "We often hear the idea that being in the same place as last year means we’ve failed or stopped growing. But real growth isn’t tied to a calendar. Some years are for healing, stabilizing, or simply staying afloat — and that’s still growth. Quiet, internal progress counts more than we give it credit for."\r
 author: MoreThanOneWay Team\r
 readTime: 3 min read\r
@@ -920,7 +920,6 @@ category: Wellness\r
 tags:\r
   - family support\r
   - LGBTQ+ resources\r
-  - chosen family\r
   - mental health\r
   - support groups\r
 excerpt: "If your family isn't there for you, these organizations connect you with supportive parent and grandparent figures who choose to show up."\r
@@ -1241,10 +1240,11 @@ date: December 7, 2025\r
 category: Wellness\r
 tags:\r
   - mental health\r
-  - anxiety\r
-  - depression\r
+  - mindset\r
+  - perspective\r
+  - coping strategies\r
   - college stress\r
-  - crisis resources\r
+  - gentle reminders\r
 excerpt: "This isn’t a post about depression, anxiety, or the deeper struggles that deserve real support (we wrote about that separately). This piece is about something more subtle — the quiet pressure to look like you have it all together when you don’t. It’s a story about comparison, the illusion of “fine,” and the moment you realize you’re not the only one figuring life out as you go."\r
 author: MoreThanOneWay Team\r
 readTime: 1 min read\r
@@ -1707,7 +1707,7 @@ date: October 28, 2025\r
 category: Wellness\r
 tags:\r
   - mental health\r
-  - anxiety\r
+  - perspective\r
   - depression\r
   - college stress\r
   - crisis resources\r
