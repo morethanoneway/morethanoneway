@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+  // GitHub Pages 404 redirect handler
+  // Restores the real URL that 404.html encoded into ?p=
+  (function () {
+    var p = window.location.search.match(/[?&]p=([^&]*)/);
+    if (p) {
+      var path = decodeURIComponent(p[1]);
+      window.history.replaceState(null, '', path);
+    }
+  })();
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Free College Student Support - Mental Health, Career Help & Job Search Resources | MoreThanOneWay.org</title>
+    <meta name="description" content="Struggling with college? Free resources for students dealing with academic stress, job search anxiety, financial problems, and mental health challenges. Career paths, internship search tools, and real support." />
+    <meta name="keywords" content="college student mental health, struggling in college, career help students, find internships, failing college, college counseling, academic support, job search help, career paths by major" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://morethanoneway.org/" />
+    <meta property="og:title" content="More Than One Way - Free College Student Support" />
+    <meta property="og:description" content="Real help for students struggling with school, career stress, and mental health. Free tools, resources, and support. You have more choices than you think." />
+    <meta property="og:site_name" content="MoreThanOneWay.org" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://morethanoneway.org/" />
+    <meta name="twitter:title" content="More Than One Way - College Student Support" />
+    <meta name="twitter:description" content="Free resources for students struggling with school, careers, and mental health. You're not alone." />
+    
+    <!-- Pinterest Domain Verification -->
+    <meta name="p:domain_verify" content="ac03ea2da56931f1903ecb9af87b406a"/>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVR5E83MW6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WVR5E83MW6');
+    </script>
+
+     <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1546878373197013');
+      fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+    
+      </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
