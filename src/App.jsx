@@ -9,7 +9,7 @@ import SearchGuide from './SearchGuide';
 import StudyResources from './StudyResources';
 import InterviewPrep from './InterviewPrep';
 import JobAlertGuide from './Jobalertguide';
-import ShareButtons from './ShareButtons';
+import ShareButtons from './Sharebuttons';
 import RecommendedReading from './RecommendedReading';
 import ResourcesPage from "./ResourcesPage";
 import StoriesPage from './StoriesPage';
