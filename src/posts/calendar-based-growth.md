@@ -13,7 +13,7 @@ tags:
 excerpt: "We often hear the idea that being in the same place as last year means we’ve failed or stopped growing. But real growth isn’t tied to a calendar. Some years are for healing, stabilizing, or simply staying afloat — and that’s still growth. Quiet, internal progress counts more than we give it credit for."
 author: MoreThanOneWay Team
 readTime: 3 min read
-featured: true
+featured: false
 ---
 
 I saw a quote today that said, “The scariest place to be is the same place as last year.”
