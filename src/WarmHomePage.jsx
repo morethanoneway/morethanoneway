@@ -1,5 +1,5 @@
 import React from 'react';
-import ShareButtons from './ShareButtons';
+import ShareButtons from './Sharebuttons';
 import { Heart, Users, Mail, TrendingUp, Compass, Shuffle, HeartHandshake, Briefcase, Clock, GraduationCap, ArrowUpRight, ChevronRight, Phone, MessageSquare, ClipboardList, Bell, MessageCircle, BookOpen, Search, FileText } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import Tile from "./components/Tile";

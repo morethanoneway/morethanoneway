@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import ShareButtons from './ShareButtons';
+import ShareButtons from './Sharebuttons';
 import { Helmet } from 'react-helmet-async';
 import {
   BookOpen, Users, Heart, DollarSign, HelpCircle, AlertCircle, Phone,
