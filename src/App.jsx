@@ -21,7 +21,7 @@ import Volunteer from './Volunteer';
 import BlogPage from './BlogPage';
 import BlogPost from './BlogPost';
 import PageHero from "./components/PageHero";
-import ATSGuide from './AtsGuide';
+import ATSGuide from './Atsguide';
 import FindInternshipsPage from './FindInternshipsPage';
 import './warm-design.css';
 
