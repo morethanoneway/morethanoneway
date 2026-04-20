@@ -14,14 +14,14 @@ import RecommendedReading from './RecommendedReading';
 import ResourcesPage from "./ResourcesPage";
 import StoriesPage from './StoriesPage';
 import WarmHomePage from './WarmHomePage';
-import AboutPage from './AboutPage';
+import AboutPage from './Aboutpage';
 import JobToolsHub from './JobToolsHub';
 import NeedALaugh from './NeedALaugh';
 import Volunteer from './Volunteer';
 import BlogPage from './BlogPage';
 import BlogPost from './BlogPost';
 import PageHero from "./components/PageHero";
-import ATSGuide from './ATSGuide';
+import ATSGuide from './AtsGuide';
 import FindInternshipsPage from './FindInternshipsPage';
 import './warm-design.css';
 
