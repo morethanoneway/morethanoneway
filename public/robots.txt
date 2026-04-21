@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://morethanoneway.org/sitemap.xml
+Sitemap: https://morethanoneway.org/sitemap.txt
