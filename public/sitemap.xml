@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<!--  Homepage - Highest Priority  -->
 <url>
 <loc>https://morethanoneway.org/</loc>
 <changefreq>weekly</changefreq>
 <priority>1.0</priority>
 </url>
-<!--  Main Support Pages  -->
 <url>
 <loc>https://morethanoneway.org/youre-not-alone</loc>
 <changefreq>monthly</changefreq>
@@ -22,7 +20,6 @@
 <changefreq>weekly</changefreq>
 <priority>0.8</priority>
 </url>
-<!--  Job Search & Career Tools  -->
 <url>
 <loc>https://morethanoneway.org/find-internships</loc>
 <changefreq>monthly</changefreq>
@@ -48,7 +45,6 @@
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
-<!--  Application Tools  -->
 <url>
 <loc>https://morethanoneway.org/resume-builder</loc>
 <changefreq>monthly</changefreq>
@@ -59,7 +55,6 @@
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
-<!--  Resources  -->
 <url>
 <loc>https://morethanoneway.org/study-resources</loc>
 <changefreq>monthly</changefreq>
@@ -75,31 +70,26 @@
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
-<!--  Blog  -->
 <url>
 <loc>https://morethanoneway.org/blog</loc>
 <changefreq>weekly</changefreq>
 <priority>0.8</priority>
 </url>
-<!--  Need a Laugh  -->
 <url>
 <loc>https://morethanoneway.org/need-a-laugh</loc>
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
-<!--  Job Tools Hub  -->
 <url>
 <loc>https://morethanoneway.org/job-tools-hub</loc>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
-<!--  ATS Guide  -->
 <url>
 <loc>https://morethanoneway.org/ats-guide</loc>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
-<!--  About & Contact  -->
 <url>
 <loc>https://morethanoneway.org/about</loc>
 <changefreq>monthly</changefreq>
