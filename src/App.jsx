@@ -24,6 +24,7 @@ import PageHero from "./components/PageHero";
 import ATSGuide from './Atsguide';
 import FindInternshipsPage from './FindInternshipsPage';
 import './warm-design.css';
+import StoryDetail from './StoryDetail';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -1414,6 +1415,7 @@ export default function App() {
           <Route path="/need-a-laugh" element={<NeedALaugh onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
           <Route path="/volunteer" element={<Volunteer onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
           <Route path="/stories" element={<StoriesPage setCurrentPage={setCurrentPage} />} />
+          <Route path="/stories/:slug" element={<StoryDetail />} />
           <Route path="/pivot" element={<PivotPage setCurrentPage={setCurrentPage} />} />
           <Route path="/about" element={<AboutPage setCurrentPage={setCurrentPage} />} />
           <Route path="/contact" element={<Contact onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
