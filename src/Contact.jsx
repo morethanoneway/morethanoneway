@@ -25,7 +25,6 @@ const copyEmail = async () => {
   // ✅ Put your real links here
   const socials = [
     { label: "Instagram", href: "https://instagram.com/morethanonewayproject" },
-    { label: "TikTok", href: "https://tiktok.com/@morethanoneway.org" },
     { label: "Facebook", href: "https://facebook.com/morethanonewayproject" },
   ];
 
@@ -156,15 +155,7 @@ const copyEmail = async () => {
       >
         Instagram <ExternalLink className="w-4 h-4 text-gray-500" />
       </a>
-
-      <a
-        href="https://www.tiktok.com/@morethanoneway.org"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 font-semibold text-gray-900 hover:bg-gray-50 hover:border-gray-300 transition"
-      >
-        TikTok <ExternalLink className="w-4 h-4 text-gray-500" />
-      </a>
+    
 
       <a
         href="https://facebook.com/morethanonewayproject"

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Routes, Route, useParams } from 'react-router-dom';
+import { useNavigate, Routes, Route, useParams, Navigate } from 'react-router-dom';
 
 import { Heart, MessageCircle, Sparkles, Phone, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
 import ResumeBuilder from './ResumeBuilder';
@@ -1424,7 +1424,7 @@ export default function App() {
           <Route path="/blog" element={<BlogPage setCurrentPage={setCurrentPage} setSelectedPostSlug={(slug) => navigate('/blog/' + slug)} />} />
           <Route path="/blog/:slug" element={<BlogPostWrapper setCurrentPage={setCurrentPage} />} />
           {/* Catch-all: redirect unknown URLs to home */}
-          <Route path="*" element={<WarmHomePage setCurrentPage={setCurrentPage} />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
 
