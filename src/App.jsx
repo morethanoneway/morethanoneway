@@ -1426,7 +1426,7 @@ export default function App() {
           <Route path="/blog" element={<BlogPage setCurrentPage={setCurrentPage} setSelectedPostSlug={(slug) => navigate('/blog/' + slug)} />} />
           <Route path="/blog/:slug" element={<BlogPostWrapper setCurrentPage={setCurrentPage} />} />
           {/* Catch-all: redirect unknown URLs to home */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+     
         </Routes>
       </main>
 
