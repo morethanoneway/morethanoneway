@@ -46,7 +46,7 @@ const SectionHeader = ({ icon: Icon, title, subtitle }) => (
 
 
 // Dropdown Menu Component
-const DropdownMenu = ({ title, items, currentPage, setCurrentPage, isMobile = false }) => {
+const DropdownMenu = ({ title, items, currentPage, setCurrentPage, isMobile = false, onTitleClick }) => {
   const [open, setOpen] = useState(false);
 
   const go = (page) => {
