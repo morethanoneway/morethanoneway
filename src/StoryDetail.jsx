@@ -46,6 +46,22 @@ const StoryDetail = () => {
         <meta property="og:url" content={`https://morethanoneway.org/stories/${story.slug}`} />
         <meta property="og:type" content="article" />
         <link rel="canonical" href={`https://morethanoneway.org/stories/${story.slug}`} />
+      <script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": story.metaTitle,
+  "description": story.metaDescription,
+  "url": `https://morethanoneway.org/stories/${story.slug}`,
+  "publisher": {
+    "@type": "Organization",
+    "name": "More Than One Way",
+    "url": "https://morethanoneway.org"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://morethanoneway.org/stories/${story.slug}`
+  }
+})}</script>
       </Helmet>
 
       <div className="min-h-screen bg-[#FFFBF7]">

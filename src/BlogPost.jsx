@@ -95,6 +95,27 @@ const BlogPost = ({ setCurrentPage, selectedPostSlug, setSelectedPostSlug }) => 
   <meta property="og:title" content={post.title} />
   <meta property="og:description" content={post.excerpt} />
   <meta name="keywords" content={post.tags ? post.tags.join(', ') : ''} />
+  <script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": post.excerpt,
+  "url": `https://morethanoneway.org/blog/${post.slug}`,
+  "datePublished": post.date,
+  "author": {
+    "@type": "Organization",
+    "name": post.author || "MoreThanOneWay Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "More Than One Way",
+    "url": "https://morethanoneway.org"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://morethanoneway.org/blog/${post.slug}`
+  }
+})}</script>
 </Helmet>
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

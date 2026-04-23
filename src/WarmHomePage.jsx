@@ -14,6 +14,17 @@ const WarmHomePage = ({ setCurrentPage }) => {
         <meta property="og:title" content="More Than One Way - Free College Student Support" />
         <meta property="og:description" content="Real help for students struggling with school, career stress, and mental health. Free resources, tools, and support." />
         <meta name="keywords" content="college student mental health, struggling in college, career help for students, free study resources, job search support" />
+      <script type="application/ld+json">{JSON.stringify({
+       "@context": "https://schema.org",
+        "@type": "Organization",
+       "name": "More Than One Way",
+       "url": "https://morethanoneway.org",
+       "description": "Free resources for college students struggling with academic stress, job search anxiety, and mental health challenges.",
+       "sameAs": [
+        "https://www.instagram.com/morethanonewayproject/",
+        "https://www.facebook.com/morethanonewayproject"
+  ]
+})}</script>
       </Helmet>
       
       <div className="space-y-0">
