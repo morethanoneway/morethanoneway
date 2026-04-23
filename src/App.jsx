@@ -25,6 +25,8 @@ import ATSGuide from './Atsguide';
 import FindInternshipsPage from './FindInternshipsPage';
 import './warm-design.css';
 import StoryDetail from './StoryDetail';
+import FindOpportunitiesHub from './FindOpportunitiesHub';
+import ResourcesHub from './ResourcesHub';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -98,14 +100,14 @@ const DropdownMenu = ({ title, items, currentPage, setCurrentPage, isMobile = fa
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="hover:text-blue-200 flex items-center gap-1"
-      >
-        {title}
-        <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
-      </button>
+     <button
+  type="button"
+  onClick={() => onTitleClick ? onTitleClick() : setOpen(!open)}
+  className="hover:text-blue-200 flex items-center gap-1"
+>
+  {title}
+  <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
+</button>
 
       {open && (
         <div className="absolute top-full left-0 pt-2 z-50">
@@ -210,6 +212,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
 
               <DropdownMenu
                 title="Find Opportunities"
+                onTitleClick={() => setCurrentPage('find-opportunities-hub')}
                 items={findOpportunitiesItems}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
@@ -218,6 +221,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
 
               <DropdownMenu
                 title="Job Tools"
+                onTitleClick={() => setCurrentPage('job-tools-hub')}
                 items={jobToolsItems}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
@@ -241,6 +245,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
 
               <DropdownMenu
                 title="Resources"
+                onTitleClick={() => setCurrentPage('resources-hub')}
                 items={resourcesItems}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
@@ -1425,6 +1430,8 @@ export default function App() {
           <Route path="/crisis" element={<CrisisPage setCurrentPage={setCurrentPage} />} />
           <Route path="/blog" element={<BlogPage setCurrentPage={setCurrentPage} setSelectedPostSlug={(slug) => navigate('/blog/' + slug)} />} />
           <Route path="/blog/:slug" element={<BlogPostWrapper setCurrentPage={setCurrentPage} />} />
+          <Route path="/find-opportunities-hub" element={<FindOpportunitiesHub setCurrentPage={setCurrentPage} />} />
+<Route path="/resources-hub" element={<ResourcesHub setCurrentPage={setCurrentPage} />} />
           {/* Catch-all: redirect unknown URLs to home */}
      
         </Routes>
