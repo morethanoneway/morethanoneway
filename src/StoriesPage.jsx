@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MessageCircle, ExternalLink, Heart } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import { posts as stories } from './posts';
+import { stories } from './stories';
 
 const colorSchemes = {
   purple: { border: 'border-purple-500', badge: 'bg-purple-100 text-purple-800' },

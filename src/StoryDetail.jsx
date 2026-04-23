@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Heart, ExternalLink } from 'lucide-react';
-import { getPostBySlug as getStoryBySlug } from './posts';
+import { getStoryBySlug } from './stories';
 
 const colorSchemes = {
   purple: { border: 'border-purple-500', badge: 'bg-purple-100 text-purple-800', accent: 'text-purple-600' },
