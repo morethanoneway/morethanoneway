@@ -82,6 +82,14 @@ const StoriesPage = () => {
                           We share survival stories—the messy truth—so students see there's more than one way forward.
                         </p>
                       </div>
+                      <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSex5f-hLh3ygRkdsLeE33vxmE7WUiajozBZtpFCczxBK8SpMQ/viewform"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-block bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-teal-700 transition-colors"
+                      >
+                        Share Your Story →
+                      </a>
                     </div>
                   </div>
                 </div>
