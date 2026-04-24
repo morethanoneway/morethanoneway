@@ -59,16 +59,13 @@ const SectionHeader = ({ icon: Icon, title, subtitle }) => (
 );
 
 
-// Dropdown Menu Component
-const DropdownMenu = ({ title, items, currentPage, setCurrentPage, isMobile = false, onTitleClick }) => {
+const DropdownMenu = ({ title, items, groups, currentPage, setCurrentPage, isMobile = false, onTitleClick }) => {
   const [open, setOpen] = useState(false);
 
   const go = (page) => {
     setCurrentPage(page);
     setOpen(false);
   };
-
-
 
   if (isMobile) {
     return (
@@ -84,57 +81,54 @@ const DropdownMenu = ({ title, items, currentPage, setCurrentPage, isMobile = fa
 
         {open && (
           <div className="pl-3 space-y-1">
-            {items.map((item) => {
-              const isActive = currentPage === item.page;
-              return (
-                <button
-                  key={item.page}
-                  type="button"
-                  onClick={() => go(item.page)}
-                  className={`block w-full text-left py-2 px-3 rounded ${isActive ? "bg-white/10 text-blue-200 font-semibold" : "hover:text-blue-200"
-                    }`}
-                >
-                  <span className="inline-flex items-center gap-2">
-                    {item.icon}
-                    {item.label}
-                  </span>
-                </button>
-              );
-            })}
+            {groups ? groups.map((group) => (
+              <div key={group.label}>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wide px-3 pt-2 pb-1">{group.label}</p>
+                {group.items.map((item) => (
+                  <button key={item.page} type="button" onClick={() => go(item.page)}
+                    className="block w-full text-left py-2 px-3 rounded hover:text-blue-200">
+                    <span className="inline-flex items-center gap-2">{item.icon}{item.label}</span>
+                  </button>
+                ))}
+              </div>
+            )) : items.map((item) => (
+              <button key={item.page} type="button" onClick={() => go(item.page)}
+                className={`block w-full text-left py-2 px-3 rounded ${currentPage === item.page ? "bg-white/10 text-blue-200 font-semibold" : "hover:text-blue-200"}`}>
+                <span className="inline-flex items-center gap-2">{item.icon}{item.label}</span>
+              </button>
+            ))}
           </div>
         )}
       </div>
     );
   }
 
-  // Desktop dropdown
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-     <button
-  type="button"
-  onClick={() => onTitleClick ? onTitleClick() : setOpen(!open)}
-  className="hover:text-blue-200 flex items-center gap-1"
->
-  {title}
-  <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
-</button>
+    <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+      <button type="button"
+        onClick={() => onTitleClick ? onTitleClick() : setOpen(!open)}
+        className="hover:text-blue-200 flex items-center gap-1">
+        {title}
+        <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
 
       {open && (
         <div className="absolute top-full left-0 pt-2 z-50">
-          <div className="bg-white text-gray-800 rounded-lg shadow-lg py-2 min-w-[280x]">
-            {items.map((item) => (
-              <button
-                key={item.page}
-                type="button"
-                onClick={() => go(item.page)}
-                className="w-full text-left px-4 py-2 hover:bg-blue-50 flex items-center gap-2"
-              >
-                {item.icon}
-                {item.label}
+          <div className="bg-white text-gray-800 rounded-lg shadow-lg py-2 min-w-[300px]">
+            {groups ? groups.map((group) => (
+              <div key={group.label}>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wide px-4 pt-3 pb-1">{group.label}</p>
+                {group.items.map((item) => (
+                  <button key={item.page} type="button" onClick={() => go(item.page)}
+                    className="w-full text-left px-4 py-2 hover:bg-blue-50 flex items-center gap-2 text-sm">
+                    {item.icon}{item.label}
+                  </button>
+                ))}
+              </div>
+            )) : items.map((item) => (
+              <button key={item.page} type="button" onClick={() => go(item.page)}
+                className="w-full text-left px-4 py-2 hover:bg-blue-50 flex items-center gap-2 text-sm">
+                {item.icon}{item.label}
               </button>
             ))}
           </div>
@@ -189,22 +183,36 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
     { page: 'pivot', label: 'Career Paths', icon: <TrendingUp className="w-4 h-4" /> },
   ];
 
-const supportItems = [
-  { page: 'youre-not-alone', label: "You're Not Alone — Support Hub", icon: <Heart className="w-4 h-4" /> },
-  { page: 'struggling-in-classes', label: 'Failing or Struggling in Classes', icon: <BookOpen className="w-4 h-4" /> },
-  { page: 'family-not-supportive', label: "Family Isn't Supportive", icon: <Heart className="w-4 h-4" /> },
-  { page: 'feeling-alone', label: 'Feeling Completely Alone', icon: <Users className="w-4 h-4" /> },
-  { page: 'dont-want-to-be-here', label: "Don't Want to Be Here", icon: <AlertCircle className="w-4 h-4" /> },
-  { page: 'career-services-no-idea', label: 'Career Services No Help', icon: <Building className="w-4 h-4" /> },
-  { page: 'cant-afford-college', label: "Can't Afford College", icon: <DollarSign className="w-4 h-4" /> },
-  { page: 'no-idea-what-to-do', label: 'No Idea What to Do', icon: <HelpCircle className="w-4 h-4" /> },
-  { page: 'everything-is-too-much', label: "It's Just... Everything", icon: <AlertCircle className="w-4 h-4" /> },
-  { page: 'hate-my-major', label: 'I Hate My Major', icon: <BookOpen className="w-4 h-4" /> },
-  { page: 'first-generation-student', label: "I'm a First-Gen Student", icon: <GraduationCap className="w-4 h-4" /> },
-  { page: 'academic-probation', label: 'Failed a Class / Academic Probation', icon: <AlertCircle className="w-4 h-4" /> },
-  { page: 'burnt-out', label: "I'm Burnt Out", icon: <Heart className="w-4 h-4" /> },
-  { page: 'thinking-about-transferring', label: 'Thinking About Transferring', icon: <Building className="w-4 h-4" /> },
-  { page: 'crisis', label: 'In Crisis Right Now', icon: <Phone className="w-4 h-4" /> },
+const supportGroups = [
+  {
+    label: 'Academic',
+    items: [
+      { page: 'struggling-in-classes', label: 'Failing or Struggling in Classes', icon: <BookOpen className="w-4 h-4" /> },
+      { page: 'academic-probation', label: 'Failed a Class / Academic Probation', icon: <AlertCircle className="w-4 h-4" /> },
+      { page: 'hate-my-major', label: 'I Hate My Major', icon: <BookOpen className="w-4 h-4" /> },
+      { page: 'thinking-about-transferring', label: 'Thinking About Transferring', icon: <Building className="w-4 h-4" /> },
+    ]
+  },
+  {
+    label: 'Career & Future',
+    items: [
+      { page: 'career-services-no-idea', label: 'Career Services No Help', icon: <Building className="w-4 h-4" /> },
+      { page: 'no-idea-what-to-do', label: 'No Idea What to Do', icon: <HelpCircle className="w-4 h-4" /> },
+    ]
+  },
+  {
+    label: 'Personal',
+    items: [
+      { page: 'family-not-supportive', label: "Family Isn't Supportive", icon: <Heart className="w-4 h-4" /> },
+      { page: 'feeling-alone', label: 'Feeling Completely Alone', icon: <Users className="w-4 h-4" /> },
+      { page: 'burnt-out', label: "I'm Burnt Out", icon: <Heart className="w-4 h-4" /> },
+      { page: 'cant-afford-college', label: "Can't Afford College", icon: <DollarSign className="w-4 h-4" /> },
+      { page: 'first-generation-student', label: "I'm a First-Gen Student", icon: <GraduationCap className="w-4 h-4" /> },
+      { page: 'dont-want-to-be-here', label: "Don't Want to Be Here", icon: <AlertCircle className="w-4 h-4" /> },
+      { page: 'everything-is-too-much', label: "It's Just... Everything", icon: <AlertCircle className="w-4 h-4" /> },
+      { page: 'crisis', label: 'In Crisis Right Now', icon: <Phone className="w-4 h-4" /> },
+    ]
+  },
 ];
 
   const resourcesItems = [
