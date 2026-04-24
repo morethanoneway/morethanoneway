@@ -2112,20 +2112,6 @@ Builder</span>
                       </div>
                     </div>
 
-                    <div className="rounded-2xl bg-orange-100 border border-orange-200 p-4">
-                      <p className="text-sm text-orange-900 flex items-center gap-2">
-                        <Lightbulb className="w-4 h-4" />
-                        <span>
-                          <strong>Get Smart Suggestions:</strong> Type keywords like{" "}
-                          <span className="font-mono">
-                            barista, server, tutor, lab, receptionist, cashier
-                          </span>{" "}
-                          in your bullets below
-                        </span>
-                      </p>
-                      <KeywordGuide major={major} />
-                    </div>
-
                     {resumeData.experience.map((exp, expIdx) => (
                       <div key={expIdx} className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
                         <div className="flex items-start justify-between gap-4 mb-4">
@@ -2271,21 +2257,7 @@ Builder</span>
                       </div>
                     </div>
 
-                    <div className="bg-yellow-30 border border-yellow-200 rounded-xl p-4">
-                      <p className="text-sm text-indigo-900 flex items-center gap-2">
-                        <Lightbulb className="w-4 h-4" />
-                        <strong>Get Smart Suggestions:</strong> Type keywords like{" "}
-                        <span className="font-mono">
-                          project, research, designed, built, analyzed, python
-                        </span>{" "}
-                        in descriptions below
-                      </p>
-                      <div className="mt-3">
-                        <KeywordGuide major={major} />
-                      </div>
-                    </div>
-
-                    {resumeData.projects.map((proj, projIdx) => (
+                                        {resumeData.projects.map((proj, projIdx) => (
                       <div key={projIdx} className="border border-gray-200 rounded-2xl p-5 bg-gray-50">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="font-bold text-gray-900">Project {projIdx + 1}</h4>
@@ -2412,20 +2384,7 @@ Builder</span>
                       </div>
                     </div>
 
-                    <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4">
-                      <p className="text-sm text-indigo-900 flex items-center gap-2">
-                        <Lightbulb className="w-4 h-4" />
-                        <strong>Get Smart Suggestions:</strong> Type keywords like{" "}
-                        <span className="font-mono">
-                          president, organized, volunteer, fundraiser, led, mentor
-                        </span>{" "}
-                        in bullets below
-                      </p>
-                      <div className="mt-3">
-                        <KeywordGuide major={major} />
-                      </div>
-                    </div>
-
+                   
                     {resumeData.activities.map((act, actIdx) => (
                       <div key={actIdx} className="border border-gray-200 rounded-2xl p-5 bg-gray-50">
                         <div className="flex justify-between items-center mb-4">
