@@ -4,7 +4,7 @@ import { Layers } from "lucide-react";
 import { BulletAIHelper } from './BulletAIHelper';
 import { FullResumeAIReview } from './FullResumeAIReview';
 import { InstantBulletChecker } from './InstantBulletChecker';
-import ShareButtons from './ShareButtons';
+import ShareButtons from './Sharebuttons';
 
 // Inspirational messages
 const INSPIRATIONAL_MESSAGES = [
