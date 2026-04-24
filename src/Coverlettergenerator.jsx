@@ -302,12 +302,12 @@ Give 2-3 alternative versions.`;
       {showFormatModal && <FormatModal onClose={() => setShowFormatModal(false)} />}
 
       <div className="bg-[#FFFBF7]">
-        <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
+        <div className="mx-auto w-full max-w-4xl px-6 lg:px-12 py-10">
 
           <div className="text-center mb-6">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
               Cover Letter{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-orange-400">Generator</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r orange-500 via-pink-500 to-purple-500">Generator</span>
             </h1>
             <p className="mt-4 text-lg text-gray-600 max-w-xl mx-auto">Free. No sign-up. Get a strong draft in seconds — then make it sound like <em>you</em>.</p>
             <button onClick={() => setShowFormatModal(true)}

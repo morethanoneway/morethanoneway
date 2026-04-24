@@ -651,7 +651,7 @@ const PivotPage = ({ setCurrentPage }) => {
 
 return (
     <div className="bg-[#FFFBF7] min-h-screen">
-      <div className="mx-auto w-full max-w-5xl px-6 lg:px-12 py-10">
+      <div className="mx-auto w-full max-w-screen-xl px-6 lg:px-12 py-10">
         <div className="space-y-6">
 
       {/* Hero Section */}
@@ -1278,7 +1278,9 @@ const TrackerPage = ({ setCurrentPage }) => {
 
 
 const CrisisPage = ({ setCurrentPage }) => (
-  <div className="space-y-6">
+  <div className="bg-[#FFFBF7] min-h-screen">
+  <div className="mx-auto w-full max-w-4xl px-6 py-10">
+    <div className="space-y-6">
     <div className="bg-gradient-to-r from-red-50 to-orange-50 p-5 rounded-xl shadow-soft">
       <div className="flex items-start gap-3">
         <Heart className="w-10 h-10 text-red-500 mb-3" fill="currentColor" />
@@ -1394,6 +1396,8 @@ const CrisisPage = ({ setCurrentPage }) => (
         Read Their Stories
       </button>
     </div>
+  </div>
+  </div>
   </div>
 );
 
