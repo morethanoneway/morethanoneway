@@ -4,7 +4,7 @@ import { Phone, Copy, Check, ChevronDown, ChevronUp, AlertCircle, Lightbulb, X, 
 import { BulletAIHelper } from './BulletAIHelper';
 import { FullResumeAIReview } from './FullResumeAIReview';
 import { InstantBulletChecker } from './InstantBulletChecker';
-import ShareButtons from './ShareButtons';
+import {ShareButtons} from './ShareButtons';
 
 // Inspirational messages
 const INSPIRATIONAL_MESSAGES = [
