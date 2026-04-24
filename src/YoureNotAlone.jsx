@@ -5,14 +5,14 @@ import { Heart, BookOpen, Users, AlertCircle, Building, DollarSign, HelpCircle, 
 import ShareButtons from './Sharebuttons';
 
 const TILES = [
-  {
+ {
     id: 'failing',
     icon: <BookOpen />,
     title: "I'm Failing or Struggling in Classes",
     desc: "Practical steps, professor email templates, accommodation help",
     path: '/struggling-in-classes',
-    bg: 'bg-blue-50 hover:bg-blue-100 border-blue-200',
-    iconBg: 'bg-blue-100 text-blue-700',
+    bg: 'bg-blue-50 border-blue-200',
+    iconBg: 'bg-white text-blue-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -22,8 +22,8 @@ const TILES = [
     title: "My Family Isn't Supportive",
     desc: "Chosen family resources, first-gen support, holiday survival",
     path: '/family-not-supportive',
-    bg: 'bg-purple-50 hover:bg-purple-100 border-purple-200',
-    iconBg: 'bg-purple-100 text-purple-700',
+    bg: 'bg-purple-50 border-purple-200',
+    iconBg: 'bg-white text-purple-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -33,8 +33,8 @@ const TILES = [
     title: "I Feel Completely Alone",
     desc: "Where to find real connection — on campus and off",
     path: '/feeling-alone',
-    bg: 'bg-green-50 hover:bg-green-100 border-green-200',
-    iconBg: 'bg-green-100 text-green-700',
+    bg: 'bg-emerald-50 border-emerald-200',
+    iconBg: 'bg-white text-emerald-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -44,8 +44,8 @@ const TILES = [
     title: "I Don't Even Want to Be Here",
     desc: "Leave of absence, major changes, alternative paths — real options",
     path: '/dont-want-to-be-here',
-    bg: 'bg-amber-50 hover:bg-amber-100 border-amber-200',
-    iconBg: 'bg-amber-100 text-amber-700',
+    bg: 'bg-amber-50 border-amber-200',
+    iconBg: 'bg-white text-amber-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -55,8 +55,8 @@ const TILES = [
     title: "Went to Career Services, Still Have No Idea",
     desc: "How to ask better questions and actually get somewhere",
     path: '/career-services-no-idea',
-    bg: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200',
-    iconBg: 'bg-indigo-100 text-indigo-700',
+    bg: 'bg-indigo-50 border-indigo-200',
+    iconBg: 'bg-white text-indigo-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -66,8 +66,8 @@ const TILES = [
     title: "I Can't Afford This",
     desc: "Emergency funds, food resources, textbook help — free",
     path: '/cant-afford-college',
-    bg: 'bg-orange-50 hover:bg-orange-100 border-orange-200',
-    iconBg: 'bg-orange-100 text-orange-700',
+    bg: 'bg-orange-50 border-orange-200',
+    iconBg: 'bg-white text-orange-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -77,8 +77,8 @@ const TILES = [
     title: "No Idea What I Want to Do",
     desc: "Career exploration without the pressure or the lectures",
     path: '/no-idea-what-to-do',
-    bg: 'bg-teal-50 hover:bg-teal-100 border-teal-200',
-    iconBg: 'bg-teal-100 text-teal-700',
+    bg: 'bg-cyan-50 border-cyan-200',
+    iconBg: 'bg-white text-cyan-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -88,8 +88,8 @@ const TILES = [
     title: "It's Just... Everything",
     desc: "When everything is falling apart at once — triage guide",
     path: '/everything-is-too-much',
-    bg: 'bg-rose-50 hover:bg-rose-100 border-rose-200',
-    iconBg: 'bg-rose-100 text-rose-700',
+    bg: 'bg-rose-50 border-rose-200',
+    iconBg: 'bg-white text-rose-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -99,8 +99,8 @@ const TILES = [
     title: "I Hate My Major",
     desc: "Changing majors is more common than you think — here's how to decide",
     path: '/hate-my-major',
-    bg: 'bg-yellow-50 hover:bg-yellow-100 border-yellow-200',
-    iconBg: 'bg-yellow-100 text-yellow-700',
+    bg: 'bg-yellow-50 border-yellow-200',
+    iconBg: 'bg-white text-yellow-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -110,8 +110,8 @@ const TILES = [
     title: "I'm a First-Generation Student",
     desc: "Navigating a system nobody prepared you for — real resources",
     path: '/first-generation-student',
-    bg: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200',
-    iconBg: 'bg-indigo-100 text-indigo-700',
+    bg: 'bg-sky-50 border-sky-200',
+    iconBg: 'bg-white text-sky-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -121,8 +121,8 @@ const TILES = [
     title: "I Failed a Class or Got Put on Probation",
     desc: "This feels catastrophic. It's not. Here's what to do next.",
     path: '/academic-probation',
-    bg: 'bg-red-50 hover:bg-red-100 border-red-200',
-    iconBg: 'bg-red-100 text-red-700',
+    bg: 'bg-red-50 border-red-200',
+    iconBg: 'bg-white text-red-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -132,8 +132,8 @@ const TILES = [
     title: "I'm Burnt Out",
     desc: "Not just tired — actually depleted. Signs and real recovery steps.",
     path: '/burnt-out',
-    bg: 'bg-orange-50 hover:bg-orange-100 border-orange-200',
-    iconBg: 'bg-orange-100 text-orange-700',
+    bg: 'bg-orange-50 border-orange-200',
+    iconBg: 'bg-white text-orange-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -143,8 +143,8 @@ const TILES = [
     title: "I'm Thinking About Transferring",
     desc: "What to consider before you decide — and common mistakes to avoid",
     path: '/thinking-about-transferring',
-    bg: 'bg-teal-50 hover:bg-teal-100 border-teal-200',
-    iconBg: 'bg-teal-100 text-teal-700',
+    bg: 'bg-teal-50 border-teal-200',
+    iconBg: 'bg-white text-teal-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
@@ -154,12 +154,12 @@ const TILES = [
     title: "I'm in Crisis Right Now",
     desc: "Immediate crisis resources — call or text 988 right now",
     path: '/crisis',
-    bg: 'bg-red-50 hover:bg-red-100 border-red-300',
-    iconBg: 'bg-red-100 text-red-700',
+    bg: 'bg-red-50 border-red-200',
+    iconBg: 'bg-white text-red-600',
     text: 'text-gray-900',
     desc_color: 'text-gray-600',
   },
-  ];
+];
 
 const YoureNotAlone = ({ setCurrentPage }) => {
   const navigate = useNavigate();
@@ -238,9 +238,9 @@ const YoureNotAlone = ({ setCurrentPage }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
             {TILES.map((tile) => (
               <button key={tile.id} onClick={() => navigate(tile.path)}
-                className={`group w-full text-left rounded-2xl border p-6 transition-all hover:-translate-y-1 hover:shadow-md ${tile.bg}`}>
+                className={`group w-full text-left rounded-2xl border p-6 transition-all hover:-translate-y-[1px] hover:shadow-sm ${tile.bg}`}>
                 <div className="flex items-start gap-4">
-                  <span className={`inline-flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0 ${tile.iconBg}`}>
+                  <span className={`inline-flex items-center justify-center w-11 h-11 rounded-xl flex-shrink-0 ${tile.iconBg}`}>
                     {React.cloneElement(tile.icon, { className: 'w-5 h-5' })}
                   </span>
                   <div>
@@ -331,7 +331,7 @@ const YoureNotAlone = ({ setCurrentPage }) => {
                   { label: 'Career Paths', desc: "Your major doesn't lock you in", page: 'pivot', bg: 'bg-blue-50 border-blue-100' },
                 ].map(item => (
                   <button key={item.page} onClick={() => { closeQuick(); setCurrentPage(item.page); }}
-                    className={`w-full ${item.bg} p-4 rounded-xl text-left hover:shadow-md transition-all border`}>
+                    className={`w-full ${item.bg} p-5 rounded-2xl text-left hover:shadow-sm hover:-translate-y-[1px] transition-all border`}>
                     <div className="font-semibold text-gray-900">{item.label}</div>
                     <div className="text-sm text-gray-600">{item.desc}</div>
                   </button>
