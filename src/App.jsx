@@ -268,12 +268,11 @@ const supportGroups = [
               <DropdownMenu
                 title="Support"
                 onTitleClick={() => setCurrentPage('youre-not-alone')}
-                items={supportGroups}
+                groups={supportGroups}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 isMobile={false}
               />
-
               <button
                 onClick={() => setCurrentPage('stories')}
                 className="hover:text-blue-200"
@@ -374,7 +373,7 @@ const supportGroups = [
 
             <DropdownMenu
               title="Support"
-              items={supportGroups}
+              groups={supportGroups}
               currentPage={currentPage}
               setCurrentPage={(page) => {
                 setCurrentPage(page);
@@ -382,8 +381,7 @@ const supportGroups = [
               }}
               isMobile={true}
             />
-
-            <DropdownMenu
+                        <DropdownMenu
               title="Resources"
               items={resourcesItems}
               currentPage={currentPage}
