@@ -24,6 +24,10 @@ import PageHero from "./components/PageHero";
 import ATSGuide from './Atsguide';
 import FindInternshipsPage from './FindInternshipsPage';
 import './warm-design.css';
+import StoryDetail from './StoryDetail';
+import FindOpportunitiesHub from './FindOpportunitiesHub';
+import ResourcesHub from './ResourcesHub';
+import CoverLetterGenerator from './CoverLetterGenerator';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -43,7 +47,7 @@ const SectionHeader = ({ icon: Icon, title, subtitle }) => (
 
 
 // Dropdown Menu Component
-const DropdownMenu = ({ title, items, currentPage, setCurrentPage, isMobile = false }) => {
+const DropdownMenu = ({ title, items, currentPage, setCurrentPage, isMobile = false, onTitleClick }) => {
   const [open, setOpen] = useState(false);
 
   const go = (page) => {
@@ -97,14 +101,14 @@ const DropdownMenu = ({ title, items, currentPage, setCurrentPage, isMobile = fa
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="hover:text-blue-200 flex items-center gap-1"
-      >
-        {title}
-        <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
-      </button>
+     <button
+  type="button"
+  onClick={() => onTitleClick ? onTitleClick() : setOpen(!open)}
+  className="hover:text-blue-200 flex items-center gap-1"
+>
+  {title}
+  <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
+</button>
 
       {open && (
         <div className="absolute top-full left-0 pt-2 z-50">
@@ -165,6 +169,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
   const jobToolsItems = [
     { page: 'job-tools-hub', label: 'Job Tools Hub', icon: <Briefcase className="w-4 h-4" /> },
     { page: 'resume-builder', label: 'Resume Builder', icon: <FileText className="w-4 h-4" /> },
+    { page: 'cover-letter', label: 'Cover Letter Generator', icon: <FileText className="w-4 h-4" /> },
     { page: 'ats-guide', label: 'ATS Guide', icon: <Search className="w-4 h-4" /> },
     { page: 'tracker', label: 'Application Tracker', icon: <Target className="w-4 h-4" /> },
     { page: 'interview-prep', label: 'Interview Prep', icon: <MessageCircle className="w-4 h-4" /> },
@@ -209,6 +214,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
 
               <DropdownMenu
                 title="Find Opportunities"
+                onTitleClick={() => setCurrentPage('find-opportunities-hub')}
                 items={findOpportunitiesItems}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
@@ -217,6 +223,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
 
               <DropdownMenu
                 title="Job Tools"
+                onTitleClick={() => setCurrentPage('job-tools-hub')}
                 items={jobToolsItems}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
@@ -240,6 +247,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
 
               <DropdownMenu
                 title="Resources"
+                onTitleClick={() => setCurrentPage('resources-hub')}
                 items={resourcesItems}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
@@ -1414,6 +1422,7 @@ export default function App() {
           <Route path="/need-a-laugh" element={<NeedALaugh onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
           <Route path="/volunteer" element={<Volunteer onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
           <Route path="/stories" element={<StoriesPage setCurrentPage={setCurrentPage} />} />
+          <Route path="/stories/:slug" element={<StoryDetail />} />
           <Route path="/pivot" element={<PivotPage setCurrentPage={setCurrentPage} />} />
           <Route path="/about" element={<AboutPage setCurrentPage={setCurrentPage} />} />
           <Route path="/contact" element={<Contact onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
@@ -1423,8 +1432,11 @@ export default function App() {
           <Route path="/crisis" element={<CrisisPage setCurrentPage={setCurrentPage} />} />
           <Route path="/blog" element={<BlogPage setCurrentPage={setCurrentPage} setSelectedPostSlug={(slug) => navigate('/blog/' + slug)} />} />
           <Route path="/blog/:slug" element={<BlogPostWrapper setCurrentPage={setCurrentPage} />} />
+          <Route path="/cover-letter" element={<CoverLetterGenerator setCurrentPage={setCurrentPage} />} />
+          <Route path="/find-opportunities-hub" element={<FindOpportunitiesHub setCurrentPage={setCurrentPage} />} />
+<Route path="/resources-hub" element={<ResourcesHub setCurrentPage={setCurrentPage} />} />
           {/* Catch-all: redirect unknown URLs to home */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+     
         </Routes>
       </main>
 
