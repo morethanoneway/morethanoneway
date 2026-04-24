@@ -268,7 +268,7 @@ const supportGroups = [
               <DropdownMenu
                 title="Support"
                 onTitleClick={() => setCurrentPage('youre-not-alone')}
-                items={supportItems}
+                items={supportGroups}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 isMobile={false}
@@ -374,7 +374,7 @@ const supportGroups = [
 
             <DropdownMenu
               title="Support"
-              items={supportItems}
+              items={supportGroups}
               currentPage={currentPage}
               setCurrentPage={(page) => {
                 setCurrentPage(page);
