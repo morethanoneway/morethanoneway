@@ -14,7 +14,7 @@ const AcademicProbation = ({ setCurrentPage }) => {
         <link rel="canonical" href="https://morethanoneway.org/academic-probation" />
       </Helmet>
       <div className="min-h-screen bg-[#FFFBF7]">
-        <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-10">
+        <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
           <button onClick={() => navigate('/youre-not-alone')} className="flex items-center gap-2 text-gray-500 hover:text-gray-800 font-medium mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Support Hub
           </button>

@@ -649,8 +649,10 @@ const PivotPage = ({ setCurrentPage }) => {
     ]
   };
 
-  return (
-    <div className="space-y-6">
+return (
+    <div className="bg-[#FFFBF7] min-h-screen">
+      <div className="mx-auto w-full max-w-5xl px-6 lg:px-12 py-10">
+        <div className="space-y-6">
 
       {/* Hero Section */}
       <div>
@@ -729,10 +731,11 @@ const PivotPage = ({ setCurrentPage }) => {
         title="Career Path Alternatives - MoreThanOneWay.org"
         message="Know someone questioning their major?"
       />
+      </div>
+      </div>
     </div>
   );
 };
-
 const TrackerPage = ({ setCurrentPage }) => {
   const [applications, setApplications] = useState([]);
   const [showMoreDetails, setShowMoreDetails] = useState(false);
