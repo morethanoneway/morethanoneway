@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Phone, Copy, Check, ChevronDown, ChevronUp, AlertCircle, Lightbulb, X, Plus, Trash2, FileText, HelpCircle, TrendingUp, Search, Heart, Menu } from 'lucide-react';
-
+import React, { useEffect, useRef, useState } from "react";
+import { Phone, Copy, Check, Sparkles, ChevronLeft, ChevronDown, ChevronUp, BookOpen, AlertCircle, Lightbulb, X, Plus, Trash2, FileText, HelpCircle, TrendingUp, Search, Heart, Menu } from 'lucide-react';
+import { Layers } from "lucide-react";
 import { BulletAIHelper } from './BulletAIHelper';
 import { FullResumeAIReview } from './FullResumeAIReview';
 import { InstantBulletChecker } from './InstantBulletChecker';
-import ShareButtons from './Sharebuttons';
+import ShareButtons from './ShareButtons';
 
 // Inspirational messages
 const INSPIRATIONAL_MESSAGES = [
@@ -34,6 +34,7 @@ const INSPIRATIONAL_MESSAGES = [
   }
 ];
 
+
 const EncouragementBox = () => {
   const [message] = useState(() => {
     const randomIndex = Math.floor(Math.random() * INSPIRATIONAL_MESSAGES.length);
@@ -41,7 +42,7 @@ const EncouragementBox = () => {
   });
 
   return (
-    <div className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-6 mb-8">
+    <div className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl p-6 mb-8">
       <div className="flex items-start gap-3">
         <div className="text-4xl">✨</div>
         <div>
@@ -58,58 +59,102 @@ const EncouragementBox = () => {
 // Context priorities by major
 
 
+
 const MAJOR_CONFIG = {
-  'Engineering/STEM': {
+  'Engineering': {
     skills: {
-      categories: ['Technical Skills', 'Software', 'Mechanical Tools', 'Soft Skills'],
+      categories: ['Technical Skills', 'Software', 'Engineering Tools', 'Soft Skills'],
       placeholders: {
-        'Technical Skills': 'Process validation, data analysis, mechanical design...',
-        'Software': 'SolidWorks, MATLAB, Python, Excel...',
-        'Mechanical Tools': 'Machining, 3D printing, calipers... (remove if not applicable)',
-        'Soft Skills': 'Problem solving, communication, collaboration...'
+        'Technical Skills': 'CAD design, process validation, systems integration, testing, quality assurance...',
+        'Software': 'SolidWorks, AutoCAD, MATLAB, Python, Excel...',
+        'Engineering Tools': 'Machining, 3D printing, testing equipment, measurement tools...',
+        'Soft Skills': 'Problem solving, teamwork, technical communication, project management...'
       }
     },
     projectLabel: 'Technologies/Tools Used',
-    projectPlaceholder: 'Python, SolidWorks, MATLAB, Arduino...',
-    fontPreference: 'Engineering/STEM fields typically prefer sans-serif fonts (Arial, Calibri) for a clean, technical look.',
+    projectPlaceholder: 'SolidWorks, MATLAB, Arduino, Python, testing equipment...',
+    fontPreference: 'Engineering fields typically prefer sans-serif fonts (Arial, Calibri) for a clean, technical look.',
     experiencePlaceholders: {
-      title: 'Engineering Intern, Lab Assistant, Research Assistant...',
-      company: 'Company, Lab, Research Group...',
-      bullet: '• Conducted experiments analyzing 100+ samples using spectroscopy equipment...'
+      title: 'Engineering Intern, Lab Assistant, Co-op Engineer...',
+      company: 'Company, Lab, Manufacturing Plant...',
+      bullet: '• Conducted testing and validation on 50+ components using precision measurement tools...'
     },
     projectPlaceholders: {
-      name: 'Automated Sorting System, Data Analysis Tool, Arduino Robot...',
-      description: '• Designed and implemented system using Arduino and sensors, reducing sorting time by 30%...'
+      name: 'Automated System Design, Competition Robot, Senior Design Project...',
+      description: '• Designed and built automated system using Arduino and sensors, reducing processing time by 30%...'
     },
     activityPlaceholders: {
-      role: 'President, Project Lead, Competition Team Member...',
-      organization: 'Engineering Honor Society, Robotics Club, ASME...',
-      bullet: '• Led team of 8 members in designing competition robot, placing 2nd regionally...'
+      role: 'Project Lead, Team Captain, Competition Coordinator...',
+      organization: 'Engineering Honor Society, Robotics Club, ASME, IEEE...',
+      bullet: '• Led team of 8 in designing competition robot, placing 2nd in regional competition...'
     },
     exampleBullets: {
-      experience: 'Performed testing and analysis on 100+ samples using spectroscopy equipment, documenting results in detailed lab reports',
-      project: 'Developed automated sorting system using Arduino and sensors, reducing manual sorting time by 30% and improving accuracy to 95%',
+      experience: 'Conducted quality inspections and validation testing on mechanical components ensuring 100% compliance with safety standards',
+      project: 'Designed automated sorting system using Arduino and sensors, reducing manual sorting time by 30% and improving accuracy to 95%',
       activity: 'Led engineering competition team of 8 members, designing and building robot that placed 2nd in regional competition'
     },
     alternativePaths: [
-      { title: 'Data Analyst', emphasize: 'Excel, Python, data analysis, problem-solving' },
-      { title: 'Technical Product Manager', emphasize: 'Project coordination, technical communication, cross-team collaboration' },
-      { title: 'Business Analyst', emphasize: 'Process optimization, data interpretation, stakeholder communication' },
-      { title: 'Quality Engineer', emphasize: 'Testing, validation, documentation, process improvement' }
+      { title: 'Technical Product Manager', emphasize: 'Engineering mindset, project coordination, technical communication, cross-team collaboration' },
+      { title: 'Data Analyst', emphasize: 'Testing data, Excel, Python, problem-solving, analytical thinking' },
+      { title: 'Project Management', emphasize: 'Lead teams, timelines, technical knowledge, stakeholder communication' },
+      { title: 'Technical Sales Engineer', emphasize: 'Explain complex products, client relationships, technical knowledge, presentation skills' },
+      { title: 'Quality Engineering', emphasize: 'Testing, validation, documentation, process improvement, attention to detail' },
+      { title: 'Manufacturing Engineering', emphasize: 'Production processes, efficiency optimization, process improvement, systems thinking' }
+    ]
+  },
+  'STEM': {
+    skills: {
+      categories: ['Technical & Analytical', 'Research & Lab', 'Software & Tools', 'Communication & Collaboration'],
+      placeholders: {
+        'Technical & Analytical': 'Data analysis, statistical methods, experimental design, problem-solving...',
+        'Research & Lab': 'Lab techniques, research methods, documentation, data collection...',
+        'Software & Tools': 'Python, R, Excel, SPSS, lab equipment, data visualization...',
+        'Communication & Collaboration': 'Scientific writing, presentations, teamwork, teaching...'
+      }
+    },
+    projectLabel: 'Methods/Tools Used',
+    projectPlaceholder: 'Python, R, Excel, research methods, lab techniques...',
+    fontPreference: 'STEM fields typically prefer clean sans-serif fonts (Arial, Calibri) for professional, technical documents.',
+    experiencePlaceholders: {
+      title: 'Research Assistant, Lab Technician, Data Analyst Intern...',
+      company: 'Research Lab, Company, Hospital...',
+      bullet: '• Analyzed 200+ data samples using statistical methods to identify trends...'
+    },
+    projectPlaceholders: {
+      name: 'Data Analysis Project, Research Study, Statistical Model...',
+      description: '• Conducted statistical analysis on 500+ data points identifying significant correlation (p<0.05)...'
+    },
+    activityPlaceholders: {
+      role: 'Research Team Member, Tutor, Lab Coordinator...',
+      organization: 'Science Club, Pre-Health Society, Research Group...',
+      bullet: '• Tutored 15+ students in chemistry and biology, improving average grades by 12%...'
+    },
+    exampleBullets: {
+      experience: 'Analyzed experimental data from 100+ samples using Python and Excel, identifying patterns that improved process efficiency by 15%',
+      project: 'Conducted research study analyzing 300+ survey responses, identifying significant correlation (p<0.05) between variables',
+      activity: 'Coordinated weekly study sessions for 20+ students, developing educational materials that improved exam scores by 18%'
+    },
+    alternativePaths: [
+      { title: 'Data Analyst', emphasize: 'Statistical analysis, Python/R/Excel, data visualization, analytical thinking, problem-solving' },
+      { title: 'Data Science', emphasize: 'Programming, statistics, machine learning, data modeling, quantitative analysis' },
+      { title: 'Clinical Research Coordinator', emphasize: 'Research methods, data collection, documentation, regulatory compliance, attention to detail' },
+      { title: 'Healthcare Analyst', emphasize: 'Data analysis, healthcare knowledge, reporting, process improvement' },
+      { title: 'Quality Assurance', emphasize: 'Testing, validation, documentation, compliance, scientific methods' },
+      { title: 'Technical Writer', emphasize: 'Scientific writing, technical communication, documentation, clarity in complex topics' }
     ]
   },
   'Business': {
     skills: {
       categories: ['Business & Analytical', 'Communication & Collaboration', 'Technical', 'Leadership & Management'],
       placeholders: {
-        'Business & Analytical': 'Data interpretation, problem solving, financial analysis...',
-        'Communication & Collaboration': 'Public speaking, client relations, teamwork...',
-        'Technical': 'Excel, Power BI, Salesforce, Tableau...',
-        'Leadership & Management': 'Team coordination, decision making, project planning...'
+        'Business & Analytical': 'Data interpretation, problem solving, financial analysis, market research...',
+        'Communication & Collaboration': 'Public speaking, client relations, teamwork, presentations...',
+        'Technical': 'Excel, Power BI, Salesforce, Tableau, CRM tools...',
+        'Leadership & Management': 'Team coordination, decision making, project planning, conflict resolution...'
       }
     },
     projectLabel: 'Tools/Methods Used',
-    projectPlaceholder: 'Excel, Market research, Salesforce, PowerPoint...',
+    projectPlaceholder: 'Excel, Market research, Salesforce, PowerPoint, data analysis...',
     fontPreference: 'Business fields work well with either sans-serif (Calibri) or serif (Times New Roman) for a professional appearance.',
     experiencePlaceholders: {
       title: 'Sales Associate, Marketing Intern, Business Analyst Intern...',
@@ -131,24 +176,26 @@ const MAJOR_CONFIG = {
       activity: 'Coordinated fundraising campaign raising $5,000 for nonprofit, exceeding goal by 25% through corporate sponsorships'
     },
     alternativePaths: [
-      { title: 'Sales Operations', emphasize: 'CRM tools, data analysis, process optimization, communication' },
-      { title: 'Customer Success Manager', emphasize: 'Client relationships, problem-solving, communication, retention metrics' },
-      { title: 'Data Analyst', emphasize: 'Excel, data visualization, analytical thinking, reporting' },
-      { title: 'Operations Analyst', emphasize: 'Process improvement, efficiency metrics, cross-functional collaboration' }
+      { title: 'Sales Operations', emphasize: 'CRM tools (Salesforce), data analysis, process optimization, communication, client relationships' },
+      { title: 'Customer Success Manager', emphasize: 'Client relationships, problem-solving, communication, retention metrics, empathy' },
+      { title: 'Data Analyst', emphasize: 'Excel, data visualization, analytical thinking, reporting, business insights' },
+      { title: 'Operations Analyst', emphasize: 'Process improvement, efficiency metrics, cross-functional collaboration, problem-solving' },
+      { title: 'Business Development', emphasize: 'Market research, relationship building, growth strategies, presentations' },
+      { title: 'Project Management', emphasize: 'Coordination, timelines, stakeholder communication, organization, problem-solving' }
     ]
   },
   'Liberal Arts': {
     skills: {
       categories: ['Communication & Writing', 'Research & Analysis', 'Technology', 'Leadership & Collaboration'],
       placeholders: {
-        'Communication & Writing': 'Academic writing, public speaking, editing...',
-        'Research & Analysis': 'Qualitative research, critical evaluation, source synthesis...',
-        'Technology': 'Google Workspace, Canva, Microsoft Office, Adobe...',
-        'Leadership & Collaboration': 'Event planning, peer mentorship, team coordination...'
+        'Communication & Writing': 'Academic writing, public speaking, editing, storytelling...',
+        'Research & Analysis': 'Qualitative research, critical evaluation, source synthesis, data interpretation...',
+        'Technology': 'Google Workspace, Canva, Microsoft Office, Adobe, social media platforms...',
+        'Leadership & Collaboration': 'Event planning, peer mentorship, team coordination, community building...'
       }
     },
     projectLabel: 'Methods/Tools Used',
-    projectPlaceholder: 'Research methods, Adobe Suite, Content creation...',
+    projectPlaceholder: 'Research methods, Adobe Suite, Content creation, Google Workspace...',
     fontPreference: 'Liberal Arts fields offer more flexibility, but stick to ATS-safe fonts like Arial, Calibri, or Times New Roman.',
     experiencePlaceholders: {
       title: 'Writing Tutor, Research Assistant, Content Creator...',
@@ -170,10 +217,53 @@ const MAJOR_CONFIG = {
       activity: 'Edited 50+ articles for student newspaper with 5,000+ readership, mentoring 10 new writers in AP style'
     },
     alternativePaths: [
-      { title: 'UX Researcher', emphasize: 'Research skills, user interviews, data analysis, presentation skills' },
-      { title: 'Technical Writer', emphasize: 'Clear communication, documentation, explaining complex topics, editing' },
-      { title: 'Content Strategist', emphasize: 'Writing, project management, analytics, creative thinking' },
-      { title: 'Market Research Analyst', emphasize: 'Research methods, data interpretation, reporting, critical thinking' }
+      { title: 'UX Researcher', emphasize: 'Research skills, user interviews, qualitative analysis, presentation skills, understanding human behavior' },
+      { title: 'Technical Writer', emphasize: 'Clear communication, documentation, explaining complex topics, editing, writing skills' },
+      { title: 'Content Strategist', emphasize: 'Writing, project management, analytics, creative thinking, audience understanding' },
+      { title: 'Market Research Analyst', emphasize: 'Research methods, data interpretation, reporting, critical thinking, synthesis' },
+      { title: 'UX Writer', emphasize: 'Clarity in communication, user-focused writing, storytelling for digital products' },
+      { title: 'Communications Specialist', emphasize: 'Writing, public speaking, messaging, media relations, stakeholder communication' }
+    ]
+  },
+  'Other Majors': {
+    skills: {
+      categories: ['Core Professional Skills', 'Communication & Interpersonal', 'Technology', 'Organization & Leadership'],
+      placeholders: {
+        'Core Professional Skills': 'Program development, curriculum design, case management, compliance...',
+        'Communication & Interpersonal': 'Client relations, public speaking, active listening, empathy, conflict resolution...',
+        'Technology': 'Microsoft Office, Google Workspace, specialized software for your field...',
+        'Organization & Leadership': 'Event planning, project coordination, team leadership, scheduling...'
+      }
+    },
+    projectLabel: 'Methods/Tools/Programs Used',
+    projectPlaceholder: 'Program development, curriculum design, case management tools...',
+    fontPreference: 'Professional fields typically use clean, readable fonts like Arial, Calibri, or Times New Roman.',
+    experiencePlaceholders: {
+      title: 'Teaching Assistant, Case Manager Intern, Program Coordinator...',
+      company: 'School, Nonprofit, Community Organization...',
+      bullet: '• Coordinated programs serving 50+ participants, improving engagement by 25%...'
+    },
+    projectPlaceholders: {
+      name: 'Program Development, Curriculum Design, Community Initiative...',
+      description: '• Developed and implemented program serving 30+ participants, achieving 90% satisfaction rating...'
+    },
+    activityPlaceholders: {
+      role: 'Volunteer Coordinator, Event Planner, Peer Mentor...',
+      organization: 'Community Service, Student Organization, Campus Ministry...',
+      bullet: '• Coordinated volunteer program with 40+ participants, completing 200+ service hours...'
+    },
+    exampleBullets: {
+      experience: 'Coordinated after-school program serving 30 students, developing curriculum that improved academic performance by 15%',
+      project: 'Designed and implemented wellness program serving 50+ participants, achieving 92% satisfaction rating and 80% retention',
+      activity: 'Led volunteer team of 25 members completing 300+ community service hours, organizing 5 major service events'
+    },
+    alternativePaths: [
+      { title: 'Program Coordinator', emphasize: 'Program development, organization, participant engagement, evaluation, communication' },
+      { title: 'Training & Development', emphasize: 'Instructional design, presentation skills, curriculum development, assessment' },
+      { title: 'Case Management', emphasize: 'Client relationships, documentation, resource coordination, problem-solving, empathy' },
+      { title: 'HR Specialist', emphasize: 'Employee relations, communication, conflict resolution, organization, confidentiality' },
+      { title: 'Community Outreach', emphasize: 'Relationship building, program coordination, communication, cultural sensitivity' },
+      { title: 'Nonprofit Program Management', emphasize: 'Program development, grant writing, stakeholder management, impact measurement' }
     ]
   }
 };
@@ -194,17 +284,17 @@ const CrisisBanner = () => (
 
 const KeywordGuide = ({ major }) => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const keywords = {
     'Jobs/Work': ['barista', 'server', 'waiter', 'waitress', 'cashier', 'retail', 'receptionist', 'tutor', 'lifeguard', 'sales associate', 'customer service', 'delivery driver', 'warehouse', 'teaching assistant', 'lab assistant'],
     'Academic/Research': ['lab', 'laboratory', 'research', 'group project', 'class project', 'presentation', 'thesis', 'capstone', 'internship', 'coding', 'programming', 'data', 'excel', 'analysis', 'experiment'],
     'Leadership/Activities': ['president', 'vice president', 'treasurer', 'organized', 'club', 'volunteer', 'fundraiser', 'mentor', 'event', 'recruited', 'managed', 'coordinated', 'led', 'team'],
     'Technical': ['python', 'excel', 'coding', 'data', 'solidworks', 'matlab', 'cad', 'microsoft office', 'google workspace', 'canva', 'photoshop', 'tableau', 'sql', 'crm', 'salesforce']
   };
-  
+
   return (
-    <div className="bg-gray-100 border border-gray-300 rounded p-3 mt-2">
-      <button 
+    <div className="bg-[#FFFBF7] border border-orange-300 rounded p-3 mt-2">
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between text-sm font-semibold text-gray-700"
       >
@@ -214,7 +304,7 @@ const KeywordGuide = ({ major }) => {
         </span>
         {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
       </button>
-      
+
       {isOpen && (
         <div className="mt-3 space-y-2 text-xs">
           {Object.entries(keywords).map(([category, words]) => (
@@ -230,7 +320,7 @@ const KeywordGuide = ({ major }) => {
 };
 
 const examples = {
-  'Engineering/STEM': {
+  'Engineering': {
     'Mechanical Engineering': {
       traditional: `ALEX MORGAN
 alex.morgan@statetech.edu | Chicago, IL | (555) 123-4567
@@ -254,7 +344,7 @@ Production Engineer Co-op, Advanced Manufacturing Corp | Jan 2025 - Present
 Tutor, Academic Success Center | Sept 2024 - Present
 - Provided academic support in Calculus, Differential Equations, and Statics
 - Facilitated one-on-one tutoring sessions adapting to learning styles`,
-      
+
       qualityEngineer: `ALEX MORGAN
 alex.morgan@statetech.edu | Chicago, IL | (555) 123-4567
 
@@ -278,7 +368,7 @@ Production Engineer Co-op, Advanced Manufacturing Corp | Jan 2025 - Present
 Tutor, Academic Success Center | Sept 2024 - Present
 - Demonstrated ability to explain complex technical concepts clearly
 - Adapted teaching methods showing flexibility in communication`,
-      
+
       dataAnalyst: `ALEX MORGAN
 alex.morgan@statetech.edu | Chicago, IL | (555) 123-4567
 
@@ -301,7 +391,7 @@ Production Engineer Co-op, Advanced Manufacturing Corp | Jan 2025 - Present
 Tutor, Academic Success Center | Sept 2024 - Present
 - Tracked session outcomes for 20+ students, identifying patterns to improve approach
 - Demonstrated ability to break down complex quantitative concepts`,
-      
+
       changes: {
         qualityEngineer: [
           'Skills: Reordered to put "Quality assurance" first, changed "Mechanical Tools" → "Quality Tools"',
@@ -322,7 +412,7 @@ Tutor, Academic Success Center | Sept 2024 - Present
         ]
       }
     },
-    
+
     'Engineering Physics': {
       traditional: `JORDAN TAYLOR
 jordan.taylor@statetech.edu | Santa Fe, NM | (555) 234-5678
@@ -351,7 +441,7 @@ Research Lead, Applied Physics Lab | May 2025 — Present
 Research Assistant, Materials Analysis Team | May 2024 — May 2025
 - Conducted physics research analyzing material properties to industry standards
 - Implemented rigorous testing protocols measuring dynamic properties`,
-      
+
       quantAnalyst: `JORDAN TAYLOR
 jordan.taylor@statetech.edu | Santa Fe, NM | (555) 234-5678
 
@@ -380,7 +470,7 @@ Quantitative Research Lead, Applied Physics Lab | May 2025 — Present
 Quantitative Research Analyst, Materials Analysis Team | May 2024 — May 2025
 - Analyzed datasets of 1,000+ samples using Python, identifying patterns leading to 15% improvement
 - Implemented hypothesis testing with 95% confidence intervals`,
-      
+
       dataScientist: `JORDAN TAYLOR
 jordan.taylor@statetech.edu | Santa Fe, NM | (555) 234-5678
 
@@ -409,9 +499,9 @@ Data Science Research Lead, Applied Physics Lab | May 2025 — Present
 
 Data Analyst, Materials Analysis Team | May 2024 — May 2025
 - Processed datasets of 1,000+ samples using Python, identifying patterns leading to 15% improvement
-- Built predictive models achieving R² of 0.89 through feature engineering
+- Built predictive models achieving  R² of 0.89 through feature engineering
 - Automated analysis tasks reducing report time from 3 days to 2 hours`,
-      
+
       changes: {
         quantAnalyst: [
           'Coursework reordered: "Quantitative & Mathematical" moved to front',
@@ -427,13 +517,13 @@ Data Analyst, Materials Analysis Team | May 2024 — May 2025
           'ML terminology: "Machine learning", "Feature engineering", "Data pipelines"',
           'Data wrangling emphasized: "Automated pipelines", "75% time reduction"',
           'Visualization: "Dashboards", "Interactive visualizations"',
-          'Added metrics: "R² of 0.89", "3 days to 2 hours"',
+          'Added metrics: " R² of 0.89", "3 days to 2 hours"',
           'Publications reframed with ML/data science angle'
         ]
       }
     }
   },
-  
+
   'Business': {
     'Marketing': {
       traditional: `JORDAN CHEN
@@ -452,18 +542,18 @@ Business: Microsoft Excel, PowerPoint, market analysis, data interpretation
 Leadership: Event planning, team coordination, public speaking, budget management
 
 WORK EXPERIENCE
-Sales Associate, Target | June 2024 — Present
+Sales Associate, Target | June 2024 - Present
 - Assisted customers with product selection resulting in 20% increase in monthly sales and 95% satisfaction rating
 - Maintained organized inventory and restocked merchandise during peak hours ensuring product availability
 - Processed 150+ transactions daily with zero cash discrepancies while maintaining friendly customer service
 - Trained 3 new employees on POS system and customer service best practices
 
-Volunteer, Local Food Bank | Sept 2023 — Present
+Volunteer, Local Food Bank | Sept 2023 - Present
 - Coordinated weekly volunteer shifts for team of 15 volunteers
 - Organized donation drives collecting 500+ items per semester
 
 LEADERSHIP & ACTIVITIES
-Vice President, Business Fraternity | Jan 2024 — Present
+Vice President, Business Fraternity | Jan 2024 - Present
 - Coordinated 8 campus events with attendance of 200+ students managing logistics and promotion
 - Managed $3,000 event budget ensuring all activities stayed within financial constraints
 - Led marketing committee developing social media strategy increasing membership by 40%
@@ -473,7 +563,7 @@ Vice President, Business Fraternity | Jan 2024 — Present
 jordan.chen@stateuniversity.edu | Chicago, IL | (555) 234-5678
 
 EDUCATION
-State University — BS in Marketing | GPA: 3.72 | Expected May 2027
+State University - BS in Marketing | GPA: 3.72 | Expected May 2027
 
 RELEVANT COURSEWORK
 Business Analytics, Marketing Research, Sales Management, CRM Systems, Data Analysis
@@ -485,19 +575,19 @@ Technical: Salesforce basics, PowerPoint presentations, database management
 Communication: Cross-functional collaboration, stakeholder management, process documentation
 
 WORK EXPERIENCE
-Sales Associate, Target | June 2024 — Present
+Sales Associate, Target | June 2024 - Present
 - Analyzed sales data using Excel to identify top-performing products generating 20% increase in monthly revenue
 - Tracked 150+ daily transactions in POS system maintaining 99.8% accuracy rate in inventory management
 - Optimized checkout process reducing average transaction time by 15% through efficiency improvements
 - Trained 3 new associates on sales system procedures documenting process in training manual
 - Collaborated with management to forecast inventory needs based on sales trends reducing stockouts by 25%
 
-Volunteer, Local Food Bank | Sept 2023 — Present
+Volunteer, Local Food Bank | Sept 2023 - Present
 - Implemented volunteer scheduling system improving operational efficiency by 30%
 - Tracked donation metrics using spreadsheets to optimize collection strategies
 
 LEADERSHIP & ACTIVITIES
-Vice President, Business Fraternity | Jan 2024 — Present
+Vice President, Business Fraternity | Jan 2024 - Present
 - Managed operations for 8 events tracking attendance metrics and analyzing engagement data to improve future events
 - Oversaw $3,000 budget using Excel to track spending and forecast costs with 98% accuracy
 - Developed recruitment pipeline process increasing membership by 40% through data-driven targeting
@@ -507,7 +597,7 @@ Vice President, Business Fraternity | Jan 2024 — Present
 jordan.chen@stateuniversity.edu | Chicago, IL | (555) 234-5678
 
 EDUCATION
-State University — BS in Marketing | GPA: 3.72 | Expected May 2027
+State University - BS in Marketing | GPA: 3.72 | Expected May 2027
 
 RELEVANT COURSEWORK
 Business Analytics, Statistical Analysis, Marketing Research, Data Visualization, Quantitative Methods
@@ -519,7 +609,7 @@ Business Intelligence: KPI development, performance metrics, A/B testing, custom
 Communication: Data visualization, presenting insights to stakeholders, translating data into actionable recommendations
 
 WORK EXPERIENCE
-Sales Associate, Target | June 2024 — Present
+Sales Associate, Target | June 2024 - Present
 - Analyzed sales data from 150+ daily transactions identifying patterns that increased revenue by 20%
 - Built Excel dashboards tracking product performance metrics across 500+ SKUs enabling data-driven inventory decisions
 - Conducted customer behavior analysis segmenting shoppers into 4 distinct groups to improve targeting strategies
@@ -527,12 +617,12 @@ Sales Associate, Target | June 2024 — Present
 - Presented monthly sales reports to management using visualizations highlighting key performance indicators
 - Leveraged POS system data to forecast peak shopping times optimizing staff scheduling and reducing wait times by 15%
 
-Volunteer, Local Food Bank | Sept 2023 — Present
+Volunteer, Local Food Bank | Sept 2023 - Present
 - Analyzed donation patterns identifying seasonal trends to optimize collection timing
 - Created database tracking 500+ items per semester with 98% accuracy
 
 LEADERSHIP & ACTIVITIES
-Vice President, Business Fraternity | Jan 2024 — Present
+Vice President, Business Fraternity | Jan 2024 - Present
 - Tracked event attendance data across 8 events analyzing participation metrics to identify engagement drivers
 - Managed $3,000 budget using Excel models to forecast costs and analyze spending patterns with 98% accuracy
 - Conducted membership analysis resulting in 40% growth through data-driven recruitment targeting
@@ -562,13 +652,13 @@ Vice President, Business Fraternity | Jan 2024 — Present
         ]
       }
     },
-    
+
     'General Business': {
       traditional: `ALEX RIVERA
 alex.rivera@stateuniversity.edu | Austin, TX | (555) 789-0123
 
 EDUCATION
-State University — BS in Business Administration | GPA: 3.58 | Expected May 2027
+State University - BS in Business Administration | GPA: 3.58 | Expected May 2027
 
 RELEVANT COURSEWORK
 Financial Accounting, Business Statistics, Operations Management, Business Strategy, Organizational Behavior
@@ -580,20 +670,20 @@ Technical: Microsoft Excel, PowerPoint, QuickBooks basics, Google Workspace, dat
 Leadership: Financial planning, event management, decision making, cross-functional teamwork
 
 WORK EXPERIENCE
-Server, Olive Garden | May 2024 — Present
+Server, Olive Garden | May 2024 - Present
 - Provided exceptional service to 50+ customers per shift resulting in 18% average tip rate and positive reviews
 - Managed multiple tables simultaneously while maintaining 98% order accuracy during peak dinner hours
 - Processed payments and handled cash register operations with zero discrepancies
 - Collaborated with kitchen staff and management to ensure timely meal delivery and resolve customer concerns
 - Trained 2 new servers on POS system, menu knowledge, and customer service protocols
 
-Intern, Campus Bookstore | Jan 2024 — May 2024
+Intern, Campus Bookstore | Jan 2024 - May 2024
 - Assisted with inventory management tracking 1,000+ items and identifying stock needs
 - Processed customer transactions and answered inquiries about textbook orders and supplies
 - Supported special event coordination for 3 campus-wide book fairs
 
 LEADERSHIP & ACTIVITIES
-Treasurer, Entrepreneurship Club | Sept 2023 — Present
+Treasurer, Entrepreneurship Club | Sept 2023 - Present
 - Managed club budget of $2,500 tracking all expenses and revenue using Excel spreadsheets
 - Presented monthly financial reports to executive board and general membership meetings
 - Coordinated fundraising event raising $1,200 exceeding goal by 20%
@@ -603,7 +693,7 @@ Treasurer, Entrepreneurship Club | Sept 2023 — Present
 alex.rivera@stateuniversity.edu | Austin, TX | (555) 789-0123
 
 EDUCATION
-State University — BS in Business Administration | GPA: 3.58 | Expected May 2027
+State University - BS in Business Administration | GPA: 3.58 | Expected May 2027
 
 RELEVANT COURSEWORK
 Operations Management, Business Statistics, Process Improvement, Supply Chain Management, Data Analytics
@@ -615,20 +705,20 @@ Business Systems: Process mapping, inventory management, quality control, resour
 Communication: Cross-functional collaboration, process documentation, stakeholder reporting, data-driven recommendations
 
 WORK EXPERIENCE
-Server, Olive Garden | May 2024 — Present
+Server, Olive Garden | May 2024 - Present
 - Optimized table management process reducing average wait time by 12% through strategic seating arrangements
 - Analyzed service flow patterns identifying bottlenecks and implementing solutions improving order accuracy to 98%
 - Streamlined payment processing workflow decreasing transaction time by 15% during peak hours
 - Collaborated with kitchen operations to coordinate meal timing reducing customer complaints by 20%
 - Documented training procedures for 2 new employees creating standardized onboarding process
 
-Intern, Campus Bookstore | Jan 2024 — May 2024
+Intern, Campus Bookstore | Jan 2024 - May 2024
 - Improved inventory tracking system managing 1,000+ SKUs and reducing stock discrepancies by 30%
 - Analyzed transaction data identifying peak purchasing periods to optimize staff scheduling
 - Coordinated logistics for 3 campus events streamlining setup process and reducing preparation time by 25%
 
 LEADERSHIP & ACTIVITIES
-Treasurer, Entrepreneurship Club | Sept 2023 — Present
+Treasurer, Entrepreneurship Club | Sept 2023 - Present
 - Implemented budget tracking system using Excel improving expense visibility and reducing overspending by 15%
 - Analyzed past event costs forecasting future budgets with 95% accuracy for 12 annual events
 - Optimized fundraising process increasing revenue by 20% through data-driven strategy adjustments
@@ -638,7 +728,7 @@ Treasurer, Entrepreneurship Club | Sept 2023 — Present
 alex.rivera@stateuniversity.edu | Austin, TX | (555) 789-0123
 
 EDUCATION
-State University — BS in Business Administration | GPA: 3.58 | Expected May 2027
+State University - BS in Business Administration | GPA: 3.58 | Expected May 2027
 
 RELEVANT COURSEWORK
 Organizational Behavior, Customer Relationship Management, Business Communication, Conflict Resolution, Marketing
@@ -650,20 +740,20 @@ Account Management: Customer needs assessment, success metrics tracking, feedbac
 Technical: Excel (customer data tracking), CRM systems basics, Google Workspace, customer communication tools
 
 WORK EXPERIENCE
-Server, Olive Garden | May 2024 — Present
+Server, Olive Garden | May 2024 - Present
 - Built rapport with 50+ customers per shift resulting in 18% tip rate and multiple positive online reviews
 - Resolved customer concerns quickly and professionally maintaining 95% satisfaction rating during peak hours
 - Anticipated customer needs proactively addressing issues before escalation reducing complaints by 20%
 - Maintained ongoing relationships with regular customers remembering preferences and creating personalized experiences
 - Mentored 2 new team members on customer service best practices fostering supportive team environment
 
-Intern, Campus Bookstore | Jan 2024 — May 2024
+Intern, Campus Bookstore | Jan 2024 - May 2024
 - Supported customers with textbook orders and inquiries handling 30+ interactions daily with 97% satisfaction
 - Gathered customer feedback identifying pain points and recommending process improvements to management
 - Assisted with event coordination for 3 campus book fairs ensuring positive attendee experience
 
 LEADERSHIP & ACTIVITIES
-Treasurer, Entrepreneurship Club | Sept 2023 — Present
+Treasurer, Entrepreneurship Club | Sept 2023 - Present
 - Communicated financial updates to 50+ members presenting complex budget information clearly at monthly meetings
 - Collaborated with executive board addressing concerns and building consensus on financial decisions
 - Led fundraising initiative building relationships with 10 local business sponsors resulting in $1,200 raised
@@ -697,13 +787,13 @@ Treasurer, Entrepreneurship Club | Sept 2023 — Present
     }
   },
 
-'Liberal Arts': {
+  'Liberal Arts': {
     'English/Writing': {
       traditional: `TAYLOR MITCHELL
 taylor.mitchell@stateuniversity.edu | Portland, OR | (555) 345-6789
 
 EDUCATION
-State University — BA in English | GPA: 3.81 | Expected May 2027
+State University - BA in English | GPA: 3.81 | Expected May 2027
 
 RELEVANT COURSEWORK
 Advanced Composition, Technical Writing, Digital Media Writing, Rhetoric and Persuasion, Creative Nonfiction
@@ -715,19 +805,19 @@ Technology: Microsoft Office Suite, Google Workspace, Grammarly, basic HTML/CSS
 Collaboration: Peer review, workshop facilitation, client communication, deadline management
 
 WORK EXPERIENCE
-Writing Tutor, Campus Writing Center | Sept 2024 — Present
+Writing Tutor, Campus Writing Center | Sept 2024 - Present
 - Tutored 15 students per week in academic writing improving average paper grades by one letter
 - Provided feedback on essays, research papers, and creative writing across disciplines
 - Facilitated writing workshops for first-year students on thesis development and citation practices
 - Adapted teaching approach to different learning styles and skill levels
 
-Student Newspaper Contributor | Jan 2024 — Present
+Student Newspaper Contributor | Jan 2024 - Present
 - Researched and wrote 8 articles on campus events and student issues with 2,000+ readership
 - Conducted interviews with students, faculty, and administrators for feature stories
 - Met weekly deadlines while balancing coursework and other commitments
 
 LEADERSHIP & ACTIVITIES
-Vice President, English Club | Sept 2023 — Present
+Vice President, English Club | Sept 2023 - Present
 - Organized 6 literary events including author visits and poetry readings with 100+ total attendance
 - Managed club communications including social media and email newsletters
 - Coordinated book club discussions facilitating conversations among 20+ members`,
@@ -736,7 +826,7 @@ Vice President, English Club | Sept 2023 — Present
 taylor.mitchell@stateuniversity.edu | Portland, OR | (555) 345-6789
 
 EDUCATION
-State University — BA in English | GPA: 3.81 | Expected May 2027
+State University - BA in English | GPA: 3.81 | Expected May 2027
 
 RELEVANT COURSEWORK
 Technical Writing, Digital Media Writing, Rhetoric and Persuasion, User Experience (audit), Web Design Basics
@@ -748,20 +838,20 @@ User Research: User empathy, audience analysis, usability considerations, iterat
 Technology: Figma basics, Google Workspace, Microsoft Office, basic HTML/CSS, content management systems
 
 WORK EXPERIENCE
-Writing Tutor, Campus Writing Center | Sept 2024 — Present
+Writing Tutor, Campus Writing Center | Sept 2024 - Present
 - Guided 15 students per week through writing process focusing on clarity and audience awareness
 - Simplified complex academic concepts into clear explanations demonstrating ability to make content accessible
 - Adapted communication style based on individual student needs showing user empathy
 - Iterated on feedback approach based on student outcomes improving effectiveness by 30%
 
-Student Newspaper Contributor | Jan 2024 — Present
+Student Newspaper Contributor | Jan 2024 - Present
 - Wrote clear, concise articles with attention to word count and reader comprehension
 - Researched user needs by interviewing diverse student populations to understand their perspectives
 - Edited headlines and subheads for scannability and engagement increasing click-through rates
 - Collaborated with design team to ensure text complemented visual layout
 
 LEADERSHIP & ACTIVITIES
-Vice President, English Club | Sept 2023 — Present
+Vice President, English Club | Sept 2023 - Present
 - Wrote user-friendly event descriptions and social media copy resulting in 40% increase in attendance
 - Created email newsletters with clear calls-to-action and scannable formatting
 - Designed information architecture for club website improving member navigation`,
@@ -770,7 +860,7 @@ Vice President, English Club | Sept 2023 — Present
 taylor.mitchell@stateuniversity.edu | Portland, OR | (555) 345-6789
 
 EDUCATION
-State University — BA in English | GPA: 3.81 | Expected May 2027
+State University - BA in English | GPA: 3.81 | Expected May 2027
 
 RELEVANT COURSEWORK
 Technical Writing, Advanced Composition, Digital Media Writing, Information Design, Research Methods
@@ -782,20 +872,20 @@ Research & Analysis: Information gathering, subject matter expert interviews, au
 Technology: Microsoft Office Suite, Google Workspace, Markdown, basic HTML/CSS, documentation tools (exploring)
 
 WORK EXPERIENCE
-Writing Tutor, Campus Writing Center | Sept 2024 — Present
+Writing Tutor, Campus Writing Center | Sept 2024 - Present
 - Created documentation for 10+ tutoring processes and best practices used by staff of 25 tutors
 - Translated complex academic concepts into step-by-step guides for students at varying skill levels
 - Interviewed professors to understand assignment requirements and documented guidelines for tutors
 - Maintained consistency across tutoring materials following established style guide
 
-Student Newspaper Contributor | Jan 2024 — Present
+Student Newspaper Contributor | Jan 2024 - Present
 - Researched and documented complex campus policies translating administrative language for student readers
 - Interviewed subject matter experts (faculty, administrators) to gather accurate information for articles
 - Edited articles for accuracy, clarity, and completeness ensuring readers understood key details
 - Met strict deadlines while maintaining quality standards across 8+ published articles
 
 LEADERSHIP & ACTIVITIES
-Vice President, English Club | Sept 2023 — Present
+Vice President, English Club | Sept 2023 - Present
 - Documented club procedures and event planning processes creating reference materials for future officers
 - Organized information logically for member communications improving clarity and reducing confusion
 - Created templates for recurring content ensuring consistency across all club communications`,
@@ -829,7 +919,7 @@ Vice President, English Club | Sept 2023 — Present
 jordan.santos@stateuniversity.edu | Boston, MA | (555) 456-7890
 
 EDUCATION
-State University — BS in Psychology | GPA: 3.65 | Expected May 2027
+State University - BS in Psychology | GPA: 3.65 | Expected May 2027
 
 RELEVANT COURSEWORK
 Research Methods, Statistics for Psychology, Cognitive Psychology, Developmental Psychology, Abnormal Psychology
@@ -841,13 +931,13 @@ Communication: Active listening, empathy, interviewing techniques, presenting re
 Technology: SPSS, Microsoft Excel, PowerPoint, Google Workspace, Qualtrics (survey design)
 
 WORK EXPERIENCE
-Server, Local Restaurant | May 2024 — Present
+Server, Local Restaurant | May 2024 - Present
 - Provided attentive service to 40+ customers per shift maintaining 95% satisfaction rating
 - Handled customer concerns with patience and problem-solving skills ensuring positive experiences
 - Collaborated with team of 8 staff members coordinating efficiently during peak hours
 - Trained 2 new servers on procedures and customer service best practices
 
-Research Volunteer, Psychology Department | Jan 2024 — Present
+Research Volunteer, Psychology Department | Jan 2024 - Present
 - Assisted with cognitive psychology study on memory and attention involving 50+ participants
 - Conducted participant screening interviews following IRB-approved protocols
 - Collected and organized experimental data maintaining 100% accuracy in record-keeping
@@ -855,7 +945,7 @@ Research Volunteer, Psychology Department | Jan 2024 — Present
 
 LEADERSHIP & ACTIVITIES
 Peer Mentor, First-Year Student
-Program | Sept 2023 — Present
+Program | Sept 2023 - Present
 - Mentored 8 first-year students providing academic guidance and emotional support
 - Facilitated weekly check-ins listening to concerns and connecting students with campus resources
 - Organized 4 social events fostering sense of community among mentees`,
@@ -864,7 +954,7 @@ Program | Sept 2023 — Present
 jordan.santos@stateuniversity.edu | Boston, MA | (555) 456-7890
 
 EDUCATION
-State University — BS in Psychology | GPA: 3.65 | Expected May 2027
+State University - BS in Psychology | GPA: 3.65 | Expected May 2027
 
 RELEVANT COURSEWORK
 Research Methods, Statistics for Psychology, Cognitive Psychology, Human-Computer Interaction (audit), User Experience Research
@@ -876,20 +966,20 @@ User Empathy: Active listening, understanding user needs, empathy mapping, perso
 Tools & Technology: SPSS, Microsoft Excel, PowerPoint, Google Workspace, Qualtrics, survey design, data visualization
 
 WORK EXPERIENCE
-Server, Local Restaurant | May 2024 — Present
+Server, Local Restaurant | May 2024 - Present
 - Observed customer behavior patterns identifying pain points in ordering process leading to 15% faster service
 - Conducted informal user research asking customers about preferences and gathering feedback on menu items
 - Adapted service approach based on individual customer needs demonstrating user empathy and flexibility
 - Trained 2 new staff members on customer interaction techniques emphasizing active listening and responsiveness
 
-Research Volunteer, Psychology Department | Jan 2024 — Present
+Research Volunteer, Psychology Department | Jan 2024 - Present
 - Conducted 50+ participant interviews for cognitive psychology study using semi-structured interview protocol
 - Analyzed qualitative and quantitative data identifying behavioral patterns and user insights
 - Synthesized research findings into actionable recommendations presented at undergraduate symposium
 - Collaborated with research team translating complex findings into accessible presentations for non-expert audiences
 
 LEADERSHIP & ACTIVITIES
-Peer Mentor, First-Year Student Program | Sept 2023 — Present
+Peer Mentor, First-Year Student Program | Sept 2023 - Present
 - Conducted one-on-one interviews with 8 mentees to understand their needs, goals, and pain points
 - Used active listening and empathy to identify underlying concerns and provide appropriate support
 - Gathered feedback on program effectiveness through surveys and informal conversations informing program improvements`,
@@ -898,7 +988,7 @@ Peer Mentor, First-Year Student Program | Sept 2023 — Present
 jordan.santos@stateuniversity.edu | Boston, MA | (555) 456-7890
 
 EDUCATION
-State University — BS in Psychology | GPA: 3.65 | Expected May 2027
+State University - BS in Psychology | GPA: 3.65 | Expected May 2027
 
 RELEVANT COURSEWORK
 Organizational Psychology, Research Methods, Developmental Psychology, Conflict Resolution, Communication Psychology
@@ -910,20 +1000,20 @@ Interpersonal: Active listening, empathy, relationship building, confidentiality
 Technology: Microsoft Excel, PowerPoint, Google Workspace, HRIS basics (learning), data tracking and reporting
 
 WORK EXPERIENCE
-Server, Local Restaurant | May 2024 — Present
+Server, Local Restaurant | May 2024 - Present
 - Built positive relationships with 40+ customers per shift creating welcoming environment and encouraging repeat business
 - Resolved customer complaints diplomatically maintaining 95% satisfaction rating through empathetic problem-solving
 - Collaborated with diverse team of 8 staff members navigating different personalities and communication styles
 - Trained and onboarded 2 new employees teaching procedures and modeling professional customer service behaviors
 
-Research Volunteer, Psychology Department | Jan 2024 — Present
+Research Volunteer, Psychology Department | Jan 2024 - Present
 - Managed participant recruitment and scheduling coordinating with 50+ individuals across multiple time zones
 - Maintained confidential participant records following strict ethical guidelines and data privacy protocols
 - Communicated research procedures clearly to diverse participant populations adapting explanation style as needed
 - Collected feedback from participants about research experience identifying areas for process improvement
 
 LEADERSHIP & ACTIVITIES
-Peer Mentor, First-Year Student Program | Sept 2023 — Present
+Peer Mentor, First-Year Student Program | Sept 2023 - Present
 - Supported 8 first-year students through academic and personal challenges providing guidance and resources
 - Facilitated conflict resolution between mentees and roommates using mediation and active listening techniques
 - Tracked mentee progress and engagement documenting interactions and outcomes for program evaluation
@@ -959,20 +1049,20 @@ Peer Mentor, First-Year Student Program | Sept 2023 — Present
 const ResumeExamples = ({ major }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedExample, setSelectedExample] = useState(null);
-  
+
   const majorExamples = examples[major];
-  
+
   if (!majorExamples) return null;
-  
+
   return (
-    <div className="mt-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-lg border-4 border-orange-500 p-2">
-      <div className="bg-white rounded-lg p-6">
+    <div className="mt-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl border-4 border-orange-500 p-2">
+      <div className="bg-white rounded-xl p-6">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="w-full flex items-center justify-between text-left group"
         >
           <div className="flex items-center gap-3">
-            <div className="bg-orange-500 text-white p-3 rounded-lg">
+            <div className="bg-orange-500 text-white p-3 rounded-xl">
               <FileText className="w-8 h-8" />
             </div>
             <div>
@@ -980,202 +1070,201 @@ const ResumeExamples = ({ major }) => {
                 📋 See Real Student Resume Examples
               </h3>
               <p className="text-sm text-gray-600 mt-1">
-  Click to see how students tailored ONE resume for MULTIPLE career paths
-</p>
+                Click to see how students tailored ONE resume for MULTIPLE career paths
+              </p>
             </div>
           </div>
           <div className="bg-orange-100 p-2 rounded-full">
             {isOpen ? <ChevronUp className="w-6 h-6 text-orange-600" /> : <ChevronDown className="w-6 h-6 text-orange-600" />}
           </div>
         </button>
-      
-      {isOpen && (
-        <div className="mt-6 space-y-4 bg-gray-50 p-6 rounded-lg">
-          <p className="text-gray-700 mb-4 text-lg">
-            <strong>👇 Click a student to see their resume examples:</strong>
-          </p>
-          
-          <div className="grid md:grid-cols-2 gap-4">
-            {Object.keys(majorExamples).map((exampleKey) => {
- // Define display info for each example type
-const exampleInfo = {
-  'Mechanical Engineering': {
-    icon: '🔧',
-    title: 'Mechanical Engineering Student',
-    subtitle: 'See: Traditional ME vs Quality Engineer vs Data Analyst'
-  },
-  'Engineering Physics': {
-    icon: '⚛️',
-    title: 'Engineering Physics Student',
-    subtitle: 'See: Traditional Physics vs Quantitative Analyst vs Data Scientist'
-  },
-  'Marketing': {
-    icon: '📊',
-    title: 'Marketing Student',
-    subtitle: 'See: Traditional Marketing vs Sales Operations vs Data Analyst'
-  },
-  'General Business': {
-    icon: '💼',
-    title: 'General Business Student',
-    subtitle: 'See: Traditional Business vs Operations Analyst vs Customer Success'
-  },
-  'English/Writing': {
-    icon: '✏️',
-    title: 'English/Writing Student',
-    subtitle: 'See: Traditional Editorial vs UX Writer vs Technical Writer'
-  },
-  'Psychology': {
-    icon: '🧠',
-    title: 'Psychology Student',
-    subtitle: 'See: Traditional Research vs UX Researcher vs HR Specialist'
-  }
-};
-  
-  const info = exampleInfo[exampleKey] || { icon: '📄', title: exampleKey, subtitle: 'See resume examples' };
-  
-  return (
-    <button
-      key={exampleKey}
-      onClick={() => setSelectedExample(selectedExample === exampleKey ? null : exampleKey)}
-      className={`p-4 rounded-lg border-2 text-left transition-all ${
-        selectedExample === exampleKey
-          ? 'border-purple-500 bg-purple-50'
-          : 'border-gray-300 hover:border-purple-300 bg-white'
-      }`}
-    >
-      <h4 className="font-bold text-lg">
-        {info.icon} {info.title}
-      </h4>
-      <p className="text-sm text-gray-600 mt-1">
-        {info.subtitle}
-      </p>
-    </button>
-  );
-})}
-          </div>
-          
-          {selectedExample && majorExamples[selectedExample] && (
-  <div className="mt-6 space-y-6">
-    {/* Define version info for each example */}
-    {(() => {
-  const versionInfo = {
-  'Mechanical Engineering': {
-    traditional: 'Traditional Mechanical Engineering',
-    alt1: { name: 'Quality Engineer', key: 'qualityEngineer' },
-    alt2: { name: 'Data Analyst', key: 'dataAnalyst' },
-    icon: '🔧',
-    title: 'Mechanical Engineering Student',
-    subtitle: 'See: Traditional ME vs Quality Engineer vs Data Analyst'
-  },
-  'Engineering Physics': {
-    traditional: 'Traditional Engineering Physics',
-    alt1: { name: 'Quantitative Analyst', key: 'quantAnalyst' },
-    alt2: { name: 'Data Scientist', key: 'dataScientist' },
-    icon: '⚛️',
-    title: 'Engineering Physics Student',
-    subtitle: 'See: Traditional Physics vs Quantitative Analyst vs Data Scientist'
-  },
-  'Marketing': {
-    traditional: 'Traditional Marketing',
-    alt1: { name: 'Sales Operations', key: 'salesOperations' },
-    alt2: { name: 'Data Analyst', key: 'dataAnalyst' },
-    icon: '📊',
-    title: 'Marketing Student',
-    subtitle: 'See: Traditional Marketing vs Sales Operations vs Data Analyst'
-  },
-  'General Business': {
-    traditional: 'Traditional Business',
-    alt1: { name: 'Operations Analyst', key: 'operationsAnalyst' },
-    alt2: { name: 'Customer Success', key: 'customerSuccess' },
-    icon: '💼',
-    title: 'General Business Student',
-    subtitle: 'See: Traditional Business vs Operations Analyst vs Customer Success'
-  },
-  'English/Writing': {
-    traditional: 'Traditional Editorial',
-    alt1: { name: 'UX Writer', key: 'uxWriter' },
-    alt2: { name: 'Technical Writer', key: 'technicalWriter' },
-    icon: '✏️',
-    title: 'English/Writing Student',
-    subtitle: 'See: Traditional Editorial vs UX Writer vs Technical Writer'
-  },
-  'Psychology': {
-    traditional: 'Traditional Research',
-    alt1: { name: 'UX Researcher', key: 'uxResearcher' },
-    alt2: { name: 'HR Specialist', key: 'hrSpecialist' },
-    icon: '🧠',
-    title: 'Psychology Student',
-    subtitle: 'See: Traditional Research vs UX Researcher vs HR Specialist'
-  }
-};
-      
-      const info = versionInfo[selectedExample];
-      
-      return (
-        <>
-          {/* Traditional Version */}
-          <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
-            <h4 className="font-bold text-xl mb-3 text-blue-900">
-              Version A: {info.traditional}
-            </h4>
-            <pre className="text-xs whitespace-pre-wrap font-mono bg-white p-4 rounded border overflow-x-auto">
-              {majorExamples[selectedExample].traditional}
-            </pre>
-          </div>
-          
-          {/* Alternative Path 1 */}
-          <div className="bg-green-50 border-2 border-green-300 rounded-lg p-6">
-            <h4 className="font-bold text-xl mb-3 text-green-900">
-              Version B: {info.alt1.name}
-            </h4>
-            <div className="mb-4 bg-yellow-100 border border-yellow-400 rounded p-3">
-              <p className="font-semibold text-sm mb-2">🔍 Key Changes Made:</p>
-              <ul className="text-xs space-y-1">
-                {majorExamples[selectedExample].changes[info.alt1.key].map((change, idx) => (
-                  <li key={idx}>• {change}</li>
-                ))}
-              </ul>
+
+        {isOpen && (
+          <div className="mt-6 space-y-4 bg-gray-50 p-6 rounded-xl">
+            <p className="text-gray-700 mb-4 text-lg">
+              <strong>👇 Click a student to see their resume examples:</strong>
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              {Object.keys(majorExamples).map((exampleKey) => {
+                // Define display info for each example type
+                const exampleInfo = {
+                  'Mechanical Engineering': {
+                    icon: '🔧',
+                    title: 'Mechanical Engineering Student',
+                    subtitle: 'See: Traditional ME vs Quality Engineer vs Data Analyst'
+                  },
+                  'Engineering Physics': {
+                    icon: '⚛️',
+                    title: 'Engineering Physics Student',
+                    subtitle: 'See: Traditional Physics vs Quantitative Analyst vs Data Scientist'
+                  },
+                  'Marketing': {
+                    icon: '📊',
+                    title: 'Marketing Student',
+                    subtitle: 'See: Traditional Marketing vs Sales Operations vs Data Analyst'
+                  },
+                  'General Business': {
+                    icon: '💼',
+                    title: 'General Business Student',
+                    subtitle: 'See: Traditional Business vs Operations Analyst vs Customer Success'
+                  },
+                  'English/Writing': {
+                    icon: '✏️',
+                    title: 'English/Writing Student',
+                    subtitle: 'See: Traditional Editorial vs UX Writer vs Technical Writer'
+                  },
+                  'Psychology': {
+                    icon: '🧠 ',
+                    title: 'Psychology Student',
+                    subtitle: 'See: Traditional Research vs UX Researcher vs HR Specialist'
+                  }
+                };
+
+                const info = exampleInfo[exampleKey] || { icon: '📄', title: exampleKey, subtitle: 'See resume examples' };
+
+                return (
+                  <button
+                    key={exampleKey}
+                    onClick={() => setSelectedExample(selectedExample === exampleKey ? null : exampleKey)}
+                    className={`p-4 rounded-xl border-2 text-left transition-all ${selectedExample === exampleKey
+                      ? 'border-purple-500 bg-purple-50'
+                      : 'border-gray-300 hover:border-purple-300 bg-white'
+                      }`}
+                  >
+                    <h4 className="font-bold text-lg">
+                      {info.icon} {info.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 mt-1">
+                      {info.subtitle}
+                    </p>
+                  </button>
+                );
+              })}
             </div>
-            <pre className="text-xs whitespace-pre-wrap font-mono bg-white p-4 rounded border overflow-x-auto">
-              {majorExamples[selectedExample][info.alt1.key]}
-            </pre>
-          </div>
-          
-          {/* Alternative Path 2 */}
-          <div className="bg-purple-50 border-2 border-purple-300 rounded-lg p-6">
-            <h4 className="font-bold text-xl mb-3 text-purple-900">
-              Version C: {info.alt2.name}
-            </h4>
-            <div className="mb-4 bg-yellow-100 border border-yellow-400 rounded p-3">
-              <p className="font-semibold text-sm mb-2">🔍 Key Changes Made:</p>
-              <ul className="text-xs space-y-1">
-                {majorExamples[selectedExample].changes[info.alt2.key].map((change, idx) => (
-                  <li key={idx}>• {change}</li>
-                ))}
-              </ul>
-            </div>
-            <pre className="text-xs whitespace-pre-wrap font-mono bg-white p-4 rounded border overflow-x-auto">
-              {majorExamples[selectedExample][info.alt2.key]}
-            </pre>
-          </div>
-        </>
-      );
-    })()}
-              
-              <div className="bg-gray-100 border-2 border-gray-400 rounded-lg p-6">
-                <h4 className="font-bold text-lg mb-3">💡 Notice the Pattern:</h4>
-                <ul className="text-sm space-y-2">
-                  <li>✅ <strong>Same experience</strong> - all 3 versions use the exact same jobs and projects</li>
-                  <li>✅ <strong>Different emphasis</strong> - bullets reordered and reworded to highlight relevant skills</li>
-                  <li>✅ <strong>Tailored language</strong> - terminology matches each career path's expectations</li>
-                  <li>✅ <strong>Skills reordered</strong> - most relevant skills moved to the top</li>
-                  <li>✅ <strong>Quantified differently</strong> - same numbers, different focus</li>
-                </ul>
+
+            {selectedExample && majorExamples[selectedExample] && (
+              <div className="mt-6 space-y-6">
+                {/* Define version info for each example */}
+                {(() => {
+                  const versionInfo = {
+                    'Mechanical Engineering': {
+                      traditional: 'Traditional Mechanical Engineering',
+                      alt1: { name: 'Quality Engineer', key: 'qualityEngineer' },
+                      alt2: { name: 'Data Analyst', key: 'dataAnalyst' },
+                      icon: '🔧',
+                      title: 'Mechanical Engineering Student',
+                      subtitle: 'See: Traditional ME vs Quality Engineer vs Data Analyst'
+                    },
+                    'Engineering Physics': {
+                      traditional: 'Traditional Engineering Physics',
+                      alt1: { name: 'Quantitative Analyst', key: 'quantAnalyst' },
+                      alt2: { name: 'Data Scientist', key: 'dataScientist' },
+                      icon: '⚛️',
+                      title: 'Engineering Physics Student',
+                      subtitle: 'See: Traditional Physics vs Quantitative Analyst vs Data Scientist'
+                    },
+                    'Marketing': {
+                      traditional: 'Traditional Marketing',
+                      alt1: { name: 'Sales Operations', key: 'salesOperations' },
+                      alt2: { name: 'Data Analyst', key: 'dataAnalyst' },
+                      icon: '📊',
+                      title: 'Marketing Student',
+                      subtitle: 'See: Traditional Marketing vs Sales Operations vs Data Analyst'
+                    },
+                    'General Business': {
+                      traditional: 'Traditional Business',
+                      alt1: { name: 'Operations Analyst', key: 'operationsAnalyst' },
+                      alt2: { name: 'Customer Success', key: 'customerSuccess' },
+                      icon: '💼',
+                      title: 'General Business Student',
+                      subtitle: 'See: Traditional Business vs Operations Analyst vs Customer Success'
+                    },
+                    'English/Writing': {
+                      traditional: 'Traditional Editorial',
+                      alt1: { name: 'UX Writer', key: 'uxWriter' },
+                      alt2: { name: 'Technical Writer', key: 'technicalWriter' },
+                      icon: '✏️',
+                      title: 'English/Writing Student',
+                      subtitle: 'See: Traditional Editorial vs UX Writer vs Technical Writer'
+                    },
+                    'Psychology': {
+                      traditional: 'Traditional Research',
+                      alt1: { name: 'UX Researcher', key: 'uxResearcher' },
+                      alt2: { name: 'HR Specialist', key: 'hrSpecialist' },
+                      icon: '🧠',
+                      title: 'Psychology Student',
+                      subtitle: 'See: Traditional Research vs UX Researcher vs HR Specialist'
+                    }
+                  };
+
+                  const info = versionInfo[selectedExample];
+
+                  return (
+                    <>
+                      {/* Traditional Version */}
+                      <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-6">
+                        <h4 className="font-bold text-xl mb-3 text-blue-900">
+                          Version A: {info.traditional}
+                        </h4>
+                        <pre className="text-xs whitespace-pre-wrap font-mono bg-white p-4 rounded border overflow-x-auto">
+                          {majorExamples[selectedExample].traditional}
+                        </pre>
+                      </div>
+
+                      {/* Alternative Path 1 */}
+                      <div className="bg-green-50 border-2 border-green-300 rounded-xl p-6">
+                        <h4 className="font-bold text-xl mb-3 text-green-900">
+                          Version B: {info.alt1.name}
+                        </h4>
+                        <div className="mb-4 bg-yellow-100 border border-yellow-400 rounded p-3">
+                          <p className="font-semibold text-sm mb-2">🔍 Key Changes Made:</p>
+                          <ul className="text-xs space-y-1">
+                            {majorExamples[selectedExample].changes[info.alt1.key].map((change, idx) => (
+                              <li key={idx}>• {change}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <pre className="text-xs whitespace-pre-wrap font-mono bg-white p-4 rounded border overflow-x-auto">
+                          {majorExamples[selectedExample][info.alt1.key]}
+                        </pre>
+                      </div>
+
+                      {/* Alternative Path 2 */}
+                      <div className="bg-purple-50 border-2 border-purple-300 rounded-xl p-6">
+                        <h4 className="font-bold text-xl mb-3 text-purple-900">
+                          Version C: {info.alt2.name}
+                        </h4>
+                        <div className="mb-4 bg-yellow-100 border border-yellow-400 rounded p-3">
+                          <p className="font-semibold text-sm mb-2">🔍 Key Changes Made:</p>
+                          <ul className="text-xs space-y-1">
+                            {majorExamples[selectedExample].changes[info.alt2.key].map((change, idx) => (
+                              <li key={idx}>• {change}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <pre className="text-xs whitespace-pre-wrap font-mono bg-white p-4 rounded border overflow-x-auto">
+                          {majorExamples[selectedExample][info.alt2.key]}
+                        </pre>
+                      </div>
+                    </>
+                  );
+                })()}
+
+                <div className="bg-gray-100 border-2 border-gray-400 rounded-xl p-6">
+                  <h4 className="font-bold text-lg mb-3">💡 Notice the Pattern:</h4>
+                  <ul className="text-sm space-y-2">
+                    <li>✅ <strong>Same experience</strong> - all 3 versions use the exact same jobs and projects</li>
+                    <li>✅ <strong>Different emphasis</strong> - bullets reordered and reworded to highlight relevant skills</li>
+                    <li>✅ <strong>Tailored language</strong> - terminology matches each career path's expectations</li>
+                    <li>✅ <strong>Skills reordered</strong> - most relevant skills moved to the top</li>
+                    <li>✅ <strong>Quantified differently</strong> - same numbers, different focus</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      )}
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -1183,122 +1272,100 @@ const exampleInfo = {
 
 const ATSGuide = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   return (
-    <div className="bg-blue-600 text-white rounded-lg p-6 mb-8">
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between"
+    <div className="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden mb-6">
+      <button
+        type="button"
+        onClick={() => setIsOpen(v => !v)}
+        className="w-full p-6 text-left hover:bg-gray-50 transition flex items-start justify-between gap-6"
       >
-        <div className="text-left">
-          <h2 className="text-2xl font-bold mb-2">📋 ATS & Resume Writing Guide</h2>
-          <p className="text-sm">Learn how to write resumes that pass Applicant Tracking Systems</p>
-        </div>
-        {isOpen ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
-      </button>
-      
-      {isOpen && (
-        <div className="mt-6 space-y-6 text-left">
-          <div className="bg-white/10 rounded-lg p-4">
-            <h3 className="font-bold text-lg mb-2">What is ATS?</h3>
-            <p className="text-sm">
-              Applicant Tracking Systems (ATS) scan your resume BEFORE humans see it. 75% of resumes are rejected by ATS due to poor formatting or missing keywords. This guide helps you beat the bots.
+        <div className="flex items-start gap-4 min-w-0">
+          <div className="bg-[#006581]/10 text-[#006581] w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <span className="text-xl">📋</span>
+          </div>
+
+          <div className="min-w-0">
+            <h2 className="text-lg md:text-xl font-extrabold text-gray-900">
+              ATS & Resume Writing Guide
+            </h2>
+            <p className="mt-1 text-sm md:text-base text-gray-600">
+              Write a resume that passes filters without sounding robotic.
             </p>
           </div>
-          
-          <div className="bg-white/10 rounded-lg p-4">
-            <h3 className="font-bold text-lg mb-2">Universal Formatting Rules</h3>
-            <ul className="text-sm space-y-1">
-              <li>✅ Use simple fonts: Arial, Calibri, Times New Roman (10-12pt)</li>
-              <li>✅ Save as .docx or .pdf (check job posting for preference)</li>
-              <li>✅ Use standard section headers: EDUCATION, EXPERIENCE, SKILLS</li>
-              <li>✅ NO tables, text boxes, headers, or footers (ATS can't read them)</li>
-              <li>✅ Use bullet points (•) not fancy symbols</li>
-              <li>✅ Spell out acronyms first time: "American Society of Mechanical Engineers (ASME)"</li>
+        </div>
+
+        <div className="pt-1">
+          {isOpen ? <ChevronUp className="w-6 h-6 text-gray-500" /> : <ChevronDown className="w-6 h-6 text-gray-500" />}
+        </div>
+      </button>
+
+      {isOpen && (
+        <div className="p-6 border-t border-gray-200 space-y-5">
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4">
+            <h3 className="font-bold text-gray-900 mb-1">What is ATS?</h3>
+            <p className="text-sm text-gray-700">
+              ATS scans your resume before a human sees it. Clean formatting + the right keywords = your resume actually gets read.
+            </p>
+          </div>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4">
+            <h3 className="font-bold text-gray-900 mb-2">Universal formatting rules</h3>
+            <ul className="text-sm text-gray-700 space-y-1">
+              <li>✅ Simple fonts (Arial/Calibri/Times), 10–12pt</li>
+              <li>✅ Standard headers: EDUCATION, EXPERIENCE, SKILLS</li>
+              <li>✅ No tables / text boxes / headers / footers</li>
+              <li>✅ Bullet points (•), not fancy symbols</li>
+              <li>✅ Spell out acronyms once (ASME …)</li>
             </ul>
           </div>
-          
-          <div className="bg-white/10 rounded-lg p-4">
-            <h3 className="font-bold text-lg mb-2">The STAR Method (Situation, Task, Action, Result)</h3>
-            <p className="text-sm mb-3">Transform weak bullets into powerful accomplishments:</p>
-            
-            <div className="space-y-4">
-              <div className="bg-white/20 rounded p-3">
-                <p className="font-semibold mb-1">Example 1: Work Experience</p>
-                <p className="text-sm">❌ <span className="line-through">Worked as barista at coffee shop</span></p>
-                <p className="text-sm">✅ <strong>Served 200+ customers daily</strong> in fast-paced environment, <strong>maintaining 95% satisfaction rating</strong> through efficient order processing and friendly service</p>
-                <p className="text-xs mt-1 italic">Why better: Quantifies work (200+ customers), shows result (95% satisfaction), includes action verbs</p>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4">
+            <h3 className="font-bold text-gray-900 mb-2">Strong bullets (STAR-ish)</h3>
+
+            <div className="space-y-3 text-sm text-gray-700">
+              <div className="bg-white border border-gray-200 rounded-xl p-3">
+                <p className="font-semibold text-gray-900 mb-1">Work</p>
+                <p>❌ <span className="line-through">Worked as barista</span></p>
+                <p>✅ Served 200+ customers/day, maintained speed + accuracy in a fast-paced environment.</p>
               </div>
-              
-              <div className="bg-white/20 rounded p-3">
-                <p className="font-semibold mb-1">Example 2: Academic Project</p>
-                <p className="text-sm">❌ <span className="line-through">Did group project for engineering class</span></p>
-                <p className="text-sm">✅ <strong>Collaborated with 4-person team</strong> to design automated sorting system using Arduino, <strong>completing project 2 weeks ahead of schedule</strong> and earning A grade</p>
-                <p className="text-xs mt-1 italic">Why better: Shows teamwork, technical skills (Arduino), quantifies timeline, demonstrates success (A grade)</p>
+
+              <div className="bg-white border border-gray-200 rounded-xl p-3">
+                <p className="font-semibold text-gray-900 mb-1">Project</p>
+                <p>❌ <span className="line-through">Did group project</span></p>
+                <p>✅ Collaborated on a 4-person build, delivered early, documented results clearly.</p>
               </div>
-              
-              <div className="bg-white/20 rounded p-3">
-                <p className="font-semibold mb-1">Example 3: Leadership/Activities</p>
-                <p className="text-sm">❌ <span className="line-through">President of engineering club</span></p>
-                <p className="text-sm">✅ <strong>Led organization of 50+ members</strong>, organizing 10 technical workshops and <strong>increasing membership by 40%</strong> through targeted recruitment campaign</p>
-                <p className="text-xs mt-1 italic">Why better: Quantifies scope (50+ members, 10 workshops), shows initiative (recruitment), demonstrates impact (40% growth)</p>
+
+              <div className="bg-white border border-gray-200 rounded-xl p-3">
+                <p className="font-semibold text-gray-900 mb-1">Leadership</p>
+                <p>❌ <span className="line-through">President of club</span></p>
+                <p>✅ Led a 50+ member org; ran workshops + increased membership through outreach.</p>
               </div>
             </div>
           </div>
-          
-          <div className="bg-white/10 rounded-lg p-4">
-            <h3 className="font-bold text-lg mb-2">Quick Tips</h3>
-            <ul className="text-sm space-y-1">
-              <li>🎯 Use keywords from the job description naturally in your bullets</li>
-              <li>📊 Quantify everything: numbers, percentages, timeframes, team sizes</li>
-              <li>💪 Start bullets with strong action verbs: Led, Designed, Analyzed, Managed</li>
-              <li>🎓 Class projects ARE real projects - include them!</li>
-              <li>⏱️ Keep resume to 1 page (students/recent grads)</li>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4">
+            <h3 className="font-bold text-gray-900 mb-2">Quick tips</h3>
+            <ul className="text-sm text-gray-700 space-y-1">
+              <li>🎯 Pull keywords from the job post (naturally)</li>
+              <li>📊 Quantify: numbers, time, scope, impact</li>
+              <li>💪 Start bullets with action verbs</li>
+              <li>⏱️ Keep it to 1 page for students/new grads</li>
             </ul>
           </div>
-          
-          <div className="bg-white/10 rounded-lg p-4">
-            <h3 className="font-bold text-lg mb-2">💡 Using AI Tools (ChatGPT, Claude, etc.)</h3>
-            <p className="text-sm mb-3 font-semibold">IMPORTANT: AI is a TOOL to refine YOUR resume, not write it for you.</p>
-            
-            <div className="space-y-3 text-sm">
-              <div>
-                <p className="font-semibold mb-1">✅ Good uses (AFTER you write it yourself):</p>
-                <ul className="ml-4 space-y-1">
-                  <li>• "Check this bullet for ATS optimization and suggest improvements"</li>
-                  <li>• "Is this bullet specific enough? Does it quantify results?"</li>
-                  <li>• "Does this sound natural or too generic?"</li>
-                  <li>• "Scan for grammar, typos, and clarity"</li>
-                </ul>
-              </div>
-              
-              <div>
-                <p className="font-semibold mb-1">❌ Don't do this:</p>
-                <ul className="ml-4 space-y-1">
-                  <li>• Copy-paste AI-generated bullets directly (sounds generic, employers notice)</li>
-                  <li>• Let AI write your resume from scratch (loses YOUR voice)</li>
-                  <li>• Share sensitive personal information with AI tools</li>
-                </ul>
-              </div>
-              
-              <p className="font-semibold italic mt-2">Bottom line: Write it yourself using this guide first, THEN use AI to help improve what YOU wrote.</p>
-            </div>
-          </div>
-          
-          <div className="bg-white/10 rounded-lg p-4">
-            <h3 className="font-bold text-lg mb-2">Get Human Feedback Too</h3>
-            <ul className="text-sm space-y-2">
-              <li><strong>Career Center:</strong> Free resume reviews at most schools</li>
-              <li><strong>Reddit:</strong> Find subreddits for your major (r/EngineeringResumes, r/BusinessResumes, etc.) - <span className="font-bold text-yellow-300">⚠️ BLACK OUT ALL PERSONAL INFO</span> (name, phone, email, address, school name) before posting</li>
-              <li><strong>Peers:</strong> Classmates in your major who've landed internships</li>
-              <li><strong>ATS Scanners:</strong> Resume Worded, Jobscan (free tools)</li>
-            </ul>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4">
+            <h3 className="font-bold text-gray-900 mb-2">Using AI tools</h3>
+            <p className="text-sm text-gray-700">
+              Use AI to *improve what you wrote*, not to generate generic bullets you can’t defend in an interview.
+            </p>
           </div>
         </div>
       )}
     </div>
   );
 };
+
 
 const ResumeBuilder = ({ onBack, setCurrentPage }) => {
   const [major, setMajor] = useState('');
@@ -1315,8 +1382,8 @@ const ResumeBuilder = ({ onBack, setCurrentPage }) => {
     contact: { name: '', email: '', phone: '', linkedin: '', location: '' },
     education: { school: '', degree: '', major: '', gpa: '', graduation: '', coursework: '' },
     skills: { category1: '', category2: '', category3: '', category4: '' },
-    experience: [], 
-    projects: [], 
+    experience: [],
+    projects: [],
     activities: []
   });
 
@@ -1461,6 +1528,27 @@ const ResumeBuilder = ({ onBack, setCurrentPage }) => {
 
     return text;
   };
+  // --- AI requirements (computed from current resumeData) ---
+  const aiReq = (() => {
+    const hasContact =
+      !!resumeData.contact?.name?.trim() &&
+      !!resumeData.contact?.email?.trim();
+
+    const hasEducation =
+      !!resumeData.education?.school?.trim() &&
+      !!resumeData.education?.degree?.trim();
+
+    const hasOneExpOrProj =
+      (resumeData.experience?.length || 0) > 0 ||
+      (resumeData.projects?.length || 0) > 0;
+
+    return {
+      hasContact,
+      hasEducation,
+      hasOneExpOrProj,
+      ready: hasContact && hasEducation && hasOneExpOrProj,
+    };
+  })();
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generateResumeText()).then(() => {
@@ -1477,515 +1565,1164 @@ const ResumeBuilder = ({ onBack, setCurrentPage }) => {
         skills: { category1: '', category2: '', category3: '', category4: '' },
         experience: [], projects: [], activities: []
       });
-      setMajor('');
       localStorage.removeItem('mtow-resume-builder');
     }
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-       {/* Navigation */}
-            
+  // Scroll target for the big AI section near the bottom
+  const fullAIReviewRef = useRef(null);
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-4">Resume Builder</h1>
-        <p className="text-xl text-gray-600 mb-8">Build an ATS-friendly resume that showcases YOUR experience.</p>
-       	
-        {!major && (
-          <>
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg p-8 mb-8">
-              <h2 className="text-3xl font-bold mb-4">Build a Resume That Opens MULTIPLE Doors</h2>
-              <p className="text-lg mb-4">
-                Your degree doesn't lock you into one path. This resume builder helps you apply to traditional roles AND the alternative career paths you'll discover on our Find Internships page.
-              </p>
-              <div className="bg-white/20 rounded-lg p-4">
-                <h3 className="text-xl font-bold mb-2">You Have More Experience Than You Think</h3>
-                <p className="text-md">
-                  <strong>Class projects ARE real projects.</strong> Part-time jobs taught valuable skills. We'll help you translate it into professional language.
+  // Locked/ready logic for AI review
+  const isAIReviewReady = () => {
+    const hasContact =
+      !!resumeData.contact?.name?.trim() &&
+      !!resumeData.contact?.email?.trim();
+
+    const hasEducation =
+      !!resumeData.education?.school?.trim() &&
+      !!resumeData.education?.degree?.trim();
+
+    const hasExperienceOrProject =
+      (resumeData.experience?.length || 0) > 0 || (resumeData.projects?.length || 0) > 0;
+
+    return hasContact && hasEducation && hasExperienceOrProject;
+  };
+
+  const scrollToFullAIReview = () => {
+    fullAIReviewRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <div className="bg-[#FFFBF7]">
+      <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10 space-y-8">
+
+        <header className="text-center max-w-5xl mx-auto pt-2">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
+            Resume{" "}
+            <span className="block md:inline text-tealBrand">
+Builder</span>
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">Build an ATS-friendly resume that showcases YOUR experience.</p>
+        </header>
+
+        <main className="max-w-4xl mx-auto px-4 py-8">
+          {!major && (
+            <>
+              <div className="bg-white rounded-3xl border border-gray-200 p-8 mb-8 shadow-sm">
+                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">
+                  Build a Resume That Opens <span className="text-tealBrand">Multiple Doors</span>
+                </h2>
+
+                <p className="text-gray-700 text-base md:text-lg mb-5 leading-relaxed">
+                  Your degree doesn’t lock you into one path. This resume builder helps you apply to
+                  traditional roles <strong>and</strong> the alternative career paths you’ll discover
+                  on our Find Internships page.
+                </p>
+
+                {/* Sub-callout */}
+                <div className="rounded-2xl bg-tealBrand/10 border border-tealBrand/15 p-5 mb-4">
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    You Have More Experience Than You Think
+                  </h3>
+                  <p className="text-sm md:text-base text-gray-700">
+                    <strong>Class projects are real projects.</strong> Part-time jobs teach transferable
+                    skills. We’ll help you translate them into professional language.
+                  </p>
+                </div>
+
+                <p className="text-sm text-gray-600">
+                  <strong>Remember:</strong> Same experience, different emphasis = different opportunities.
+                  We’ll show you how.
                 </p>
               </div>
-              <p className="text-md mt-4">
-                <strong>Remember:</strong> Same experience, different emphasis = different opportunities. We'll show you how.
+
+              <p className="text-sm font-semibold text-gray-500 mb-2">
+                Step 1 of 2
               </p>
-            </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-4">
+                Choose your field
+              </h3>
 
-            <div className="bg-white rounded-lg shadow p-6 mb-6">
-              <h3 className="font-bold text-lg mb-3">Select Your Field:</h3>
-              <div className="grid md:grid-cols-3 gap-4">
-                {Object.keys(MAJOR_CONFIG).map(m => (
-                  <button key={m} onClick={() => setMajor(m)} className="p-4 border-2 border-blue-300 rounded-lg hover:bg-blue-50 hover:border-blue-500">
-                    <p className="font-semibold">{m}</p>
-                  </button>
-                ))}
-              </div>
-              <button onClick={() => setMajor('Engineering/STEM')} className="mt-3 text-sm text-gray-600 underline">Skip</button>
-            </div>
-          </>
-        )}
+              <div className="bg-white rounded-xl shadow-soft p-6 mb-6">
+                <h3 className="font-bold text-lg mb-3">Select Your Field:</h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {Object.keys(MAJOR_CONFIG).map(m => (
+                    <button
+                      key={m}
+                      onClick={() => setMajor(m)}
+                      className="
+    group w-full text-left
+    rounded-2xl border border-gray-200
+    bg-white p-5
+    transition-all duration-200
+    hover:-translate-y-1 hover:shadow-md
+    hover:border-tealBrand/40
+    focus:outline-none focus:ring-2 focus:ring-tealBrand/20
+  "
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-lg font-semibold text-gray-900">
+                          {m}
+                        </span>
 
-        {major && config && (
-          <>
- {/* ADD THIS BACK BUTTON */}
-    <div className="mb-6">
-      <button
-        onClick={() => setMajor('')}
-        className="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold"
-      >
-        <ChevronDown className="w-5 h-5 rotate-90" />
-        Back to Field Selection
-      </button>
-    </div>
+                        <span className="
+      inline-flex h-8 w-8 items-center justify-center
+      rounded-full bg-tealBrand/10 text-tealBrand
+      opacity-0 group-hover:opacity-100 transition
+    ">
+                          →
+                        </span>
+                      </div>
+                    </button>
 
-    {/* ADD THIS TITLE */}
-    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-6 mb-8 text-center">
-      <h2 className="text-3xl font-bold mb-2">
-        {major === 'Engineering/STEM' && '🔧 Engineering & STEM Resume Builder'}
-        {major === 'Business' && '💼 Business Resume Builder'}
-        {major === 'Liberal Arts' && '📚 Liberal Arts Resume Builder'}
-      </h2>
-      <p className="text-lg">
-        Tailored guidance and examples for {major} students
-      </p>
-    </div>
-            <EncouragementBox />
-                    
-            <ATSGuide />
-            
-            
-
-            <div className="bg-white rounded-lg shadow p-6 mb-6">
-              <div className="flex gap-4 flex-wrap">
-                <button onClick={() => setShowPreview(!showPreview)} className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
-                  {showPreview ? 'Hide' : 'Show'} Preview
-                </button>
-                <button onClick={copyToClipboard} className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 flex items-center gap-2">
-                  {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />} {copied ? 'Copied!' : 'Copy Resume'}
-                </button>
-                <button onClick={clearAllData} className="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600">Clear All</button>
-              </div>
-            </div>
-
-            {showPreview && (
-              <div className="bg-white rounded-lg shadow p-6 mb-6">
-                <div className="flex justify-between mb-4">
-                  <h3 className="font-bold text-lg">Preview</h3>
-                  <button onClick={() => setShowPreview(false)}><X className="w-5 h-5" /></button>
-                </div>
-                <div className="bg-gray-50 p-4 rounded max-h-96 overflow-y-auto">
-                  <pre className="text-sm whitespace-pre-wrap font-sans">{generateResumeText()}</pre>
-                </div>
-              </div>
-            )}
-
-            {/* CONTACT */}
-            <div className="bg-white rounded-lg shadow mb-6">
-              <button onClick={() => setExpandedSection(expandedSection === 'contact' ? null : 'contact')} className="w-full p-6 text-left hover:bg-gray-50 flex justify-between border-l-4 border-blue-500">
-                <div><h2 className="text-2xl font-bold">1. Contact Info</h2></div>
-                {expandedSection === 'contact' ? <ChevronUp /> : <ChevronDown />}
-              </button>
-              {expandedSection === 'contact' && (
-                <div className="p-6 border-t space-y-4">
-                  <div className="bg-blue-50 border border-blue-200 rounded p-3 mb-3">
-                    <p className="text-sm text-blue-800">
-                      <AlertCircle className="w-4 h-4 inline mr-1" />
-                      <strong>Quick Tips:</strong> Use professional email. NO headers/footers in Word - ATS can't read them. <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo(0, 0); }} className="underline">See full guide above</a>
-                    </p>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <input type="text" value={resumeData.contact.name} onChange={(e) => updateContact('name', e.target.value)} placeholder="Full Name" className="p-3 border rounded-lg" />
-                    <input type="email" value={resumeData.contact.email} onChange={(e) => updateContact('email', e.target.value)} placeholder="Email" className="p-3 border rounded-lg" />
-                    <input type="tel" value={resumeData.contact.phone} onChange={(e) => updateContact('phone', e.target.value)} placeholder="Phone" className="p-3 border rounded-lg" />
-                    <input type="url" value={resumeData.contact.linkedin} onChange={(e) => updateContact('linkedin', e.target.value)} placeholder="LinkedIn (optional)" className="p-3 border rounded-lg" />
-                    <input type="text" value={resumeData.contact.location} onChange={(e) => updateContact('location', e.target.value)} placeholder="City, State" className="md:col-span-2 p-3 border rounded-lg" />
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* EDUCATION */}
-            <div className="bg-white rounded-lg shadow mb-6">
-              <button onClick={() => setExpandedSection(expandedSection === 'education' ? null : 'education')} className="w-full p-6 text-left hover:bg-gray-50 flex justify-between border-l-4 border-purple-500">
-                <div><h2 className="text-2xl font-bold">2. Education</h2></div>
-                {expandedSection === 'education' ? <ChevronUp /> : <ChevronDown />}
-              </button>
-              {expandedSection === 'education' && (
-                <div className="p-6 border-t space-y-4">
-                  <div className="bg-purple-50 border border-purple-200 rounded p-3 mb-3">
-                    <p className="text-sm text-purple-800">
-                      <AlertCircle className="w-4 h-4 inline mr-1" />
-                      <strong>Quick Tips:</strong> Include GPA only if 3.0+. List 3-5 relevant courses max. <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo(0, 0); }} className="underline">See full guide above</a>
-                    </p>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <input type="text" value={resumeData.education.school} onChange={(e) => updateEducation('school', e.target.value)} placeholder="University Name" className="md:col-span-2 p-3 border rounded-lg" />
-                    <input type="text" value={resumeData.education.degree} onChange={(e) => updateEducation('degree', e.target.value)} placeholder="Bachelor of Science" className="p-3 border rounded-lg" />
-                    <input type="text" value={resumeData.education.major} onChange={(e) => updateEducation('major', e.target.value)} placeholder="Major" className="p-3 border rounded-lg" />
-                    <input type="text" value={resumeData.education.graduation} onChange={(e) => updateEducation('graduation', e.target.value)} placeholder="May 2026" className="p-3 border rounded-lg" />
-                    <input type="text" value={resumeData.education.gpa} onChange={(e) => updateEducation('gpa', e.target.value)} placeholder="GPA (if 3.0+)" className="p-3 border rounded-lg" />
-                    <input type="text" value={resumeData.education.coursework} onChange={(e) => updateEducation('coursework', e.target.value)} placeholder="Relevant Coursework" className="md:col-span-2 p-3 border rounded-lg" />
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* SKILLS */}
-            <div className="bg-white rounded-lg shadow mb-6">
-              <button onClick={() => setExpandedSection(expandedSection === 'skills' ? null : 'skills')} className="w-full p-6 text-left hover:bg-gray-50 flex justify-between border-l-4 border-green-500">
-                <div><h2 className="text-2xl font-bold">3. Skills</h2></div>
-                {expandedSection === 'skills' ? <ChevronUp /> : <ChevronDown />}
-              </button>
-              {expandedSection === 'skills' && (
-                <div className="p-6 border-t space-y-4">
-                  <div className="bg-green-50 border border-green-200 rounded p-3 mb-3">
-                    <p className="text-sm text-green-800 mb-2">
-                      <AlertCircle className="w-4 h-4 inline mr-1" />
-                      <strong>Quick Tips:</strong> List specific tools/software. Only include skills you can discuss in interview. <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo(0, 0); }} className="underline">See full guide above</a>
-                    </p>
-                    <div className="bg-white rounded p-2 text-xs">
-                      <p className="mb-1">❌ <span className="line-through">Microsoft Office, good communicator, team player</span></p>
-                      <p>✅ <strong>Excel (pivot tables, VLOOKUP), PowerPoint, Python, data visualization</strong></p>
-                    </div>
-                  </div>
-                  {config.skills.categories.map((category, idx) => (
-                    <div key={idx}>
-                      <label className="block font-semibold mb-1">{category}</label>
-                      <textarea value={resumeData.skills[`category${idx + 1}`]} onChange={(e) => updateSkills(`category${idx + 1}`, e.target.value)} placeholder={config.skills.placeholders[category]} rows="2" className="w-full p-3 border rounded-lg" />
-                    </div>
                   ))}
                 </div>
-              )}
-            </div>
+                <button onClick={() => setMajor('Engineering')} className="mt-3 text-sm text-gray-600 underline">Skip</button>
+              </div>
+            </>
+          )}
 
-            {/* EXPERIENCE */}
-            <div className="bg-white rounded-lg shadow mb-6">
-              <button onClick={() => setExpandedSection(expandedSection === 'experience' ? null : 'experience')} className="w-full p-6 text-left hover:bg-gray-50 flex justify-between border-l-4 border-orange-500">
-                <div><h2 className="text-2xl font-bold">4. Work Experience</h2></div>
-                {expandedSection === 'experience' ? <ChevronUp /> : <ChevronDown />}
-              </button>
-              {expandedSection === 'experience' && (
-                <div className="p-6 border-t space-y-6">
-                  <div className="bg-orange-50 border border-orange-200 rounded p-3">
-                    <p className="text-sm text-orange-800 mb-2">
-                      <AlertCircle className="w-4 h-4 inline mr-1" />
-                      <strong>Quick Tips:</strong> Start bullets with action verbs. Quantify with numbers. Part-time jobs count! <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo(0, 0); }} className="underline">See full guide above</a>
-                    </p>
-                    <div className="bg-white rounded p-2 text-xs space-y-1">
-                      <p>❌ <span className="line-through">Worked as {major === 'Engineering/STEM' ? 'lab assistant' : major === 'Business' ? 'sales associate' : 'writing tutor'}</span></p>
-                      <p>✅ <strong>{config.exampleBullets.experience}</strong></p>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-blue-50 border border-blue-200 rounded p-3">
-                    <p className="text-sm text-blue-800 flex items-center gap-1">
-                      <Lightbulb className="w-4 h-4" />
-                      <strong>Get Smart Suggestions:</strong> Type keywords like <span className="font-mono">barista, server, tutor, lab, receptionist, cashier</span> in your bullets below
-                    </p>
-                    <KeywordGuide major={major} />
-                  </div>
-                  
-                  {resumeData.experience.map((exp, expIdx) => (
-                    <div key={expIdx} className="border rounded-lg p-4 bg-gray-50">
-                      <div className="flex justify-between mb-3">
-                        <h4 className="font-bold">Experience {expIdx + 1}</h4>
-                        <button onClick={() => deleteExperience(expIdx)} className="text-red-600"><Trash2 className="w-4 h-4" /></button>
-                      </div>
-                      <div className="grid md:grid-cols-2 gap-3 mb-3">
-                        <input type="text" value={exp.title} onChange={(e) => updateExperience(expIdx, 'title', e.target.value)} placeholder={config.experiencePlaceholders.title} className="p-3 border rounded-lg" />
-                        <input type="text" value={exp.company} onChange={(e) => updateExperience(expIdx, 'company', e.target.value)} placeholder={config.experiencePlaceholders.company} className="p-3 border rounded-lg" />
-                        <input type="text" value={exp.dates} onChange={(e) => updateExperience(expIdx, 'dates', e.target.value)} placeholder="Jan 2024 - Present" className="md:col-span-2 p-3 border rounded-lg" />
-                      </div>
-                      {exp.bullets.map((bullet, bulletIdx) => (
-                        <div key={bulletIdx} className="mb-2">
-                          <textarea value={bullet} onChange={(e) => updateExperienceBullet(expIdx, bulletIdx, e.target.value)} placeholder={config.experiencePlaceholders.bullet} rows="2" className="w-full p-3 border rounded-lg" />
-                          <InstantBulletChecker text={bullet} major={major} />
-                          <BulletAIHelper bullet={bullet} major={major} />
-			</div>
-                      ))}
-                      <button onClick={() => addExperienceBullet(expIdx)} className="text-orange-600 text-sm flex items-center gap-1">
-                        <Plus className="w-4 h-4" /> Add Bullet
+          {major && config && (
+            <>
+
+              {/* “You’re building…” card (soft, not loud gradient) */}
+              <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
+                <button onClick={() => setMajor("")} className="flex items-center gap-2 hover:text-gray-900">
+                  <ChevronLeft className="w-4 h-4" />
+                  Back to Field Selection
+                </button>
+
+                <span className="text-gray-500 font-semibold">Step 2 of 2</span>
+              </div>
+
+              {/* Centered guidance title */}
+              <div className="text-center mb-6">
+                <h2 className="text-lg md:text-xl font-extrabold text-gray-900">
+                  Resume guidance for <span className="font-extrabold">{major}</span> students
+                </h2>
+                <p className="mt-1 text-sm md:text-base text-gray-600">
+                  Examples, phrasing, and structure tailored to your field.
+                </p>
+              </div>
+
+              {/* 🔒 STICKY TOOL BAR */}
+              <div className="sticky top-20 z-40 mb-6">
+                <div className="bg-white/90 backdrop-blur border border-gray-200 rounded-2xl p-3 shadow-sm">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setShowPreview((prev) => !prev)}
+                        className="px-4 py-2 rounded-xl bg-gray-900 text-white text-sm font-semibold hover:bg-gray-800"
+                      >
+                        {showPreview ? "Hide Preview" : "Preview"}
+                      </button>
+
+                      <button
+                        onClick={copyToClipboard}
+                        className="px-4 py-2 rounded-xl bg-[#006581] text-white text-sm font-semibold hover:bg-[#00506a]"
+                      >
+                        Copy Resume
+                      </button>
+
+                      <button
+                        type="button"
+                        disabled={!aiReq.ready}
+                        onClick={scrollToFullAIReview}
+                        className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${aiReq.ready
+                          ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                          : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                          }`}
+                      >
+                        {aiReq.ready ? "AI Review" : "AI Review (Locked)"}
+                      </button>
+                      <button
+                        onClick={clearAllData}
+                        className="px-4 py-2 rounded-xl border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+                      >
+                        Clear All
                       </button>
                     </div>
-                  ))}
-                  <button onClick={addExperience} className="w-full bg-orange-100 border-2 border-dashed border-orange-400 rounded-lg p-4 hover:bg-orange-200 flex items-center justify-center gap-2">
-                    <Plus className="w-5 h-5" /> Add Experience
-                  </button>
-                </div>
-              )}
-            </div>
 
-            {/* PROJECTS */}
-            <div className="bg-white rounded-lg shadow mb-6">
-              <button onClick={() => setExpandedSection(expandedSection === 'projects' ? null : 'projects')} className="w-full p-6 text-left hover:bg-gray-50 flex justify-between border-l-4 border-indigo-500">
-                <div><h2 className="text-2xl font-bold">5. Projects</h2></div>
-                {expandedSection === 'projects' ? <ChevronUp /> : <ChevronDown />}
-              </button>
-              {expandedSection === 'projects' && (
-                <div className="p-6 border-t space-y-6">
-                  <div className="bg-indigo-50 border border-indigo-200 rounded p-3">
-                    <p className="text-sm text-indigo-800 mb-2">
-                      <AlertCircle className="w-4 h-4 inline mr-1" />
-                      <strong>Quick Tips:</strong> Class projects ARE real projects. Include 2-4 most relevant. <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo(0, 0); }} className="underline">See full guide above</a>
-                    </p>
-                    <div className="bg-white rounded p-2 text-xs space-y-1">
-                      <p>❌ <span className="line-through">Made {major === 'Engineering/STEM' ? 'Arduino project' : major === 'Business' ? 'business plan' : 'research paper'} for class</span></p>
-                      <p>✅ <strong>{config.exampleBullets.project}</strong></p>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-blue-50 border border-blue-200 rounded p-3">
-                    <p className="text-sm text-blue-800 flex items-center gap-1">
-                      <Lightbulb className="w-4 h-4" />
-                      <strong>Get Smart Suggestions:</strong> Type keywords like <span className="font-mono">project, research, designed, built, analyzed, python</span> in descriptions below
-                    </p>
-                    <KeywordGuide major={major} />
-                  </div>
-                  
-                  {resumeData.projects.map((proj, projIdx) => (
-                    <div key={projIdx} className="border rounded-lg p-4 bg-gray-50">
-                      <div className="flex justify-between mb-3">
-                        <h4 className="font-bold">Project {projIdx + 1}</h4>
-                        <button onClick={() => deleteProject(projIdx)} className="text-red-600"><Trash2 className="w-4 h-4" /></button>
-                      </div>
-                      <div className="space-y-3">
-                        <input type="text" value={proj.name} onChange={(e) => updateProject(projIdx, 'name', e.target.value)} placeholder={config.projectPlaceholders.name} className="w-full p-3 border rounded-lg" />
-                        <input type="text" value={proj.technologies} onChange={(e) => updateProject(projIdx, 'technologies', e.target.value)} placeholder={config.projectLabel + ': ' + config.projectPlaceholder} className="w-full p-3 border rounded-lg" />
-                        <textarea value={proj.description} onChange={(e) => updateProject(projIdx, 'description', e.target.value)} placeholder={config.projectPlaceholders.description} rows="2" className="w-full p-3 border rounded-lg" />
-                        <InstantBulletChecker text={bullet} major={major} />
-                        <input type="url" value={proj.link} onChange={(e) => updateProject(projIdx, 'link', e.target.value)} placeholder="GitHub/Portfolio link (optional)" className="w-full p-3 border rounded-lg" />
-                      <BulletAIHelper bullet={proj.description} major={major} />
-			</div>
-                    </div>
-                  ))}
-                  <button onClick={addProject} className="w-full bg-indigo-100 border-2 border-dashed border-indigo-400 rounded-lg p-4 hover:bg-indigo-200 flex items-center justify-center gap-2">
-                    <Plus className="w-5 h-5" /> Add Project
-                  </button>
-                </div>
-              )}
-            </div>
 
-            {/* ACTIVITIES */}
-            <div className="bg-white rounded-lg shadow mb-6">
-              <button onClick={() => setExpandedSection(expandedSection === 'activities' ? null : 'activities')} className="w-full p-6 text-left hover:bg-gray-50 flex justify-between border-l-4 border-pink-500">
-                <div><h2 className="text-2xl font-bold">6. Activities & Leadership</h2></div>
-                {expandedSection === 'activities' ? <ChevronUp /> : <ChevronDown />}
-              </button>
-              {expandedSection === 'activities' && (
-                <div className="p-6 border-t space-y-6">
-                  <div className="bg-pink-50 border border-pink-200 rounded p-3">
-                    <p className="text-sm text-pink-800 mb-2">
-                      <strong>Quick Tips:</strong> For simple membership, just fill Role + Organization + Dates. Use bullets only for leadership roles. <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo(0, 0); }} className="underline">See full guide above</a>
+
+                    <p className="text-xs text-gray-500">
+                      Progress saves automatically in your browser.
                     </p>
-                    <div className="bg-white rounded p-2 text-xs space-y-1">
-                      <p>❌ <span className="line-through">{major === 'Engineering/STEM' ? 'Member of engineering club' : major === 'Business' ? 'Treasurer of business fraternity' : 'Editor of student newspaper'}</span></p>
-                      <p>✅ <strong>{config.exampleBullets.activity}</strong></p>
+                  </div>
+                </div>
+              </div>
+
+              {/* ATS guide: make them match the clean card look */}
+              <ATSGuide />
+
+              {/* AI Review (surfaced early) */}
+              <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm mb-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-start gap-3 min-w-0">
+                    <div className="rounded-2xl bg-gray-100 ring-1 ring-gray-200 p-3">
+                      <Sparkles className="w-6 h-6 text-gray-700" strokeWidth={1.75} />
+                    </div>
+
+                    <div className="min-w-0">
+                      <h3 className="text-lg font-extrabold text-gray-900">Review & refine with AI (optional)</h3>
+                      <p className="mt-1 text-sm text-gray-600">
+                        Get feedback on clarity, impact, and ATS-readability — without making it sound robotic.
+                      </p>
+
+                      {!aiReq.ready && (
+                        <div className="mt-3 w-full rounded-2xl bg-gray-50 border border-gray-200 p-4">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <p className="text-sm font-semibold text-gray-800 shrink-0">
+                              Locked until you add:
+                            </p>
+
+                            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto whitespace-nowrap min-w-0">
+                              <span className={`px-2 py-0 rounded-full border shrink-0 ${aiReq.hasContact ? "line-through text-gray-400 bg-gray-100 border-gray-200" : "text-gray-700 bg-white border-gray-300"
+                                }`}>Contact</span>
+
+                              <span className={`px-2 py-0 rounded-full border shrink-0 ${aiReq.hasEducation ? "line-through text-gray-400 bg-gray-100 border-gray-200" : "text-gray-700 bg-white border-gray-300"
+                                }`}>Education</span>
+
+                              <span className={`px-2 py-0 rounded-full border shrink-0 ${aiReq.hasOneExpOrProj ? "line-through text-gray-400 bg-gray-100 border-gray-200" : "text-gray-700 bg-white border-gray-300"
+                                }`}>1 Experience or Project</span>
+                            </div>
+                          </div>
+                        </div>
+
+                      )}
                     </div>
                   </div>
-                  
-                  <div className="bg-blue-50 border border-blue-200 rounded p-3">
-                    <p className="text-sm text-blue-800 flex items-center gap-1">
-                      <Lightbulb className="w-4 h-4" />
-                      <strong>Get Smart Suggestions:</strong> Type keywords like <span className="font-mono">president, organized, volunteer, fundraiser, led, mentor</span> in bullets below
-                    </p>
-                    <KeywordGuide major={major} />
+
+                  <span
+                    className={`shrink-0 text-xs font-semibold px-3 py-1 rounded-full border ${aiReq.ready
+                      ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                      : "bg-gray-50 text-gray-600 border-gray-200"
+                      }`}
+                  >
+                    {aiReq.ready ? "Ready" : "Locked"}
+                  </span>
+                </div>
+
+                <div className="mt-4 flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    disabled={!aiReq.ready}
+                    onClick={scrollToFullAIReview}
+                    className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${aiReq.ready
+                      ? "bg-gray-900 text-white hover:bg-gray-800"
+                      : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      }`}
+                  >
+                    Run AI Review
+                  </button>
+
+                  <p className="text-xs text-gray-500">
+                    Tip: This won’t replace your voice — it just tightens wording and highlights gaps.
+                  </p>
+                </div>
+              </div>
+
+
+              {/* CONTACT */}
+              <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
+                <button
+                  onClick={() =>
+                    setExpandedSection(expandedSection === "contact" ? null : "contact")
+                  }
+                  className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
+                >
+                  <div className="flex items-center gap-4 min-w-0">
+                    <span className="h-10 w-1.5 rounded-full bg-[#006581]" />
+                    <div className="min-w-0">
+                      <h2 className="text-lg md:text-xl font-extrabold text-gray-900">
+                        1. Contact Info
+                      </h2>
+                      <p className="text-sm text-gray-600">Your basics — keep it ATS-friendly.</p>
+                    </div>
                   </div>
-                  
-                  {resumeData.activities.map((act, actIdx) => (
-                    <div key={actIdx} className="border rounded-lg p-4 bg-gray-50">
-                      <div className="flex justify-between mb-3">
-                        <h4 className="font-bold">Activity {actIdx + 1}</h4>
-                        <button onClick={() => deleteActivity(actIdx)} className="text-red-600"><Trash2 className="w-4 h-4" /></button>
+                  {expandedSection === "contact" ? <ChevronUp /> : <ChevronDown />}
+                </button>
+
+                {expandedSection === "contact" && (
+                  <div className="p-6 border-t border-gray-200 space-y-4">
+                    <div className="bg-tealBrand/5 border border-tealBrand/10 rounded p-3">
+                      <p className="text-sm text-tealBrand">
+                        <AlertCircle className="w-4 h-4 inline mr-1" />
+                        <strong>Quick Tips:</strong> Use professional email. NO headers/footers in Word — ATS can’t read them.{" "}
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.scrollTo(0, 0);
+                          }}
+                          className="underline"
+                        >
+                          See full guide above
+                        </a>
+                      </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <input
+                        type="text"
+                        value={resumeData.contact.name}
+                        onChange={(e) => updateContact("name", e.target.value)}
+                        placeholder="Full Name"
+                        className="p-3 border rounded-xl"
+                      />
+                      <input
+                        type="email"
+                        value={resumeData.contact.email}
+                        onChange={(e) => updateContact("email", e.target.value)}
+                        placeholder="Email"
+                        className="p-3 border rounded-xl"
+                      />
+                      <input
+                        type="tel"
+                        value={resumeData.contact.phone}
+                        onChange={(e) => updateContact("phone", e.target.value)}
+                        placeholder="Phone"
+                        className="p-3 border rounded-xl"
+                      />
+                      <input
+                        type="url"
+                        value={resumeData.contact.linkedin}
+                        onChange={(e) => updateContact("linkedin", e.target.value)}
+                        placeholder="LinkedIn (optional)"
+                        className="p-3 border rounded-xl"
+                      />
+                      <input
+                        type="text"
+                        value={resumeData.contact.location}
+                        onChange={(e) => updateContact("location", e.target.value)}
+                        placeholder="City, State"
+                        className="md:col-span-2 p-3 border rounded-xl"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+
+              {/* EDUCATION */}
+              <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
+                <button
+                  onClick={() =>
+                    setExpandedSection(expandedSection === "education" ? null : "education")
+                  }
+                  className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
+                >
+                  <div className="flex items-center gap-4 min-w-0">
+                    <span className="h-10 w-1.5 rounded-full bg-purple-500" />
+                    <div className="min-w-0">
+                      <h2 className="text-lg md:text-xl font-extrabold text-gray-900">
+                        2. Education
+                      </h2>
+                      <p className="text-sm text-gray-600">Degree, dates, and the essentials.</p>
+                    </div>
+                  </div>
+
+                  {expandedSection === "education" ? <ChevronUp /> : <ChevronDown />}
+                </button>
+
+                {expandedSection === "education" && (
+                  <div className="p-6 border-t border-gray-200 space-y-4">
+                    <div className="bg-purple-50 border border-purple-200 rounded p-3">
+                      <p className="text-sm text-purple-800">
+                        <AlertCircle className="w-4 h-4 inline mr-1" />
+                        <strong>Quick Tips:</strong> Include GPA only if 3.0+. List 3–5 relevant
+                        courses max.{" "}
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.scrollTo(0, 0);
+                          }}
+                          className="underline"
+                        >
+                          See full guide above
+                        </a>
+                      </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <input
+                        type="text"
+                        value={resumeData.education.school}
+                        onChange={(e) => updateEducation("school", e.target.value)}
+                        placeholder="University Name"
+                        className="md:col-span-2 p-3 border rounded-xl"
+                      />
+                      <input
+                        type="text"
+                        value={resumeData.education.degree}
+                        onChange={(e) => updateEducation("degree", e.target.value)}
+                        placeholder="Bachelor of Science"
+                        className="p-3 border rounded-xl"
+                      />
+                      <input
+                        type="text"
+                        value={resumeData.education.major}
+                        onChange={(e) => updateEducation("major", e.target.value)}
+                        placeholder="Major"
+                        className="p-3 border rounded-xl"
+                      />
+                      <input
+                        type="text"
+                        value={resumeData.education.graduation}
+                        onChange={(e) => updateEducation("graduation", e.target.value)}
+                        placeholder="May 2026"
+                        className="p-3 border rounded-xl"
+                      />
+                      <input
+                        type="text"
+                        value={resumeData.education.gpa}
+                        onChange={(e) => updateEducation("gpa", e.target.value)}
+                        placeholder="GPA (if 3.0+)"
+                        className="p-3 border rounded-xl"
+                      />
+                      <input
+                        type="text"
+                        value={resumeData.education.coursework}
+                        onChange={(e) => updateEducation("coursework", e.target.value)}
+                        placeholder="Relevant Coursework"
+                        className="md:col-span-2 p-3 border rounded-xl"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+
+              {/* SKILLS */}
+              <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
+                <button
+                  onClick={() => setExpandedSection(expandedSection === "skills" ? null : "skills")}
+                  className="w-full p-6 text-left hover:bg-gray-50 flex items-center justify-between gap-4"
+                >
+                  <div className="flex items-center gap-4 min-w-0">
+                    <span className="h-10 w-1.5 rounded-full bg-green-500" />
+                    <div className="min-w-0">
+                      <h2 className="text-lg md:text-xl font-extrabold text-gray-900">3. Skills</h2>
+                      <p className="text-sm text-gray-600">Tools you can actually back up in an interview.</p>
+                    </div>
+                  </div>
+
+                  {expandedSection === "skills" ? <ChevronUp /> : <ChevronDown />}
+                </button>
+
+                {expandedSection === "skills" && (
+                  <div className="p-6 border-t border-gray-200 space-y-4">
+                    <div className="bg-green-50 border border-green-200 rounded p-3">
+                      <p className="text-sm text-green-800 mb-2">
+                        <AlertCircle className="w-4 h-4 inline mr-1" />
+                        <strong>Quick Tips:</strong> List specific tools/software. Only include skills you can discuss in interview.{" "}
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.scrollTo(0, 0);
+                          }}
+                          className="underline"
+                        >
+                          See full guide above
+                        </a>
+                      </p>
+
+                      <div className="bg-white rounded p-2 text-xs">
+                        <p className="mb-1">
+                          ❌ <span className="line-through">Microsoft Office, good communicator, team player</span>
+                        </p>
+                        <p>✅ <strong>Excel (pivot tables, VLOOKUP), PowerPoint, Python, data visualization</strong></p>
                       </div>
-                      <div className="space-y-3">
-                        <input type="text" value={act.role} onChange={(e) => updateActivity(actIdx, 'role', e.target.value)} placeholder={config.activityPlaceholders.role} className="w-full p-3 border rounded-lg" />
-                        <input type="text" value={act.organization} onChange={(e) => updateActivity(actIdx, 'organization', e.target.value)} placeholder={config.activityPlaceholders.organization} className="w-full p-3 border rounded-lg" />
-                        <input type="text" value={act.dates} onChange={(e) => updateActivity(actIdx, 'dates', e.target.value)} placeholder="Spring 2024 - Present" className="w-full p-3 border rounded-lg" />
-                        <p className="text-xs font-semibold text-gray-600">Bullet Points (Optional - for leadership roles):</p>
-                        {act.bullets.map((bullet, bulletIdx) => (
-                          <div key={bulletIdx}>
-                            <textarea value={bullet} onChange={(e) => updateActivityBullet(actIdx, bulletIdx, e.target.value)} placeholder={config.activityPlaceholders.bullet} rows="2" className="w-full p-3 border rounded-lg" />
-                            <InstantBulletChecker text={bullet} major={major} />
-                            <BulletAIHelper bullet={bullet} major={major} />
-			</div>
-                        ))}
-                        <button onClick={() => addActivityBullet(actIdx)} className="text-pink-600 text-sm flex items-center gap-1">
+                    </div>
+
+                    {config.skills.categories.map((category, idx) => (
+                      <div key={idx}>
+                        <label className="block font-semibold mb-1">{category}</label>
+                        <textarea
+                          value={resumeData.skills[`category${idx + 1}`]}
+                          onChange={(e) => updateSkills(`category${idx + 1}`, e.target.value)}
+                          placeholder={config.skills.placeholders[category]}
+                          rows={2}
+                          className="w-full p-3 border rounded-xl"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+
+              {/* EXPERIENCE */}
+              <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
+                <button
+                  onClick={() =>
+                    setExpandedSection(expandedSection === "experience" ? null : "experience")
+                  }
+                  className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
+                >
+                  <div className="flex items-center gap-4 min-w-0">
+                    <span className="h-10 w-1.5 rounded-full bg-orange-500" />
+                    <div className="min-w-0">
+                      <h2 className="text-lg md:text-xl font-extrabold text-gray-900">
+                        4. Work Experience
+                      </h2>
+                      <p className="text-sm text-gray-600">
+                        Bullets that show impact — even part-time work counts.
+                      </p>
+                    </div>
+                  </div>
+
+                  {expandedSection === "experience" ? <ChevronUp /> : <ChevronDown />}
+                </button>
+
+                {expandedSection === "experience" && (
+                  <div className="p-6 border-t border-gray-200 space-y-6">
+                    <div className="rounded-2xl bg-orange-50 border border-orange-200 p-4">
+                      <p className="text-sm text-orange-900 mb-2">
+                        <AlertCircle className="w-4 h-4 inline mr-1" />
+                        <strong>Quick Tips:</strong> Start bullets with action verbs. Quantify
+                        with numbers. Part-time jobs count!{" "}
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.scrollTo(0, 0);
+                          }}
+                          className="underline"
+                        >
+                          See full guide above
+                        </a>
+                      </p>
+
+                      <div className="bg-white rounded-xl border border-orange-200 p-3 text-xs space-y-1">
+                        <p>
+                          ❌{" "}
+                          <span className="line-through">
+                            Worked as{" "}
+                            {major === "Engineering/STEM"
+                              ? "lab assistant"
+                              : major === "Business"
+                                ? "sales associate"
+                                : "writing tutor"}
+                          </span>
+                        </p>
+                        <p>✅ <strong>{config.exampleBullets.experience}</strong></p>
+                      </div>
+                    </div>
+
+                    <div className="rounded-2xl bg-orange-100 border border-orange-200 p-4">
+                      <p className="text-sm text-orange-900 flex items-center gap-2">
+                        <Lightbulb className="w-4 h-4" />
+                        <span>
+                          <strong>Get Smart Suggestions:</strong> Type keywords like{" "}
+                          <span className="font-mono">
+                            barista, server, tutor, lab, receptionist, cashier
+                          </span>{" "}
+                          in your bullets below
+                        </span>
+                      </p>
+                      <KeywordGuide major={major} />
+                    </div>
+
+                    {resumeData.experience.map((exp, expIdx) => (
+                      <div key={expIdx} className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+                        <div className="flex items-start justify-between gap-4 mb-4">
+                          <div>
+                            <h4 className="font-bold text-gray-900">
+                              Experience {expIdx + 1}
+                            </h4>
+                            <p className="text-sm text-gray-600">
+                              Title, company, dates — then 2–4 strong bullets.
+                            </p>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => deleteExperience(expIdx)}
+                            className="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
+                            aria-label={`Delete experience ${expIdx + 1}`}
+                            title="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-3 mb-3">
+                          <input
+                            type="text"
+                            value={exp.title}
+                            onChange={(e) => updateExperience(expIdx, "title", e.target.value)}
+                            placeholder={config.experiencePlaceholders.title}
+                            className="p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+                          <input
+                            type="text"
+                            value={exp.company}
+                            onChange={(e) => updateExperience(expIdx, "company", e.target.value)}
+                            placeholder={config.experiencePlaceholders.company}
+                            className="p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+                          <input
+                            type="text"
+                            value={exp.dates}
+                            onChange={(e) => updateExperience(expIdx, "dates", e.target.value)}
+                            placeholder="Jan 2024 - Present"
+                            className="md:col-span-2 p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+                        </div>
+
+                        <div className="space-y-3">
+                          {exp.bullets.map((bullet, bulletIdx) => (
+                            <div key={bulletIdx}>
+                              <textarea
+                                value={bullet}
+                                onChange={(e) =>
+                                  updateExperienceBullet(expIdx, bulletIdx, e.target.value)
+                                }
+                                placeholder={config.experiencePlaceholders.bullet}
+                                rows={2}
+                                className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                              />
+                              <InstantBulletChecker text={bullet} major={major} />
+                              <BulletAIHelper bullet={bullet} major={major} />
+                            </div>
+                          ))}
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => addExperienceBullet(expIdx)}
+                          className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-orange-600 hover:text-orange-700"
+                        >
                           <Plus className="w-4 h-4" /> Add Bullet
                         </button>
                       </div>
-                    </div>
-                  ))}
-                  <button onClick={addActivity} className="w-full bg-pink-100 border-2 border-dashed border-pink-400 rounded-lg p-4 hover:bg-pink-200 flex items-center justify-center gap-2">
-                    <Plus className="w-5 h-5" /> Add Activity
-                  </button>
-                </div>
-              )}
-            </div>
-{/* Full Resume AI Review */}
-<div className="mb-8">
-  <FullResumeAIReview 
-    resumeText={generateResumeText()} 
-    major={major} 
-  />
-</div>
+                    ))}
 
-{/* Your Resume is Ready! */}
-<div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg p-8 text-center">
-  <h2 className="text-3xl font-bold mb-4">Your Resume is Ready!</h2>
-  ...
-
-                          <h2 className="text-3xl font-bold mb-4">Your Resume is Ready!</h2>
-              <div className="bg-white/20 rounded-lg p-4 mb-6">
-                <h3 className="font-bold text-xl mb-3">Next Steps:</h3>
-                <ol className="text-left space-y-2 max-w-2xl mx-auto">
-                  <li>1️⃣ Copy your resume using the button below</li>
-                  <li>2️⃣ Paste into Word/Google Docs and format with recommended fonts</li>
-                  <li>3️⃣ <strong>Customize for EACH PATH</strong> - traditional OR alternative roles</li>
-                  <li>4️⃣ Explore alternative career paths if you haven't already</li>
-                </ol>
-              </div>
-              
-              <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-4">
-                <button onClick={copyToClipboard} className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-gray-100 font-bold flex items-center gap-2">
-                  {copied ? <Check /> : <Copy />} {copied ? 'Copied!' : 'Copy Resume Now'}
-                </button>
-                
-                <button 
-                  onClick={() => setShowFontGuide(true)}
-                  className="bg-yellow-500 text-white px-8 py-3 rounded-lg hover:bg-yellow-600 font-bold flex items-center gap-2"
-                >
-                  <FileText className="w-5 h-5" />
-                  Font Recommendations
-                </button>
-                
-                <button 
-                  onClick={onBack}
-                  className="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 font-bold flex items-center gap-2"
-                >
-                  <Search className="w-5 h-5" />
-                  Find Internships
-                </button>
-              </div>
-              
-              <p className="mt-6 text-sm italic">
-                Remember: There's More Than One Way. Your resume works for ALL paths with small tweaks!
-              </p>
-            </div>
-            
-            {showFontGuide && (
-              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="font-bold text-2xl flex items-center gap-2">
-                        <FileText className="w-6 h-6" />
-                        Font Recommendations
-                      </h3>
-                      <button onClick={() => setShowFontGuide(false)} className="text-gray-500 hover:text-gray-700">
-                        <X className="w-6 h-6" />
-                      </button>
-                    </div>
-                    
-                    <p className="text-gray-700 mb-4">
-                      After pasting into Word/Google Docs, format your resume with these ATS-friendly fonts:
-                    </p>
-                    
-                    <div className="grid md:grid-cols-3 gap-4 mb-6">
-                      <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                        <p className="font-semibold text-lg mb-2">Your Name:</p>
-                        <p className="text-gray-700">16-18pt, Bold</p>
-                        <p className="text-sm text-gray-500 mt-1">Arial or Calibri</p>
-                      </div>
-                      <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                        <p className="font-semibold text-lg mb-2">Headers:</p>
-                        <p className="text-gray-700">12pt, Bold</p>
-                        <p className="text-sm text-gray-500 mt-1">Same as name</p>
-                      </div>
-                      <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                        <p className="font-semibold text-lg mb-2">Body Text:</p>
-                        <p className="text-gray-700">10-11pt, Normal</p>
-                        <p className="text-sm text-gray-500 mt-1">Same as name</p>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4">
-                      <p className="text-sm text-gray-800">
-                        <strong>Note:</strong> All fonts listed are ATS-safe. {config.fontPreference}
-                      </p>
-                    </div>
-                    
-                    <button 
-                      onClick={() => setShowFontGuide(false)}
-                      className="w-full mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
+                    <button
+                      type="button"
+                      onClick={addExperience}
+                      className="w-full rounded-2xl border-2 border-dashed border-orange-300 bg-orange-50 p-5 hover:bg-orange-100 transition flex items-center justify-center gap-2 font-semibold text-orange-900"
                     >
-                      Got It!
+                      <Plus className="w-5 h-5" /> Add Experience
                     </button>
                   </div>
-                </div>
+                )}
               </div>
-            )}
-            
-            <div className="bg-purple-50 border-2 border-purple-400 rounded-lg p-8 mt-8">
-              <h2 className="text-3xl font-bold mb-4 text-purple-900 flex items-center gap-2">
-                <TrendingUp className="w-8 h-8" />
-                One Resume, Many Paths
-              </h2>
-              
-              <p className="text-gray-700 mb-6">
-                Your resume above can be tailored for MULTIPLE career paths. Here's how to emphasize different aspects for alternative roles:
-              </p>
-              
-              <div className="space-y-4">
-                {config.alternativePaths.map((path, idx) => (
-                  <div key={idx} className="bg-white rounded-lg p-5 border-l-4 border-purple-500">
-                    <h3 className="font-bold text-lg text-gray-900 mb-2">
-                      For {path.title} Roles:
-                    </h3>
-                    <p className="text-sm text-gray-700">
-                      <strong>Emphasize these skills/experiences:</strong> {path.emphasize}
-                    </p>
-                    <p className="text-xs text-gray-600 mt-2 italic">
-                      → Review your bullets and make sure these elements are prominent when applying to {path.title} positions
-                    </p>
-                  </div>
-                ))}
-              </div>
-             
 
-              <div className="bg-purple-100 rounded-lg p-6 mt-6">
-                <h3 className="font-bold text-lg mb-3 text-purple-900">💡 How to Tailor Your Resume:</h3>
-                <ol className="space-y-2 text-sm text-gray-700">
-                  <li><strong>1.</strong> Copy your base resume (the one you built above)</li>
-                  <li><strong>2.</strong> For each job, reorder your bullet points to put the most relevant ones first</li>
-                  <li><strong>3.</strong> Adjust 2-3 words in key bullets to match the job description language</li>
-                  <li><strong>4.</strong> In your Skills section, move the most relevant skills to the front</li>
-                  <li><strong>5.</strong> Same experience + different emphasis = perfect fit for multiple paths!</li>
-                </ol>
-              </div>
-              
-              <div className="mt-6 text-center">
-                <p className="text-gray-700 mb-3">
-                  <strong>Not sure which alternative paths exist for your major?</strong>
-                </p>
-                <button 
-                  onClick={onBack}
-                  className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-semibold inline-flex items-center gap-2"
+              {/* PROJECTS */}
+              <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
+                <button
+                  onClick={() =>
+                    setExpandedSection(expandedSection === "projects" ? null : "projects")
+                  }
+                  className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
                 >
-              <Search className="w-5 h-5" />
-                  Explore Career Paths on Find Internships
+                  <div className="flex items-center gap-4 min-w-0">
+                    <span className="h-10 w-1.5 rounded-full bg-yellow-300" />
+                    <div className="min-w-0">
+                      <h2 className="text-lg md:text-xl font-extrabold text-gray-900">
+                        5. Projects
+                      </h2>
+                      <p className="text-sm text-gray-600">
+                        Class projects count — show impact + tools.
+                      </p>
+                    </div>
+                  </div>
+                  {expandedSection === "projects" ? <ChevronUp /> : <ChevronDown />}
                 </button>
+
+                {expandedSection === "projects" && (
+                  <div className="p-6 border-t border-gray-200 space-y-6">
+                    <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+                      <p className="text-sm text-indigo-900">
+                        <AlertCircle className="w-4 h-4 inline mr-1" />
+                        <strong>Quick Tips:</strong> Class projects ARE real projects. Include 2–4
+                        most relevant.{" "}
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.scrollTo(0, 0);
+                          }}
+                          className="underline"
+                        >
+                          See full guide above
+                        </a>
+                      </p>
+
+                      <div className="mt-3 bg-white rounded-lg p-3 text-xs space-y-1">
+                        <p>
+                          ❌{" "}
+                          <span className="line-through">
+                            Made {major === "Engineering/STEM"
+                              ? "Arduino project"
+                              : major === "Business"
+                                ? "business plan"
+                                : "research paper"}{" "}
+                            for class
+                          </span>
+                        </p>
+                        <p>
+                          ✅ <strong>{config.exampleBullets.project}</strong>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="bg-yellow-30 border border-yellow-200 rounded-xl p-4">
+                      <p className="text-sm text-indigo-900 flex items-center gap-2">
+                        <Lightbulb className="w-4 h-4" />
+                        <strong>Get Smart Suggestions:</strong> Type keywords like{" "}
+                        <span className="font-mono">
+                          project, research, designed, built, analyzed, python
+                        </span>{" "}
+                        in descriptions below
+                      </p>
+                      <div className="mt-3">
+                        <KeywordGuide major={major} />
+                      </div>
+                    </div>
+
+                    {resumeData.projects.map((proj, projIdx) => (
+                      <div key={projIdx} className="border border-gray-200 rounded-2xl p-5 bg-gray-50">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="font-bold text-gray-900">Project {projIdx + 1}</h4>
+                          <button
+                            onClick={() => deleteProject(projIdx)}
+                            className="text-red-600 hover:text-red-700"
+                            type="button"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+
+                        <div className="space-y-3">
+                          <input
+                            type="text"
+                            value={proj.name}
+                            onChange={(e) => updateProject(projIdx, "name", e.target.value)}
+                            placeholder={config.projectPlaceholders.name}
+                            className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+
+                          <input
+                            type="text"
+                            value={proj.technologies}
+                            onChange={(e) =>
+                              updateProject(projIdx, "technologies", e.target.value)
+                            }
+                            placeholder={`${config.projectLabel}: ${config.projectPlaceholder}`}
+                            className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+
+                          <textarea
+                            value={proj.description}
+                            onChange={(e) =>
+                              updateProject(projIdx, "description", e.target.value)
+                            }
+                            placeholder={config.projectPlaceholders.description}
+                            rows={2}
+                            className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+
+                          {/* IMPORTANT: this was a bug in your version — "bullet" isn't defined here */}
+                          <InstantBulletChecker text={proj.description} major={major} />
+                          <BulletAIHelper bullet={proj.description} major={major} />
+
+                          <input
+                            type="url"
+                            value={proj.link}
+                            onChange={(e) => updateProject(projIdx, "link", e.target.value)}
+                            placeholder="GitHub/Portfolio link (optional)"
+                            className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+                        </div>
+                      </div>
+                    ))}
+
+                    <button
+                      onClick={addProject}
+                      type="button"
+                      className="w-full rounded-2xl border-2 border-dashed border-yellow-300 bg-yellow-50 p-5 hover:bg-yellow-100 transition flex items-center justify-center gap-2 font-semibold text-indigo-900"
+                    >
+                      <Plus className="w-5 h-5" />
+                      Add Project
+                    </button>
+                  </div>
+                )}
               </div>
-            </div>
-            
-          </>
-        )}
 
-        {/* Share Buttons */}
-        <ShareButtons 
-          title="Free Resume Builder for Students - MoreThanOneWay.org"
-          message="Know someone who needs help with their resume?"
-        />
+              {/* ACTIVITIES */}
+              <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
+                <button
+                  onClick={() =>
+                    setExpandedSection(expandedSection === "activities" ? null : "activities")
+                  }
+                  className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
+                >
+                 <div className="flex items-center gap-4 min-w-0">
+                    <span className="h-10 w-1.5 rounded-full bg-indigo-800" />
+                    <div className="min-w-0">
+                      <h2 className="text-lg md:text-xl font-extrabold text-gray-900">
+                        6. Activities & Leadership
+                      </h2>
+                      <p className="text-sm text-gray-600">
+                        Show leadership, impact, and consistency.
+                      </p>
+                    </div>
+                  </div>
+                  {expandedSection === "activities" ? <ChevronUp /> : <ChevronDown />}
+                </button>
 
-      </main>
+                {expandedSection === "activities" && (
+                  <div className="p-6 border-t border-gray-200 space-y-6">
+                    <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4">
+                      <p className="text-sm text-indigo-900">
+                        <AlertCircle className="w-4 h-4 inline mr-1" />
+                        <strong>Quick Tips:</strong> For simple membership, just fill Role +
+                        Organization + Dates. Use bullets only for leadership roles.{" "}
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.scrollTo(0, 0);
+                          }}
+                          className="underline"
+                        >
+                          See full guide above
+                        </a>
+                      </p>
+
+                      <div className="mt-3 bg-white rounded-lg p-3 text-xs space-y-1">
+                        <p>
+                          ❌{" "}
+                          <span className="line-through">
+                            {major === "Engineering/STEM"
+                              ? "Member of engineering club"
+                              : major === "Business"
+                                ? "Treasurer of business fraternity"
+                                : "Editor of student newspaper"}
+                          </span>
+                        </p>
+                        <p>
+                          ✅ <strong>{config.exampleBullets.activity}</strong>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4">
+                      <p className="text-sm text-indigo-900 flex items-center gap-2">
+                        <Lightbulb className="w-4 h-4" />
+                        <strong>Get Smart Suggestions:</strong> Type keywords like{" "}
+                        <span className="font-mono">
+                          president, organized, volunteer, fundraiser, led, mentor
+                        </span>{" "}
+                        in bullets below
+                      </p>
+                      <div className="mt-3">
+                        <KeywordGuide major={major} />
+                      </div>
+                    </div>
+
+                    {resumeData.activities.map((act, actIdx) => (
+                      <div key={actIdx} className="border border-gray-200 rounded-2xl p-5 bg-gray-50">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="font-bold text-gray-900">Activity {actIdx + 1}</h4>
+                          <button
+                            onClick={() => deleteActivity(actIdx)}
+                            className="text-red-600 hover:text-red-700"
+                            type="button"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+
+                        <div className="space-y-3">
+                          <input
+                            type="text"
+                            value={act.role}
+                            onChange={(e) => updateActivity(actIdx, "role", e.target.value)}
+                            placeholder={config.activityPlaceholders.role}
+                            className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+
+                          <input
+                            type="text"
+                            value={act.organization}
+                            onChange={(e) =>
+                              updateActivity(actIdx, "organization", e.target.value)
+                            }
+                            placeholder={config.activityPlaceholders.organization}
+                            className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+
+                          <input
+                            type="text"
+                            value={act.dates}
+                            onChange={(e) => updateActivity(actIdx, "dates", e.target.value)}
+                            placeholder="Spring 2024 - Present"
+                            className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                          />
+
+                          <p className="text-xs font-semibold text-gray-600">
+                            Bullet Points (Optional — for leadership roles):
+                          </p>
+
+                          {act.bullets.map((bullet, bulletIdx) => (
+                            <div key={bulletIdx} className="space-y-2">
+                              <textarea
+                                value={bullet}
+                                onChange={(e) =>
+                                  updateActivityBullet(actIdx, bulletIdx, e.target.value)
+                                }
+                                placeholder={config.activityPlaceholders.bullet}
+                                rows={2}
+                                className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                              />
+                              <InstantBulletChecker text={bullet} major={major} />
+                              <BulletAIHelper bullet={bullet} major={major} />
+                            </div>
+                          ))}
+
+                          <button
+                            onClick={() => addActivityBullet(actIdx)}
+                            type="button"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-[#006581] hover:text-[#005A73]"
+                          >
+                            <Plus className="w-4 h-4" />
+                            Add Bullet
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+
+                    <button
+                      onClick={addActivity}
+                      type="button"
+                      className="w-full rounded-2xl border-2 border-dashed border-indigo-300 bg-indigo-50 p-5 hover:bg-indigo-100 transition flex items-center justify-center gap-2 font-semibold text-pink-900"
+                    >
+                      <Plus className="w-5 h-5" />
+                      Add Activity
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Full Resume AI Review */}
+              <div ref={fullAIReviewRef} className="mb-8 scroll-mt-24">
+                <FullResumeAIReview
+                  resumeText={generateResumeText()}
+                  major={major}
+                />
+              </div>
+
+              {/* Your Resume is Ready! */}
+{/* YOUR RESUME IS READY */}
+<div className="bg-white rounded-3xl border border-emerald-200 shadow-sm mt-8">
+  <div className="flex items-start gap-4 p-6">
+    <div className="rounded-2xl bg-emerald-100 p-3">
+      <Check className="w-6 h-6 text-emerald-700" />
     </div>
+
+    <div className="flex-1">
+      <h2 className="text-lg md:text-xl font-extrabold text-gray-900">
+        Your Resume Is Ready
+      </h2>
+      <p className="text-sm text-gray-600 mt-1">
+        You’ve built a strong base resume. Now it’s time to export, format, and finalize.
+      </p>
+
+      <ol className="mt-4 space-y-1 text-sm text-gray-700">
+        <li>1️⃣ Copy your resume</li>
+        <li>2️⃣ Paste into Word or Google Docs</li>
+        <li>3️⃣ Customize for each role or career path</li>
+        <li>4️⃣ Explore alternative opportunities</li>
+      </ol>
+
+      <div className="mt-5 flex flex-wrap gap-3">
+        <button
+          onClick={copyToClipboard}
+          className="px-5 py-2 rounded-xl bg-gray-900 text-white font-semibold hover:bg-gray-500"
+        >
+          Copy Resume
+        </button>
+
+        <button
+          onClick={() => setShowFontGuide(true)}
+          className="px-5 py-2 rounded-xl bg-yellow-100 text-yellow-900 font-semibold hover:bg-yellow-300"
+        >
+          Font Recommendations
+        </button>
+
+        <button
+          onClick={() => setCurrentPage("find-internships")}
+          className="px-5 py-2 rounded-xl bg-emerald-100 text-emerald-900 font-semibold hover:bg-emerald-300"
+        >
+          Find Internships
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+              {showFontGuide && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                  <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                    <div className="p-6">
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="font-bold text-2xl flex items-center gap-2">
+                          <FileText className="w-6 h-6" />
+                          Font Recommendations
+                        </h3>
+                        <button onClick={() => setShowFontGuide(false)} className="text-gray-500 hover:text-gray-700">
+                          <X className="w-6 h-6" />
+                        </button>
+                      </div>
+
+                      <p className="text-gray-700 mb-4">
+                        After pasting into Word/Google Docs, format your resume with these ATS-friendly fonts:
+                      </p>
+
+                      <div className="grid md:grid-cols-3 gap-4 mb-6">
+                        <div className="bg-gray-100 p-4 rounded-xl border border-grey-200">
+                          <p className="font-semibold text-lg mb-2">Your Name:</p>
+                          <p className="text-gray-700">16-18pt, Bold</p>
+                          <p className="text-sm text-gray-500 mt-1">Arial or Calibri</p>
+                        </div>
+                        <div className="bg-gray-100 p-4 rounded-xl border border-grey-200">
+                          <p className="font-semibold text-lg mb-2">Headers:</p>
+                          <p className="text-gray-700">12pt, Bold</p>
+                          <p className="text-sm text-gray-500 mt-1">Same as name</p>
+                        </div>
+                        <div className="bg-gray-100 p-4 rounded-xl border border-grey-200">
+                          <p className="font-semibold text-lg mb-2">Body Text:</p>
+                          <p className="text-gray-700">10-11pt, Normal</p>
+                          <p className="text-sm text-gray-500 mt-1">Same as name</p>
+                        </div>
+                      </div>
+
+                      <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4">
+                        <p className="text-sm text-gray-800">
+                          <strong>Note:</strong> All fonts listed are ATS-safe. {config.fontPreference}
+                        </p>
+                      </div>
+
+                      <button
+                        onClick={() => setShowFontGuide(false)}
+                        className="w-full mt-6 bg-tealBrand text-white px-6 py-3 rounded-xl hover:bg-tealBrand/70 font-semibold"
+                      >
+                        Got It!
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+{/* ONE RESUME, MANY PATHS (collapsible) */}
+{/* ONE RESUME, MANY PATHS (collapsible) */}
+<div className="bg-white rounded-3xl border border-purple-200 shadow-sm overflow-hidden mt-8">
+  <button
+    type="button"
+    onClick={() => setExpandedSection(expandedSection === "paths" ? null : "paths")}
+    className="w-full p-6 text-left hover:bg-purple-50 flex items-center justify-between gap-4"
+  >
+    <div className="flex items-center gap-4 min-w-0">
+      <div className="rounded-2xl bg-purple-100 p-3">
+        {/* If Layers isn't imported, this will crash */}
+        <Layers className="w-6 h-6 text-purple-700" />
+      </div>
+
+      <div className="min-w-0">
+        <h2 className="text-lg md:text-xl font-extrabold text-gray-900">
+          One Resume, Many Paths
+        </h2>
+        <p className="text-sm text-gray-600">
+          Learn how to emphasize different strengths for different roles.
+        </p>
+      </div>
+    </div>
+
+    {expandedSection === "paths" ? <ChevronUp /> : <ChevronDown />}
+  </button>
+
+  {expandedSection === "paths" && (
+    <div className="p-6 border-t border-purple-200 bg-purple-50/20 space-y-6">
+      {/* Path cards */}
+      <div className="space-y-4">
+        {(config?.alternativePaths ?? []).map((path, idx) => (
+          <div
+            key={idx}
+            className="bg-white rounded-2xl p-5 border border-purple-200"
+          >
+            <h3 className="font-bold text-lg text-gray-900 mb-2">
+              For {path.title} roles
+            </h3>
+            <p className="text-sm text-gray-700">
+              <strong>Emphasize these skills/experiences:</strong> {path.emphasize}
+            </p>
+            <p className="text-xs text-gray-600 mt-2 italic">
+              → Review your bullets and make sure these elements are prominent when applying.
+            </p>
+          </div>
+        ))}
+
+        {(config?.alternativePaths ?? []).length === 0 && (
+          <div className="bg-white rounded-2xl p-5 border border-purple-200 text-sm text-gray-700">
+            No alternative paths are available for this field yet.
+          </div>
+        )}
+      </div>
+
+      {/* Tailor steps */}
+      <div className="bg-white rounded-2xl border border-purple-200 p-5">
+        <h3 className="font-bold text-lg mb-3 text-purple-900">
+          💡 How to Tailor Your Resume
+        </h3>
+        <ol className="space-y-2 text-sm text-gray-700">
+          <li><strong>1.</strong> Copy your base resume (the one you built above)</li>
+          <li><strong>2.</strong> Reorder bullets to put the most relevant ones first</li>
+          <li><strong>3.</strong> Adjust 2–3 words to match the job description language</li>
+          <li><strong>4.</strong> Move the most relevant skills to the front</li>
+          <li><strong>5.</strong> Same experience + different emphasis = different roles</li>
+        </ol>
+      </div>
+
+      {/* CTA */}
+      <div className="text-center">
+        <p className="text-gray-700 mb-3">
+          <strong>Not sure which alternative paths exist for your major?</strong>
+        </p>
+        <button
+          type="button"
+          onClick={() => setCurrentPage("pivot")}
+          className="bg-purple-600 text-white px-6 py-3 rounded-xl hover:bg-purple-800 font-semibold inline-flex items-center gap-2"
+        >
+          <Search className="w-5 h-5" />
+          Explore Career Paths on Find Internships
+        </button>
+      </div>
+    </div>
+  )}
+</div>
+
+{/* 📋 See Real Student Resume Examples (separate + collapsible below) */}
+<ResumeExamples major={major} />
+
+<div className="mt-8">
+  <ShareButtons
+    title="Free Resume Builder for Students - MoreThanOneWay.org"
+    message="Know someone who needs help with their resume?"
+  />
+</div>
+</>
+)}   {/* <-- THIS closes the fragment + the {major && config && (...)} */}
+
+</main>
+    </div>
+    </div >
+
   );
 };
 
