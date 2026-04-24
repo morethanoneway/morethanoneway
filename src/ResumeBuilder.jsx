@@ -1605,7 +1605,7 @@ Builder</span>
           <p className="text-xl text-gray-600 mb-8">Build an ATS-friendly resume that showcases YOUR experience.</p>
         </header>
 
-        <main className="max-w-4xl mx-auto px-4 py-8">
+        <main className="max-w-5xl mx-auto px-4 py-8">
           {!major && (
             <>
               <div className="bg-white rounded-3xl border border-gray-200 p-8 mb-8 shadow-sm">
