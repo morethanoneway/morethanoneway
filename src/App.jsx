@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Routes, Route, useParams, Navigate } from 'react-router-dom';
 
-import { Heart, MessageCircle, Sparkles, Phone, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, Building, DollarSign, HelpCircle, AlertCircle, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
+import { Heart, MessageCircle, Sparkles, GraduationCap, Phone, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, Building, DollarSign, HelpCircle, AlertCircle, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
 import ResumeBuilder from './ResumeBuilder';
 import YoureNotAlone from './YoureNotAlone';
 import Contact from './Contact';
