@@ -302,7 +302,7 @@ Give 2-3 alternative versions.`;
       {showFormatModal && <FormatModal onClose={() => setShowFormatModal(false)} />}
 
       <div className="min-h-screen bg-[#FFFBF7]">
-        <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-10">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
 
           <div className="text-center mb-6">
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
