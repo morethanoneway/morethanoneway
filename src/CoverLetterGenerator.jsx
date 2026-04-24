@@ -301,24 +301,35 @@ Give 2-3 alternative versions.`;
 
       {showFormatModal && <FormatModal onClose={() => setShowFormatModal(false)} />}
 
-      <div className="min-h-screen bg-[#FFFBF7]">
-        <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-10">
+      <div className="bg-[#FFFBF7]">
+        <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
 
-          <div className="text-center mb-6">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
-              Cover Letter{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-orange-400">Generator</span>
-            </h1>
-            <p className="mt-4 text-lg text-gray-600 max-w-xl mx-auto">Free. No sign-up. Get a strong draft in seconds — then make it sound like <em>you</em>.</p>
-            <button onClick={() => setShowFormatModal(true)}
-              className="mt-3 inline-flex items-center gap-2 text-sm text-teal-600 font-semibold hover:text-teal-800 border border-teal-200 rounded-xl px-4 py-2 bg-teal-50 hover:bg-teal-100 transition-all">
-              <FileText className="w-4 h-4" /> See Cover Letter Format Example
-            </button>
-          </div>
+          <header className="text-center max-w-5xl mx-auto pt-2 mb-10">
+  <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
+    Cover Letter{" "}
+    <span className="block md:inline text-tealBrand">
+      Generator
+    </span>
+  </h1>
 
-          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8">
+  <p className="mt-3 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
+    Free. No sign-up. Generate a strong draft in seconds, then make it sound like you.
+  </p>
+
+  <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+    <button
+      onClick={() => setShowFormatModal(true)}
+      className="px-5 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-gray-700 transition inline-flex items-center gap-2"
+    >
+      <FileText className="w-4 h-4" />
+      See format example
+    </button>
+  </div>
+</header>
+
+          <div className="rounded-xl bg-tealBrand/5 border border-gray-200 p-4 mb-8">
             <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+              <AlertCircle className="w-6 h-6 text-tealBrand flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold text-amber-900 text-sm">The #1 problem with AI cover letters</p>
                 <p className="text-amber-800 text-sm mt-1">They all sound the same. Our AI Flag Checker, readability score, and job matcher help you fix that.</p>
@@ -339,7 +350,7 @@ Give 2-3 alternative versions.`;
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 space-y-6">
+          <div className="bg-white rounded-3xl border border-gray-200 shadow-sm p-7 md:p-8 space-y-8">
 
             <div>
               <h2 className="font-bold text-lg text-gray-900 mb-4 flex items-center gap-2">
