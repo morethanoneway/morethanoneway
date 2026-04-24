@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Copy, Check, ExternalLink, Sparkles, AlertCircle, ChevronDown, ChevronUp, Flag } from 'lucide-react';
+import { Check, ExternalLink, Sparkles, AlertCircle, ChevronDown, ChevronUp, Flag, FileText, X, RefreshCw } from 'lucide-react';
 
 const AI_PROVIDERS = {
   chatgpt: { name: 'ChatGPT', url: 'https://chat.openai.com', color: 'bg-green-600 hover:bg-green-700' },
@@ -54,10 +54,41 @@ const checkForAIFlags = (text) => {
 };
 
 const getRiskLevel = (count) => {
-  if (count === 0) return { label: 'Looks Good', color: 'green', bg: 'bg-green-50', border: 'border-green-300', text: 'text-green-800' };
-  if (count <= 2) return { label: 'Low Risk', color: 'yellow', bg: 'bg-yellow-50', border: 'border-yellow-300', text: 'text-yellow-800' };
-  if (count <= 4) return { label: 'Medium Risk', color: 'orange', bg: 'bg-orange-50', border: 'border-orange-300', text: 'text-orange-800' };
-  return { label: 'High Risk', color: 'red', bg: 'bg-red-50', border: 'border-red-300', text: 'text-red-800' };
+  if (count === 0) return { label: 'Looks Good', bg: 'bg-green-50', border: 'border-green-300', text: 'text-green-800' };
+  if (count <= 2) return { label: 'Low Risk', bg: 'bg-yellow-50', border: 'border-yellow-300', text: 'text-yellow-800' };
+  if (count <= 4) return { label: 'Medium Risk', bg: 'bg-orange-50', border: 'border-orange-300', text: 'text-orange-800' };
+  return { label: 'High Risk', bg: 'bg-red-50', border: 'border-red-300', text: 'text-red-800' };
+};
+
+const getReadabilityScore = (text) => {
+  if (!text || text.trim().length < 50) return null;
+  const words = text.trim().split(/\s+/).length;
+  const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+  const avgWordsPerSentence = sentences > 0 ? words / sentences : 0;
+  const longWords = text.split(/\s+/).filter(w => w.length > 8).length;
+  const longWordRatio = words > 0 ? longWords / words : 0;
+
+  if (avgWordsPerSentence > 25 || longWordRatio > 0.3) {
+    return { label: 'Too Complex', detail: 'Sentences are too long or use too many big words. Simplify for a human feel.', color: 'text-red-700', bg: 'bg-red-50', border: 'border-red-200', score: 'D' };
+  }
+  if (avgWordsPerSentence > 18 || longWordRatio > 0.2) {
+    return { label: 'Slightly Formal', detail: 'A bit stiff. Try breaking up long sentences and using simpler words.', color: 'text-orange-700', bg: 'bg-orange-50', border: 'border-orange-200', score: 'B' };
+  }
+  if (avgWordsPerSentence < 8) {
+    return { label: 'Too Choppy', detail: 'Sentences are very short. Try combining some for better flow.', color: 'text-yellow-700', bg: 'bg-yellow-50', border: 'border-yellow-200', score: 'C' };
+  }
+  return { label: 'Easy to Read', detail: 'Good balance of sentence length and vocabulary. Reads naturally.', color: 'text-green-700', bg: 'bg-green-50', border: 'border-green-200', score: 'A' };
+};
+
+const extractKeywords = (text) => {
+  if (!text) return [];
+  const stopWords = new Set(['the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','is','are','was','were','be','been','have','has','had','do','does','did','will','would','could','should','may','might','shall','can','need','must','that','this','these','those','it','its','we','our','you','your','they','their','i','my','me','he','she','his','her','as','if','when','which','who','what','how','all','any','both','each','few','more','most','other','some','such','into','through','during','before','after','above','below','between','out','off','over','under','again','further','then','once','here','there','about','against','during','including','until','while','also','than','very','just','not','no','nor','so','yet','both','either','neither','whether']);
+  return text.toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(w => w.length > 3 && !stopWords.has(w))
+    .filter((w, i, arr) => arr.indexOf(w) === i)
+    .slice(0, 50);
 };
 
 const buildPrompt = (data) => {
@@ -73,37 +104,35 @@ const buildPrompt = (data) => {
 JOB DETAILS:
 - Position: ${jobTitle}
 - Company: ${company}
-- Student's Major: ${major}
+- Major: ${major}
 - School: ${school || 'not specified'}
-${gpa ? `- GPA: ${gpa} (mention this if it is strong)` : ''}
+${gpa ? `- GPA: ${gpa} (mention if strong)` : ''}
 
-STUDENT'S KEY STRENGTHS/EXPERIENCES:
+KEY STRENGTHS/EXPERIENCES:
 ${strengths}
 
-${companyDetail ? `SPECIFIC COMPANY DETAIL TO INCLUDE:\n${companyDetail}\n` : ''}
+${companyDetail ? `SPECIFIC COMPANY DETAIL:\n${companyDetail}\n` : ''}
 TONE: ${toneInstructions[tone] || toneInstructions.professional}
 
 STRICT RULES:
 1. Keep it under 250 words total
-2. Do NOT use these overused phrases: "passionate", "hardworking", "team player", "detail-oriented", "quick learner", "excited to apply", "I am writing to express my interest"
+2. Do NOT use: "passionate", "hardworking", "team player", "detail-oriented", "quick learner", "excited to apply", "I am writing to express my interest"
 3. Start with a hook — NOT "My name is..." or "I am applying for..."
-4. Write in first person, natural voice — it should sound like a real person wrote this, not a template
-5. Include exactly ONE specific, concrete detail from the student's experience
-6. Where the student needs to add a personal touch, write [ADD YOUR SPECIFIC DETAIL HERE] as a placeholder
-7. End with a clear, confident call to action — not "I look forward to hearing from you"
+4. Write in first person, natural voice — sound like a real person, not a template
+5. Include ONE specific concrete detail from the experiences listed
+6. Where personal touch needed, write [ADD YOUR SPECIFIC DETAIL HERE]
+7. End with a clear confident call to action — not "I look forward to hearing from you"
 8. Format: 3 short paragraphs max
-9. Do NOT include address blocks, dates, or "Dear Hiring Manager" — just start with the opening hook
+9. Do NOT include address blocks, dates, or salutation — just start with the hook
 
-After the cover letter, add a section called "Make It Yours" with 3 specific suggestions for how this student can personalize it further.`;
+After the letter, add "Make It Yours" with 3 specific personalization suggestions.`;
 };
 
-const AIFlagChecker = ({ text, label }) => {
+const AIFlagChecker = ({ text }) => {
   const flags = checkForAIFlags(text);
   const risk = getRiskLevel(flags.length);
   const [expanded, setExpanded] = useState(false);
-
   if (!text || text.trim().length < 10) return null;
-
   return (
     <div className={`mt-2 rounded-xl border ${risk.border} ${risk.bg} p-3`}>
       <div className="flex items-center justify-between">
@@ -114,12 +143,8 @@ const AIFlagChecker = ({ text, label }) => {
           </span>
         </div>
         {flags.length > 0 && (
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className={`text-xs font-semibold ${risk.text} flex items-center gap-1`}
-          >
-            {expanded ? 'Hide' : 'Show'}
-            {expanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+          <button onClick={() => setExpanded(!expanded)} className={`text-xs font-semibold ${risk.text} flex items-center gap-1`}>
+            {expanded ? 'Hide' : 'Show'} {expanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
           </button>
         )}
       </div>
@@ -137,6 +162,60 @@ const AIFlagChecker = ({ text, label }) => {
   );
 };
 
+const FormatModal = ({ onClose }) => (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+      <div className="p-6">
+        <div className="flex justify-between items-start mb-4">
+          <h3 className="font-bold text-xl text-gray-900">Cover Letter Format</h3>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600"><X className="w-5 h-5" /></button>
+        </div>
+        <p className="text-sm text-gray-600 mb-5">Use any AI tool, a template, or write it yourself — then drop your letter into this format before sending.</p>
+        <div className="bg-gray-50 rounded-xl p-4 font-mono text-sm space-y-3 text-gray-800">
+          <div>
+            <span className="text-gray-800">[Your Name]</span>
+            <span className="ml-2 text-xs text-teal-600 font-sans">← Add in Word/Google Docs</span>
+          </div>
+          <div className="text-gray-800">[Email | Phone | LinkedIn URL]</div>
+          <div>
+            <span className="text-gray-800">[Date]</span>
+            <span className="ml-2 text-xs text-teal-600 font-sans">← Always include</span>
+          </div>
+          <div className="pt-2">
+            <div>
+              <span className="text-gray-800">[Hiring Manager Name]</span>
+              <span className="ml-2 text-xs text-orange-600 font-sans">← Research this!</span>
+            </div>
+            <div className="text-gray-800">[Their Title]</div>
+            <div className="text-gray-800">[Company Name]</div>
+            <div className="text-gray-800">[Company Address]</div>
+          </div>
+          <div className="pt-2">
+            <span className="text-gray-800">Dear [First Name],</span>
+            <span className="ml-2 text-xs text-orange-600 font-sans">← Never "To Whom It May Concern"</span>
+          </div>
+          <div className="pt-2 space-y-2">
+            <div className="text-gray-600 italic">[Opening hook — 2-3 sentences]</div>
+            <div className="text-gray-600 italic">[Skills/experience paragraph]</div>
+            <div className="text-gray-600 italic">[Closing paragraph + call to action]</div>
+          </div>
+          <div className="pt-2">
+            <div className="text-gray-800">Sincerely,</div>
+            <div className="text-gray-800">[Your Name]</div>
+          </div>
+        </div>
+        <div className="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-3">
+          <p className="text-xs text-amber-800">
+            <strong>Pro tip:</strong> Try to find the hiring manager name on LinkedIn or the company website.
+            "Dear Sarah," beats "Dear Hiring Manager," every time.
+          </p>
+        </div>
+        <button onClick={onClose} className="mt-4 w-full bg-gray-900 text-white py-3 rounded-xl font-semibold hover:bg-gray-700">Got It</button>
+      </div>
+    </div>
+  </div>
+);
+
 const CoverLetterGenerator = ({ setCurrentPage }) => {
   const [form, setForm] = useState({
     jobTitle: '', company: '', major: 'Engineering/STEM',
@@ -148,6 +227,11 @@ const CoverLetterGenerator = ({ setCurrentPage }) => {
   const [errors, setErrors] = useState({});
   const [pastedLetter, setPastedLetter] = useState('');
   const [showOutputChecker, setShowOutputChecker] = useState(false);
+  const [showFormatModal, setShowFormatModal] = useState(false);
+  const [jobDescription, setJobDescription] = useState('');
+  const [selectedText, setSelectedText] = useState('');
+  const [rewriteCopied, setRewriteCopied] = useState(false);
+  const letterRef = useRef(null);
 
   const update = (field, value) => {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -169,73 +253,103 @@ const CoverLetterGenerator = ({ setCurrentPage }) => {
     navigator.clipboard.writeText(prompt).then(() => {
       setCopied(true);
       setSelectedProvider(provider);
-      setTimeout(() => {
-        setCopied(false);
-        setShowOutputChecker(true);
-      }, 3000);
+      setTimeout(() => { setCopied(false); setShowOutputChecker(true); }, 3000);
       window.open(AI_PROVIDERS[provider].url, '_blank');
     });
   };
 
-  const isReady = form.jobTitle.trim() && form.company.trim() && form.strengths.trim().length >= 20;
+  const handleTextSelection = () => {
+    const selection = window.getSelection();
+    if (selection && selection.toString().trim().length > 10) {
+      setSelectedText(selection.toString().trim());
+    }
+  };
+
+  const rewriteSentence = (provider) => {
+    if (!selectedText) return;
+    const prompt = `Rewrite this sentence from a cover letter so it sounds more human, natural, and less like AI wrote it. Keep the same meaning but make it feel like a real person said it. Do not use words like "passionate", "leveraged", "utilized", or "spearheaded". Keep it concise.
+
+Sentence to rewrite:
+"${selectedText}"
+
+Give me 2-3 alternative versions.`;
+    navigator.clipboard.writeText(prompt).then(() => {
+      setRewriteCopied(true);
+      setTimeout(() => setRewriteCopied(false), 3000);
+      window.open(AI_PROVIDERS[provider].url, '_blank');
+    });
+  };
+
+  const wordCount = pastedLetter.trim() ? pastedLetter.trim().split(/\s+/).length : 0;
+  const readability = getReadabilityScore(pastedLetter);
   const outputFlags = checkForAIFlags(pastedLetter);
   const outputRisk = getRiskLevel(outputFlags.length);
+  const isReady = form.jobTitle.trim() && form.company.trim() && form.strengths.trim().length >= 20;
+
+  const jobKeywords = extractKeywords(jobDescription);
+  const letterKeywords = extractKeywords(pastedLetter);
+  const matchedKeywords = jobKeywords.filter(k => letterKeywords.includes(k));
+  const missingKeywords = jobKeywords.filter(k => !letterKeywords.includes(k)).slice(0, 10);
 
   return (
     <>
       <Helmet>
         <title>Free Cover Letter Generator for College Students | MoreThanOneWay.org</title>
-        <meta name="description" content="Generate a personalized cover letter for free. Built for college students — no sign-up, no paywall. Get a draft in seconds using AI, then make it yours." />
+        <meta name="description" content="Generate a personalized cover letter for free. Built for college students — no sign-up, no paywall. Includes AI flag checker, word count, readability score, and job description matcher." />
         <meta name="keywords" content="free cover letter generator college students, AI cover letter, internship cover letter, cover letter template students" />
         <meta property="og:title" content="Free Cover Letter Generator | MoreThanOneWay.org" />
-        <meta property="og:description" content="Free AI-powered cover letter generator for college students. No sign-up required." />
+        <meta property="og:description" content="Free cover letter generator for college students with AI flag checker and job description matcher." />
         <link rel="canonical" href="https://morethanoneway.org/cover-letter" />
       </Helmet>
+
+      {showFormatModal && <FormatModal onClose={() => setShowFormatModal(false)} />}
 
       <div className="min-h-screen bg-[#FFFBF7]">
         <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-10">
 
-          <div className="text-center mb-10">
+          {/* Header */}
+          <div className="text-center mb-6">
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
               Cover Letter{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-orange-400">
-                Generator
-              </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-orange-400">Generator</span>
             </h1>
             <p className="mt-4 text-lg text-gray-600 max-w-xl mx-auto">
               Free. No sign-up. Get a strong draft in seconds — then make it sound like <em>you</em>.
             </p>
+            <button onClick={() => setShowFormatModal(true)}
+              className="mt-3 inline-flex items-center gap-2 text-sm text-teal-600 font-semibold hover:text-teal-800 border border-teal-200 rounded-xl px-4 py-2 bg-teal-50 hover:bg-teal-100 transition-all">
+              <FileText className="w-4 h-4" /> See Cover Letter Format Example
+            </button>
           </div>
 
+          {/* Anti-generic warning */}
           <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold text-amber-900 text-sm">The #1 problem with AI cover letters</p>
                 <p className="text-amber-800 text-sm mt-1">
-                  They all sound the same. That is why we built this differently — our AI Flag Checker scans for
-                  overused AI phrases in both your input AND your generated letter.
+                  They all sound the same. Our AI Flag Checker, readability score, and job matcher help you fix that.
                 </p>
-                <button
-                  onClick={() => setShowTips(!showTips)}
-                  className="mt-2 text-amber-700 text-sm font-semibold flex items-center gap-1 hover:text-amber-900"
-                >
+                <button onClick={() => setShowTips(!showTips)}
+                  className="mt-2 text-amber-700 text-sm font-semibold flex items-center gap-1 hover:text-amber-900">
                   {showTips ? 'Hide' : 'Show'} personalization tips
                   {showTips ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </button>
                 {showTips && (
-                  <ul className="mt-3 space-y-2 text-sm text-amber-900">
-                    <li>Add one specific thing about the company that shows you researched them</li>
-                    <li>Replace any phrase like "I am passionate about..." with a real moment that shows it</li>
-                    <li>Delete the first sentence the AI writes and rewrite it in your own words</li>
-                    <li>Read it out loud — if any part sounds robotic, rewrite it</li>
-                    <li>Keep it under 250 words — hiring managers skim</li>
+                  <ul className="mt-3 space-y-1 text-sm text-amber-900">
+                    <li>✦ Add one specific thing about the company that shows you researched them</li>
+                    <li>✦ Replace "I am passionate about..." with a real moment that shows it</li>
+                    <li>✦ Delete the first sentence and rewrite it in your own words</li>
+                    <li>✦ Read it out loud — if it sounds robotic, rewrite it</li>
+                    <li>✦ Keep it under 250 words — hiring managers skim</li>
                   </ul>
                 )}
               </div>
             </div>
           </div>
 
+          {/* Form */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 space-y-6">
 
             <div>
@@ -293,13 +407,12 @@ const CoverLetterGenerator = ({ setCurrentPage }) => {
                 <span className="w-7 h-7 rounded-full bg-teal-100 text-teal-700 text-sm font-bold flex items-center justify-center">3</span>
                 Your Key Strengths & Experiences <span className="text-red-500">*</span>
               </h2>
-              <p className="text-sm text-gray-500 mb-3">List 2-4 things about you that are relevant to this role. Be specific.</p>
+              <p className="text-sm text-gray-500 mb-3">List 2-4 specific things about you relevant to this role.</p>
               <textarea value={form.strengths} onChange={(e) => update('strengths', e.target.value)}
-                placeholder="e.g. Built a Python web scraper for a class project that collected 10,000 data points. Completed a data analysis internship. Strong in Python, SQL, and Excel. President of the Computer Science club."
-                rows={5}
-                className={`w-full p-3 border rounded-xl text-sm resize-none ${errors.strengths ? 'border-red-400 bg-red-50' : 'border-gray-200'}`} />
-              {errors.strengths && <p className="text-red-500 text-xs mt-1">Please add at least a sentence or two about yourself</p>}
-              <AIFlagChecker text={form.strengths} label="strengths" />
+                placeholder="e.g. Built a Python web scraper for a class project. Completed a data analysis internship. Strong in Python, SQL, and Excel. President of the CS club."
+                rows={5} className={`w-full p-3 border rounded-xl text-sm resize-none ${errors.strengths ? 'border-red-400 bg-red-50' : 'border-gray-200'}`} />
+              {errors.strengths && <p className="text-red-500 text-xs mt-1">Please add at least a sentence or two</p>}
+              <AIFlagChecker text={form.strengths} />
             </div>
 
             <div>
@@ -308,11 +421,11 @@ const CoverLetterGenerator = ({ setCurrentPage }) => {
                 Something Specific About This Company
                 <span className="text-xs font-normal text-gray-500 ml-1">(optional but powerful)</span>
               </h2>
-              <p className="text-sm text-gray-500 mb-3">This is what separates your letter from everyone else. Look at their website, LinkedIn, or recent news.</p>
+              <p className="text-sm text-gray-500 mb-3">This separates your letter from everyone else. Look at their website, LinkedIn, or recent news.</p>
               <textarea value={form.companyDetail} onChange={(e) => update('companyDetail', e.target.value)}
-                placeholder="e.g. I saw that Google recently launched their AI Overviews feature and I am really interested in how search is evolving."
+                placeholder="e.g. I saw that Google recently launched AI Overviews and I am really interested in how search is evolving."
                 rows={3} className="w-full p-3 border border-gray-200 rounded-xl text-sm resize-none" />
-              <AIFlagChecker text={form.companyDetail} label="company" />
+              <AIFlagChecker text={form.companyDetail} />
             </div>
 
             <div>
@@ -324,8 +437,7 @@ const CoverLetterGenerator = ({ setCurrentPage }) => {
                 {TONES.map(t => (
                   <button key={t.value} onClick={() => update('tone', t.value)}
                     className={`p-3 rounded-xl border text-sm font-semibold text-left transition-all ${
-                      form.tone === t.value ? 'border-teal-500 bg-teal-50 text-teal-800' : 'border-gray-200 text-gray-700 hover:border-gray-300'
-                    }`}>
+                      form.tone === t.value ? 'border-teal-500 bg-teal-50 text-teal-800' : 'border-gray-200 text-gray-700 hover:border-gray-300'}`}>
                     {t.label}
                   </button>
                 ))}
@@ -333,6 +445,7 @@ const CoverLetterGenerator = ({ setCurrentPage }) => {
             </div>
           </div>
 
+          {/* Generate */}
           <div className="mt-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-1 shadow-lg">
             <div className="bg-white rounded-2xl p-6">
               <div className="text-center mb-5">
@@ -352,11 +465,8 @@ const CoverLetterGenerator = ({ setCurrentPage }) => {
               <div className="grid md:grid-cols-3 gap-4">
                 {Object.entries(AI_PROVIDERS).map(([key, provider]) => (
                   <button key={key} onClick={() => copyAndOpen(key)} disabled={!isReady}
-                    className={`${provider.color} text-white px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-2 text-base transition-all ${
-                      isReady ? 'hover:scale-105' : 'opacity-40 cursor-not-allowed'
-                    }`}>
-                    {provider.name}
-                    <ExternalLink className="w-4 h-4" />
+                    className={`${provider.color} text-white px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-2 text-base transition-all ${isReady ? 'hover:scale-105' : 'opacity-40 cursor-not-allowed'}`}>
+                    {provider.name} <ExternalLink className="w-4 h-4" />
                   </button>
                 ))}
               </div>
@@ -364,94 +474,179 @@ const CoverLetterGenerator = ({ setCurrentPage }) => {
               {copied && (
                 <div className="mt-4 bg-green-50 border-2 border-green-400 rounded-xl p-4 text-center">
                   <Check className="w-6 h-6 text-green-600 mx-auto mb-1" />
-                  <p className="font-bold text-green-800">Prompt copied! {AI_PROVIDERS[selectedProvider]?.name} opened in new tab</p>
-                  <p className="text-sm text-green-700 mt-1">Paste (Ctrl+V or Cmd+V) and press Enter to get your cover letter</p>
+                  <p className="font-bold text-green-800">Prompt copied! {AI_PROVIDERS[selectedProvider]?.name} opened</p>
+                  <p className="text-sm text-green-700 mt-1">Paste (Ctrl+V or Cmd+V) and press Enter</p>
                 </div>
               )}
 
-              <div className="mt-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
-                <p className="text-sm font-bold text-blue-900 mb-2">How it works:</p>
-                <ol className="text-sm text-blue-800 space-y-1">
+              <div className="mt-4 bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+                <p className="font-bold text-blue-900 mb-1">How it works:</p>
+                <ol className="space-y-1">
                   <li>1. Click an AI tool above</li>
-                  <li>2. Your info + instructions are copied automatically</li>
-                  <li>3. AI tool opens in a new tab</li>
-                  <li>4. Paste (Ctrl+V or Cmd+V) and press Enter</li>
-                  <li>5. Get your draft + personalization tips in about 30 seconds</li>
+                  <li>2. Your info + instructions copy automatically</li>
+                  <li>3. Paste and press Enter in the AI tool</li>
+                  <li>4. Come back here and paste your letter below to check it</li>
                 </ol>
               </div>
             </div>
           </div>
 
+          {/* Output Checker */}
           {showOutputChecker && (
-            <div className="mt-8 bg-white rounded-2xl border-2 border-purple-200 p-6">
-              <div className="flex items-center gap-3 mb-4">
+            <div className="mt-8 bg-white rounded-2xl border-2 border-purple-200 p-6 space-y-6">
+              <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
                   <Flag className="w-5 h-5 text-purple-600" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-gray-900">AI Flag Checker</h3>
-                  <p className="text-sm text-gray-500">Paste your generated cover letter here to scan it for AI phrases</p>
+                  <h3 className="font-bold text-lg text-gray-900">Polish Your Letter</h3>
+                  <p className="text-sm text-gray-500">Paste your generated cover letter here to run all checks</p>
                 </div>
               </div>
 
-              <textarea
-                value={pastedLetter}
-                onChange={(e) => setPastedLetter(e.target.value)}
+              <textarea ref={letterRef} value={pastedLetter} onChange={(e) => setPastedLetter(e.target.value)}
+                onMouseUp={handleTextSelection} onKeyUp={handleTextSelection}
                 placeholder="Paste your cover letter here after getting it from ChatGPT, Claude, or Gemini..."
-                rows={8}
-                className="w-full p-3 border border-gray-200 rounded-xl text-sm resize-none"
-              />
+                rows={10} className="w-full p-3 border border-gray-200 rounded-xl text-sm resize-none" />
 
               {pastedLetter.trim().length > 50 && (
-                <div className={`mt-4 rounded-xl border-2 ${outputRisk.border} ${outputRisk.bg} p-4`}>
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <p className={`font-bold text-lg ${outputRisk.text}`}>
-                        AI Risk Score: {outputRisk.label}
-                      </p>
-                      <p className={`text-sm ${outputRisk.text}`}>
-                        {outputFlags.length === 0
-                          ? 'No AI phrases detected — your letter looks human!'
-                          : `${outputFlags.length} AI phrase${outputFlags.length > 1 ? 's' : ''} detected — fix these before sending`}
-                      </p>
+                <div className="space-y-4">
+
+                  {/* Word Count */}
+                  <div className={`rounded-xl border p-4 ${wordCount > 250 ? 'bg-red-50 border-red-300' : wordCount > 220 ? 'bg-yellow-50 border-yellow-300' : 'bg-green-50 border-green-300'}`}>
+                    <div className="flex items-center justify-between">
+                      <span className={`font-bold text-sm ${wordCount > 250 ? 'text-red-800' : wordCount > 220 ? 'text-yellow-800' : 'text-green-800'}`}>
+                        Word Count: {wordCount} words
+                      </span>
+                      <span className={`text-xs font-semibold px-2 py-1 rounded-full ${wordCount > 250 ? 'bg-red-200 text-red-800' : wordCount > 220 ? 'bg-yellow-200 text-yellow-800' : 'bg-green-200 text-green-800'}`}>
+                        {wordCount > 250 ? 'Too Long — Cut it down' : wordCount > 220 ? 'Getting long — watch it' : 'Good length'}
+                      </span>
                     </div>
-                    <div className={`text-3xl font-extrabold ${outputRisk.text}`}>
-                      {outputFlags.length === 0 ? 'A+' : outputFlags.length <= 2 ? 'B' : outputFlags.length <= 4 ? 'C' : 'D'}
-                    </div>
+                    {wordCount > 250 && (
+                      <p className="text-xs text-red-700 mt-1">Hiring managers skim. Cut {wordCount - 250} words — remove filler phrases and tighten sentences.</p>
+                    )}
                   </div>
 
-                  {outputFlags.length > 0 && (
-                    <div className="space-y-2 mt-3 border-t border-gray-200 pt-3">
-                      {outputFlags.map((flag, i) => (
-                        <div key={i} className="flex items-start gap-2 text-sm">
-                          <span className="text-red-500 font-bold flex-shrink-0">✗</span>
-                          <div>
-                            <span className="font-bold text-gray-900">"{flag.phrase}"</span>
-                            <span className="text-gray-600"> — {flag.suggestion}</span>
-                          </div>
+                  {/* Readability */}
+                  {readability && (
+                    <div className={`rounded-xl border p-4 ${readability.bg} ${readability.border}`}>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className={`font-bold text-sm ${readability.color}`}>Readability: {readability.label}</span>
+                          <p className={`text-xs mt-1 ${readability.color}`}>{readability.detail}</p>
                         </div>
-                      ))}
+                        <span className={`text-2xl font-extrabold ${readability.color}`}>{readability.score}</span>
+                      </div>
                     </div>
                   )}
 
-                  {outputFlags.length === 0 && (
-                    <div className="flex items-center gap-2 text-green-700 text-sm mt-2">
-                      <Check className="w-4 h-4" />
-                      <span>This letter passed the AI flag check. Make sure it still sounds like you before sending!</span>
+                  {/* AI Flag Checker */}
+                  <div className={`rounded-xl border-2 ${outputRisk.border} ${outputRisk.bg} p-4`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <div>
+                        <p className={`font-bold text-sm ${outputRisk.text}`}>AI Flag Check: {outputRisk.label}</p>
+                        <p className={`text-xs ${outputRisk.text}`}>
+                          {outputFlags.length === 0 ? 'No AI phrases detected' : `${outputFlags.length} AI phrase${outputFlags.length > 1 ? 's' : ''} to fix`}
+                        </p>
+                      </div>
+                      <span className={`text-2xl font-extrabold ${outputRisk.text}`}>
+                        {outputFlags.length === 0 ? 'A+' : outputFlags.length <= 2 ? 'B' : outputFlags.length <= 4 ? 'C' : 'D'}
+                      </span>
                     </div>
-                  )}
+                    {outputFlags.length > 0 && (
+                      <div className="space-y-1 mt-2 border-t border-gray-200 pt-2">
+                        {outputFlags.map((flag, i) => (
+                          <div key={i} className="text-xs flex items-start gap-1">
+                            <span className="text-red-500 font-bold">✗</span>
+                            <span><strong>"{flag.phrase}"</strong> — {flag.suggestion}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Rewrite sentence */}
+                  <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <RefreshCw className="w-4 h-4 text-gray-600" />
+                      <p className="font-bold text-sm text-gray-900">Rewrite a Sentence</p>
+                    </div>
+                    <p className="text-xs text-gray-600 mb-3">
+                      Highlight any sentence in your letter above that sounds robotic, then click a button below to get human rewrites.
+                    </p>
+                    {selectedText && (
+                      <div className="bg-white border border-gray-200 rounded-lg p-2 mb-3 text-xs text-gray-700 italic">
+                        Selected: "{selectedText.substring(0, 100)}{selectedText.length > 100 ? '...' : ''}"
+                      </div>
+                    )}
+                    <div className="grid grid-cols-3 gap-2">
+                      {Object.entries(AI_PROVIDERS).map(([key, provider]) => (
+                        <button key={key} onClick={() => rewriteSentence(key)}
+                          disabled={!selectedText}
+                          className={`${provider.color} text-white px-3 py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 transition-all ${selectedText ? 'hover:scale-105' : 'opacity-40 cursor-not-allowed'}`}>
+                          {provider.name} <ExternalLink className="w-3 h-3" />
+                        </button>
+                      ))}
+                    </div>
+                    {rewriteCopied && (
+                      <p className="text-xs text-green-700 font-semibold mt-2 text-center">Rewrite prompt copied! Paste in the AI tool.</p>
+                    )}
+                    {!selectedText && (
+                      <p className="text-xs text-gray-500 mt-2 text-center">Highlight text in your letter first</p>
+                    )}
+                  </div>
+
                 </div>
               )}
+
+              {/* Job Description Matcher */}
+              <div className="border-t border-gray-200 pt-6">
+                <h4 className="font-bold text-gray-900 mb-1">Job Description Matcher</h4>
+                <p className="text-sm text-gray-500 mb-3">Paste the job posting below to see which keywords your letter hits and which it misses.</p>
+                <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)}
+                  placeholder="Paste the full job description here..."
+                  rows={5} className="w-full p-3 border border-gray-200 rounded-xl text-sm resize-none" />
+
+                {jobDescription.trim().length > 50 && pastedLetter.trim().length > 50 && (
+                  <div className="mt-4 space-y-3">
+                    {matchedKeywords.length > 0 && (
+                      <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                        <p className="font-bold text-green-800 text-sm mb-2">Keywords Your Letter Hits ({matchedKeywords.length})</p>
+                        <div className="flex flex-wrap gap-2">
+                          {matchedKeywords.map((kw, i) => (
+                            <span key={i} className="bg-green-200 text-green-900 text-xs px-2 py-1 rounded-full font-medium">{kw}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {missingKeywords.length > 0 && (
+                      <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                        <p className="font-bold text-red-800 text-sm mb-2">Keywords Your Letter Misses — Consider Adding</p>
+                        <div className="flex flex-wrap gap-2">
+                          {missingKeywords.map((kw, i) => (
+                            <span key={i} className="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full font-medium">{kw}</span>
+                          ))}
+                        </div>
+                        <p className="text-xs text-red-700 mt-2">Only add keywords that genuinely apply to your experience — never fabricate skills.</p>
+                      </div>
+                    )}
+                    {matchedKeywords.length === 0 && missingKeywords.length === 0 && (
+                      <p className="text-sm text-gray-500 text-center">Add more text to both fields for keyword analysis.</p>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
+          {/* Make It Yours */}
           <div className="mt-8 bg-white rounded-2xl border border-gray-200 p-6">
             <h3 className="font-bold text-lg text-gray-900 mb-4">After You Get Your Draft — Make It Yours</h3>
             <div className="space-y-3">
               {[
                 { tip: 'Rewrite the opening line', detail: 'AI always writes boring openers. Delete it and start with something real.' },
-                { tip: 'Add the specific company detail', detail: 'If you skipped step 4 above, go back and add something specific about why THIS company.' },
-                { tip: 'Kill the cliches', detail: 'Search for "passionate", "hardworking", "team player" — delete every one and replace with proof.' },
+                { tip: 'Add the specific company detail', detail: 'If you skipped step 4 above, go back and add something about why THIS company.' },
+                { tip: 'Kill the cliches', detail: 'Search for "passionate", "hardworking", "team player" — delete and replace with proof.' },
                 { tip: 'Read it out loud', detail: 'If any sentence sounds robotic or like you would never say it, rewrite it.' },
                 { tip: 'Cut it down', detail: 'If it is over 250 words, cut. Hiring managers skim. Less is more.' },
               ].map((item, i) => (
