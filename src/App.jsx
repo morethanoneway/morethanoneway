@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Routes, Route, useParams, Navigate } from 'react-router-dom';
 
-import { Heart, MessageCircle, Sparkles, Phone, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
+import { Heart, MessageCircle, Sparkles, Phone, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, Building, DollarSign, HelpCircle, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
 import ResumeBuilder from './ResumeBuilder';
 import YoureNotAlone from './YoureNotAlone';
 import Contact from './Contact';
@@ -184,9 +184,18 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
     { page: 'pivot', label: 'Career Paths', icon: <TrendingUp className="w-4 h-4" /> },
   ];
 
-  const supportItems = [
-    { page: 'youre-not-alone', label: "Struggling with College?", icon: <Heart className="w-4 h-4" /> },
-  ];
+const supportItems = [
+  { page: 'youre-not-alone', label: "You're Not Alone — Support Hub", icon: <Heart className="w-4 h-4" /> },
+  { page: 'struggling-in-classes', label: 'Failing or Struggling in Classes', icon: <BookOpen className="w-4 h-4" /> },
+  { page: 'family-not-supportive', label: "Family Isn't Supportive", icon: <Heart className="w-4 h-4" /> },
+  { page: 'feeling-alone', label: 'Feeling Completely Alone', icon: <Users className="w-4 h-4" /> },
+  { page: 'dont-want-to-be-here', label: "Don't Want to Be Here", icon: <AlertCircle className="w-4 h-4" /> },
+  { page: 'career-services-no-idea', label: 'Career Services No Help', icon: <Building className="w-4 h-4" /> },
+  { page: 'cant-afford-college', label: "Can't Afford College", icon: <DollarSign className="w-4 h-4" /> },
+  { page: 'no-idea-what-to-do', label: 'No Idea What to Do', icon: <HelpCircle className="w-4 h-4" /> },
+  { page: 'everything-is-too-much', label: "It's Just... Everything", icon: <AlertCircle className="w-4 h-4" /> },
+  { page: 'crisis', label: 'In Crisis Right Now', icon: <Phone className="w-4 h-4" /> },
+];
 
   const resourcesItems = [
     { page: 'resources', label: 'Career Resources', icon: <Briefcase className="w-4 h-4" /> },
@@ -240,6 +249,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
 
               <DropdownMenu
                 title="Support"
+                onTitleClick={() => setCurrentPage('youre-not-alone')}
                 items={supportItems}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
