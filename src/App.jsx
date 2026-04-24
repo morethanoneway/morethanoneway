@@ -36,6 +36,11 @@ import CantAffordCollege from './CantAffordCollege';
 import NoIdeaWhatToDo from './NoIdeaWhatToDo';
 import EverythingIsTooMuch from './EverythingIsTooMuch';
 import CareerServicesNoIdea from './CareerServicesNoIdea';
+import HateMyMajor from './HateMyMajor';
+import FirstGenerationStudent from './FirstGenerationStudent';
+import AcademicProbation from './AcademicProbation';
+import BurntOut from './BurntOut';
+import ThinkingAboutTransferring from './ThinkingAboutTransferring';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -1461,6 +1466,11 @@ export default function App() {
           <Route path="/no-idea-what-to-do" element={<NoIdeaWhatToDo setCurrentPage={setCurrentPage} />} />
           <Route path="/everything-is-too-much" element={<EverythingIsTooMuch setCurrentPage={setCurrentPage} />} />
           <Route path="/career-services-no-idea" element={<CareerServicesNoIdea setCurrentPage={setCurrentPage} />} />
+          <Route path="/hate-my-major" element={<HateMyMajor setCurrentPage={setCurrentPage} />} />
+          <Route path="/first-generation-student" element={<FirstGenerationStudent setCurrentPage={setCurrentPage} />} />
+          <Route path="/academic-probation" element={<AcademicProbation setCurrentPage={setCurrentPage} />} />
+          <Route path="/burnt-out" element={<BurntOut setCurrentPage={setCurrentPage} />} />
+          <Route path="/thinking-about-transferring" element={<ThinkingAboutTransferring setCurrentPage={setCurrentPage} />} />
           {/* Catch-all: redirect unknown URLs to home */}
         </Routes>
       </main>
