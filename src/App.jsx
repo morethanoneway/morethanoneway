@@ -125,7 +125,7 @@ const DropdownMenu = ({ title, items, currentPage, setCurrentPage, isMobile = fa
 
       {open && (
         <div className="absolute top-full left-0 pt-2 z-50">
-          <div className="bg-white text-gray-800 rounded-lg shadow-lg py-2 min-w-[220px]">
+          <div className="bg-white text-gray-800 rounded-lg shadow-lg py-2 min-w-[280x]">
             {items.map((item) => (
               <button
                 key={item.page}
@@ -199,6 +199,11 @@ const supportItems = [
   { page: 'cant-afford-college', label: "Can't Afford College", icon: <DollarSign className="w-4 h-4" /> },
   { page: 'no-idea-what-to-do', label: 'No Idea What to Do', icon: <HelpCircle className="w-4 h-4" /> },
   { page: 'everything-is-too-much', label: "It's Just... Everything", icon: <AlertCircle className="w-4 h-4" /> },
+  { page: 'hate-my-major', label: 'I Hate My Major', icon: <BookOpen className="w-4 h-4" /> },
+  { page: 'first-generation-student', label: "I'm a First-Gen Student", icon: <GraduationCap className="w-4 h-4" /> },
+  { page: 'academic-probation', label: 'Failed a Class / Academic Probation', icon: <AlertCircle className="w-4 h-4" /> },
+  { page: 'burnt-out', label: "I'm Burnt Out", icon: <Heart className="w-4 h-4" /> },
+  { page: 'thinking-about-transferring', label: 'Thinking About Transferring', icon: <Building className="w-4 h-4" /> },
   { page: 'crisis', label: 'In Crisis Right Now', icon: <Phone className="w-4 h-4" /> },
 ];
 
