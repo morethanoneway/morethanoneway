@@ -64,7 +64,7 @@ const NoIdeaWhatToDo = ({ setCurrentPage }) => {
               <div className="space-y-4">
                 <button
                   onClick={() => setCurrentPage('pivot')}
-                  className="w-full bg-white p-5 rounded-2xl text-left hover:shadow-sm hover:-translate-y-[1px] transition-all border border-gray-200"
+                  className="w-full bg-white p-5 rounded-2xl text-left hover:gray-300 transform hover:scale-105 transition-all flex border border-gray-200"
                 >
                   <p className="font-semibold text-gray-900 mb-1">Career Path Explorer</p>
                   <p className="text-sm text-gray-600">
