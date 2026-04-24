@@ -203,7 +203,7 @@ const YoureNotAlone = ({ setCurrentPage }) => {
                 Not Alone
               </span>
             </h1>
-            <p className="mt-5 max-w-2xl mx-auto text-lg md:text-xl text-gray-700 leading-relaxed">
+            <p className="mt-5 max-w-3xl mx-auto text-lg md:text-xl text-gray-700 leading-relaxed">
               Real support for real struggles. No judgment, just options.
             </p>
 
@@ -225,7 +225,7 @@ const YoureNotAlone = ({ setCurrentPage }) => {
           </div>
 
           {/* Intro */}
-          <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
+          <div className="bg-white rounded-2xl border border-gray-200 p-7 mb-8">
             <p className="text-gray-700 leading-relaxed mb-3">
               We're not here to judge or tell you to "just push through." We're here to remind you that you have more options — and more strength — than you might realize.
             </p>
@@ -236,13 +236,16 @@ const YoureNotAlone = ({ setCurrentPage }) => {
 
           {/* Tiles */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-            {TILES.map((tile) => (
-              <button key={tile.id} onClick={() => navigate(tile.path)}
-                className={`group w-full text-left rounded-2xl border p-6 transition-all hover:-translate-y-[1px] hover:shadow-sm ${tile.bg}`}>
-                <div className="flex items-start gap-4">
-                  <span className={`inline-flex items-center justify-center w-11 h-11 rounded-xl flex-shrink-0 ${tile.iconBg}`}>
-                    {React.cloneElement(tile.icon, { className: 'w-5 h-5' })}
-                  </span>
+{TILES.map((tile) => (
+  <button
+    key={tile.id}
+    onClick={() => navigate(tile.path)}
+    className={`group w-full text-left rounded-2xl border p-6 transition-all hover:-translate-y-[1px] hover:shadow-sm ${tile.bg}`}
+  >
+    <div className="flex items-start gap-4">
+      <span className={`inline-flex items-center justify-center w-11 h-11 rounded-xl flex-shrink-0 ${tile.iconBg}`}>
+        {React.cloneElement(tile.icon, { className: 'w-5 h-5' })}
+      </span>
                   <div>
                     <p className={`font-bold text-base leading-tight ${tile.text}`}>{tile.title}</p>
                     <p className={`mt-2 text-sm leading-relaxed ${tile.desc_color}`}>{tile.desc}</p>
