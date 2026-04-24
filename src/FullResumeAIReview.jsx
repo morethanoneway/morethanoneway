@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check, ExternalLink, Sparkles, MessageCircle } from 'lucide-react';
+import { Check, ExternalLink, Sparkles, MessageCircle, Flag, ChevronDown, ChevronUp } from 'lucide-react';
 
 const AI_PROVIDERS = {
   chatgpt: { name: 'ChatGPT', url: 'https://chat.openai.com', color: 'bg-green-600 hover:bg-green-700' },
@@ -7,101 +7,93 @@ const AI_PROVIDERS = {
   gemini: { name: 'Gemini', url: 'https://gemini.google.com', color: 'bg-blue-600 hover:bg-blue-700' }
 };
 
+const RESUME_AI_FLAGS = [
+  { phrase: 'responsible for', suggestion: 'Start with an action verb instead' },
+  { phrase: 'helped with', suggestion: 'Be specific about YOUR contribution' },
+  { phrase: 'worked on', suggestion: 'Too vague — say what you built or delivered' },
+  { phrase: 'assisted with', suggestion: 'Say exactly what you did' },
+  { phrase: 'participated in', suggestion: 'Say what you contributed specifically' },
+  { phrase: 'was involved in', suggestion: 'Replace with a specific action verb' },
+  { phrase: 'passionate about', suggestion: 'Remove from resume — show it with results' },
+  { phrase: 'leveraged', suggestion: 'Just say "used"' },
+  { phrase: 'utilized', suggestion: 'Just say "used"' },
+  { phrase: 'spearheaded', suggestion: 'Try "led" or "launched"' },
+  { phrase: 'dynamic', suggestion: 'Meaningless word — delete it' },
+  { phrase: 'results-driven', suggestion: 'Show the results instead' },
+  { phrase: 'detail-oriented', suggestion: 'Show it with a specific example' },
+  { phrase: 'team player', suggestion: 'Show collaboration with a specific example' },
+  { phrase: 'synergy', suggestion: 'Delete this entirely' },
+  { phrase: 'fostered', suggestion: 'Try "built" or "developed"' },
+  { phrase: 'robust', suggestion: 'Be specific instead' },
+  { phrase: 'various', suggestion: 'List the specific things' },
+  { phrase: ' — ', suggestion: 'Em dashes are an AI tell — use a comma or rewrite' },
+];
+
+const checkResumeFlags = (text) => {
+  if (!text) return [];
+  const lower = text.toLowerCase();
+  return RESUME_AI_FLAGS.filter(flag => lower.includes(flag.phrase.toLowerCase()));
+};
+
+const extractKeywords = (text) => {
+  if (!text) return [];
+  const stopWords = new Set(['the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','is','are','was','were','be','been','have','has','had','do','does','did','will','would','could','should','may','might','can','that','this','these','those','it','its','we','our','you','your','they','their','i','my','me','as','if','when','which','who','what','how','all','any','both','each','more','most','other','some','into','through','before','after','about','while','also','than','very','just','not','no','nor','so','yet','either','whether','must','shall','need']);
+  return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(w => w.length > 3 && !stopWords.has(w)).filter((w, i, arr) => arr.indexOf(w) === i).slice(0, 60);
+};
+
 const FULL_RESUME_PROMPTS = {
-  'Engineering/STEM': (resume) => `I'm an engineering/STEM student. Please review my entire resume for ATS optimization and effectiveness:
+  'Engineering/STEM': (resume) => `I am an engineering/STEM student. Review my entire resume for ATS optimization and effectiveness. Be honest and specific.
 
 ${resume}
 
-Please provide feedback on:
+Check:
+1. ATS Compatibility: Any formatting issues?
+2. Technical Skills: Specific enough? Most relevant listed first?
+3. Experience/Project Bullets: Do they quantify results? Include specific tools? Use strong action verbs (Designed, Built, Implemented, Optimized)?
+4. Weak phrases to flag: "responsible for", "helped with", "worked on", "assisted with"
+5. AI words to flag: "leveraged", "utilized", "spearheaded", em dashes
+6. Grammar and clarity: Typos, awkward phrasing, inconsistent formatting?
+7. Overall: Is it 1 page? Are accomplishments highlighted over responsibilities?
 
-1. **ATS Compatibility**: Are there any formatting issues that would prevent ATS from reading this correctly?
+Be specific about what to change and why. Keep my authentic experience.`,
 
-2. **Technical Skills Section**: 
-   - Are the technical skills specific enough (e.g., "Python" vs "Python (NumPy, Pandas)")?
-   - Are the most relevant skills listed first?
-
-3. **Experience & Project Bullets**:
-   - Do they quantify results with numbers/metrics?
-   - Do they include specific technologies and tools used?
-   - Do they follow the STAR method (Situation, Task, Action, Result)?
-   - Are technical action verbs used (Designed, Implemented, Optimized, Analyzed)?
-
-4. **Grammar, Punctuation & Clarity**:
-   - Check for typos, grammatical errors, and punctuation mistakes
-   - Flag any awkward phrasing or unclear statements
-   - Ensure consistency in formatting (dates, bullet styles, etc.)
-
-5. **Overall Structure**:
-   - Is the most relevant experience emphasized?
-   - Are accomplishments highlighted rather than just responsibilities?
-   - Is it concise (ideally 1 page for students)?
-
-Please be specific about what to change and why. Remember: I want honest feedback that keeps my authentic experience while presenting it professionally.`,
-
-  'Business': (resume) => `I'm a business student. Please review my entire resume for ATS optimization and effectiveness:
+  'Business': (resume) => `I am a business student. Review my entire resume for ATS optimization and effectiveness. Be honest and specific.
 
 ${resume}
 
-Please provide feedback on:
+Check:
+1. ATS Compatibility: Any formatting issues?
+2. Skills: Business and analytical skills prominent? Metrics-focused skills listed?
+3. Experience Bullets: Do they quantify impact (%, $, ROI)? Use strong verbs (Led, Managed, Increased, Generated)?
+4. Weak phrases to flag: "responsible for", "helped with", "assisted with"
+5. AI words to flag: "leveraged", "utilized", "spearheaded", em dashes
+6. Grammar and clarity: Typos, awkward phrasing, inconsistent formatting?
+7. Overall: Results-driven? Accomplishments over responsibilities? Professional and concise?
 
-1. **ATS Compatibility**: Are there any formatting issues that would prevent ATS from reading this correctly?
+Be specific about what to change and why. Keep my authentic experience.`,
 
-2. **Skills Section**:
-   - Are business and analytical skills prominent?
-   - Are metrics-focused skills highlighted (data analysis, Excel, etc.)?
-
-3. **Experience & Activity Bullets**:
-   - Do they quantify business impact (%, $, ROI, time saved)?
-   - Do they demonstrate leadership, communication, and results?
-   - Do they follow the STAR method (Situation, Task, Action, Result)?
-   - Are business action verbs used (Led, Managed, Increased, Generated, Optimized)?
-
-4. **Grammar, Punctuation & Clarity**:
-   - Check for typos, grammatical errors, and punctuation mistakes
-   - Flag any awkward phrasing or unclear statements
-   - Ensure consistency in formatting (dates, bullet styles, etc.)
-
-5. **Overall Impact**:
-   - Does it show results-driven thinking?
-   - Are accomplishments emphasized over responsibilities?
-   - Is it professional and concise?
-
-Please be specific about what to change and why. Remember: I want honest feedback that keeps my authentic experience while presenting it professionally.`,
-
-  'Liberal Arts': (resume) => `I'm a liberal arts student. Please review my entire resume for ATS optimization and effectiveness:
+  'Liberal Arts': (resume) => `I am a liberal arts student. Review my entire resume for ATS optimization and effectiveness. Be honest and specific.
 
 ${resume}
 
-Please provide feedback on:
+Check:
+1. ATS Compatibility: Any formatting issues?
+2. Skills: Communication and analytical skills highlighted? Relevant tools mentioned?
+3. Experience Bullets: Do they show impact? Use strong verbs (Researched, Analyzed, Coordinated, Presented)?
+4. Weak phrases to flag: "responsible for", "helped with", "participated in"
+5. AI words to flag: "leveraged", "utilized", em dashes
+6. Grammar and clarity: Typos, awkward phrasing, inconsistent formatting?
+7. Overall: Accomplishments clear? Well-organized? Compelling?
 
-1. **ATS Compatibility**: Are there any formatting issues that would prevent ATS from reading this correctly?
-
-2. **Skills Section**:
-   - Are communication and analytical skills highlighted?
-   - Are relevant tools/software mentioned (research tools, Adobe, etc.)?
-
-3. **Experience, Projects & Activities**:
-   - Do they show impact and outcomes?
-   - Do they demonstrate research, writing, communication, and critical thinking skills?
-   - Do they follow the STAR method (Situation, Task, Action, Result)?
-   - Are strong action verbs used (Researched, Analyzed, Coordinated, Presented)?
-
-4. **Grammar, Punctuation & Clarity**:
-   - Check for typos, grammatical errors, and punctuation mistakes
-   - Flag any awkward phrasing or unclear statements
-   - Ensure consistency in formatting (dates, bullet styles, etc.)
-
-5. **Overall Presentation**:
-   - Are accomplishments and skills presented clearly?
-   - Is academic/research work framed professionally?
-   - Is it compelling and well-organized?
-
-Please be specific about what to change and why. Remember: I want honest feedback that keeps my authentic experience while presenting it professionally.`
+Be specific about what to change and why. Keep my authentic experience.`
 };
 
 export const FullResumeAIReview = ({ resumeText, major }) => {
   const [copied, setCopied] = useState(false);
   const [selectedProvider, setSelectedProvider] = useState(null);
+  const [jobDescription, setJobDescription] = useState('');
+  const [showJobMatcher, setShowJobMatcher] = useState(false);
+  const [showFlags, setShowFlags] = useState(false);
 
   const prompt = FULL_RESUME_PROMPTS[major] ? FULL_RESUME_PROMPTS[major](resumeText) : FULL_RESUME_PROMPTS['Engineering/STEM'](resumeText);
 
@@ -114,92 +106,160 @@ export const FullResumeAIReview = ({ resumeText, major }) => {
     });
   };
 
+  const resumeFlags = checkResumeFlags(resumeText);
+  const resumeKeywords = extractKeywords(resumeText);
+  const jobKeywords = extractKeywords(jobDescription);
+  const matchedKeywords = jobKeywords.filter(k => resumeKeywords.includes(k));
+  const missingKeywords = jobKeywords.filter(k => !resumeKeywords.includes(k)).slice(0, 12);
+
   if (!resumeText || resumeText.trim().length < 50) {
     return (
       <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6 text-center">
         <MessageCircle className="w-12 h-12 text-yellow-600 mx-auto mb-3" />
         <h3 className="font-bold text-lg text-gray-900 mb-2">Resume Too Short for AI Review</h3>
-        <p className="text-gray-700">
-          Fill out more sections above (at least Contact, Education, and one Experience/Project) before getting AI feedback.
-        </p>
+        <p className="text-gray-700">Fill out more sections above before getting AI feedback.</p>
       </div>
     );
-  };
+  }
 
   return (
-    <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg p-2 shadow-xl">
-      <div className="bg-white rounded-lg p-6">
-        <div className="text-center mb-6">
-          <div className="flex justify-center mb-3">
-            <div className="bg-purple-500 text-white p-4 rounded-full">
-              <Sparkles className="w-8 h-8" />
+    <div className="space-y-6">
+
+      {/* AI Flag Check */}
+      {resumeFlags.length > 0 && (
+        <div className="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Flag className="w-5 h-5 text-yellow-600" />
+              <div>
+                <p className="font-bold text-yellow-900">AI/Weak Phrase Check</p>
+                <p className="text-sm text-yellow-800">{resumeFlags.length} issue{resumeFlags.length > 1 ? 's' : ''} detected in your resume</p>
+              </div>
             </div>
+            <button onClick={() => setShowFlags(!showFlags)} className="text-yellow-700 text-sm font-semibold flex items-center gap-1">
+              {showFlags ? 'Hide' : 'Show'} {showFlags ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">🤖 Get AI Feedback on Your Entire Resume</h2>
-          <p className="text-gray-700">
-            Get comprehensive feedback on ATS optimization, grammar, clarity, and professional presentation
-          </p>
-        </div>
-
-        <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-4 mb-6">
-          <h3 className="font-bold text-lg text-purple-900 mb-3">What the AI will check:</h3>
-          <ul className="grid md:grid-cols-2 gap-2 text-sm text-gray-800">
-            <li>✅ ATS compatibility (formatting issues)</li>
-            <li>✅ Grammar, spelling & punctuation</li>
-            <li>✅ Action verb strength</li>
-            <li>✅ Quantifiable results (numbers, %)</li>
-            <li>✅ Clarity and conciseness</li>
-            <li>✅ Professional presentation</li>
-            <li>✅ Skills emphasis for your field</li>
-            <li>✅ Overall structure and impact</li>
-          </ul>
-        </div>
-
-        <div className="space-y-4">
-          <h3 className="font-bold text-lg text-gray-900 text-center">Choose Your AI Tool:</h3>
-          
-          <div className="grid md:grid-cols-3 gap-4">
-            {Object.entries(AI_PROVIDERS).map(([key, provider]) => (
-              <button
-                key={key}
-                onClick={() => copyAndOpen(key)}
-                className={`${provider.color} text-white px-6 py-4 rounded-lg font-bold flex items-center justify-center gap-2 text-lg transition-transform hover:scale-105`}
-              >
-                {provider.name}
-                <ExternalLink className="w-5 h-5" />
-              </button>
-            ))}
-          </div>
-
-          {copied && (
-            <div className="bg-green-50 border-2 border-green-400 rounded-lg p-4 text-center">
-              <Check className="w-6 h-6 text-green-600 mx-auto mb-2" />
-              <p className="font-bold text-green-800">
-                ✅ Prompt Copied! {AI_PROVIDERS[selectedProvider]?.name} opened in new tab
-              </p>
-              <p className="text-sm text-green-700 mt-1">
-                Now paste (Ctrl+V or Cmd+V) in {AI_PROVIDERS[selectedProvider]?.name} and press Enter
-              </p>
+          {showFlags && (
+            <div className="mt-3 space-y-1 border-t border-yellow-200 pt-3">
+              {resumeFlags.map((flag, i) => (
+                <div key={i} className="text-sm flex items-start gap-2">
+                  <span className="text-red-500 font-bold flex-shrink-0">x</span>
+                  <span><strong>"{flag.phrase.trim()}"</strong> — {flag.suggestion}</span>
+                </div>
+              ))}
             </div>
           )}
+        </div>
+      )}
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <h4 className="font-bold text-sm text-blue-900 mb-2">📝 How it works:</h4>
-            <ol className="text-sm text-blue-800 space-y-1">
-              <li>1️⃣ Click an AI tool above (ChatGPT, Claude, or Gemini)</li>
-              <li>2️⃣ Your resume + feedback instructions are copied automatically</li>
-              <li>3️⃣ AI tool opens in a new tab</li>
-              <li>4️⃣ Paste (Ctrl+V or Cmd+V) and press Enter</li>
-              <li>5️⃣ Get detailed, major-specific feedback in ~30 seconds!</li>
-            </ol>
+      {/* Job Description Matcher */}
+      <div className="bg-white border-2 border-teal-200 rounded-xl p-5">
+        <button onClick={() => setShowJobMatcher(!showJobMatcher)} className="w-full flex items-center justify-between">
+          <div className="text-left">
+            <p className="font-bold text-gray-900">Job Description Keyword Matcher</p>
+            <p className="text-sm text-gray-500">Paste a job posting to see which keywords your resume hits and misses</p>
+          </div>
+          {showJobMatcher ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
+        </button>
+
+        {showJobMatcher && (
+          <div className="mt-4 space-y-4">
+            <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)}
+              placeholder="Paste the full job description here..."
+              rows={5} className="w-full p-3 border border-gray-200 rounded-xl text-sm resize-none" />
+
+            {jobDescription.trim().length > 50 && (
+              <div className="space-y-3">
+                {matchedKeywords.length > 0 && (
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                    <p className="font-bold text-green-800 text-sm mb-2">Keywords Your Resume Hits ({matchedKeywords.length})</p>
+                    <div className="flex flex-wrap gap-2">
+                      {matchedKeywords.map((kw, i) => <span key={i} className="bg-green-200 text-green-900 text-xs px-2 py-1 rounded-full font-medium">{kw}</span>)}
+                    </div>
+                  </div>
+                )}
+                {missingKeywords.length > 0 && (
+                  <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                    <p className="font-bold text-red-800 text-sm mb-2">Keywords Your Resume Misses — Consider Adding</p>
+                    <div className="flex flex-wrap gap-2">
+                      {missingKeywords.map((kw, i) => <span key={i} className="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full font-medium">{kw}</span>)}
+                    </div>
+                    <p className="text-xs text-red-700 mt-2">Only add keywords that genuinely apply to your experience — never fabricate skills.</p>
+                  </div>
+                )}
+                {matchedKeywords.length === 0 && missingKeywords.length === 0 && (
+                  <p className="text-sm text-gray-500 text-center">Add more content to both fields for keyword analysis.</p>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Full AI Review */}
+      <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl p-1 shadow-xl">
+        <div className="bg-white rounded-xl p-6">
+          <div className="text-center mb-6">
+            <div className="flex justify-center mb-3">
+              <div className="bg-purple-500 text-white p-4 rounded-full">
+                <Sparkles className="w-8 h-8" />
+              </div>
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Get AI Feedback on Your Entire Resume</h2>
+            <p className="text-gray-700 text-sm">Comprehensive feedback on ATS optimization, grammar, clarity, and professional presentation</p>
           </div>
 
-          <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4">
-            <p className="text-sm text-yellow-900">
-              <strong>⚠️ Important:</strong> AI gives suggestions, but YOU decide what to change. 
-              Only use feedback that feels authentic to your actual experience. 
-              Don't let AI rewrite your resume—use it to polish what YOU wrote!
-            </p>
+          <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-4 mb-6">
+            <h3 className="font-bold text-purple-900 mb-3 text-sm">What the AI will check:</h3>
+            <ul className="grid md:grid-cols-2 gap-2 text-sm text-gray-800">
+              <li>ATS compatibility (formatting issues)</li>
+              <li>Grammar, spelling and punctuation</li>
+              <li>Action verb strength</li>
+              <li>Quantifiable results (numbers, %)</li>
+              <li>Weak phrases ("responsible for", etc.)</li>
+              <li>AI words to remove</li>
+              <li>Skills emphasis for your field</li>
+              <li>Overall structure and impact</li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="font-bold text-gray-900 text-center">Choose Your AI Tool:</h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              {Object.entries(AI_PROVIDERS).map(([key, provider]) => (
+                <button key={key} onClick={() => copyAndOpen(key)}
+                  className={`${provider.color} text-white px-6 py-4 rounded-lg font-bold flex items-center justify-center gap-2 text-lg transition-transform hover:scale-105`}>
+                  {provider.name} <ExternalLink className="w-5 h-5" />
+                </button>
+              ))}
+            </div>
+
+            {copied && (
+              <div className="bg-green-50 border-2 border-green-400 rounded-lg p-4 text-center">
+                <Check className="w-6 h-6 text-green-600 mx-auto mb-2" />
+                <p className="font-bold text-green-800">Prompt Copied! {AI_PROVIDERS[selectedProvider]?.name} opened in new tab</p>
+                <p className="text-sm text-green-700 mt-1">Paste (Ctrl+V or Cmd+V) and press Enter</p>
+              </div>
+            )}
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p className="font-bold text-sm text-blue-900 mb-2">How it works:</p>
+              <ol className="text-sm text-blue-800 space-y-1">
+                <li>1. Click an AI tool above</li>
+                <li>2. Your resume + feedback instructions copy automatically</li>
+                <li>3. Paste and press Enter in the AI tool</li>
+                <li>4. Get detailed, major-specific feedback in about 30 seconds</li>
+              </ol>
+            </div>
+
+            <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4">
+              <p className="text-sm text-yellow-900">
+                <strong>Important:</strong> AI gives suggestions, but YOU decide what to change.
+                Only use feedback that feels authentic to your actual experience.
+                Do not let AI rewrite your resume — use it to polish what YOU wrote.
+              </p>
+            </div>
           </div>
         </div>
       </div>
