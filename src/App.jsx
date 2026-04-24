@@ -27,6 +27,7 @@ import './warm-design.css';
 import StoryDetail from './StoryDetail';
 import FindOpportunitiesHub from './FindOpportunitiesHub';
 import ResourcesHub from './ResourcesHub';
+import CoverLetterGenerator from './CoverLetterGenerator';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -168,6 +169,7 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
   const jobToolsItems = [
     { page: 'job-tools-hub', label: 'Job Tools Hub', icon: <Briefcase className="w-4 h-4" /> },
     { page: 'resume-builder', label: 'Resume Builder', icon: <FileText className="w-4 h-4" /> },
+    { page: 'cover-letter', label: 'Cover Letter Generator', icon: <FileText className="w-4 h-4" /> },
     { page: 'ats-guide', label: 'ATS Guide', icon: <Search className="w-4 h-4" /> },
     { page: 'tracker', label: 'Application Tracker', icon: <Target className="w-4 h-4" /> },
     { page: 'interview-prep', label: 'Interview Prep', icon: <MessageCircle className="w-4 h-4" /> },
@@ -1430,6 +1432,7 @@ export default function App() {
           <Route path="/crisis" element={<CrisisPage setCurrentPage={setCurrentPage} />} />
           <Route path="/blog" element={<BlogPage setCurrentPage={setCurrentPage} setSelectedPostSlug={(slug) => navigate('/blog/' + slug)} />} />
           <Route path="/blog/:slug" element={<BlogPostWrapper setCurrentPage={setCurrentPage} />} />
+          <Route path="/cover-letter" element={<CoverLetterGenerator setCurrentPage={setCurrentPage} />} />
           <Route path="/find-opportunities-hub" element={<FindOpportunitiesHub setCurrentPage={setCurrentPage} />} />
 <Route path="/resources-hub" element={<ResourcesHub setCurrentPage={setCurrentPage} />} />
           {/* Catch-all: redirect unknown URLs to home */}
