@@ -205,6 +205,16 @@ const FormatModal = ({ onClose }) => (
         <div className="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-3">
           <p className="text-xs text-amber-800"><strong>Pro tip:</strong> Find the hiring manager name on LinkedIn. "Dear Sarah," beats "Dear Hiring Manager," every time.</p>
         </div>
+        <div className="mt-4 bg-blue-50 border border-blue-200 rounded-xl p-3">
+  <p className="text-xs font-bold text-blue-900 mb-2">ATS Tips for Cover Letters</p>
+  <ul className="text-xs text-blue-800 space-y-1">
+    <li>Use the job title exactly as written in the posting</li>
+    <li>No tables, columns, text boxes, or special formatting</li>
+    <li>Save as .docx or PDF — not .pages or .odt</li>
+    <li>Keep font simple — Arial, Calibri, or Times New Roman</li>
+    <li>Do not put contact info in a header — type it in the body</li>
+  </ul>
+</div>
         <button onClick={onClose} className="mt-4 w-full bg-gray-900 text-white py-3 rounded-xl font-semibold hover:bg-gray-700">Got It</button>
       </div>
     </div>
