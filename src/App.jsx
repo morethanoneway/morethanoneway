@@ -28,7 +28,6 @@ import StoryDetail from './StoryDetail';
 import FindOpportunitiesHub from './FindOpportunitiesHub';
 import ResourcesHub from './ResourcesHub';
 import CoverLetterGenerator from './CoverLetterGenerator';
-<<<<<<< HEAD
 import StrugglingInClasses from './StrugglingInClasses';
 import FamilyNotSupportive from './FamilyNotSupportive';
 import FeelingAlone from './FeelingAlone';
@@ -37,8 +36,6 @@ import CantAffordCollege from './CantAffordCollege';
 import NoIdeaWhatToDo from './NoIdeaWhatToDo';
 import EverythingIsTooMuch from './EverythingIsTooMuch';
 import CareerServicesNoIdea from './CareerServicesNoIdea';
-=======
->>>>>>> 3ff374fa438998097358b264d157408a25cda7a7
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -1445,7 +1442,6 @@ export default function App() {
           <Route path="/blog/:slug" element={<BlogPostWrapper setCurrentPage={setCurrentPage} />} />
           <Route path="/cover-letter" element={<CoverLetterGenerator setCurrentPage={setCurrentPage} />} />
           <Route path="/find-opportunities-hub" element={<FindOpportunitiesHub setCurrentPage={setCurrentPage} />} />
-<<<<<<< HEAD
           <Route path="/resources-hub" element={<ResourcesHub setCurrentPage={setCurrentPage} />} />
           <Route path="/struggling-in-classes" element={<StrugglingInClasses setCurrentPage={setCurrentPage} />} />
           <Route path="/family-not-supportive" element={<FamilyNotSupportive />} />
@@ -1455,14 +1451,9 @@ export default function App() {
           <Route path="/no-idea-what-to-do" element={<NoIdeaWhatToDo setCurrentPage={setCurrentPage} />} />
           <Route path="/everything-is-too-much" element={<EverythingIsTooMuch setCurrentPage={setCurrentPage} />} />
           <Route path="/career-services-no-idea" element={<CareerServicesNoIdea setCurrentPage={setCurrentPage} />} />
-=======
-<Route path="/resources-hub" element={<ResourcesHub setCurrentPage={setCurrentPage} />} />
->>>>>>> 3ff374fa438998097358b264d157408a25cda7a7
           {/* Catch-all: redirect unknown URLs to home */}
-     
         </Routes>
       </main>
-
       <footer className="bg-gray-800 text-white mt-12 py-8">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-6">
