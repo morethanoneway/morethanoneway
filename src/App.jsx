@@ -28,6 +28,14 @@ import StoryDetail from './StoryDetail';
 import FindOpportunitiesHub from './FindOpportunitiesHub';
 import ResourcesHub from './ResourcesHub';
 import CoverLetterGenerator from './CoverLetterGenerator';
+import StrugglingInClasses from './StrugglingInClasses';
+import FamilyNotSupportive from './FamilyNotSupportive';
+import FeelingAlone from './FeelingAlone';
+import DontWantToBeHere from './DontWantToBeHere';
+import CantAffordCollege from './CantAffordCollege';
+import NoIdeaWhatToDo from './NoIdeaWhatToDo';
+import EverythingIsTooMuch from './EverythingIsTooMuch';
+import CareerServicesNoIdea from './CareerServicesNoIdea';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -1434,7 +1442,15 @@ export default function App() {
           <Route path="/blog/:slug" element={<BlogPostWrapper setCurrentPage={setCurrentPage} />} />
           <Route path="/cover-letter" element={<CoverLetterGenerator setCurrentPage={setCurrentPage} />} />
           <Route path="/find-opportunities-hub" element={<FindOpportunitiesHub setCurrentPage={setCurrentPage} />} />
-<Route path="/resources-hub" element={<ResourcesHub setCurrentPage={setCurrentPage} />} />
+          <Route path="/resources-hub" element={<ResourcesHub setCurrentPage={setCurrentPage} />} />
+          <Route path="/struggling-in-classes" element={<StrugglingInClasses setCurrentPage={setCurrentPage} />} />
+          <Route path="/family-not-supportive" element={<FamilyNotSupportive />} />
+          <Route path="/feeling-alone" element={<FeelingAlone setCurrentPage={setCurrentPage} />} />
+          <Route path="/dont-want-to-be-here" element={<DontWantToBeHere setCurrentPage={setCurrentPage} />} />
+          <Route path="/cant-afford-college" element={<CantAffordCollege />} />
+          <Route path="/no-idea-what-to-do" element={<NoIdeaWhatToDo setCurrentPage={setCurrentPage} />} />
+          <Route path="/everything-is-too-much" element={<EverythingIsTooMuch setCurrentPage={setCurrentPage} />} />
+          <Route path="/career-services-no-idea" element={<CareerServicesNoIdea setCurrentPage={setCurrentPage} />} />
           {/* Catch-all: redirect unknown URLs to home */}
      
         </Routes>
