@@ -1279,7 +1279,7 @@ const TrackerPage = ({ setCurrentPage }) => {
 
 const CrisisPage = ({ setCurrentPage }) => (
   <div className="bg-[#FFFBF7] min-h-screen">
-  <div className="mx-auto w-full max-w-4xl px-6 py-10">
+  <div className="mx-auto w-full max-w-6xl px-6 py-10">
     <div className="space-y-6">
     <div className="bg-gradient-to-r from-red-50 to-orange-50 p-5 rounded-xl shadow-soft">
       <div className="flex items-start gap-3">
