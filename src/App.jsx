@@ -1276,131 +1276,106 @@ const TrackerPage = ({ setCurrentPage }) => {
   );
 };
 
+const CrisisPage = ({ setCurrentPage }) => {
+  const navigate = useNavigate();
 
-const CrisisPage = ({ setCurrentPage }) => (
-  <div className="bg-[#FFFBF7] min-h-screen">
-  <div className="mx-auto w-full max-w-6xl px-6 py-10">
-    <div className="space-y-6">
-    <div className="bg-gradient-to-r from-red-50 to-orange-50 p-5 rounded-xl shadow-soft">
-      <div className="flex items-start gap-3">
-        <Heart className="w-10 h-10 text-red-500 mb-3" fill="currentColor" />
-        <div>
-          <h3 className="font-bold text-red-800 mb-1">If You're In Crisis</h3>
-          <p className="text-red-700 text-sm mb-2">
-            <strong>It may not seem like it now, but this feeling is temporary. You matter.</strong><br />
-          </p>
+  return (
+    <div className="min-h-screen bg-[#FFFBF7]">
+      <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
+        <div className="space-y-8">
+
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
+            <div className="flex items-start gap-4">
+              <div className="w-11 h-11 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center flex-shrink-0">
+                <Heart className="w-5 h-5 text-red-500" fill="currentColor" />
+              </div>
+              <div>
+                <h3 className="font-bold text-gray-900 mb-2">If You're In Crisis</h3>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  <strong>It may not seem like it now, but this feeling is temporary. You matter.</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
+              <Phone className="w-8 h-8 text-red-500 mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 mb-2">988 Suicide & Crisis Lifeline</h3>
+              <p className="text-3xl font-bold text-red-600 mb-2">Call or Text: 988</p>
+              <p className="text-gray-600 text-sm">Available 24/7. Free. Confidential. Someone will listen.</p>
+            </div>
+
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
+              <MessageCircle className="w-8 h-8 text-red-500 mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Crisis Text Line</h3>
+              <p className="text-3xl font-bold text-red-600 mb-2">Text HOME to 741741</p>
+              <p className="text-gray-600 text-sm">If you prefer texting. 24/7. Trained counselors.</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
+            <h3 className="font-bold text-gray-900 mb-4">More Crisis Support</h3>
+            <ul className="space-y-3 text-sm text-gray-700 leading-relaxed">
+              <li><strong>Campus Counseling Center:</strong> Most colleges offer free counseling services. Check your school's health services website.</li>
+              <li><strong>National Alliance on Mental Illness (NAMI):</strong> Text “NAMI” to 741741 or visit nami.org</li>
+              <li><strong>The Trevor Project (LGBTQ+ Youth):</strong> 1-866-488-7386 or text START to 678-678</li>
+              <li><strong>Trans Lifeline:</strong> 1-877-565-8860</li>
+              <li><strong>National Domestic Violence Hotline:</strong> 1-800-799-SAFE (7233)</li>
+              <li><strong>National Maternal Mental Health Hotline:</strong> 1-833-TLC-MAMA</li>
+              <li><strong>Blackline:</strong> 1-800-604-5841</li>
+              <li><strong>SAMHSA Helpline:</strong> 1-800-622-HELP (4357)</li>
+            </ul>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
+            <h3 className="font-bold text-gray-900 mb-4">Helpful Apps (100% Free)</h3>
+            <div className="space-y-4">
+              {[
+                ['Calm Harm', 'Helps when you want to self-harm. Provides distractions and activities when you’re overwhelmed.'],
+                ['Sanvello', 'Anxiety and mood tracking with coping tools. Free basic features.'],
+                ['MindShift', 'CBT-based app for anxiety management. Completely free.'],
+                ['PTSD Coach', 'From the VA — helps manage PTSD symptoms. Completely free.'],
+              ].map(([title, desc], i) => (
+                <div key={i} className="bg-white rounded-2xl border border-gray-200 p-5 hover:bg-teal-50 hover:border-teal-200 hover:shadow-sm transition-all">
+                  <h4 className="font-semibold text-gray-900 mb-1">{title}</h4>
+                  <p className="text-sm text-gray-600">{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
+            <h3 className="font-bold text-gray-900 mb-4">Things That Might Help Right Now</h3>
+            <ul className="space-y-2 text-sm text-gray-700 leading-relaxed">
+              <li>• Call or text someone — a friend, family member, roommate. Just say “I’m not doing well.”</li>
+              <li>• Go somewhere public — a coffee shop, library, campus center. Being around people helps.</li>
+              <li>• Take a walk outside, even for 5 minutes. Movement can shift your mental state.</li>
+              <li>• Remember: This feeling is temporary. You’ve survived 100% of your worst days so far.</li>
+              <li>• You are not a burden. People want to help. Let them.</li>
+            </ul>
+          </div>
+
+          <div className="mt-12 bg-white rounded-3xl border border-gray-200 shadow-sm p-8 md:p-10 text-center">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">You Are Not Alone</h3>
+            <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6">
+              Many students have felt exactly like you do right now. Many have gotten through it and gone on to live meaningful lives. You can too.
+            </p>
+            <button
+              onClick={() => setCurrentPage('stories')}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-teal-500 transition-all"
+            >
+              Read Their Stories
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
+  );
+};
 
-    <div className="grid md:grid-cols-2 gap-6">
-      <div className="bg-white rounded-2xl shadow-soft p-8 border-l-4 border-red-500 p-5 rounded-xl shadow-soft">
-        <Phone className="w-10 h-10 text-red-500 mb-3" />
-        <h3 className="text-xl font-bold mb-2">988 Suicide & Crisis Lifeline</h3>
-        <p className="text-3xl font-bold text-red-600 mb-2">Call or Text: 988</p>
-        <p className="text-gray-600">Available 24/7. Free. Confidential. Someone will listen.</p>
-      </div>
-
-      <div className="bg-white rounded-2xl shadow-soft p-8 border-l-4 border-red-500 p-5 rounded-xl shadow-soft">
-        <MessageCircle className="w-10 h-10 text-red-500 mb-3" />
-        <h3 className="text-xl font-bold mb-2">Crisis Text Line</h3>
-        <p className="text-3xl font-bold text-red-600 mb-2">Text HOME to 741741</p>
-        <p className="text-gray-600">If you prefer texting. 24/7. Trained counselors.</p>
-      </div>
-    </div>
-
-    <div className="bg-blue-50 rounded-2xl shadow-soft p-8 border-l-4 border-blue-200 p-5 rounded-xl shadow-soft">
-      <h3 className="text-xl font-bold mb-3">More Crisis Support</h3>
-      <ul className="space-y-3">
-        <li>
-          <strong>Campus Counseling Center:</strong> Most colleges offer free counseling services. Check your school's health services website.
-        </li>
-        <li>
-          <strong>National Alliance on Mental Illness (NAMI):</strong> Text "NAMI" to 741741 or visit nami.org
-        </li>
-        <li>
-          <strong>The Trevor Project (LGBTQ+ Youth):</strong> 1-866-488-7386 or text START to 678-678
-        </li>
-        <li>
-          <strong>Trans Lifeline:</strong> 1-877-565-8860
-        </li>
-        <li>
-          <strong>National Domestic Violence Hotline: </strong> 1-800-799-SAFE(7233)
-        </li>
-        <li>
-          <strong>National Maternal Mental Health Hotline: </strong> 1-833-TLC-MAMA (833-852-6262)
-        </li>
-        <li>
-          <strong>Blackline (Black, Brown, Native & Muslim Support): </strong> 1-800-604-5841
-        </li>
-        <li>
-          <strong>National Substance Abuse & Mental Health Services Administration Helpline:</strong> 1-800-622-HELP (4357)
-        </li>
-      </ul>
-    </div>
-
-    <div className="bg-gradient-to-r from-green-50 to-teal-50 rounded-2xl shadow-soft p-8 border-l-4 border-green-400">
-      <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-        <span className="text-2xl">📱</span>
-        Helpful Apps (100% Free)
-      </h3>
-      <div className="space-y-4">
-        <div className="bg-white p-4 rounded-xl border border-green-200">
-          <h4 className="font-bold text-gray-900 mb-1">Calm Harm</h4>
-          <p className="text-gray-700 text-sm mb-2">Helps when you want to self-harm. Provides distractions and activities when you're overwhelmed.</p>
-          <a href="https://calmharm.co.uk/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline text-sm">Download here</a>
-        </div>
-        <div className="bg-white p-4 rounded-xl border border-green-200">
-          <h4 className="font-bold text-gray-900 mb-1">Sanvello (formerly Pacifica)</h4>
-          <p className="text-gray-700 text-sm mb-2">Anxiety and mood tracking with coping tools. Free basic features.</p>
-          <a href="https://www.sanvello.com/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline text-sm">Visit Sanvello.com</a>
-        </div>
-        <div className="bg-white p-4 rounded-xl border border-green-200">
-          <h4 className="font-bold text-gray-900 mb-1">MindShift</h4>
-          <p className="text-gray-700 text-sm mb-2">CBT-based app for anxiety management. Made by Anxiety Canada - completely free.</p>
-          <a href="https://anxietycanada.com/resources/mindshift-app/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline text-sm">Download MindShift</a>
-        </div>
-        <div className="bg-white p-4 rounded-xl border border-green-200">
-          <h4 className="font-bold text-gray-900 mb-1">PTSD Coach</h4>
-          <p className="text-gray-700 text-sm mb-2">From the VA - helps manage PTSD symptoms. Completely free.</p>
-          <a href="https://www.ptsd.va.gov/appvid/mobile/ptsdcoach_app.asp" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline text-sm">Get PTSD Coach</a>
-        </div>
-        <div className="bg-white p-4 rounded-xl border border-green-200">
-          <h4 className="font-bold text-gray-900 mb-1">Rethink</h4>
-          <p className="text-gray-700 text-sm mb-2">For stress, anxiety, and depression management. Basic features are free.</p>
-          <a href="https://rethinkcareapp.com/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline text-sm">Visit RethinkCare</a>
-        </div>
-      </div>
-    </div>
-
-    <div className="bg-yellow-50 rounded-2xl shadow-soft p-8 border-l-4 border-yellow-200 p-5 rounded-xl shadow-soft">
-      <h3 className="font-bold text-lg mb-3">Things That Might Help Right Now</h3>
-      <ul className="space-y-2 text-gray-700">
-        <li>• Call or text someone - a friend, family member, roommate. Just say "I'm not doing well."</li>
-        <li>• Go somewhere public - a coffee shop, library, campus center. Being around people helps.</li>
-        <li>• Take a walk outside, even for 5 minutes. Movement can shift your mental state.</li>
-        <li>• Remember: This feeling is temporary. You've survived 100% of your worst days so far.</li>
-        <li>• You are not a burden. People want to help. Let them.</li>
-      </ul>
-    </div>
-
-    <div className="bg-white rounded-2xl shadow-soft p-8 rounded-xl shadow-soft text-center">
-      <h3 className="text-xl font-bold mb-3">You Are Not Alone</h3>
-      <p className="text-gray-700 mb-4">
-        Many students have felt exactly like you do right now. Many have gotten through it and gone on to live meaningful lives. You can too.
-      </p>
-      <button
-        onClick={() => setCurrentPage('stories')}
-        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
-      >
-        Read Their Stories
-      </button>
-    </div>
-  </div>
-  </div>
-  </div>
-);
-
+export default CrisisPage;
 
 const ResumeBuilderPage = () => (
   <div className="space-y-6">
