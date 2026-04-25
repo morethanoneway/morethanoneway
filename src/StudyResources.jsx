@@ -368,10 +368,11 @@ const StudyResources = ({ onBack }) => {
   // -----------------------------
   // Small UI helpers
   // -----------------------------
-  const Card = ({ children, className = "" }) => (
-    <div className={`bg-white rounded-2xl border border-gray-200 ${className}`}>{children}</div>
-  );
-
+const Card = ({ children, className = "", id }) => (
+  <div id={id} className={`bg-white rounded-2xl border border-gray-200 ${className}`}>
+    {children}
+  </div>
+);
   const SectionHeader = ({ icon, title, subtitle }) => (
     <div className="flex items-start gap-3">
       <div className="flex items-center justify-center">
@@ -647,7 +648,7 @@ const StudyResources = ({ onBack }) => {
           </Card>
 
           {/* Online Learning Platforms */}
-          <Card className="p-6 md:p-8">
+          <Card id="platforms-section" className="p-6 md:p-8">
             <SectionHeader
               icon={<Globe className="w-6 h-6 text-tealBrand/80" />}
               title="Online Learning Platforms (Free)"
@@ -739,7 +740,7 @@ const StudyResources = ({ onBack }) => {
           </Card>
 
           {/* Discord Study Servers */}
-          <Card id="platforms-section" className="p-6 md:p-8">
+         <Card id="discord-section" className="p-6 md:p-8">
             <SectionHeader
               icon={<Users className="w-6 h-6 text-tealBrand/80" />}
               title="Discord Study Servers"
