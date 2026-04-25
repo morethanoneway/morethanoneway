@@ -1375,8 +1375,6 @@ const CrisisPage = ({ setCurrentPage }) => {
   );
 };
 
-export default CrisisPage;
-
 const ResumeBuilderPage = () => (
   <div className="space-y-6">
 
