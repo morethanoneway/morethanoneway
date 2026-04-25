@@ -482,6 +482,36 @@ const StudyResources = ({ onBack }) => {
             </p>
           </header>
 
+          <div className="flex flex-wrap justify-center gap-3">
+  <a
+    href="#youtube-section"
+    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-teal-500 transition-all"
+  >
+    YouTube Channels
+  </a>
+
+  <a
+    href="#platforms-section"
+    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-900 font-semibold hover:bg-teal-50 hover:border-teal-200 transition-all"
+  >
+    Learning Platforms
+  </a>
+
+  <a
+    href="#reddit-section"
+    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-900 font-semibold hover:bg-teal-50 hover:border-teal-200 transition-all"
+  >
+    Reddit Help
+  </a>
+
+  <a
+    href="#subjects-section"
+    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-900 font-semibold hover:bg-teal-50 hover:border-teal-200 transition-all"
+  >
+    Subject Resources
+  </a>
+</div>
+
           {/* Search + Tags */}
           <Card className="p-6">
             <div className="flex flex-col md:flex-row md:items-center gap-4">
@@ -545,7 +575,7 @@ const StudyResources = ({ onBack }) => {
           </Card>
 
           {/* YouTube Channels */}
-          <Card className="p-6 md:p-8">
+          <Card id="youtube-section" className="p-6 md:p-8">
             <SectionHeader
               icon={<Youtube className="w-6 h-6 text-tealBrand/80" />}
               title="YouTube Channels by Subject"
@@ -652,7 +682,7 @@ const StudyResources = ({ onBack }) => {
           </Card>
 
           {/* Reddit Communities */}
-          <Card className="p-6 md:p-8">
+          <Card id="reddit-section" className="p-6 md:p-8">
             <SectionHeader
               icon={<MessageCircle className="w-6 h-6 text-tealBrand/80" />}
               title="Reddit Study Communities"
@@ -709,7 +739,7 @@ const StudyResources = ({ onBack }) => {
           </Card>
 
           {/* Discord Study Servers */}
-          <Card className="p-6 md:p-8">
+          <Card id="platforms-section" className="p-6 md:p-8">
             <SectionHeader
               icon={<Users className="w-6 h-6 text-tealBrand/80" />}
               title="Discord Study Servers"
@@ -755,7 +785,7 @@ const StudyResources = ({ onBack }) => {
           </Card>
 
           {/* Subject-Specific Free Resources */}
-          <Card className="p-6 md:p-8">
+          <Card id="subjects-section" className="p-6 md:p-8">
             <SectionHeader
               icon={<BookOpen className="w-6 h-6 text-tealBrand/80" />}
               title="Subject-Specific Free Resources"
