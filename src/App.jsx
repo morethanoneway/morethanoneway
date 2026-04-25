@@ -525,233 +525,187 @@ const HomePage = ({ setCurrentPage }) => (
 
 
 const PivotPage = ({ setCurrentPage }) => {
-  const [selectedMajor, setSelectedMajor] = useState('');
 
-  const careerPivots = {
-    'Anthropology': [
-      { career: 'UX Researcher', growth: '18%', why: 'Understanding human behavior and culture is exactly what product teams need', salary: '$70k-95k' },
-      { career: 'Market Research Analyst', growth: '13%', why: 'Study consumer behavior and cultural trends', salary: '$55k-80k' },
-      { career: 'Nonprofit Program Manager', growth: '9%', why: 'Work with communities and cultural organizations', salary: '$50k-75k' },
-      { career: 'Diversity & Inclusion Specialist', growth: '11%', why: 'Your cultural understanding helps create inclusive workplaces', salary: '$60k-85k' }
-    ],
-    'Art/Fine Arts': [
-      { career: 'UX/UI Designer', growth: '16%', why: 'Your design skills translate directly - tech needs visual designers desperately', salary: '$70k-100k' },
-      { career: 'Graphic Designer (Corporate)', growth: '3%', why: 'Every company needs internal design - marketing, presentations, branding', salary: '$50k-70k' },
-      { career: 'Art Director (Advertising)', growth: '6%', why: 'Lead creative teams, less hands-on creation, more strategy', salary: '$75k-110k' },
-      { career: 'Museum/Gallery Coordinator', growth: '10%', why: 'Behind-the-scenes work in arts - events, collections, education', salary: '$40k-60k' }
-    ],
-    'Biology': [
-      { career: 'Clinical Research Coordinator', growth: '14%', why: 'Your science background without needing a PhD', salary: '$50k-70k' },
-      { career: 'Medical Writer', growth: '9%', why: 'Write about science for various audiences', salary: '$60k-85k' },
-      { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA processes for biotech/pharma', salary: '$65k-90k' },
-      { career: 'Data Analyst (Healthcare)', growth: '23%', why: 'Health data is exploding, science background helps', salary: '$60k-85k' }
-    ],
-    'Business': [
-      { career: 'Operations Analyst', growth: '16%', why: 'Make businesses run more efficiently', salary: '$60k-80k' },
-      { career: 'Business Analyst', growth: '14%', why: 'Bridge between business needs and tech solutions', salary: '$65k-90k' },
-      { career: 'Financial Analyst', growth: '9%', why: 'Steady field with clear career progression', salary: '$65k-85k' },
-      { career: 'Supply Chain Analyst', growth: '18%', why: 'Growing field, especially post-pandemic', salary: '$60k-85k' }
-    ],
-    'Chemistry': [
-      { career: 'Quality Control Analyst', growth: '9%', why: 'Lab skills apply to pharma, food, manufacturing', salary: '$50k-70k' },
-      { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA/EPA compliance - chemistry knowledge essential', salary: '$65k-90k' },
-      { career: 'Environmental Scientist', growth: '6%', why: 'Use chemistry to address pollution and sustainability', salary: '$55k-80k' },
-      { career: 'Patent Examiner', growth: '3%', why: 'Government job reviewing chemistry/pharma patents', salary: '$60k-90k' }
-    ],
-    'Communications': [
-      { career: 'Corporate Communications Specialist', growth: '8%', why: 'Every company needs internal/external communication strategy', salary: '$55k-80k' },
-      { career: 'Public Relations Specialist', growth: '8%', why: 'Manage company reputation and media relations', salary: '$55k-75k' },
-      { career: 'Social Media Manager', growth: '10%', why: 'Your understanding of messaging applies to digital platforms', salary: '$50k-75k' },
-      { career: 'Employee Communications', growth: '12%', why: 'Help companies communicate with their workforce - growing field', salary: '$60k-85k' }
-    ],
-    'Computer Science': [
-      { career: 'Data Analyst', growth: '23%', why: 'Uses your logic and problem-solving skills, less coding-intensive', salary: '$65k-85k' },
-      { career: 'Product Manager', growth: '19%', why: 'Technical background helps you understand what teams are building', salary: '$80k-120k' },
-      { career: 'Technical Writer', growth: '7%', why: 'Explain complex tech concepts - your CS knowledge is an asset', salary: '$60k-80k' },
-      { career: 'UX Researcher', growth: '18%', why: 'Analytical thinking applied to user behavior', salary: '$70k-95k' }
-    ],
-    'Criminal Justice': [
-      { career: 'Compliance Officer', growth: '8%', why: 'Ensure companies follow laws and regulations', salary: '$60k-85k' },
-      { career: 'Corporate Security Analyst', growth: '9%', why: 'Risk assessment and security planning for businesses', salary: '$55k-80k' },
-      { career: 'Loss Prevention Manager', growth: '6%', why: 'Retail and corporate asset protection', salary: '$50k-75k' },
-      { career: 'Emergency Management Specialist', growth: '6%', why: 'Disaster planning and response coordination', salary: '$55k-80k' }
-    ],
-    'Education': [
-      { career: 'Corporate Trainer', growth: '11%', why: 'Companies need people who can teach - better pay than K-12', salary: '$55k-85k' },
-      { career: 'Instructional Designer', growth: '9%', why: 'Create online courses and training programs for businesses', salary: '$60k-90k' },
-      { career: 'Curriculum Developer (EdTech)', growth: '15%', why: 'Education companies need people who understand teaching', salary: '$60k-85k' },
-      { career: 'Learning & Development Specialist', growth: '10%', why: 'Help employees grow - your teaching skills in a corporate setting', salary: '$60k-85k' }
-    ],
-    'English/Journalism': [
-      { career: 'Technical Writer', growth: '7%', why: 'Your writing skills are desperately needed in tech companies', salary: '$60k-80k' },
-      { career: 'UX Writer', growth: '23%', why: 'Make apps and websites easier to understand - storytelling for digital', salary: '$75k-100k' },
-      { career: 'Content Strategist', growth: '15%', why: 'Plan and manage content across organizations', salary: '$65k-90k' },
-      { career: 'Grant Writer', growth: '8%', why: 'Nonprofits need great writers, less competitive field', salary: '$50k-70k' }
-    ],
-    'Foreign Languages': [
-      { career: 'Localization Specialist', growth: '13%', why: 'Tech companies need content translated and culturally adapted', salary: '$55k-80k' },
-      { career: 'International Business Coordinator', growth: '10%', why: 'Help companies expand globally - language skills are valuable', salary: '$55k-85k' },
-      { career: 'Technical Writer (Multilingual)', growth: '7%', why: 'Create documentation in multiple languages', salary: '$60k-85k' },
-      { career: 'UX Researcher (International Markets)', growth: '18%', why: 'Research users in different countries and cultures', salary: '$70k-95k' }
-    ],
-    'History': [
-      { career: 'Researcher (Market/Policy)', growth: '11%', why: 'Your research skills apply beyond academia - companies need deep analysis', salary: '$55k-80k' },
-      { career: 'Compliance Specialist', growth: '8%', why: 'Understanding regulations and documentation - your analytical skills fit', salary: '$60k-85k' },
-      { career: 'Archives/Records Manager', growth: '5%', why: 'Organize and preserve information for corporations, government, nonprofits', salary: '$50k-70k' },
-      { career: 'Grant Writer', growth: '8%', why: 'Nonprofits need writers who can research and build compelling cases', salary: '$50k-70k' }
-    ],
-    'Marketing': [
-      { career: 'Sales Operations', growth: '23%', why: 'Your communication skills + analytics, growing rapidly', salary: '$60k-85k' },
-      { career: 'Customer Success Manager', growth: '20%', why: 'Help clients succeed, relationship-focused', salary: '$55k-80k' },
-      { career: 'Digital Marketing Analyst', growth: '17%', why: 'Data-driven marketing, less saturated than traditional marketing', salary: '$55k-75k' },
-      { career: 'Product Marketing', growth: '16%', why: 'Bridge between product teams and customers', salary: '$70k-95k' }
-    ],
-    'Mathematics': [
-      { career: 'Data Analyst', growth: '23%', why: 'Your analytical and statistical skills are in high demand', salary: '$65k-90k' },
-      { career: 'Actuarial Analyst', growth: '21%', why: 'Math background perfect for risk assessment and insurance', salary: '$70k-100k' },
-      { career: 'Financial Analyst', growth: '9%', why: 'Modeling and forecasting - your quantitative skills shine', salary: '$65k-95k' },
-      { career: 'Operations Research Analyst', growth: '23%', why: 'Optimize business processes using mathematical models', salary: '$70k-100k' }
-    ],
-    'Music/Theater': [
-      { career: 'Audio/Video Production', growth: '12%', why: 'Every company needs video content - your performance skills translate', salary: '$50k-75k' },
-      { career: 'Event Coordinator', growth: '18%', why: 'Your experience managing performances applies to corporate events', salary: '$45k-65k' },
-      { career: 'Music Therapist', growth: '9%', why: 'Clinical work using your musical training - requires certification', salary: '$50k-70k' },
-      { career: 'Corporate Trainer', growth: '11%', why: 'Teaching and performing skills make you great at presentations', salary: '$55k-80k' }
-    ],
-    'Philosophy': [
-      { career: 'Business Analyst', growth: '14%', why: 'Your logic and critical thinking skills are exactly what companies need', salary: '$70k-95k' },
-      { career: 'UX Researcher', growth: '18%', why: 'Understanding how people think and make decisions - philosophy in practice', salary: '$75k-105k' },
-      { career: 'Technical Writer', growth: '7%', why: 'Break down complex ideas clearly - your core skill', salary: '$60k-85k' },
-      { career: 'Policy Analyst', growth: '6%', why: 'Government and think tanks need ethical reasoning and analysis', salary: '$60k-90k' }
-    ],
-    'Physics': [
-      { career: 'Data Scientist', growth: '35%', why: 'Physics problem-solving and math skills are perfect for data science', salary: '$85k-120k' },
-      { career: 'Quantitative Analyst', growth: '11%', why: 'Finance firms love physics backgrounds for modeling', salary: '$90k-150k' },
-      { career: 'Software Engineer', growth: '22%', why: 'Strong problem-solving transfers to coding', salary: '$80k-130k' },
-      { career: 'Data Engineer', growth: '21%', why: 'Build data systems using analytical thinking', salary: '$85k-120k' }
-    ],
-    'Political Science': [
-      { career: 'Policy Analyst', growth: '6%', why: 'Work for government, nonprofits, or think tanks analyzing policy', salary: '$60k-90k' },
-      { career: 'Campaign Manager/Political Consultant', growth: '8%', why: 'Electoral politics - project management with real impact', salary: '$50k-100k' },
-      { career: 'Nonprofit Program Manager', growth: '9%', why: 'Run programs for advocacy organizations using your policy knowledge', salary: '$55k-80k' },
-      { career: 'Government Relations Specialist', growth: '7%', why: 'Help companies navigate regulation and policy', salary: '$70k-110k' }
-    ],
-    'Psychology': [
-      { career: 'UX Researcher', growth: '18%', why: 'Understanding human behavior is exactly what tech companies need', salary: '$70k-95k' },
-      { career: 'HR Specialist', growth: '10%', why: 'Your understanding of people is valuable in every organization', salary: '$50k-70k' },
-      { career: 'Market Research Analyst', growth: '13%', why: 'Study consumer behavior and trends', salary: '$55k-75k' },
-      { career: 'Training & Development', growth: '11%', why: 'Help employees learn and grow', salary: '$55k-80k' }
-    ],
-    'Sociology': [
-      { career: 'Market Research Analyst', growth: '13%', why: 'Study social trends and consumer behavior patterns', salary: '$55k-80k' },
-      { career: 'HR Specialist', growth: '10%', why: 'Understanding group dynamics and organizational behavior', salary: '$50k-75k' },
-      { career: 'Diversity & Inclusion Manager', growth: '11%', why: 'Create equitable workplaces using your social science background', salary: '$65k-95k' },
-      { career: 'Community Outreach Coordinator', growth: '8%', why: 'Work with nonprofits and government on social programs', salary: '$45k-65k' }
-    ]
-  };
+  const majorGroups = [
+    {
+      label: 'Engineering',
+      color: 'border-blue-400 bg-blue-50 hover:bg-blue-100',
+      iconBg: 'bg-blue-100 text-blue-700',
+      majors: [
+        { name: 'Aerospace Engineering', slug: 'aerospace-engineering', paths: '4 career paths' },
+        { name: 'Biomedical Engineering', slug: 'biomedical-engineering', paths: '4 career paths' },
+        { name: 'Chemical Engineering', slug: 'chemical-engineering', paths: '4 career paths' },
+        { name: 'Civil Engineering', slug: 'civil-engineering', paths: '4 career paths' },
+        { name: 'Computer Engineering', slug: 'computer-engineering', paths: '4 career paths' },
+        { name: 'Electrical Engineering', slug: 'electrical-engineering', paths: '4 career paths' },
+        { name: 'Engineering Physics', slug: 'engineering-physics', paths: '4 career paths' },
+        { name: 'Environmental Engineering', slug: 'environmental-engineering', paths: '4 career paths' },
+        { name: 'Industrial Engineering', slug: 'industrial-engineering', paths: '4 career paths' },
+        { name: 'Materials Science Engineering', slug: 'materials-science-engineering', paths: '4 career paths' },
+        { name: 'Mechanical Engineering', slug: 'mechanical-engineering', paths: '4 career paths' },
+        { name: 'Software Engineering', slug: 'software-engineering', paths: '4 career paths' },
+      ]
+    },
+    {
+      label: 'Computer Science & Tech',
+      color: 'border-purple-400 bg-purple-50 hover:bg-purple-100',
+      iconBg: 'bg-purple-100 text-purple-700',
+      majors: [
+        { name: 'Computer Science', slug: 'computer-science', paths: '5 career paths' },
+        { name: 'Software Engineering', slug: 'software-engineering', paths: '4 career paths' },
+        { name: 'Data Science', slug: 'data-science', paths: '4 career paths' },
+        { name: 'Cybersecurity', slug: 'cybersecurity', paths: '4 career paths' },
+        { name: 'AI / Machine Learning', slug: 'ai-machine-learning', paths: '4 career paths' },
+        { name: 'Information Technology', slug: 'information-technology', paths: '4 career paths' },
+      ]
+    },
+    {
+      label: 'Business',
+      color: 'border-green-400 bg-green-50 hover:bg-green-100',
+      iconBg: 'bg-green-100 text-green-700',
+      majors: [
+        { name: 'Accounting', slug: 'accounting', paths: '4 career paths' },
+        { name: 'Business Administration', slug: 'business-administration', paths: '5 career paths' },
+        { name: 'Economics', slug: 'economics', paths: '4 career paths' },
+        { name: 'Entrepreneurship', slug: 'entrepreneurship', paths: '4 career paths' },
+        { name: 'Finance', slug: 'finance', paths: '4 career paths' },
+        { name: 'Hospitality Management', slug: 'hospitality-management', paths: '4 career paths' },
+        { name: 'Information Systems', slug: 'information-systems', paths: '4 career paths' },
+        { name: 'International Business', slug: 'international-business', paths: '4 career paths' },
+        { name: 'Management', slug: 'management', paths: '4 career paths' },
+        { name: 'Management Information Systems', slug: 'management-information-systems', paths: '4 career paths' },
+        { name: 'Marketing', slug: 'marketing', paths: '5 career paths' },
+        { name: 'Supply Chain Management', slug: 'supply-chain-management', paths: '4 career paths' },
+      ]
+    },
+    {
+      label: 'Liberal Arts & Humanities',
+      color: 'border-orange-400 bg-orange-50 hover:bg-orange-100',
+      iconBg: 'bg-orange-100 text-orange-700',
+      majors: [
+        { name: 'Anthropology', slug: 'anthropology', paths: '4 career paths' },
+        { name: 'Communications', slug: 'communications', paths: '5 career paths' },
+        { name: 'Creative Writing', slug: 'creative-writing', paths: '4 career paths' },
+        { name: 'English', slug: 'english', paths: '4 career paths' },
+        { name: 'Film / Media Studies', slug: 'film-media-studies', paths: '4 career paths' },
+        { name: 'Fine Arts / Studio Art', slug: 'fine-arts', paths: '4 career paths' },
+        { name: "Gender / Women's Studies", slug: 'gender-womens-studies', paths: '4 career paths' },
+        { name: 'History', slug: 'history', paths: '4 career paths' },
+        { name: 'Journalism', slug: 'journalism', paths: '4 career paths' },
+        { name: 'Music', slug: 'music', paths: '4 career paths' },
+        { name: 'Philosophy', slug: 'philosophy', paths: '4 career paths' },
+        { name: 'Political Science', slug: 'political-science', paths: '4 career paths' },
+        { name: 'Psychology', slug: 'psychology', paths: '6 career paths' },
+        { name: 'Religious Studies', slug: 'religious-studies', paths: '4 career paths' },
+        { name: 'Sociology', slug: 'sociology', paths: '4 career paths' },
+        { name: 'Theater / Drama', slug: 'theater', paths: '4 career paths' },
+      ]
+    },
+    {
+      label: 'STEM',
+      color: 'border-teal-400 bg-teal-50 hover:bg-teal-100',
+      iconBg: 'bg-teal-100 text-teal-700',
+      majors: [
+        { name: 'Biochemistry', slug: 'biochemistry', paths: '4 career paths' },
+        { name: 'Biology', slug: 'biology', paths: '6 career paths' },
+        { name: 'Chemistry', slug: 'chemistry', paths: '4 career paths' },
+        { name: 'Computer Information Systems', slug: 'computer-information-systems', paths: '4 career paths' },
+        { name: 'Environmental Science', slug: 'environmental-science', paths: '4 career paths' },
+        { name: 'Mathematics', slug: 'mathematics', paths: '5 career paths' },
+        { name: 'Neuroscience', slug: 'neuroscience', paths: '4 career paths' },
+        { name: 'Nursing', slug: 'nursing', paths: '4 career paths' },
+        { name: 'Physics', slug: 'physics', paths: '4 career paths' },
+        { name: 'Public Health', slug: 'public-health', paths: '4 career paths' },
+        { name: 'Statistics', slug: 'statistics', paths: '4 career paths' },
+      ]
+    },
+    {
+      label: 'Other',
+      color: 'border-red-400 bg-red-50 hover:bg-red-100',
+      iconBg: 'bg-red-100 text-red-700',
+      majors: [
+        { name: 'Architecture', slug: 'architecture', paths: '4 career paths' },
+        { name: 'Communication Sciences / Speech Pathology', slug: 'communication-sciences', paths: '4 career paths' },
+        { name: 'Criminal Justice', slug: 'criminal-justice', paths: '4 career paths' },
+        { name: 'Education', slug: 'education', paths: '4 career paths' },
+        { name: 'Graphic Design', slug: 'graphic-design', paths: '4 career paths' },
+        { name: 'Healthcare Administration', slug: 'healthcare-administration', paths: '4 career paths' },
+        { name: 'Kinesiology', slug: 'kinesiology', paths: '4 career paths' },
+        { name: 'Nutrition / Dietetics', slug: 'nutrition-dietetics', paths: '4 career paths' },
+        { name: 'Social Work', slug: 'social-work', paths: '4 career paths' },
+        { name: 'Sports Management', slug: 'sports-management', paths: '4 career paths' },
+        { name: 'Urban Planning', slug: 'urban-planning', paths: '4 career paths' },
+      ]
+    },
+  ];
 
-return (
+  return (
     <div className="bg-[#FFFBF7] min-h-screen">
-      <div className="mx-auto w-full max-w-screen-xl px-6 lg:px-12 py-10">
-        <div className="space-y-6">
+      <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
 
-      {/* Hero Section */}
-      <div>
-        <h1 className="text-center text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">Explore {" "}
-          <span className="block md:inline text-tealBrand">
-            Career Paths</span> </h1>
-        <p className="mt-3 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
-          Your major doesn't lock you in. See adjacent roles that value the same skills — even if the title looks different.
-        </p>
-
-
-        <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
-
-
-          <button
-            onClick={() => setCurrentPage("search-guide")}
-            className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all"
-          >
-            Search guide
-          </button>
-
-          <button
-            onClick={() => setCurrentPage("find-internships")}
-            className="bg-white text-gray-700 px-7 py-4 rounded-xl font-semibold border border-gray-200 hover:bg-gray-100 transition-all"
-          >
-            Find internships
-          </button>
-
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg shadow p-6">
-        <label className="block text-sm font-semibold mb-2">Select Your Major:</label>
-        <select
-          value={selectedMajor}
-          onChange={(e) => setSelectedMajor(e.target.value)}
-          className="w-full p-3 border rounded-lg"
-        >
-          <option value="">Choose your major...</option>
-          {Object.keys(careerPivots).map(major => (
-            <option key={major} value={major}>{major}</option>
-          ))}
-        </select>
-      </div>
-
-      {selectedMajor && (
-        <div className="space-y-4">
-          <h3 className="text-xl font-bold">Alternative Career Paths for {selectedMajor}:</h3>
-          {careerPivots[selectedMajor].map((pivot, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
-              <div className="flex justify-between items-start mb-3">
-                <h4 className="text-xl font-bold text-gray-800">{pivot.career}</h4>
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
-                  +{pivot.growth} growth
-                </span>
-              </div>
-              <p className="text-gray-700 mb-2">{pivot.why}</p>
-              <p className="text-sm text-gray-500">Typical salary: {pivot.salary}</p>
-            </div>
-          ))}
-
-<div className="bg-teal-50 border border-teal-200 rounded-xl p-5 text-center">
-  <p className="font-semibold text-gray-900 mb-3">
-    Want the complete guide for {selectedMajor} majors?
-  </p>
-  <button
-    onClick={() => setCurrentPage('major/' + selectedMajor.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-'))}
-    className="bg-[#006581] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#005A73] transition-all"
-  >
-    See Full {selectedMajor} Career Guide →
-  </button>
-  <p className="text-xs text-gray-500 mt-2">Includes live job counts, honest reality check, and next steps</p>
-</div>
-
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-            <h4 className="font-bold mb-2">Remember:</h4>
-<ul className="space-y-1 text-sm text-gray-700">
-  <li>‣ These are real career paths that value your existing skills</li>
-  <li>‣ Growth rates from <a href="https://www.bls.gov/ooh/" target="_blank" rel="noopener noreferrer" className="text-teal-600 underline hover:text-teal-800">Bureau of Labor Statistics</a> (2023-2033 projections)</li>
-  <li>‣ Salary ranges reflect entry to mid-level positions (BLS + NACE 2025 data)</li>
-  <li>‣ Live job counts from Adzuna — updated daily, includes all experience levels</li>
-  <li>‣ Many people who succeed in these fields didn't start there</li>
-  <li>‣ Your "non-traditional" background can be an advantage</li>
-</ul>
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
+            Explore{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-orange-400">
+              Career Paths
+            </span>
+          </h1>
+          <p className="mt-4 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
+            Your major doesn't lock you in. Pick yours to see real career paths — with live job counts, salary data, and an honest reality check.
+          </p>
+          <div className="mt-6 flex flex-col md:flex-row gap-3 justify-center">
+            <button onClick={() => setCurrentPage('search-guide')}
+              className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all">
+              Job Search Guide
+            </button>
+            <button onClick={() => setCurrentPage('find-internships')}
+              className="bg-white text-gray-700 px-7 py-4 rounded-xl font-semibold border border-gray-200 hover:bg-gray-100 transition-all">
+              Find Internships
+            </button>
           </div>
         </div>
-      )}
 
-      {/* Share Buttons */}
-      <ShareButtons
-        title="Career Path Alternatives - MoreThanOneWay.org"
-        message="Know someone questioning their major?"
-      />
-      </div>
+        {/* Major Groups */}
+        <div className="space-y-10">
+          {majorGroups.map((group) => (
+            <div key={group.label}>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className={`inline-block w-3 h-3 rounded-full ${group.iconBg.split(' ')[0]}`}></span>
+                {group.label}
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                {group.majors.map((major) => (
+                  <button
+                    key={major.slug}
+                    onClick={() => setCurrentPage('major/' + major.slug)}
+                    className={`text-left p-4 rounded-xl border-l-4 transition-all hover:-translate-y-0.5 hover:shadow-md ${group.color}`}
+                  >
+                    <p className="font-semibold text-gray-900 text-sm leading-tight">{major.name}</p>
+                    <p className="text-xs text-gray-500 mt-1">{major.paths} + live job counts</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Data attribution */}
+        <div className="mt-10 bg-white rounded-2xl border border-gray-200 p-5">
+          <h3 className="font-bold text-gray-900 mb-3 text-sm">About This Data</h3>
+          <ul className="space-y-1 text-sm text-gray-600">
+            <li>‣ Growth rates from <a href="https://www.bls.gov/ooh/" target="_blank" rel="noopener noreferrer" className="text-teal-600 underline hover:text-teal-800">Bureau of Labor Statistics</a> (2023-2033 projections)</li>
+            <li>‣ Salary ranges reflect entry to mid-level positions (BLS + NACE 2025 data)</li>
+            <li>‣ Live job counts from Adzuna — updated daily, includes all experience levels</li>
+            <li>‣ Career paths selected for accessibility without additional degrees unless noted</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   );
 };
+
 const TrackerPage = ({ setCurrentPage }) => {
   const [applications, setApplications] = useState([]);
   const [showMoreDetails, setShowMoreDetails] = useState(false);
