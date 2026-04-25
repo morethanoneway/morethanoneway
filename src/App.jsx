@@ -628,6 +628,7 @@ const PivotPage = ({ setCurrentPage }) => {
         { name: 'Communication Sciences / Speech Pathology', slug: 'communication-sciences', paths: '4 career paths' },
         { name: 'Criminal Justice', slug: 'criminal-justice', paths: '4 career paths' },
         { name: 'Education', slug: 'education', paths: '4 career paths' },
+        { name: 'Foreign Languages', slug: 'foreign-languages', paths: '4 career paths' },
         { name: 'Graphic Design', slug: 'graphic-design', paths: '4 career paths' },
         { name: 'Healthcare Administration', slug: 'healthcare-administration', paths: '4 career paths' },
         { name: 'Kinesiology', slug: 'kinesiology', paths: '4 career paths' },
