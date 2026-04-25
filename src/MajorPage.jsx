@@ -1,1567 +1,507 @@
-import React, { useState } from "react";
-import { useNavigate, Routes, Route, useParams, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ArrowLeft, Briefcase, TrendingUp, DollarSign, ExternalLink, BookOpen, FileText, Search } from 'lucide-react';
 
-import { Heart, MessageCircle, Sparkles, GraduationCap, Phone, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, Building, DollarSign, HelpCircle, AlertCircle, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
-import ResumeBuilder from './ResumeBuilder';
-import YoureNotAlone from './YoureNotAlone';
-import Contact from './Contact';
-import SearchGuide from './SearchGuide';
-import StudyResources from './StudyResources';
-import InterviewPrep from './InterviewPrep';
-import JobAlertGuide from './Jobalertguide';
-import ShareButtons from './Sharebuttons';
-import RecommendedReading from './RecommendedReading';
-import ResourcesPage from "./ResourcesPage";
-import StoriesPage from './StoriesPage';
-import WarmHomePage from './WarmHomePage';
-import AboutPage from './Aboutpage';
-import JobToolsHub from './JobToolsHub';
-import NeedALaugh from './NeedALaugh';
-import Volunteer from './Volunteer';
-import BlogPage from './BlogPage';
-import BlogPost from './BlogPost';
-import PageHero from "./components/PageHero";
-import ATSGuide from './Atsguide';
-import FindInternshipsPage from './FindInternshipsPage';
-import './warm-design.css';
-import StoryDetail from './StoryDetail';
-import FindOpportunitiesHub from './FindOpportunitiesHub';
-import ResourcesHub from './ResourcesHub';
-import CoverLetterGenerator from './CoverLetterGenerator';
-import StrugglingInClasses from './StrugglingInClasses';
-import FamilyNotSupportive from './FamilyNotSupportive';
-import FeelingAlone from './FeelingAlone';
-import DontWantToBeHere from './DontWantToBeHere';
-import CantAffordCollege from './CantAffordCollege';
-import NoIdeaWhatToDo from './NoIdeaWhatToDo';
-import EverythingIsTooMuch from './EverythingIsTooMuch';
-import CareerServicesNoIdea from './CareerServicesNoIdea';
-import HateMyMajor from './HateMyMajor';
-import FirstGenerationStudent from './FirstGenerationStudent';
-import AcademicProbation from './AcademicProbation';
-import BurntOut from './BurntOut';
-import ThinkingAboutTransferring from './ThinkingAboutTransferring';
-import MajorPage from './MajorPage';
+const CAREER_KEY_MAP = {
+  'UX Researcher': 'ux-researcher',
+  'HR Specialist': 'hr-specialist',
+  'Market Research Analyst': 'market-research-analyst',
+  'Training & Development': 'training-development',
+  'Behavioral Health Technician': 'behavioral-health-technician',
+  'Case Manager': 'case-manager',
+  'Operations Analyst': 'operations-analyst',
+  'Business Analyst': 'business-analyst',
+  'Financial Analyst': 'financial-analyst',
+  'Supply Chain Analyst': 'supply-chain-analyst',
+  'Sales Development Representative': 'sales-development-rep',
+  'Clinical Research Coordinator': 'clinical-research-coordinator',
+  'Medical Writer': 'medical-writer',
+  'Regulatory Affairs Specialist': 'regulatory-affairs',
+  'Data Analyst (Healthcare)': 'healthcare-data-analyst',
+  'Pharmaceutical Sales Rep': 'pharmaceutical-sales',
+  'Lab Technician': 'lab-technician',
+  'Data Analyst': 'data-analyst',
+  'Product Manager': 'product-manager',
+  'Technical Writer': 'technical-writer',
+  'Software Engineer': 'software-engineer',
+  'Cybersecurity Analyst': 'cybersecurity-analyst',
+  'Corporate Communications Specialist': 'corporate-communications',
+  'Public Relations Specialist': 'public-relations',
+  'Social Media Manager': 'social-media-manager',
+  'Content Marketing Specialist': 'content-marketing',
+  'Digital Marketing Specialist': 'digital-marketing',
+  'UX Writer': 'ux-writer',
+  'Content Strategist': 'content-strategist',
+  'Grant Writer': 'grant-writer',
+  'Actuarial Analyst': 'actuary',
+  'Operations Research Analyst': 'operations-research',
+  'Data Scientist': 'data-scientist',
+  'Quantitative Analyst': 'quantitative-analyst',
+  'Sales Operations': 'sales-operations',
+  'Customer Success Manager': 'customer-success',
+  'Product Marketing': 'product-marketing',
+  'Corporate Trainer': 'corporate-trainer',
+  'Instructional Designer': 'instructional-designer',
+  'Compliance Officer': 'compliance-officer',
+  'Corporate Security Analyst': 'corporate-security',
+  'Policy Analyst': 'policy-analyst',
+  'Government Relations Specialist': 'government-relations',
+};
 
-const SectionHeader = ({ icon: Icon, title, subtitle }) => (
-  <div className="mb-10">
-    <div className="flex items-center gap-4 mb-2">
-      <div className="w-11 h-11 rounded-xl bg-[#006581]/10 ring-1 ring-[#006581]/15 flex items-center justify-center">
-        <Icon className="w-6 h-6 text-[#006581]" strokeWidth={1.75} />
-      </div>
-      <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900">
-        {title}
-      </h2>
-    </div>
-    <p className="text-gray-600 max-w-3xl">
-      {subtitle}
-    </p>
-  </div>
-);
+const CAREER_PIVOTS = {
+  'anthropology': {
+    title: 'Anthropology',
+    intro: 'Anthropology teaches you to understand human behavior, culture, and systems — skills that translate surprisingly well into tech, business, and social sectors.',
+    careers: [
+      { career: 'UX Researcher', growth: '18%', why: 'Understanding human behavior and culture is exactly what product teams need', salary: '$70k-95k' },
+      { career: 'Market Research Analyst', growth: '13%', why: 'Study consumer behavior and cultural trends', salary: '$55k-80k' },
+      { career: 'HR Specialist', growth: '10%', why: 'Your understanding of people and culture is valuable in every organization', salary: '$50k-70k' },
+      { career: 'Grant Writer', growth: '8%', why: 'Nonprofits need people who understand communities and can build compelling cases', salary: '$50k-70k' },
+    ],
+    struggles: 'Many anthropology students feel their degree is "too broad" or worry employers won\'t understand it. The key is learning to translate your skills — research, analysis, understanding behavior — into language employers recognize.',
+    honest: 'Anthropology is genuinely versatile but you\'ll need to do more work connecting your degree to specific roles. Double majoring or adding a minor in business, data, or communications significantly expands your options.',
+  },
+  'art': {
+    title: 'Art / Fine Arts',
+    intro: 'Design skills are in higher demand than ever — especially as tech companies compete to make their products beautiful and intuitive.',
+    careers: [
+      { career: 'UX Researcher', growth: '18%', why: 'Your design eye and understanding of aesthetics applies directly to product design', salary: '$70k-95k' },
+      { career: 'Social Media Manager', growth: '10%', why: 'Visual content creation is your strength — every brand needs this', salary: '$50k-75k' },
+      { career: 'Content Marketing Specialist', growth: '15%', why: 'Companies need people who can create compelling visual content', salary: '$50k-70k' },
+      { career: 'Corporate Communications Specialist', growth: '8%', why: 'Design-minded communicators are rare and valuable', salary: '$55k-80k' },
+    ],
+    struggles: 'The biggest challenge is convincing employers that creative skills have business value. Build a strong portfolio and focus on results — not just aesthetics.',
+    honest: 'Traditional fine arts careers are highly competitive and often low-paying early on. The strongest path for most art grads is toward design, UX, or content roles where your visual skills have direct business applications.',
+  },
+  'biology': {
+    title: 'Biology',
+    intro: 'A biology degree opens more doors than most students realize — especially if you\'re not going to med school. Life sciences employment hit a record 2.1 million in 2025.',
+    careers: [
+      { career: 'Clinical Research Coordinator', growth: '14%', why: 'Your science background without needing a PhD — runs clinical trials', salary: '$50k-70k' },
+      { career: 'Pharmaceutical Sales Rep', growth: '6%', why: 'Biology knowledge + communication skills = very accessible path with good pay', salary: '$55k-75k + commission' },
+      { career: 'Lab Technician', growth: '5%', why: 'Most accessible entry point — tons of openings in pharma, biotech, hospitals', salary: '$40k-55k' },
+      { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA processes for biotech/pharma — underrated and well-paid', salary: '$65k-90k' },
+      { career: 'Medical Writer', growth: '9%', why: 'Write about science for non-scientific audiences', salary: '$55k-75k' },
+      { career: 'Data Analyst (Healthcare)', growth: '23%', why: 'Health data is exploding — your science background helps you understand it', salary: '$60k-85k' },
+    ],
+    struggles: 'Many biology students feel stuck between "I didn\'t get into med/grad school" and "I don\'t know what else to do." There are strong career paths that don\'t require additional degrees.',
+    honest: 'Entry-level biology salaries start lower than some fields (often $40-55k for lab roles) but grow significantly. Pharma sales and data roles pay the most at entry level without additional degrees.',
+  },
+  'business': {
+    title: 'Business',
+    intro: 'Business is one of the most flexible degrees — but "business" is too broad to be useful on its own. The students who succeed know which track they\'re on.',
+    careers: [
+      { career: 'Business Analyst', growth: '14%', why: 'Bridge between business needs and tech solutions — high demand everywhere', salary: '$65k-90k' },
+      { career: 'Operations Analyst', growth: '16%', why: 'Make businesses run more efficiently — clear career path', salary: '$60k-80k' },
+      { career: 'Financial Analyst', growth: '9%', why: 'Steady field with predictable career progression', salary: '$65k-85k' },
+      { career: 'Supply Chain Analyst', growth: '18%', why: 'Growing field, especially post-pandemic disruptions', salary: '$60k-85k' },
+      { career: 'Sales Development Representative', growth: '15%', why: 'Most accessible entry point — fastest path to $80k+ with commission', salary: '$45k-65k + commission' },
+      { career: 'Customer Success Manager', growth: '20%', why: 'Help clients succeed — relationship-focused, growing rapidly', salary: '$55k-80k' },
+    ],
+    struggles: 'Business majors often feel lost because the degree is so broad. The students who get hired fastest know their specific track — finance, operations, marketing, sales — before they graduate.',
+    honest: 'Average starting salary for business grads in 2025 is $65k per NACE data. MIS and finance tracks pay the most. Sales roles pay less base but can hit $80k+ quickly with commission. Pick a track.',
+  },
+  'chemistry': {
+    title: 'Chemistry',
+    intro: 'Chemistry is one of the most practical science degrees — your lab skills and analytical thinking apply directly to pharma, food, manufacturing, and environmental sectors.',
+    careers: [
+      { career: 'Lab Technician', growth: '5%', why: 'Your lab skills apply directly across pharma, food, and manufacturing', salary: '$45k-60k' },
+      { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA/EPA compliance — chemistry knowledge essential', salary: '$65k-90k' },
+      { career: 'Pharmaceutical Sales Rep', growth: '6%', why: 'Your chemistry background gives you credibility with medical professionals', salary: '$55k-75k + commission' },
+      { career: 'Quality Control Analyst', growth: '9%', why: 'Every pharma, food, and manufacturing company needs QC', salary: '$50k-70k' },
+    ],
+    struggles: 'Many chemistry grads feel pressure to go to grad school. You don\'t have to. Regulatory affairs and pharma sales are strong paths that value your degree without requiring more school.',
+    honest: 'Chemistry entry-level roles often start lower than other STEM fields but grow well. Regulatory affairs is the highest-paying non-grad-school path for most chemistry majors.',
+  },
+  'communications': {
+    title: 'Communications',
+    intro: 'Communications is broader than most people realize — it\'s not just PR. Every company needs people who can communicate clearly, manage messaging, and connect with audiences.',
+    careers: [
+      { career: 'Social Media Manager', growth: '10%', why: 'Your understanding of messaging and audience applies directly', salary: '$50k-75k' },
+      { career: 'Corporate Communications Specialist', growth: '8%', why: 'Every company needs internal and external communication strategy', salary: '$55k-80k' },
+      { career: 'Content Marketing Specialist', growth: '15%', why: 'High demand — companies need people who can create compelling content', salary: '$50k-70k' },
+      { career: 'Digital Marketing Specialist', growth: '17%', why: 'Data-driven marketing — less saturated than traditional comms roles', salary: '$45k-65k' },
+      { career: 'Public Relations Specialist', growth: '8%', why: 'Manage company reputation and media relations', salary: '$45k-65k' },
+    ],
+    struggles: 'Traditional PR and journalism have been disrupted by digital media. The communications grads who thrive today have digital skills — SEO, analytics, content strategy — not just writing.',
+    honest: 'Starting salaries in communications are often lower than other fields ($40-55k). The path to higher pay is specializing in digital marketing, content strategy, or corporate communications rather than staying generalist.',
+  },
+  'computer-science': {
+    title: 'Computer Science',
+    intro: 'CS has the opposite problem of most majors — too many options. The job market tightened in 2024-2025 after pandemic hiring surges, but demand remains strong for the right roles.',
+    careers: [
+      { career: 'Software Engineer', growth: '22%', why: 'Core CS path — still strong demand despite recent tech layoffs', salary: '$85k-120k' },
+      { career: 'Data Analyst', growth: '23%', why: 'Uses your logic and problem-solving — less coding-intensive than SWE', salary: '$65k-85k' },
+      { career: 'Cybersecurity Analyst', growth: '32%', why: 'Massive shortage of workers — one of the fastest growing fields', salary: '$70k-95k' },
+      { career: 'Product Manager', growth: '19%', why: 'Technical background helps you understand what engineers are building', salary: '$80k-120k' },
+      { career: 'Technical Writer', growth: '7%', why: 'Explain complex tech — your CS knowledge is a major differentiator', salary: '$60k-80k' },
+    ],
+    struggles: 'CS students often feel overwhelmed by options or paralyzed by the gap between school projects and industry expectations. Side projects and internships matter more for CS than any other major.',
+    honest: 'The CS job market is more competitive than it was in 2021-2022. Entry-level roles at big tech are harder to get. Smaller companies, startups, and non-tech companies that need tech talent are often better entry points.',
+  },
+  'criminal-justice': {
+    title: 'Criminal Justice',
+    intro: 'Criminal justice teaches you how systems work, how to analyze risk, and how to follow complex regulations — skills that translate directly into corporate compliance and security roles.',
+    careers: [
+      { career: 'Compliance Officer', growth: '8%', why: 'Ensure companies follow laws and regulations — underrated and well-paid', salary: '$60k-85k' },
+      { career: 'Corporate Security Analyst', growth: '9%', why: 'Risk assessment and security planning for businesses', salary: '$55k-80k' },
+      { career: 'Policy Analyst', growth: '6%', why: 'Your understanding of law and policy applies beyond government', salary: '$55k-80k' },
+      { career: 'HR Specialist', growth: '10%', why: 'Your understanding of rules, compliance, and people management fits HR well', salary: '$50k-70k' },
+    ],
+    struggles: 'Many CJ grads feel limited to law enforcement or legal careers. Corporate compliance is a significantly underutilized path that pays well and has strong demand.',
+    honest: 'Law enforcement and legal careers are the obvious paths but often the most competitive and lowest-paying at entry level. Corporate compliance and security roles offer better starting pay for most graduates.',
+  },
+  'education': {
+    title: 'Education',
+    intro: 'Teaching skills are valuable far beyond the classroom. Companies spend billions on training their employees — and they need people who actually know how to teach.',
+    careers: [
+      { career: 'Corporate Trainer', growth: '11%', why: 'Companies need people who can teach — often pays better than K-12', salary: '$55k-85k' },
+      { career: 'Instructional Designer', growth: '9%', why: 'Create online courses and training programs — growing with remote work', salary: '$60k-90k' },
+      { career: 'Customer Success Manager', growth: '20%', why: 'Helping customers succeed is just teaching in a business context', salary: '$55k-80k' },
+      { career: 'HR Specialist', growth: '10%', why: 'Training and development is a core HR function', salary: '$50k-70k' },
+    ],
+    struggles: 'Education majors often feel stuck between teaching (lower pay) and "I don\'t know what else to do." Corporate training and instructional design pay significantly more and use the same core skills.',
+    honest: 'K-12 teaching salaries have improved but remain below other fields requiring similar education. Corporate training and L&D roles typically pay $15-25k more for similar work. Worth seriously considering.',
+  },
+  'english': {
+    title: 'English / Journalism',
+    intro: 'Strong writers are rare. In a world where everyone is producing content, the ability to write clearly and compellingly is genuinely valuable — especially in tech.',
+    careers: [
+      { career: 'UX Writer', growth: '23%', why: 'Make apps and websites easier to understand — storytelling for digital products', salary: '$75k-100k' },
+      { career: 'Content Strategist', growth: '15%', why: 'Plan and manage content across organizations — strategic role', salary: '$65k-90k' },
+      { career: 'Technical Writer', growth: '7%', why: 'Your writing skills are desperately needed in tech companies', salary: '$60k-80k' },
+      { career: 'Grant Writer', growth: '8%', why: 'Nonprofits need great writers — less competitive field', salary: '$50k-70k' },
+    ],
+    struggles: 'Traditional journalism has contracted dramatically. The English grads who are thriving have moved toward content strategy, UX writing, and technical writing — not traditional media.',
+    honest: 'Journalism as a career path has very limited openings and often low pay. UX writing and content strategy pay significantly more and have much stronger job growth. Be honest with yourself about which path makes sense.',
+  },
+  'foreign-languages': {
+    title: 'Foreign Languages',
+    intro: 'Global companies need people who can navigate different cultures and languages — and there are more opportunities than you might think beyond translation.',
+    careers: [
+      { career: 'Corporate Communications Specialist', growth: '8%', why: 'Multilingual communication skills are increasingly valued', salary: '$55k-80k' },
+      { career: 'Content Marketing Specialist', growth: '15%', why: 'Companies need content created for global markets', salary: '$50k-70k' },
+      { career: 'HR Specialist', growth: '10%', why: 'Multilingual HR professionals are in demand at global companies', salary: '$50k-70k' },
+      { career: 'Customer Success Manager', growth: '20%', why: 'Serving international clients requires exactly your skills', salary: '$55k-80k' },
+    ],
+    struggles: 'Foreign language majors often feel limited to teaching or translation. The most valuable application of language skills is in global business roles where language is one skill among several.',
+    honest: 'Language skills alone rarely command premium salaries. The strongest path is combining language skills with another area — business, tech, marketing — where bilingual ability is a differentiator.',
+  },
+  'history': {
+    title: 'History',
+    intro: 'History teaches you to analyze complex information, construct arguments, and write clearly — skills that are genuinely transferable, but you have to learn to translate them.',
+    careers: [
+      { career: 'Content Strategist', growth: '15%', why: 'Research, analysis, and storytelling — your core skills applied to business', salary: '$60k-85k' },
+      { career: 'Compliance Officer', growth: '8%', why: 'Understanding regulations, documentation, and institutional history fits compliance', salary: '$60k-85k' },
+      { career: 'Policy Analyst', growth: '6%', why: 'Historical context and research skills are directly applicable', salary: '$55k-80k' },
+      { career: 'Grant Writer', growth: '8%', why: 'Research and persuasive writing — nonprofits need this combination', salary: '$50k-70k' },
+    ],
+    struggles: 'History majors face the hardest translation challenge of any humanities degree. You need to proactively connect your research and writing skills to specific business problems.',
+    honest: 'History has one of the harder job markets outside of law school or academia. Starting salaries are often lower. Consider adding a minor in business, data, or a technical skill to significantly improve your options.',
+  },
+  'marketing': {
+    title: 'Marketing',
+    intro: 'Marketing has evolved dramatically — today the strongest marketing roles are data-driven and require analytical skills alongside creativity.',
+    careers: [
+      { career: 'Digital Marketing Specialist', growth: '17%', why: 'Data-driven marketing — the fastest growing part of the field', salary: '$45k-65k' },
+      { career: 'Content Marketing Specialist', growth: '15%', why: 'Creating and managing content strategy across channels', salary: '$50k-70k' },
+      { career: 'Customer Success Manager', growth: '20%', why: 'Help clients succeed — relationship-focused and growing rapidly', salary: '$55k-80k' },
+      { career: 'Sales Operations', growth: '23%', why: 'Your communication skills plus analytics — one of the fastest growing roles', salary: '$60k-85k' },
+      { career: 'Product Marketing', growth: '16%', why: 'Bridge between product teams and customers — strategic and well-paid', salary: '$70k-95k' },
+    ],
+    struggles: 'Traditional marketing roles are increasingly being replaced by data-driven alternatives. Marketing grads who don\'t develop analytical skills are at a significant disadvantage.',
+    honest: 'Entry-level marketing roles often pay $40-50k, which feels low for a business degree. Product marketing and sales operations pay much more. Learning Google Analytics, SEO, and basic data skills dramatically improves your starting salary.',
+  },
+  'mathematics': {
+    title: 'Mathematics',
+    intro: 'Math is one of the strongest degrees for the current job market. Analytical and quantitative skills are in high demand across finance, tech, insurance, and consulting.',
+    careers: [
+      { career: 'Data Analyst', growth: '23%', why: 'Your analytical and statistical skills are in extremely high demand', salary: '$65k-90k' },
+      { career: 'Actuarial Analyst', growth: '21%', why: 'Math background is perfect for risk assessment — well-paid with clear exams path', salary: '$70k-100k' },
+      { career: 'Financial Analyst', growth: '9%', why: 'Modeling and forecasting — your quantitative skills shine', salary: '$65k-95k' },
+      { career: 'Operations Research Analyst', growth: '23%', why: 'Optimize business processes using mathematical models', salary: '$70k-100k' },
+      { career: 'Data Scientist', growth: '35%', why: 'Fastest growing field — math background is ideal foundation', salary: '$85k-120k' },
+    ],
+    struggles: 'Math majors sometimes undersell themselves because they think employers only want CS degrees. Data analyst and data science roles actively seek strong math backgrounds.',
+    honest: 'Math is genuinely one of the best degrees for salary potential right now. Actuarial science requires passing exams but has very strong job security. Data science and analytics are the highest-growth paths.',
+  },
+  'music': {
+    title: 'Music / Theater',
+    intro: 'Performance skills, discipline, collaboration under pressure, and creative problem-solving — these translate into real business value in the right roles.',
+    careers: [
+      { career: 'Corporate Trainer', growth: '11%', why: 'Teaching and performing skills make you exceptional at presentations and training', salary: '$55k-80k' },
+      { career: 'Instructional Designer', growth: '9%', why: 'Creating engaging learning experiences requires exactly your performance instincts', salary: '$60k-90k' },
+      { career: 'Customer Success Manager', growth: '20%', why: 'Your comfort performing and connecting with people translates to client work', salary: '$55k-80k' },
+      { career: 'Content Marketing Specialist', growth: '15%', why: 'Audio and video content creation is a major growth area', salary: '$50k-70k' },
+    ],
+    struggles: 'Performance careers are extremely competitive and often low-paying. Most music and theater grads need a parallel career path to achieve financial stability.',
+    honest: 'This is one of the harder degrees for immediate career translation. The graduates who do best typically either pursue performance seriously (accepting financial instability) or actively pivot to a business role using their performance skills.',
+  },
+  'philosophy': {
+    title: 'Philosophy',
+    intro: 'Philosophy trains you to think clearly, argue rigorously, and understand how systems work — surprisingly valuable in business, law, and tech.',
+    careers: [
+      { career: 'Business Analyst', growth: '14%', why: 'Your logic and critical thinking skills are exactly what companies need', salary: '$70k-95k' },
+      { career: 'UX Researcher', growth: '18%', why: 'Understanding how people think and make decisions — philosophy applied to products', salary: '$75k-105k' },
+      { career: 'Policy Analyst', growth: '6%', why: 'Ethical reasoning and systematic analysis fit government and think tanks', salary: '$60k-90k' },
+      { career: 'Compliance Officer', growth: '8%', why: 'Understanding rule systems and ethical frameworks fits compliance perfectly', salary: '$65k-90k' },
+    ],
+    struggles: 'Philosophy majors face the same translation challenge as other humanities — you need to proactively connect abstract thinking skills to specific business outcomes.',
+    honest: 'Philosophy actually has stronger outcomes than its reputation suggests — especially for law school and consulting. Business analyst and UX researcher roles are the strongest direct career paths.',
+  },
+  'physics': {
+    title: 'Physics',
+    intro: 'Physics is one of the most versatile STEM degrees. Your problem-solving and mathematical skills are in high demand in finance, tech, and data science.',
+    careers: [
+      { career: 'Data Scientist', growth: '35%', why: 'Physics problem-solving and math skills are ideal for data science', salary: '$85k-120k' },
+      { career: 'Software Engineer', growth: '22%', why: 'Strong analytical problem-solving transfers directly to coding', salary: '$80k-130k' },
+      { career: 'Quantitative Analyst', growth: '11%', why: 'Finance firms actively recruit physics grads for modeling roles', salary: '$90k-150k' },
+      { career: 'Cybersecurity Analyst', growth: '32%', why: 'Analytical and systems thinking is essential for security work', salary: '$70k-100k' },
+    ],
+    struggles: 'Physics grads sometimes feel they need a graduate degree to do anything meaningful. You don\'t. Data science and software engineering actively recruit strong physics bachelor graduates.',
+    honest: 'Physics is genuinely one of the strongest degrees for salary potential. Data science and quant finance are the highest-paying paths. The main challenge is learning to code if you haven\'t already.',
+  },
+  'political-science': {
+    title: 'Political Science',
+    intro: 'Political science teaches you how institutions work, how to analyze policy, and how to communicate persuasively — more applicable to business than most people realize.',
+    careers: [
+      { career: 'Policy Analyst', growth: '6%', why: 'Work for government, nonprofits, or think tanks analyzing policy impact', salary: '$60k-90k' },
+      { career: 'Government Relations Specialist', growth: '7%', why: 'Help companies navigate regulation and policy — well-paid corporate role', salary: '$70k-110k' },
+      { career: 'Compliance Officer', growth: '8%', why: 'Your understanding of regulations and institutions fits compliance perfectly', salary: '$65k-90k' },
+      { career: 'Corporate Communications Specialist', growth: '8%', why: 'Political comms skills translate directly to corporate messaging', salary: '$55k-80k' },
+    ],
+    struggles: 'Many polisci grads default to law school or government without considering corporate paths. Government relations and compliance are well-paying corporate roles that directly use your degree.',
+    honest: 'Law school is the traditional path but expensive and competitive. Government relations and compliance offer strong salaries without additional degrees. Worth seriously considering before assuming law school is required.',
+  },
+  'psychology': {
+    title: 'Psychology',
+    intro: 'Psychology teaches you to understand human behavior — one of the most valuable skills in the modern workplace. You don\'t need a graduate degree to use it.',
+    careers: [
+      { career: 'UX Researcher', growth: '18%', why: 'Understanding human behavior is exactly what tech product teams need', salary: '$70k-95k' },
+      { career: 'HR Specialist', growth: '10%', why: 'Your understanding of people is valuable in every organization', salary: '$50k-70k' },
+      { career: 'Case Manager', growth: '12%', why: 'High demand in healthcare and social services — directly uses your degree', salary: '$40k-55k' },
+      { career: 'Behavioral Health Technician', growth: '15%', why: 'Tons of openings, directly accessible with a bachelor\'s degree', salary: '$35k-50k' },
+      { career: 'Market Research Analyst', growth: '13%', why: 'Study consumer behavior and trends — psychology applied to business', salary: '$55k-75k' },
+      { career: 'Training & Development', growth: '11%', why: 'Help employees learn and grow — your understanding of behavior is central', salary: '$55k-80k' },
+    ],
+    struggles: 'Most psychology students feel pressure to go to grad school. Many good careers don\'t require it. UX research and market research are the highest-paying non-grad-school paths.',
+    honest: 'Clinical work requires graduate degrees but many other strong careers don\'t. UX researcher roles pay significantly more than clinical positions at bachelor\'s level. Be intentional about which path you\'re choosing.',
+  },
+  'sociology': {
+    title: 'Sociology',
+    intro: 'Sociology teaches you to understand how groups and systems work — directly applicable to HR, organizational behavior, market research, and community-focused roles.',
+    careers: [
+      { career: 'HR Specialist', growth: '10%', why: 'Understanding group dynamics and organizational behavior is core to HR', salary: '$50k-75k' },
+      { career: 'Market Research Analyst', growth: '13%', why: 'Study social trends and consumer behavior patterns', salary: '$55k-80k' },
+      { career: 'Case Manager', growth: '12%', why: 'High demand in social services — directly uses your degree', salary: '$40k-55k' },
+      { career: 'Policy Analyst', growth: '6%', why: 'Your understanding of social systems applies directly to policy work', salary: '$55k-80k' },
+    ],
+    struggles: 'Sociology shares the translation challenge of other social sciences. Learning to connect your understanding of social systems to specific business or organizational problems is key.',
+    honest: 'Sociology has similar outcomes to psychology at bachelor\'s level. HR and market research are the strongest direct paths. Adding data skills significantly improves starting salary.',
+  },
+};
 
+const formatJobCount = (count) => {
+  if (!count) return null;
+  if (count >= 100000) return `${(count / 1000).toFixed(0)}k+`;
+  if (count >= 10000) return `${(count / 1000).toFixed(0)}k+`;
+  if (count >= 1000) return `${(count / 1000).toFixed(1)}k`;
+  return count.toLocaleString();
+};
 
-const DropdownMenu = ({ title, items, groups, currentPage, setCurrentPage, isMobile = false, onTitleClick }) => {
-  const [open, setOpen] = useState(false);
+const MajorPage = ({ setCurrentPage }) => {
+  const { majorSlug } = useParams();
+  const navigate = useNavigate();
+  const [jobCounts, setJobCounts] = useState(null);
+  const [jobsUpdated, setJobsUpdated] = useState(null);
+  const [loadingJobs, setLoadingJobs] = useState(true);
 
-  const go = (page) => {
-    setCurrentPage(page);
-    setOpen(false);
-  };
+  const majorData = CAREER_PIVOTS[majorSlug];
 
-  if (isMobile) {
+  useEffect(() => {
+    const fetchJobCounts = async () => {
+      try {
+        const response = await fetch('https://adzuna-jobs-updater.msroper2.workers.dev/data');
+        const data = await response.json();
+        if (data.counts) {
+          setJobCounts(data.counts);
+          setJobsUpdated(data.updated);
+        }
+      } catch (e) {
+        // silently fail - job counts are optional
+      } finally {
+        setLoadingJobs(false);
+      }
+    };
+    fetchJobCounts();
+  }, []);
+
+  if (!majorData) {
     return (
-      <div className="mt-2">
-        <button
-          type="button"
-          onClick={() => setOpen(!open)}
-          className="w-full flex items-center justify-between py-2 text-left hover:text-blue-200"
-        >
-          <span>{title}</span>
-          {open ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-        </button>
-
-        {open && (
-          <div className="pl-3 space-y-1">
-            {groups ? groups.map((group) => (
-              <div key={group.label}>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wide px-3 pt-2 pb-1">{group.label}</p>
-                {group.items.map((item) => (
-                  <button key={item.page} type="button" onClick={() => go(item.page)}
-                    className="block w-full text-left py-2 px-3 rounded hover:text-blue-200">
-                    <span className="inline-flex items-center gap-2">{item.icon}{item.label}</span>
-                  </button>
-                ))}
-              </div>
-            )) : items.map((item) => (
-              <button key={item.page} type="button" onClick={() => go(item.page)}
-                className={`block w-full text-left py-2 px-3 rounded ${currentPage === item.page ? "bg-white/10 text-blue-200 font-semibold" : "hover:text-blue-200"}`}>
-                <span className="inline-flex items-center gap-2">{item.icon}{item.label}</span>
-              </button>
-            ))}
-          </div>
-        )}
+      <div className="bg-[#FFFBF7] min-h-screen">
+        <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Major not found</h1>
+          <button onClick={() => navigate('/pivot')} className="text-teal-600 font-semibold">
+            ← Browse all career paths
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-      <button type="button"
-        onClick={() => onTitleClick ? onTitleClick() : setOpen(!open)}
-        className="hover:text-blue-200 flex items-center gap-1">
-        {title}
-        <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
-      </button>
+    <>
+      <Helmet>
+        <title>What Can I Do With a {majorData.title} Degree? | MoreThanOneWay.org</title>
+        <meta name="description" content={`Real career paths for ${majorData.title} majors — with salary data, job growth rates, and live job counts. No grad school required for most.`} />
+        <meta name="keywords" content={`${majorData.title} degree jobs, what to do with ${majorData.title} degree, ${majorData.title} major careers, ${majorData.title} degree career paths`} />
+        <meta property="og:title" content={`What Can I Do With a ${majorData.title} Degree? | MoreThanOneWay.org`} />
+        <link rel="canonical" href={`https://morethanoneway.org/major/${majorSlug}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": `Career Paths for ${majorData.title} Majors`,
+          "description": `Real career paths, salary data, and job counts for ${majorData.title} degree graduates.`,
+          "url": `https://morethanoneway.org/major/${majorSlug}`
+        })}</script>
+      </Helmet>
 
-      {open && (
-        <div className="absolute top-full left-0 pt-2 z-50">
-          <div className="bg-white text-gray-800 rounded-lg shadow-lg py-2 min-w-[300px]">
-            {groups ? groups.map((group) => (
-              <div key={group.label}>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wide px-4 pt-3 pb-1">{group.label}</p>
-                {group.items.map((item) => (
-                  <button key={item.page} type="button" onClick={() => go(item.page)}
-                    className="w-full text-left px-4 py-2 hover:bg-blue-50 flex items-center gap-2 text-sm">
-                    {item.icon}{item.label}
-                  </button>
-                ))}
-              </div>
-            )) : items.map((item) => (
-              <button key={item.page} type="button" onClick={() => go(item.page)}
-                className="w-full text-left px-4 py-2 hover:bg-blue-50 flex items-center gap-2 text-sm">
-                {item.icon}{item.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
+      <div className="bg-[#FFFBF7] min-h-screen">
+        <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
 
+          <button onClick={() => setCurrentPage('pivot')}
+            className="flex items-center gap-2 text-gray-500 hover:text-gray-800 font-medium mb-8 transition-colors">
+            <ArrowLeft className="w-4 h-4" /> Back to Career Paths
+          </button>
 
-// Crisis Banner Component
-const CrisisBanner = () => (
-  <div className="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-400 p-5 rounded-xl shadow-soft">
-    <div className="flex items-start gap-3">
-      <span className="text-3xl">🫂</span>
-      <div>
-        <h3 className="font-bold text-red-800 mb-1">Need someone right now?</h3>
-        <p className="text-red-700 text-sm mb-2">
-          <strong>988 Suicide & Crisis Lifeline:</strong> Call or text 988 (24/7)<br />
-          <strong>Crisis Text Line:</strong> Text HOME to 741741
-        </p>
-        <p className="text-xs text-red-600 italic">
-          You matter. This feeling is temporary. People want to help. ❤️
-        </p>
-      </div>
-    </div>
-  </div>
-);
-
-const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen }) => {
-  const [scrolled, setScrolled] = useState(false);
-
-  React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const findOpportunitiesItems = [
-    { page: 'find-internships', label: 'Find Internships', icon: <Search className="w-4 h-4" /> },
-    { page: 'search-guide', label: 'Search Guide', icon: <BookOpen className="w-4 h-4" /> },
-    { page: 'job-alert', label: 'Job Alert Guide', icon: <Target className="w-4 h-4" /> },
-  ];
-
-  const jobToolsItems = [
-    { page: 'job-tools-hub', label: 'Job Tools Hub', icon: <Briefcase className="w-4 h-4" /> },
-    { page: 'resume-builder', label: 'Resume Builder', icon: <FileText className="w-4 h-4" /> },
-    { page: 'cover-letter', label: 'Cover Letter Generator', icon: <FileText className="w-4 h-4" /> },
-    { page: 'ats-guide', label: 'ATS Guide', icon: <Search className="w-4 h-4" /> },
-    { page: 'tracker', label: 'Application Tracker', icon: <Target className="w-4 h-4" /> },
-    { page: 'interview-prep', label: 'Interview Prep', icon: <MessageCircle className="w-4 h-4" /> },
-    { page: 'pivot', label: 'Career Paths', icon: <TrendingUp className="w-4 h-4" /> },
-  ];
-
-const supportGroups = [
-  {
-    label: 'Academic',
-    items: [
-      { page: 'struggling-in-classes', label: 'Failing or Struggling in Classes', icon: <BookOpen className="w-4 h-4" /> },
-      { page: 'academic-probation', label: 'Failed a Class / Academic Probation', icon: <AlertCircle className="w-4 h-4" /> },
-      { page: 'hate-my-major', label: 'I Hate My Major', icon: <BookOpen className="w-4 h-4" /> },
-      { page: 'thinking-about-transferring', label: 'Thinking About Transferring', icon: <Building className="w-4 h-4" /> },
-    ]
-  },
-  {
-    label: 'Career & Future',
-    items: [
-      { page: 'career-services-no-idea', label: 'Career Services No Help', icon: <Building className="w-4 h-4" /> },
-      { page: 'no-idea-what-to-do', label: 'No Idea What to Do', icon: <HelpCircle className="w-4 h-4" /> },
-    ]
-  },
-  {
-    label: 'Personal',
-    items: [
-      { page: 'family-not-supportive', label: "Family Isn't Supportive", icon: <Heart className="w-4 h-4" /> },
-      { page: 'feeling-alone', label: 'Feeling Completely Alone', icon: <Users className="w-4 h-4" /> },
-      { page: 'burnt-out', label: "I'm Burnt Out", icon: <Heart className="w-4 h-4" /> },
-      { page: 'cant-afford-college', label: "Can't Afford College", icon: <DollarSign className="w-4 h-4" /> },
-      { page: 'first-generation-student', label: "I'm a First-Gen Student", icon: <GraduationCap className="w-4 h-4" /> },
-      { page: 'dont-want-to-be-here', label: "Don't Want to Be Here", icon: <AlertCircle className="w-4 h-4" /> },
-      { page: 'everything-is-too-much', label: "It's Just... Everything", icon: <AlertCircle className="w-4 h-4" /> },
-      { page: 'crisis', label: 'In Crisis Right Now', icon: <Phone className="w-4 h-4" /> },
-    ]
-  },
-];
-
-  const resourcesItems = [
-    { page: 'resources', label: 'Career Resources', icon: <Briefcase className="w-4 h-4" /> },
-    { page: 'study-resources', label: 'Free Study Help', icon: <BookOpen className="w-4 h-4" /> },
-    { page: 'blog', label: 'Blog', icon: <Newspaper className="w-4 h-4" /> },
-    { page: 'need-a-laugh', label: 'Need a Laugh?', icon: <Smile className="w-4 h-4" /> },
-    { page: 'volunteer', label: 'Volunteer Opportunities', icon: <Heart className="w-4 h-4" /> }
-  ];
-
-  return (
-    <nav className="bg-[#FFFBF7] text-gray-800 shadow-sm sticky top-0 z-50 border-b border-gray-200">
-
-      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-        <div className="flex justify-between items-center py-4">
-          <div className="flex items-center space-x-2">
-            <h1 className="text-xl font-bold cursor-pointer" onClick={() => setCurrentPage('home')}>
-              More Than One Way
+          {/* Header */}
+          <div className="mb-10">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4">
+              What Can I Do With a{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-orange-400">
+                {majorData.title} Degree?
+              </span>
             </h1>
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl leading-relaxed">
+              {majorData.intro}
+            </p>
           </div>
 
-          {/* Right side - Desktop Nav + Mobile Controls */}
-          <div className="flex items-center gap-3">
-
-            {/* Desktop menu */}
-            <div className="hidden md:flex items-center gap-8">
-
-              <button
-                onClick={() => setCurrentPage('home')}
-                className="hover:text-blue-200"
-              >
-                Home
-              </button>
-
-              <DropdownMenu
-                title="Find Opportunities"
-                onTitleClick={() => setCurrentPage('find-opportunities-hub')}
-                items={findOpportunitiesItems}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                isMobile={false}
-              />
-
-              <DropdownMenu
-                title="Job Tools"
-                onTitleClick={() => setCurrentPage('job-tools-hub')}
-                items={jobToolsItems}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                isMobile={false}
-              />
-
-              <DropdownMenu
-                title="Support"
-                onTitleClick={() => setCurrentPage('youre-not-alone')}
-                groups={supportGroups}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                isMobile={false}
-              />
-              <button
-                onClick={() => setCurrentPage('stories')}
-                className="hover:text-blue-200"
-              >
-                Stories
-              </button>
-
-              <DropdownMenu
-                title="Resources"
-                onTitleClick={() => setCurrentPage('resources-hub')}
-                items={resourcesItems}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                isMobile={false}
-              />
-
-              <button
-                onClick={() => setCurrentPage('about')}
-                className="hover:text-blue-200"
-              >
-                About
-              </button>
-
-              <button
-                onClick={() => setCurrentPage('crisis')}
-                className="bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-400 whitespace-nowrap transition-colors"
-              >
-                Need Help Now
-              </button>
-            </div>
-
-            {/* Mobile controls */}
-            <div className="flex md:hidden items-center gap-3">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-
-              <button
-                onClick={() => setCurrentPage('crisis')}
-                className="bg-orange-500 px-3 py-2 rounded text-sm font-semibold hover:bg-orange-400 whitespace-nowrap transition-colors"
-              >
-                Need Help Now
-              </button>
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* Unified Navigation Menu - Works on Desktop AND Mobile */}
-        {mobileMenuOpen && (
-          <div
-            className="
-      fixed z-40
-      top-[64px]          /* just below the navbar */
-      left-0 right-0
-      w-full              /* full width on mobile */
-      md:left-auto md:right-4 md:w-80 md:rounded-xl
-      bg-[#FFFBF7] 
-      border border-gray-200
-      shadow-soft
-      max-h-[80vh] overflow-y-auto 
-      pb-4 space-y-2 px-4
-    "
-          >
-            <button
-              onClick={() => { setCurrentPage('home'); setMobileMenuOpen(false); }}
-              className="block w-full text-left hover:text-blue-200 py-2"
-            >
-              Home
-            </button>
-
-            <DropdownMenu
-              title="Find Opportunities"
-              items={findOpportunitiesItems}
-              currentPage={currentPage}
-              setCurrentPage={(page) => {
-                setCurrentPage(page);
-                setMobileMenuOpen(false);
-              }}
-              isMobile={true}
-            />
-
-            <DropdownMenu
-              title="Job Tools"
-              items={jobToolsItems}
-              currentPage={currentPage}
-              setCurrentPage={(page) => {
-                setCurrentPage(page);
-                setMobileMenuOpen(false);
-              }}
-              isMobile={true}
-            />
-
-            <DropdownMenu
-              title="Support"
-              groups={supportGroups}
-              currentPage={currentPage}
-              setCurrentPage={(page) => {
-                setCurrentPage(page);
-                setMobileMenuOpen(false);
-              }}
-              isMobile={true}
-            />
-                        <DropdownMenu
-              title="Resources"
-              items={resourcesItems}
-              currentPage={currentPage}
-              setCurrentPage={(page) => {
-                setCurrentPage(page);
-                setMobileMenuOpen(false);
-              }}
-              isMobile={true}
-            />
-
-            <button
-              onClick={() => { setCurrentPage('about'); setMobileMenuOpen(false); }}
-              className="block w-full text-left hover:text-blue-200 py-2 border-t border-blue-500 pt-2 mt-2"
-            >
-              About
-            </button>
-
-            <button
-              onClick={() => { setCurrentPage('crisis'); setMobileMenuOpen(false); }}
-              className="block w-full text-left bg-orange-500 px-4 py-2 rounded hover:bg-orange-400 mt-2"
-            >
-              Need Help Now?
-            </button>
-
-            {/* ⬇⬇ ADD THIS SOCIAL SECTION ⬇⬇ */}
-            <div className="mt-4 border-t border-white/25 pt-4">
-
-              <div className="flex justify-center gap-6 mb-2">
-                {/* Instagram */}
-                <a
-                  href="https://www.instagram.com/morethanonewayproject/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-2 text-white/90 hover:text-pink-300 transition-all hover:scale-105"
-                  aria-label="Follow us on Instagram"
-                >
-                  <div className="bg-white/10 p-3 rounded-xl hover:bg-pink-600/80 transition-all">
-                    <Instagram className="w-6 h-6" />
-                  </div>
-                </a>
-
-                {/* Facebook */}
-                <a
-                  href="https://www.facebook.com/morethanonewayproject"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-2 text-white/90 hover:text-blue-300 transition-all hover:scale-105"
-                  aria-label="Follow us on Facebook"
-                >
-                  <div className="bg-white/10 p-3 rounded-xl hover:bg-blue-600/80 transition-all">
-                    <Facebook className="w-6 h-6" />
-                  </div>
-                </a>
-              </div>
-            </div>
-            {/* ⬆⬆ END SOCIAL SECTION ⬆⬆ */}
-
-          </div>
-        )}
-
-
-      </div>
-    </nav>
-  );
-};
-
-
-const HomePage = ({ setCurrentPage }) => (
-  <div className="space-y-8">
-
-
-    <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-8 text-center">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">You Have More Choices Than You Think</h2>
-      <p className="text-xl mb-6">Whether you're struggling with school, job searching, or just feeling overwhelmed - there are more paths forward than you realize.</p>
-      <div className="flex flex-col md:flex-row gap-4 justify-center">
-
-        <button
-          onClick={() => setCurrentPage('youre-not-alone')}
-          className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700"
-        >
-          Struggling with College?
-        </button>
-
-        <button
-          onClick={() => setCurrentPage('find-internships')}
-          className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 flex items-center justify-center"
-        >
-          <Search className="w-5 h-5 mr-2" />
-          Find Internships
-        </button>
-        <button
-          onClick={() => setCurrentPage('search-guide')}
-          className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 flex items-center justify-center"
-        >
-          <BookOpen className="w-5 h-5 mr-2" />
-          Job Search Guide
-        </button>
-        <button
-          onClick={() => setCurrentPage('stories')}
-          className="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800"
-        >
-          Read Real Stories
-        </button>
-      </div>
-    </div>
-
-    <div className="grid md:grid-cols-3 gap-6">
-      <div className="bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
-        <Users className="w-10 h-10 text-green-500 mb-3" />
-        <h3 className="text-xl font-bold mb-2">You're Not Alone</h3>
-        <p className="text-gray-600">Thousands of students feel exactly like you do. Read their stories and see how they made it through.</p>
-        <button onClick={() => setCurrentPage('stories')} className="text-green-600 font-semibold mt-3 flex items-center">
-          Read Stories <ChevronRight className="w-4 h-4 ml-1" />
-        </button>
-      </div>
-
-      <div className="bg-white p-6 rounded-lg shadow border-l-4 border-purple-500">
-        <TrendingUp className="w-10 h-10 text-purple-500 mb-3" />
-        <h3 className="text-xl font-bold mb-2">Different Paths Work</h3>
-        <p className="text-gray-600">Your major doesn't lock you in. See what adjacent careers are actually hiring.</p>
-        <button onClick={() => setCurrentPage('pivot')} className="text-purple-600 font-semibold mt-3 flex items-center">
-          Find Your Path <ChevronRight className="w-4 h-4 ml-1" />
-        </button>
-      </div>
-
-    </div>
-
-    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-      <h3 className="text-xl font-bold mb-3">The Honest Truth</h3>
-      <ul className="space-y-2 text-gray-700">
-        <li>• The average job search takes 6-8 months. That's normal.</li>
-        <li>• Most students send 100+ applications before getting offers. You're not doing it wrong.</li>
-        <li>• Some fields are genuinely oversaturated. That's not your fault.</li>
-        <li>• Taking a non-linear path doesn't mean you failed. It means you're adapting.</li>
-        <li>• Your worth is not determined by your job, your GPA, or your major.</li>
-      </ul>
-    </div>
-  </div>
-);
-
-
-const PivotPage = ({ setCurrentPage }) => {
-  const [selectedMajor, setSelectedMajor] = useState('');
-
-  const careerPivots = {
-    'Anthropology': [
-      { career: 'UX Researcher', growth: '18%', why: 'Understanding human behavior and culture is exactly what product teams need', salary: '$70k-95k' },
-      { career: 'Market Research Analyst', growth: '13%', why: 'Study consumer behavior and cultural trends', salary: '$55k-80k' },
-      { career: 'Nonprofit Program Manager', growth: '9%', why: 'Work with communities and cultural organizations', salary: '$50k-75k' },
-      { career: 'Diversity & Inclusion Specialist', growth: '11%', why: 'Your cultural understanding helps create inclusive workplaces', salary: '$60k-85k' }
-    ],
-    'Art/Fine Arts': [
-      { career: 'UX/UI Designer', growth: '16%', why: 'Your design skills translate directly - tech needs visual designers desperately', salary: '$70k-100k' },
-      { career: 'Graphic Designer (Corporate)', growth: '3%', why: 'Every company needs internal design - marketing, presentations, branding', salary: '$50k-70k' },
-      { career: 'Art Director (Advertising)', growth: '6%', why: 'Lead creative teams, less hands-on creation, more strategy', salary: '$75k-110k' },
-      { career: 'Museum/Gallery Coordinator', growth: '10%', why: 'Behind-the-scenes work in arts - events, collections, education', salary: '$40k-60k' }
-    ],
-    'Biology': [
-      { career: 'Clinical Research Coordinator', growth: '14%', why: 'Your science background without needing a PhD', salary: '$50k-70k' },
-      { career: 'Medical Writer', growth: '9%', why: 'Write about science for various audiences', salary: '$60k-85k' },
-      { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA processes for biotech/pharma', salary: '$65k-90k' },
-      { career: 'Data Analyst (Healthcare)', growth: '23%', why: 'Health data is exploding, science background helps', salary: '$60k-85k' }
-    ],
-    'Business': [
-      { career: 'Operations Analyst', growth: '16%', why: 'Make businesses run more efficiently', salary: '$60k-80k' },
-      { career: 'Business Analyst', growth: '14%', why: 'Bridge between business needs and tech solutions', salary: '$65k-90k' },
-      { career: 'Financial Analyst', growth: '9%', why: 'Steady field with clear career progression', salary: '$65k-85k' },
-      { career: 'Supply Chain Analyst', growth: '18%', why: 'Growing field, especially post-pandemic', salary: '$60k-85k' }
-    ],
-    'Chemistry': [
-      { career: 'Quality Control Analyst', growth: '9%', why: 'Lab skills apply to pharma, food, manufacturing', salary: '$50k-70k' },
-      { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA/EPA compliance - chemistry knowledge essential', salary: '$65k-90k' },
-      { career: 'Environmental Scientist', growth: '6%', why: 'Use chemistry to address pollution and sustainability', salary: '$55k-80k' },
-      { career: 'Patent Examiner', growth: '3%', why: 'Government job reviewing chemistry/pharma patents', salary: '$60k-90k' }
-    ],
-    'Communications': [
-      { career: 'Corporate Communications Specialist', growth: '8%', why: 'Every company needs internal/external communication strategy', salary: '$55k-80k' },
-      { career: 'Public Relations Specialist', growth: '8%', why: 'Manage company reputation and media relations', salary: '$55k-75k' },
-      { career: 'Social Media Manager', growth: '10%', why: 'Your understanding of messaging applies to digital platforms', salary: '$50k-75k' },
-      { career: 'Employee Communications', growth: '12%', why: 'Help companies communicate with their workforce - growing field', salary: '$60k-85k' }
-    ],
-    'Computer Science': [
-      { career: 'Data Analyst', growth: '23%', why: 'Uses your logic and problem-solving skills, less coding-intensive', salary: '$65k-85k' },
-      { career: 'Product Manager', growth: '19%', why: 'Technical background helps you understand what teams are building', salary: '$80k-120k' },
-      { career: 'Technical Writer', growth: '7%', why: 'Explain complex tech concepts - your CS knowledge is an asset', salary: '$60k-80k' },
-      { career: 'UX Researcher', growth: '18%', why: 'Analytical thinking applied to user behavior', salary: '$70k-95k' }
-    ],
-    'Criminal Justice': [
-      { career: 'Compliance Officer', growth: '8%', why: 'Ensure companies follow laws and regulations', salary: '$60k-85k' },
-      { career: 'Corporate Security Analyst', growth: '9%', why: 'Risk assessment and security planning for businesses', salary: '$55k-80k' },
-      { career: 'Loss Prevention Manager', growth: '6%', why: 'Retail and corporate asset protection', salary: '$50k-75k' },
-      { career: 'Emergency Management Specialist', growth: '6%', why: 'Disaster planning and response coordination', salary: '$55k-80k' }
-    ],
-    'Education': [
-      { career: 'Corporate Trainer', growth: '11%', why: 'Companies need people who can teach - better pay than K-12', salary: '$55k-85k' },
-      { career: 'Instructional Designer', growth: '9%', why: 'Create online courses and training programs for businesses', salary: '$60k-90k' },
-      { career: 'Curriculum Developer (EdTech)', growth: '15%', why: 'Education companies need people who understand teaching', salary: '$60k-85k' },
-      { career: 'Learning & Development Specialist', growth: '10%', why: 'Help employees grow - your teaching skills in a corporate setting', salary: '$60k-85k' }
-    ],
-    'English/Journalism': [
-      { career: 'Technical Writer', growth: '7%', why: 'Your writing skills are desperately needed in tech companies', salary: '$60k-80k' },
-      { career: 'UX Writer', growth: '23%', why: 'Make apps and websites easier to understand - storytelling for digital', salary: '$75k-100k' },
-      { career: 'Content Strategist', growth: '15%', why: 'Plan and manage content across organizations', salary: '$65k-90k' },
-      { career: 'Grant Writer', growth: '8%', why: 'Nonprofits need great writers, less competitive field', salary: '$50k-70k' }
-    ],
-    'Foreign Languages': [
-      { career: 'Localization Specialist', growth: '13%', why: 'Tech companies need content translated and culturally adapted', salary: '$55k-80k' },
-      { career: 'International Business Coordinator', growth: '10%', why: 'Help companies expand globally - language skills are valuable', salary: '$55k-85k' },
-      { career: 'Technical Writer (Multilingual)', growth: '7%', why: 'Create documentation in multiple languages', salary: '$60k-85k' },
-      { career: 'UX Researcher (International Markets)', growth: '18%', why: 'Research users in different countries and cultures', salary: '$70k-95k' }
-    ],
-    'History': [
-      { career: 'Researcher (Market/Policy)', growth: '11%', why: 'Your research skills apply beyond academia - companies need deep analysis', salary: '$55k-80k' },
-      { career: 'Compliance Specialist', growth: '8%', why: 'Understanding regulations and documentation - your analytical skills fit', salary: '$60k-85k' },
-      { career: 'Archives/Records Manager', growth: '5%', why: 'Organize and preserve information for corporations, government, nonprofits', salary: '$50k-70k' },
-      { career: 'Grant Writer', growth: '8%', why: 'Nonprofits need writers who can research and build compelling cases', salary: '$50k-70k' }
-    ],
-    'Marketing': [
-      { career: 'Sales Operations', growth: '23%', why: 'Your communication skills + analytics, growing rapidly', salary: '$60k-85k' },
-      { career: 'Customer Success Manager', growth: '20%', why: 'Help clients succeed, relationship-focused', salary: '$55k-80k' },
-      { career: 'Digital Marketing Analyst', growth: '17%', why: 'Data-driven marketing, less saturated than traditional marketing', salary: '$55k-75k' },
-      { career: 'Product Marketing', growth: '16%', why: 'Bridge between product teams and customers', salary: '$70k-95k' }
-    ],
-    'Mathematics': [
-      { career: 'Data Analyst', growth: '23%', why: 'Your analytical and statistical skills are in high demand', salary: '$65k-90k' },
-      { career: 'Actuarial Analyst', growth: '21%', why: 'Math background perfect for risk assessment and insurance', salary: '$70k-100k' },
-      { career: 'Financial Analyst', growth: '9%', why: 'Modeling and forecasting - your quantitative skills shine', salary: '$65k-95k' },
-      { career: 'Operations Research Analyst', growth: '23%', why: 'Optimize business processes using mathematical models', salary: '$70k-100k' }
-    ],
-    'Music/Theater': [
-      { career: 'Audio/Video Production', growth: '12%', why: 'Every company needs video content - your performance skills translate', salary: '$50k-75k' },
-      { career: 'Event Coordinator', growth: '18%', why: 'Your experience managing performances applies to corporate events', salary: '$45k-65k' },
-      { career: 'Music Therapist', growth: '9%', why: 'Clinical work using your musical training - requires certification', salary: '$50k-70k' },
-      { career: 'Corporate Trainer', growth: '11%', why: 'Teaching and performing skills make you great at presentations', salary: '$55k-80k' }
-    ],
-    'Philosophy': [
-      { career: 'Business Analyst', growth: '14%', why: 'Your logic and critical thinking skills are exactly what companies need', salary: '$70k-95k' },
-      { career: 'UX Researcher', growth: '18%', why: 'Understanding how people think and make decisions - philosophy in practice', salary: '$75k-105k' },
-      { career: 'Technical Writer', growth: '7%', why: 'Break down complex ideas clearly - your core skill', salary: '$60k-85k' },
-      { career: 'Policy Analyst', growth: '6%', why: 'Government and think tanks need ethical reasoning and analysis', salary: '$60k-90k' }
-    ],
-    'Physics': [
-      { career: 'Data Scientist', growth: '35%', why: 'Physics problem-solving and math skills are perfect for data science', salary: '$85k-120k' },
-      { career: 'Quantitative Analyst', growth: '11%', why: 'Finance firms love physics backgrounds for modeling', salary: '$90k-150k' },
-      { career: 'Software Engineer', growth: '22%', why: 'Strong problem-solving transfers to coding', salary: '$80k-130k' },
-      { career: 'Data Engineer', growth: '21%', why: 'Build data systems using analytical thinking', salary: '$85k-120k' }
-    ],
-    'Political Science': [
-      { career: 'Policy Analyst', growth: '6%', why: 'Work for government, nonprofits, or think tanks analyzing policy', salary: '$60k-90k' },
-      { career: 'Campaign Manager/Political Consultant', growth: '8%', why: 'Electoral politics - project management with real impact', salary: '$50k-100k' },
-      { career: 'Nonprofit Program Manager', growth: '9%', why: 'Run programs for advocacy organizations using your policy knowledge', salary: '$55k-80k' },
-      { career: 'Government Relations Specialist', growth: '7%', why: 'Help companies navigate regulation and policy', salary: '$70k-110k' }
-    ],
-    'Psychology': [
-      { career: 'UX Researcher', growth: '18%', why: 'Understanding human behavior is exactly what tech companies need', salary: '$70k-95k' },
-      { career: 'HR Specialist', growth: '10%', why: 'Your understanding of people is valuable in every organization', salary: '$50k-70k' },
-      { career: 'Market Research Analyst', growth: '13%', why: 'Study consumer behavior and trends', salary: '$55k-75k' },
-      { career: 'Training & Development', growth: '11%', why: 'Help employees learn and grow', salary: '$55k-80k' }
-    ],
-    'Sociology': [
-      { career: 'Market Research Analyst', growth: '13%', why: 'Study social trends and consumer behavior patterns', salary: '$55k-80k' },
-      { career: 'HR Specialist', growth: '10%', why: 'Understanding group dynamics and organizational behavior', salary: '$50k-75k' },
-      { career: 'Diversity & Inclusion Manager', growth: '11%', why: 'Create equitable workplaces using your social science background', salary: '$65k-95k' },
-      { career: 'Community Outreach Coordinator', growth: '8%', why: 'Work with nonprofits and government on social programs', salary: '$45k-65k' }
-    ]
-  };
-
-return (
-    <div className="bg-[#FFFBF7] min-h-screen">
-      <div className="mx-auto w-full max-w-screen-xl px-6 lg:px-12 py-10">
-        <div className="space-y-6">
-
-      {/* Hero Section */}
-      <div>
-        <h1 className="text-center text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">Explore {" "}
-          <span className="block md:inline text-tealBrand">
-            Career Paths</span> </h1>
-        <p className="mt-3 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
-          Your major doesn't lock you in. See adjacent roles that value the same skills — even if the title looks different.
-        </p>
-
-
-        <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
-
-
-          <button
-            onClick={() => setCurrentPage("search-guide")}
-            className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all"
-          >
-            Search guide
-          </button>
-
-          <button
-            onClick={() => setCurrentPage("find-internships")}
-            className="bg-white text-gray-700 px-7 py-4 rounded-xl font-semibold border border-gray-200 hover:bg-gray-100 transition-all"
-          >
-            Find internships
-          </button>
-
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg shadow p-6">
-        <label className="block text-sm font-semibold mb-2">Select Your Major:</label>
-        <select
-          value={selectedMajor}
-          onChange={(e) => setSelectedMajor(e.target.value)}
-          className="w-full p-3 border rounded-lg"
-        >
-          <option value="">Choose your major...</option>
-          {Object.keys(careerPivots).map(major => (
-            <option key={major} value={major}>{major}</option>
-          ))}
-        </select>
-      </div>
-
-      {selectedMajor && (
-        <div className="space-y-4">
-          <h3 className="text-xl font-bold">Alternative Career Paths for {selectedMajor}:</h3>
-          {careerPivots[selectedMajor].map((pivot, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
-              <div className="flex justify-between items-start mb-3">
-                <h4 className="text-xl font-bold text-gray-800">{pivot.career}</h4>
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
-                  +{pivot.growth} growth
-                </span>
-              </div>
-              <p className="text-gray-700 mb-2">{pivot.why}</p>
-              <p className="text-sm text-gray-500">Typical salary: {pivot.salary}</p>
-            </div>
-          ))}
-
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-            <h4 className="font-bold mb-2">Remember:</h4>
-            <ul className="space-y-1 text-sm text-gray-700">
-              <li>‣ These are real career paths that value your existing skills</li>
-              <li>‣ Growth rates from Bureau of Labor Statistics (2023-2033 projections)</li>
-              <li>‣ Many people who succeed in these fields didn't start there</li>
-              <li>‣ Your "non-traditional" background can be an advantage</li>
-            </ul>
-          </div>
-        </div>
-      )}
-
-      {/* Share Buttons */}
-      <ShareButtons
-        title="Career Path Alternatives - MoreThanOneWay.org"
-        message="Know someone questioning their major?"
-      />
-      </div>
-      </div>
-    </div>
-  );
-};
-const TrackerPage = ({ setCurrentPage }) => {
-  const [applications, setApplications] = useState([]);
-  const [showMoreDetails, setShowMoreDetails] = useState(false);
-  const [editingId, setEditingId] = useState(null);
-  const [expandedCards, setExpandedCards] = useState({});
-
-  const [newApp, setNewApp] = useState({
-    company: '',
-    position: '',
-    website: '',
-    location: '',
-    workType: 'Remote',
-    dateApplied: '',
-    status: 'Waiting to Hear Back',
-    applyByDate: '',
-    followUpDate: '',
-    contactName: '',
-    contactEmail: '',
-    salary: '',
-    notes: ''
-  });
-
-  const statusColors = {
-    'Waiting to Hear Back': 'bg-yellow-100 text-yellow-800 border-yellow-300',
-    'Interview Scheduled': 'bg-green-100 text-green-800 border-green-300',
-    'Rejected': 'bg-red-100 text-red-800 border-red-300',
-    'Withdrew Application': 'bg-blue-100 text-blue-800 border-blue-300'
-  };
-
-  const addOrUpdateApplication = () => {
-    // Validate required fields
-    if (!newApp.company || !newApp.position || !newApp.website || !newApp.location) {
-      alert('Please fill out all required fields: Company Name, Position, Job Posting URL, and Location');
-      return;
-    }
-
-    if (editingId) {
-      // Update existing application
-      setApplications(applications.map(app =>
-        app.id === editingId ? { ...newApp, id: editingId } : app
-      ));
-      setEditingId(null);
-    } else {
-      // Add new application
-      setApplications([...applications, { ...newApp, id: Date.now() }]);
-    }
-
-    // Reset form
-    setNewApp({
-      company: '',
-      position: '',
-      website: '',
-      location: '',
-      workType: 'Remote',
-      dateApplied: '',
-      status: 'Waiting to Hear Back',
-      applyByDate: '',
-      followUpDate: '',
-      contactName: '',
-      contactEmail: '',
-      salary: '',
-      notes: ''
-    });
-    setShowMoreDetails(false);
-  };
-
-  const editApplication = (app) => {
-    setNewApp(app);
-    setEditingId(app.id);
-    setShowMoreDetails(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const cancelEdit = () => {
-    setEditingId(null);
-    setNewApp({
-      company: '',
-      position: '',
-      website: '',
-      location: '',
-      workType: 'Remote',
-      dateApplied: '',
-      status: 'Waiting to Hear Back',
-      applyByDate: '',
-      followUpDate: '',
-      contactName: '',
-      contactEmail: '',
-      salary: '',
-      notes: ''
-    });
-    setShowMoreDetails(false);
-  };
-
-  const deleteApplication = (id) => {
-    if (window.confirm('Are you sure you want to delete this application?')) {
-      setApplications(applications.filter(app => app.id !== id));
-    }
-  };
-
-  const toggleCardExpansion = (id) => {
-    setExpandedCards(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
-
-  const downloadCSV = () => {
-    if (applications.length === 0) {
-      alert('No applications to download. Add some applications first!');
-      return;
-    }
-
-    const headers = [
-      'Company', 'Position', 'Job Posting URL', 'Location', 'Work Type',
-      'Date Applied', 'Status', 'Apply By Date', 'Follow-up Date',
-      'Contact Name', 'Contact Email', 'Salary/Pay', 'Notes'
-    ];
-
-    const rows = applications.map(app => [
-      app.company,
-      app.position,
-      app.website,
-      app.location,
-      app.workType,
-      app.dateApplied || '',
-      app.status,
-      app.applyByDate || '',
-      app.followUpDate || '',
-      app.contactName || '',
-      app.contactEmail || '',
-      app.salary || '',
-      app.notes ? `"${app.notes.replace(/"/g, '""')}"` : ''
-    ]);
-
-    const csvContent = [
-      headers.join(','),
-      ...rows.map(row => row.join(','))
-    ].join('\n');
-
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `job-applications-${new Date().toISOString().split('T')[0]}.csv`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.appendChild(link);
-    window.URL.revokeObjectURL(url);
-  };
-
-  return (
-    <div className="space-y-6 max-w-4xl mx-auto p-4">
-
-      <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10 ">
-        {/* Hero Section - Cleaner + More Professional */}
-        <header className="text-center max-w-5xl mx-auto pt-2">
-          <h2 className="text-center text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
-            Application {" "}
-            <span className="block md:inline text-tealBrand">
-              Tracker
-            </span>
-          </h2>
-
-          <p className="mt-3 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
-            Because someone wanted you to know there's more than one way forward.
-          </p>
-        </header>
-      </div>
-      <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
-        <button
-          onClick={() => setCurrentPage("find-internships")}
-          className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all"
-        >
-          Find opportunities
-        </button>
-
-        <button
-          onClick={() => setCurrentPage("job-tools-hub")}
-          className="bg-white text-gray-700 px-7 py-4 rounded-xl font-semibold border border-gray-200 hover:bg-gray-100 transition-all"
-        >
-          Job tools hub
-        </button>
-
-      </div>
-
-      <div className="rounded-xl bg-tealBrand/5 border border-gray-200 p-3">
-        <p className="text-sm text-gray-800">
-          <strong>Note:</strong> Your application data is only saved in your browser and will be lost if you refresh the page.
-          Use the "Download CSV" button to save your list, or consider using a spreadsheet for permanent tracking.
-        </p>
-      </div>
-
-      {/* Add/Edit Form */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="font-bold text-lg mb-4">
-          {editingId ? 'Edit Application' : 'Add New Application'}
-        </h3>
-
-        {/* Core Fields - Always Visible */}
-        <div className="space-y-4">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">
-                Company Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="e.g., Google"
-                value={newApp.company}
-                onChange={(e) => setNewApp({ ...newApp, company: e.target.value })}
-                className="w-full p-3 border rounded-lg"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-1">
-                Position <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="e.g., Software Engineer Intern"
-                value={newApp.position}
-                onChange={(e) => setNewApp({ ...newApp, position: e.target.value })}
-                className="w-full p-3 border rounded-lg"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">
-                Job Posting URL <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="url"
-                placeholder="https://..."
-                value={newApp.website}
-                onChange={(e) => setNewApp({ ...newApp, website: e.target.value })}
-                className="w-full p-3 border rounded-lg"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-1">
-                Location <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="e.g., San Francisco, CA"
-                value={newApp.location}
-                onChange={(e) => setNewApp({ ...newApp, location: e.target.value })}
-                className="w-full p-3 border rounded-lg"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-2">Work Type</label>
-              <div className="flex gap-4">
-                {['Remote', 'Hybrid', 'Onsite'].map(type => (
-                  <label key={type} className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      value={type}
-                      checked={newApp.workType === type}
-                      onChange={(e) => setNewApp({ ...newApp, workType: e.target.value })}
-                      className="w-4 h-4"
-                    />
-                    <span className="text-sm">{type}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-1">Date Applied</label>
-              <input
-                type="date"
-                value={newApp.dateApplied}
-                onChange={(e) => setNewApp({ ...newApp, dateApplied: e.target.value })}
-                className="w-full p-3 border rounded-lg"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-1">Status</label>
-              <select
-                value={newApp.status}
-                onChange={(e) => setNewApp({ ...newApp, status: e.target.value })}
-                className="w-full p-3 border rounded-lg"
-              >
-                <option>Need to Apply</option>
-                <option>Waiting to Hear Back</option>
-                <option>Interview Scheduled</option>
-                <option>Rejected</option>
-                <option>Withdrew Application</option>
-              </select>
-            </div>
-          </div>
-
-          {/* More Details Toggle */}
-          <button
-            onClick={() => setShowMoreDetails(!showMoreDetails)}
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold"
-          >
-            {showMoreDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-            {showMoreDetails ? 'Hide' : 'Show'} More Details (Optional)
-          </button>
-
-          {/* Additional Fields - Collapsible */}
-          {showMoreDetails && (
-            <div className="space-y-4 pt-4 border-t">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold mb-1">Apply By Date</label>
-                  <input
-                    type="date"
-                    value={newApp.applyByDate}
-                    onChange={(e) => setNewApp({ ...newApp, applyByDate: e.target.value })}
-                    className="w-full p-3 border rounded-lg"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold mb-1">Follow-up Reminder Date</label>
-                  <input
-                    type="date"
-                    value={newApp.followUpDate}
-                    onChange={(e) => setNewApp({ ...newApp, followUpDate: e.target.value })}
-                    className="w-full p-3 border rounded-lg"
-                  />
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold mb-1">Contact Person Name</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., John Smith"
-                    value={newApp.contactName}
-                    onChange={(e) => setNewApp({ ...newApp, contactName: e.target.value })}
-                    className="w-full p-3 border rounded-lg"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold mb-1">Contact Email</label>
-                  <input
-                    type="email"
-                    placeholder="recruiter@company.com"
-                    value={newApp.contactEmail}
-                    onChange={(e) => setNewApp({ ...newApp, contactEmail: e.target.value })}
-                    className="w-full p-3 border rounded-lg"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold mb-1">Salary/Pay Information</label>
-                <input
-                  type="text"
-                  placeholder="e.g., $25-30/hr or $80k-90k"
-                  value={newApp.salary}
-                  onChange={(e) => setNewApp({ ...newApp, salary: e.target.value })}
-                  className="w-full p-3 border rounded-lg"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold mb-1">Notes</label>
-                <textarea
-                  placeholder="Additional notes, interview details, etc."
-                  value={newApp.notes}
-                  onChange={(e) => setNewApp({ ...newApp, notes: e.target.value })}
-                  rows="3"
-                  className="w-full p-3 border rounded-lg"
-                />
-              </div>
+          {/* Job counts updated badge */}
+          {jobsUpdated && (
+            <div className="mb-6 inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-2 text-sm text-green-800">
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              Job counts updated {jobsUpdated === new Date().toISOString().split('T')[0] ? 'today' : `on ${jobsUpdated}`}
             </div>
           )}
 
-          {/* Action Buttons */}
-          <div className="flex gap-3">
-            <button
-              onClick={addOrUpdateApplication}
-              className="bg-tealBrand text-white px-6 py-2 rounded-lg hover:bg-tealBrand/70 font-semibold"
-            >
-              {editingId ? 'Update Application' : 'Add Application'}
-            </button>
+          {/* Career Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {majorData.careers.map((career, idx) => {
+              const jobKey = CAREER_KEY_MAP[career.career];
+              const jobCount = jobKey && jobCounts ? jobCounts[jobKey] : null;
+              const formattedCount = formatJobCount(jobCount);
 
-            {editingId && (
-              <button
-                onClick={cancelEdit}
-                className="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500 font-semibold"
-              >
-                Cancel
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Applications List */}
-      {applications.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="font-bold text-lg">Your Applications ({applications.length})</h3>
-            <button
-              onClick={downloadCSV}
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-semibold"
-            >
-              Download CSV
-            </button>
-          </div>
-
-          <div className="space-y-3">
-            {applications.map(app => (
-              <div key={app.id} className="border-l-4 border-blue-500 bg-gray-50 rounded">
-                {/* Card Header - Always Visible */}
-                <div className="p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="flex-1">
-                      <h4 className="font-bold text-lg">{app.company}</h4>
-                      <p className="text-gray-700">{app.position}</p>
-                      <div className="flex gap-2 mt-2 flex-wrap">
-                        <span className={`px-2 py-1 rounded text-xs font-semibold border ${statusColors[app.status]}`}>
-                          {app.status}
-                        </span>
-                        <span className="px-2 py-1 rounded text-xs bg-gray-200 text-gray-700">
-                          {app.workType}
-                        </span>
-                        {app.dateApplied && (
-                          <span className="px-2 py-1 rounded text-xs bg-gray-200 text-gray-700">
-                            Applied: {app.dateApplied}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="flex gap-2 ml-4">
-                      <button
-                        onClick={() => editApplication(app)}
-                        className="text-blue-600 hover:text-blue-800 p-2"
-                        title="Edit"
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => deleteApplication(app.id)}
-                        className="text-red-600 hover:text-red-800 p-2"
-                        title="Delete"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
+              return (
+                <div key={idx} className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 hover:shadow-md transition-all">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="font-bold text-lg text-gray-900 leading-tight">{career.career}</h3>
+                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold whitespace-nowrap ml-2 flex-shrink-0">
+                      +{career.growth}
+                    </span>
                   </div>
 
-                  {/* Expand/Collapse Button */}
-                  <button
-                    onClick={() => toggleCardExpansion(app.id)}
-                    className="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 mt-2"
-                  >
-                    {expandedCards[app.id] ? (
-                      <>
-                        <ChevronUp className="w-4 h-4" /> Hide Details
-                      </>
-                    ) : (
-                      <>
-                        <ChevronDown className="w-4 h-4" /> Show All Details
-                      </>
-                    )}
-                  </button>
-                </div>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{career.why}</p>
 
-                {/* Expanded Details */}
-                {expandedCards[app.id] && (
-                  <div className="px-4 pb-4 border-t pt-3 space-y-2 text-sm">
-                    <div><strong>Location:</strong> {app.location}</div>
-                    {app.website && (
-                      <div>
-                        <strong>Job Posting:</strong>{' '}
-                        <a href={app.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                          View →
-                        </a>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                      <DollarSign className="w-4 h-4 text-teal-600 flex-shrink-0" />
+                      <span className="font-semibold">{career.salary}</span>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                      <TrendingUp className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      <span>{career.growth} projected growth</span>
+                    </div>
+
+                    {formattedCount && (
+                      <div className="flex items-start gap-2 text-sm">
+                        <Briefcase className="w-4 h-4 text-orange-500 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <span className="font-semibold text-orange-700">{formattedCount} open jobs today</span>
+                          <span className="text-gray-500 text-xs block">includes all experience levels</span>
+                        </div>
                       </div>
                     )}
-                    {app.applyByDate && <div><strong>Apply By:</strong> {app.applyByDate}</div>}
-                    {app.followUpDate && <div><strong>Follow-up:</strong> {app.followUpDate}</div>}
-                    {app.contactName && <div><strong>Contact:</strong> {app.contactName}</div>}
-                    {app.contactEmail && (
-                      <div>
-                        <strong>Email:</strong>{' '}
-                        <a href={`mailto:${app.contactEmail}`} className="text-blue-600 hover:underline">
-                          {app.contactEmail}
-                        </a>
-                      </div>
-                    )}
-                    {app.salary && <div><strong>Salary:</strong> {app.salary}</div>}
-                    {app.notes && (
-                      <div>
-                        <strong>Notes:</strong>
-                        <p className="mt-1 text-gray-700 whitespace-pre-wrap">{app.notes}</p>
+
+                    {loadingJobs && !jobCounts && (
+                      <div className="flex items-center gap-2 text-xs text-gray-400">
+                        <Briefcase className="w-3 h-3" />
+                        <span>Loading job counts...</span>
                       </div>
                     )}
                   </div>
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
-        </div>
-      )}
 
-      {/* Encouragement Section */}
-      <div className="mt-8 rounded-3xl bg-[#006581] text-white p-10 md:p-12 shadow-lg shadow-black/10">
-        <div className="max-w-3xl mx-auto text-center space-y-5">
-          <div className="flex justify-center">
-            <div className="rounded-xl bg-white/10 ring-1 ring-white/20 p-4">
-              <Sparkles className="w-8 h-8 text-white" strokeWidth={2} />
+          {/* Honest talk section */}
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            <div className="bg-amber-50 border-l-4 border-amber-400 rounded-2xl p-6">
+              <h3 className="font-bold text-gray-900 mb-3">Common Struggles for {majorData.title} Majors</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">{majorData.struggles}</p>
             </div>
-          </div>
-          <h3 className="text-2xl md:text-3xl font-semibold tracking-tight">Celebrate Small Wins</h3>
-          <p className="text-base md:text-lg leading-relaxed text-white/90">Every application is progress. Every customized cover letter is practice. Every interview is a learning experience.</p>
-          <ul className="text-base md:text-lg leading-relaxed text-white/90">
-            <li>• Applied to 10 jobs? That's 10 chances you didn't have before.</li>
-            <li>• Got a rejection? You're one step closer to the right fit.</li>
-            <li>• Didn't get the job after an interview? You got interview practice.</li>
-          </ul>
-
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const CrisisPage = ({ setCurrentPage }) => {
-  const navigate = useNavigate();
-
-  return (
-    <div className="min-h-screen bg-[#FFFBF7]">
-      <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
-        <div className="space-y-8">
-
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
-            <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center flex-shrink-0">
-                <Heart className="w-5 h-5 text-red-500" fill="currentColor" />
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-2">If You're In Crisis</h3>
-                <p className="text-gray-700 text-sm leading-relaxed">
-                  <strong>It may not seem like it now, but this feeling is temporary. You matter.</strong>
-                </p>
-              </div>
+            <div className="bg-blue-50 border-l-4 border-blue-400 rounded-2xl p-6">
+              <h3 className="font-bold text-gray-900 mb-3">Honest Reality Check</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">{majorData.honest}</p>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
-              <Phone className="w-8 h-8 text-red-500 mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">988 Suicide & Crisis Lifeline</h3>
-              <p className="text-3xl font-bold text-red-600 mb-2">Call or Text: 988</p>
-              <p className="text-gray-600 text-sm">Available 24/7. Free. Confidential. Someone will listen.</p>
+          {/* Next Steps */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
+            <h3 className="font-bold text-xl text-gray-900 mb-5">Your Next Steps</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <button onClick={() => setCurrentPage('find-internships')}
+                className="flex items-center gap-3 bg-gray-900 text-white p-4 rounded-xl hover:bg-gray-700 transition-all text-left">
+                <Search className="w-5 h-5 flex-shrink-0" />
+                <div>
+                  <p className="font-semibold text-sm">Find Internships</p>
+                  <p className="text-xs text-gray-300">Search by your major</p>
+                </div>
+              </button>
+              <button onClick={() => setCurrentPage('resume-builder')}
+                className="flex items-center gap-3 bg-teal-600 text-white p-4 rounded-xl hover:bg-teal-700 transition-all text-left">
+                <FileText className="w-5 h-5 flex-shrink-0" />
+                <div>
+                  <p className="font-semibold text-sm">Build Your Resume</p>
+                  <p className="text-xs text-teal-100">Free, ATS-friendly</p>
+                </div>
+              </button>
+              <button onClick={() => setCurrentPage('cover-letter')}
+                className="flex items-center gap-3 bg-purple-600 text-white p-4 rounded-xl hover:bg-purple-700 transition-all text-left">
+                <BookOpen className="w-5 h-5 flex-shrink-0" />
+                <div>
+                  <p className="font-semibold text-sm">Cover Letter Generator</p>
+                  <p className="text-xs text-purple-100">Free, no sign-up</p>
+                </div>
+              </button>
             </div>
-
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
-              <MessageCircle className="w-8 h-8 text-red-500 mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Crisis Text Line</h3>
-              <p className="text-3xl font-bold text-red-600 mb-2">Text HOME to 741741</p>
-              <p className="text-gray-600 text-sm">If you prefer texting. 24/7. Trained counselors.</p>
-            </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
-            <h3 className="font-bold text-gray-900 mb-4">More Crisis Support</h3>
-            <ul className="space-y-3 text-sm text-gray-700 leading-relaxed">
-              <li><strong>Campus Counseling Center:</strong> Most colleges offer free counseling services. Check your school's health services website.</li>
-              <li><strong>National Alliance on Mental Illness (NAMI):</strong> Text “NAMI” to 741741 or visit nami.org</li>
-              <li><strong>The Trevor Project (LGBTQ+ Youth):</strong> 1-866-488-7386 or text START to 678-678</li>
-              <li><strong>Trans Lifeline:</strong> 1-877-565-8860</li>
-              <li><strong>National Domestic Violence Hotline:</strong> 1-800-799-SAFE (7233)</li>
-              <li><strong>National Maternal Mental Health Hotline:</strong> 1-833-TLC-MAMA</li>
-              <li><strong>Blackline:</strong> 1-800-604-5841</li>
-              <li><strong>SAMHSA Helpline:</strong> 1-800-622-HELP (4357)</li>
-            </ul>
-          </div>
-
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
-  <h3 className="font-bold text-gray-900 mb-4">Helpful Apps (100% Free)</h3>
-
-  <div className="space-y-4">
-    {[
-      {
-        title: 'Calm Harm',
-        desc: 'Helps when you want to self-harm. Provides distractions and activities when you’re overwhelmed.',
-        link: 'https://calmharm.co.uk/',
-        label: 'Download here',
-      },
-      {
-        title: 'Sanvello',
-        desc: 'Anxiety and mood tracking with coping tools. Free basic features.',
-        link: 'https://www.sanvello.com/',
-        label: 'Visit Sanvello.com',
-      },
-      {
-        title: 'MindShift',
-        desc: 'CBT-based app for anxiety management. Completely free.',
-        link: 'https://www.anxietycanada.com/resources/mindshift-cbt/',
-        label: 'Download MindShift',
-      },
-      {
-        title: 'PTSD Coach',
-        desc: 'From the VA — helps manage PTSD symptoms. Completely free.',
-        link: 'https://www.ptsd.va.gov/appvid/mobile/ptsdcoach_app.asp',
-        label: 'Get PTSD Coach',
-      },
-    ].map((app, i) => (
-      <div
-        key={i}
-        className="bg-white rounded-2xl border border-gray-200 p-5 hover:bg-teal-50 hover:border-teal-200 hover:shadow-sm transition-all"
-      >
-        <h4 className="font-semibold text-gray-900 mb-1">{app.title}</h4>
-
-        <p className="text-sm text-gray-600 mb-3">
-          {app.desc}
-        </p>
-
-        <a
-          href={app.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-teal-600 hover:text-teal-800 underline text-sm font-medium"
-        >
-          {app.label}
-        </a>
-      </div>
-    ))}
-  </div>
-</div>
-
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
-            <h3 className="font-bold text-gray-900 mb-4">Things That Might Help Right Now</h3>
-            <ul className="space-y-2 text-sm text-gray-700 leading-relaxed">
-              <li>• Call or text someone — a friend, family member, roommate. Just say “I’m not doing well.”</li>
-              <li>• Go somewhere public — a coffee shop, library, campus center. Being around people helps.</li>
-              <li>• Take a walk outside, even for 5 minutes. Movement can shift your mental state.</li>
-              <li>• Remember: This feeling is temporary. You’ve survived 100% of your worst days so far.</li>
-              <li>• You are not a burden. People want to help. Let them.</li>
-            </ul>
-          </div>
-
-          <div className="mt-12 bg-white rounded-3xl border border-gray-200 shadow-sm p-8 md:p-10 text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">You Are Not Alone</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6">
-              Many students have felt exactly like you do right now. Many have gotten through it and gone on to live meaningful lives. You can too.
-            </p>
-            <button
-              onClick={() => setCurrentPage('stories')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-teal-500 transition-all"
-            >
-              Read Their Stories
+          {/* All majors link */}
+          <div className="text-center">
+            <button onClick={() => setCurrentPage('pivot')}
+              className="text-teal-600 font-semibold hover:text-teal-800 flex items-center gap-2 mx-auto">
+              <ArrowLeft className="w-4 h-4" /> Browse all majors
             </button>
           </div>
 
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-const ResumeBuilderPage = () => (
-  <div className="space-y-6">
-
-    <h2 className="text-3xl font-bold mb-2">Resume Builder</h2>
-    <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-      <FileText className="w-16 h-16 text-blue-500 mx-auto mb-4" />
-      <h3 className="text-xl font-bold mb-2">Coming Soon!</h3>
-      <p className="text-gray-700">We're building an interactive guide that teaches you how to create a resume that showcases YOUR experiences effectively.</p>
-    </div>
-  </div>
-);
-
-// Wrapper for BlogPost that reads the slug from the URL
-const BlogPostWrapper = ({ setCurrentPage }) => {
-  const { slug } = useParams();
-  return (
-    <BlogPost
-      setCurrentPage={setCurrentPage}
-      selectedPostSlug={slug}
-      setSelectedPostSlug={(newSlug) => setCurrentPage('blog/' + newSlug)}
-    />
-  );
-};
-
-export default function App() {
-  const navigate = useNavigate();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // setCurrentPage is a drop-in replacement — all child components keep working unchanged
-  const setCurrentPage = (page) => {
-    setMobileMenuOpen(false);
-    if (page === 'home') {
-      navigate('/');
-    } else {
-      navigate('/' + page);
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-[#FAFAF7] text-gray-900">
-      <NavBar
-        currentPage={null}
-        setCurrentPage={setCurrentPage}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-      />
-
-      <main className="w-full px-6 lg:px-12 py-10">
-        <Routes>
-          <Route path="/" element={<WarmHomePage setCurrentPage={setCurrentPage} />} />
-          <Route path="/find-internships" element={<FindInternshipsPage setCurrentPage={setCurrentPage} />} />
-          <Route path="/resume-builder" element={<ResumeBuilder onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
-          <Route path="/ats-guide" element={<ATSGuide setCurrentPage={setCurrentPage} />} />
-          <Route path="/study-resources" element={<StudyResources onBack={() => setCurrentPage('home')} />} />
-          <Route path="/youre-not-alone" element={<YoureNotAlone onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
-          <Route path="/interview-prep" element={<InterviewPrep />} />
-          <Route path="/job-alert" element={<JobAlertGuide onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
-          <Route path="/search-guide" element={<SearchGuide onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
-          <Route path="/need-a-laugh" element={<NeedALaugh onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
-          <Route path="/volunteer" element={<Volunteer onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
-          <Route path="/stories" element={<StoriesPage setCurrentPage={setCurrentPage} />} />
-          <Route path="/stories/:slug" element={<StoryDetail />} />
-          <Route path="/pivot" element={<PivotPage setCurrentPage={setCurrentPage} />} />
-          <Route path="/about" element={<AboutPage setCurrentPage={setCurrentPage} />} />
-          <Route path="/contact" element={<Contact onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
-          <Route path="/job-tools-hub" element={<JobToolsHub setCurrentPage={setCurrentPage} />} />
-          <Route path="/resources" element={<ResourcesPage />} />
-          <Route path="/tracker" element={<TrackerPage setCurrentPage={setCurrentPage} />} />
-          <Route path="/crisis" element={<CrisisPage setCurrentPage={setCurrentPage} />} />
-          <Route path="/blog" element={<BlogPage setCurrentPage={setCurrentPage} setSelectedPostSlug={(slug) => navigate('/blog/' + slug)} />} />
-          <Route path="/blog/:slug" element={<BlogPostWrapper setCurrentPage={setCurrentPage} />} />
-          <Route path="/cover-letter" element={<CoverLetterGenerator setCurrentPage={setCurrentPage} />} />
-          <Route path="/find-opportunities-hub" element={<FindOpportunitiesHub setCurrentPage={setCurrentPage} />} />
-          <Route path="/resources-hub" element={<ResourcesHub setCurrentPage={setCurrentPage} />} />
-          <Route path="/struggling-in-classes" element={<StrugglingInClasses setCurrentPage={setCurrentPage} />} />
-          <Route path="/family-not-supportive" element={<FamilyNotSupportive />} />
-          <Route path="/feeling-alone" element={<FeelingAlone setCurrentPage={setCurrentPage} />} />
-          <Route path="/dont-want-to-be-here" element={<DontWantToBeHere setCurrentPage={setCurrentPage} />} />
-          <Route path="/cant-afford-college" element={<CantAffordCollege />} />
-          <Route path="/no-idea-what-to-do" element={<NoIdeaWhatToDo setCurrentPage={setCurrentPage} />} />
-          <Route path="/everything-is-too-much" element={<EverythingIsTooMuch setCurrentPage={setCurrentPage} />} />
-          <Route path="/career-services-no-idea" element={<CareerServicesNoIdea setCurrentPage={setCurrentPage} />} />
-          <Route path="/hate-my-major" element={<HateMyMajor setCurrentPage={setCurrentPage} />} />
-          <Route path="/first-generation-student" element={<FirstGenerationStudent setCurrentPage={setCurrentPage} />} />
-          <Route path="/academic-probation" element={<AcademicProbation setCurrentPage={setCurrentPage} />} />
-          <Route path="/burnt-out" element={<BurntOut setCurrentPage={setCurrentPage} />} />
-          <Route path="/thinking-about-transferring" element={<ThinkingAboutTransferring setCurrentPage={setCurrentPage} />} />
-          <Route path="/major/:majorSlug" element={<MajorPage setCurrentPage={setCurrentPage} />} />
-          {/* Catch-all: redirect unknown URLs to home */}
-        </Routes>
-      </main>
-      <footer className="bg-gray-800 text-white mt-12 py-8">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-6">
-            <h3 className="font-bold mb-4">Follow Our Journey</h3>
-            <div className="flex justify-center gap-6 mb-6">
-              <a
-                href="https://www.instagram.com/morethanonewayproject/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-2 text-gray-300 hover:text-pink-400 transition-all hover:scale-110"
-                aria-label="Follow us on Instagram"
-              >
-                <div className="bg-gray-700 p-3 rounded-xl hover:bg-pink-600 transition-all">
-                  <Instagram className="w-6 h-6" />
-                </div>
-              </a>
-
-              <a
-                href="https://www.facebook.com/morethanonewayproject"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-2 text-gray-300 hover:text-blue-400 transition-all hover:scale-110"
-                aria-label="Follow us on Facebook"
-              >
-                <div className="bg-gray-700 p-3 rounded-xl hover:bg-blue-600 transition-all">
-                  <Facebook className="w-6 h-6" />
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div className="text-center mb-4">
-            <h3 className="font-bold mb-2">About This Site</h3>
-            <p className="text-gray-300 text-sm">
-              Created to help students see that there's more than one way forward.
-            </p>
-            <p className="text-gray-300 text-sm">
-              A free, student-focused project — not a corporation, not therapy.
-            </p>
-            <p className="text-gray-300 text-sm mt-2">
-              Questions?{' '}
-              <a href="mailto:support@morethanoneway.org" className="text-blue-300 hover:text-blue-200 underline">
-                support@morethanoneway.org
-              </a>
-              {' '}|{' '}
-              <button
-                onClick={() => setCurrentPage('contact')}
-                className="text-blue-300 hover:text-blue-200 underline"
-              >
-                Contact Us
-              </button>
-            </p>
-          </div>
-          <div className="text-center text-sm text-gray-400">
-            <p>If you're in crisis: Call or text 988 | Text HOME to 741741</p>
-            <p className="mt-2">© 2026 MoreThanOneWay.org</p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
+export default MajorPage;
