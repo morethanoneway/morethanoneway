@@ -25,7 +25,7 @@ const FamilyNotSupportive = () => {
         <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
           <button
             onClick={() => navigate('/youre-not-alone')}
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-800 mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-tealBrand mb-8 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Support Hub
@@ -105,7 +105,7 @@ const FamilyNotSupportive = () => {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-purple-600 hover:text-purple-800 font-semibold text-sm flex items-center gap-1"
+                    className="text-purple-600 hover:text-tealBrand font-semibold text-sm flex items-center gap-1"
                   >
                     {item.linkText}
                     <ExternalLink className="w-4 h-4" />
@@ -170,7 +170,7 @@ const FamilyNotSupportive = () => {
 
             <button
               onClick={() => navigate('/youre-not-alone')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-gray-700 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-tealBrand/90 transition-all"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Support Hub
