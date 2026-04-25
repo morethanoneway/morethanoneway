@@ -232,7 +232,7 @@ const FindInternshipsPage = ({ setCurrentPage }) => {
         { title: 'UX Writer Intern', why: 'Clear communication for digital products', growth: '23%', pay: '$22-32/hr' }
       ]
     },
-    'Art': {
+    'Fine Arts/Studio Art': {
       traditional: 'Graphic Design Intern',
       alternatives: [
         { title: 'UX/UI Designer Intern', why: 'Your design skills translate directly - tech needs visual designers desperately', growth: '16%', pay: '$22-32/hr' },
@@ -556,7 +556,261 @@ const FindInternshipsPage = ({ setCurrentPage }) => {
         { title: 'Healthcare Navigator Intern', why: 'Help patients access care and services', growth: '16%', pay: '$18-26/hr' },
         { title: 'Victim Advocate Intern', why: 'Support and advocacy for those in need', growth: '12%', pay: '$16-24/hr' }
       ]
-    }
+    },
+    // Add these entries to the majorData object in FindInternshipsPage.jsx
+// Also rename 'Art' key to 'Fine Arts/Studio Art'
+
+    'Fine Arts/Studio Art': {
+      traditional: 'Graphic Design Intern',
+      alternatives: [
+        { title: 'UX/UI Designer Intern', why: 'Your visual training applies directly to digital product design', growth: '16%', pay: '$22-32/hr' },
+        { title: 'Brand Designer Intern', why: 'Every company needs visual identity and branding', growth: '8%', pay: '$18-28/hr' },
+        { title: 'Art Director Intern', why: 'Lead creative vision for campaigns and brands', growth: '6%', pay: '$20-30/hr' },
+        { title: 'Motion Graphics Designer Intern', why: 'Video and animation increasingly important for brands', growth: '14%', pay: '$20-28/hr' },
+        { title: 'Social Media Content Creator Intern', why: 'Visual content creation — every brand needs quality creative', growth: '10%', pay: '$16-24/hr' },
+        { title: 'Exhibit/Experience Designer Intern', why: 'Design physical and digital experiences for museums and brands', growth: '8%', pay: '$18-26/hr' }
+      ]
+    },
+
+    'Business Administration': {
+      traditional: 'Business Administration Intern',
+      alternatives: [
+        { title: 'Operations Analyst Intern', why: 'Make businesses run more efficiently — broad business knowledge is an asset', growth: '16%', pay: '$20-28/hr' },
+        { title: 'Business Analyst Intern', why: 'Bridge between business needs and technical solutions', growth: '14%', pay: '$22-30/hr' },
+        { title: 'Sales Development Intern', why: 'Most accessible high-earning entry point — fastest path to $80k+', growth: '15%', pay: '$18-26/hr' },
+        { title: 'Customer Success Intern', why: 'Help clients succeed — relationship focused and growing rapidly', growth: '20%', pay: '$18-26/hr' },
+        { title: 'Project Management Intern', why: 'Coordinate teams and deliver projects on time', growth: '9%', pay: '$20-28/hr' },
+        { title: 'Human Resources Intern', why: 'Your broad business understanding applies well to HR', growth: '10%', pay: '$18-24/hr' }
+      ]
+    },
+
+    'Management Information Systems': {
+      traditional: 'MIS Intern',
+      alternatives: [
+        { title: 'Business Analyst Intern', why: 'Your MIS background is ideal — you understand both sides', growth: '14%', pay: '$22-32/hr' },
+        { title: 'Data Analyst Intern', why: 'Database and systems knowledge applies directly to data roles', growth: '23%', pay: '$24-32/hr' },
+        { title: 'IT Project Manager Intern', why: 'Manage technology projects with business and technical credibility', growth: '9%', pay: '$22-30/hr' },
+        { title: 'Systems Analyst Intern', why: 'Analyze and improve business systems — core MIS role', growth: '9%', pay: '$22-30/hr' },
+        { title: 'ERP Consultant Intern', why: 'SAP/Oracle implementation — MIS grads are preferred', growth: '10%', pay: '$24-32/hr' },
+        { title: 'Product Manager Intern', why: 'Tech + business background makes you a strong PM candidate', growth: '19%', pay: '$24-34/hr' }
+      ]
+    },
+
+    'Creative Writing': {
+      traditional: 'Editorial Intern',
+      alternatives: [
+        { title: 'UX Writer Intern', why: 'Write the words inside apps and websites — storytelling for digital products', growth: '23%', pay: '$22-32/hr' },
+        { title: 'Content Strategist Intern', why: 'Plan and manage content across organizations', growth: '15%', pay: '$20-28/hr' },
+        { title: 'Copywriter Intern', why: 'Write marketing and advertising copy — creative writing is ideal preparation', growth: '8%', pay: '$18-26/hr' },
+        { title: 'Technical Writer Intern', why: 'Explain complex things clearly — your writing skills are directly applicable', growth: '7%', pay: '$20-28/hr' },
+        { title: 'Grant Writer Intern', why: 'Write compelling funding proposals for nonprofits', growth: '8%', pay: '$18-24/hr' },
+        { title: 'Social Media Content Intern', why: 'Create engaging written content for digital platforms', growth: '10%', pay: '$16-24/hr' }
+      ]
+    },
+
+    'Film/Media Studies': {
+      traditional: 'Video Production Intern',
+      alternatives: [
+        { title: 'Content Marketing Intern', why: 'Every brand needs compelling video and media content', growth: '15%', pay: '$18-26/hr' },
+        { title: 'Social Media Manager Intern', why: 'Visual storytelling and audience engagement apply directly', growth: '10%', pay: '$16-24/hr' },
+        { title: 'UX Research Intern', why: 'Media analysis skills translate to understanding how people interact with products', growth: '18%', pay: '$22-32/hr' },
+        { title: 'Communications Intern', why: 'Storytelling and media literacy make you an effective communicator', growth: '8%', pay: '$18-26/hr' },
+        { title: 'Brand Content Creator Intern', why: 'Create compelling content for company brands', growth: '12%', pay: '$18-26/hr' },
+        { title: 'Digital Marketing Intern', why: 'Your media production skills are valuable in digital campaigns', growth: '17%', pay: '$18-26/hr' }
+      ]
+    },
+
+    'Foreign Languages': {
+      traditional: 'Translation/Interpretation Intern',
+      alternatives: [
+        { title: 'International Business Development Intern', why: 'Language skills plus business — rare and valuable combination', growth: '10%', pay: '$20-28/hr' },
+        { title: 'Localization Specialist Intern', why: 'Tech companies need content translated and culturally adapted', growth: '13%', pay: '$20-28/hr' },
+        { title: 'Content Marketing Intern (Multilingual)', why: 'Create content for global markets in multiple languages', growth: '15%', pay: '$18-26/hr' },
+        { title: 'Customer Success Intern', why: 'Serving international clients requires exactly your skills', growth: '20%', pay: '$18-26/hr' },
+        { title: 'HR Intern (Global Companies)', why: 'Multilingual HR professionals are in demand at global companies', growth: '10%', pay: '$18-24/hr' },
+        { title: 'Market Research Intern', why: 'Research international markets and consumer behavior', growth: '13%', pay: '$20-28/hr' }
+      ]
+    },
+
+    "Gender/Women's Studies": {
+      traditional: 'Nonprofit/Advocacy Intern',
+      alternatives: [
+        { title: 'Diversity, Equity & Inclusion Intern', why: 'Your analytical framework for understanding equity is directly applicable', growth: '15%', pay: '$18-26/hr' },
+        { title: 'HR Intern', why: 'Your understanding of workplace equity and policy fits HR well', growth: '10%', pay: '$18-24/hr' },
+        { title: 'Policy Research Intern', why: 'Analyze and advocate for policy at government agencies and think tanks', growth: '6%', pay: '$18-26/hr' },
+        { title: 'Community Outreach Intern', why: 'Lead advocacy campaigns and community programs', growth: '8%', pay: '$16-22/hr' },
+        { title: 'Nonprofit Program Intern', why: 'Run advocacy and social service programs aligned with your values', growth: '9%', pay: '$16-24/hr' },
+        { title: 'Communications Intern', why: 'Your storytelling and advocacy skills apply to corporate communications', growth: '8%', pay: '$18-26/hr' }
+      ]
+    },
+
+    'Religious Studies': {
+      traditional: 'Nonprofit/Ministry Intern',
+      alternatives: [
+        { title: 'Nonprofit Program Intern', why: 'Many nonprofits are faith-based or values-driven — your background is relevant', growth: '9%', pay: '$16-24/hr' },
+        { title: 'Community Outreach Intern', why: 'Your understanding of diverse communities is valuable', growth: '8%', pay: '$16-22/hr' },
+        { title: 'Communications Intern', why: 'Writing and communication skills apply broadly', growth: '8%', pay: '$18-26/hr' },
+        { title: 'Policy Research Intern', why: 'Religion intersects with law, politics, and culture', growth: '6%', pay: '$18-26/hr' },
+        { title: 'HR Intern', why: 'Understanding diverse communities and cultures fits HR well', growth: '10%', pay: '$18-24/hr' },
+        { title: 'Social Services Intern', why: 'Direct service work with communities in need', growth: '10%', pay: '$15-22/hr' }
+      ]
+    },
+
+    'AI/Machine Learning': {
+      traditional: 'Machine Learning Intern',
+      alternatives: [
+        { title: 'Data Science Intern', why: 'Apply ML to business problems — more accessible than pure research', growth: '35%', pay: '$30-42/hr' },
+        { title: 'Software Engineering Intern', why: 'Strong coding skills qualify you for most SWE roles', growth: '22%', pay: '$28-40/hr' },
+        { title: 'Data Engineering Intern', why: 'Build the pipelines that ML models run on', growth: '21%', pay: '$28-38/hr' },
+        { title: 'MLOps Intern', why: 'Deploy and maintain ML systems in production — emerging critical role', growth: '38%', pay: '$30-42/hr' },
+        { title: 'AI Product Manager Intern', why: 'Guide AI product development — technical background essential', growth: '25%', pay: '$26-38/hr' },
+        { title: 'Research Intern (Industry AI Labs)', why: 'Applied research at companies like Google, Meta, Microsoft', growth: '35%', pay: '$32-45/hr' }
+      ]
+    },
+
+    'Cybersecurity': {
+      traditional: 'Cybersecurity Intern',
+      alternatives: [
+        { title: 'Security Analyst Intern', why: 'Monitor and protect systems from threats — high demand everywhere', growth: '32%', pay: '$24-34/hr' },
+        { title: 'Penetration Testing Intern', why: 'Ethically hack systems to find vulnerabilities — specialized and well-paid', growth: '28%', pay: '$26-36/hr' },
+        { title: 'IT Audit Intern', why: 'Assess security controls and compliance — less technical but well-paid', growth: '15%', pay: '$20-28/hr' },
+        { title: 'Compliance/Risk Intern', why: 'Ensure organizations meet security regulations', growth: '15%', pay: '$20-28/hr' },
+        { title: 'Cloud Security Intern', why: 'Cloud security is one of the fastest growing specializations', growth: '32%', pay: '$26-36/hr' },
+        { title: 'Software Engineering Intern', why: 'Your security knowledge makes you a more valuable engineer', growth: '22%', pay: '$28-40/hr' }
+      ]
+    },
+
+    'Biochemistry': {
+      traditional: 'Biochemistry Research Intern',
+      alternatives: [
+        { title: 'Clinical Research Coordinator Intern', why: 'Your science background without needing a PhD', growth: '14%', pay: '$18-26/hr' },
+        { title: 'Regulatory Affairs Intern', why: 'Navigate FDA approval processes — biochem knowledge essential', growth: '12%', pay: '$22-30/hr' },
+        { title: 'Quality Control Analyst Intern', why: 'Ensure products meet standards in pharma and food manufacturing', growth: '9%', pay: '$18-26/hr' },
+        { title: 'Laboratory Technician Intern', why: 'Hands-on lab work across pharma and biotech', growth: '7%', pay: '$16-24/hr' },
+        { title: 'Pharmaceutical Sales Intern', why: 'Your biochem knowledge gives credibility with medical professionals', growth: '6%', pay: '$20-28/hr' },
+        { title: 'Medical Writer Intern', why: 'Write about science for non-scientific audiences', growth: '9%', pay: '$20-28/hr' }
+      ]
+    },
+
+    'Computer Information Systems': {
+      traditional: 'IT/Systems Intern',
+      alternatives: [
+        { title: 'Business Analyst Intern', why: 'Bridge between IT and business — CIS grads are well-positioned', growth: '14%', pay: '$22-30/hr' },
+        { title: 'Data Analyst Intern', why: 'Database knowledge applies directly to data roles', growth: '23%', pay: '$22-32/hr' },
+        { title: 'IT Project Coordinator Intern', why: 'Manage technology implementations with business credibility', growth: '9%', pay: '$20-28/hr' },
+        { title: 'Systems Analyst Intern', why: 'Analyze and improve business systems — core CIS role', growth: '9%', pay: '$22-30/hr' },
+        { title: 'Cloud Administrator Intern', why: 'Manage cloud infrastructure — AWS/Azure certifications boost this', growth: '22%', pay: '$22-32/hr' },
+        { title: 'ERP Consultant Intern', why: 'Implement and optimize SAP, Oracle enterprise systems', growth: '10%', pay: '$22-30/hr' }
+      ]
+    },
+
+    'Environmental Science': {
+      traditional: 'Environmental Science Intern',
+      alternatives: [
+        { title: 'Sustainability Analyst Intern', why: 'Companies increasingly need people to measure and improve sustainability', growth: '14%', pay: '$20-28/hr' },
+        { title: 'Environmental Consultant Intern', why: 'Help companies comply with environmental regulations', growth: '8%', pay: '$20-28/hr' },
+        { title: 'GIS Analyst Intern', why: 'Spatial data analysis of environmental data', growth: '14%', pay: '$20-28/hr' },
+        { title: 'Environmental Health & Safety Intern', why: 'Ensure workplace and environmental safety compliance', growth: '5%', pay: '$18-26/hr' },
+        { title: 'Data Analyst Intern (Environmental)', why: 'Analyze environmental data and model outcomes', growth: '23%', pay: '$22-30/hr' },
+        { title: 'Climate Policy Research Intern', why: 'Research and advocate for climate policy at nonprofits and government', growth: '8%', pay: '$18-26/hr' }
+      ]
+    },
+
+    'Neuroscience': {
+      traditional: 'Neuroscience Research Intern',
+      alternatives: [
+        { title: 'Clinical Research Coordinator Intern', why: 'Your research training and scientific background are directly applicable', growth: '14%', pay: '$18-26/hr' },
+        { title: 'UX Research Intern', why: 'Understanding how brains work applies directly to user behavior research', growth: '18%', pay: '$22-32/hr' },
+        { title: 'Healthcare Data Analyst Intern', why: 'Healthcare and neuroscience data analysis is a growing specialization', growth: '23%', pay: '$22-30/hr' },
+        { title: 'Pharmaceutical Sales Intern', why: 'Your neuroscience knowledge gives credibility selling CNS drugs', growth: '6%', pay: '$20-28/hr' },
+        { title: 'Behavioral Health Technician Intern', why: 'Direct care with patients — accessible with a bachelor degree', growth: '15%', pay: '$15-22/hr' },
+        { title: 'Medical Writer Intern', why: 'Write about neuroscience and clinical topics for varied audiences', growth: '9%', pay: '$20-28/hr' }
+      ]
+    },
+
+    'Public Health': {
+      traditional: 'Public Health Intern',
+      alternatives: [
+        { title: 'Health Educator Intern', why: 'Design and deliver health education programs in communities', growth: '7%', pay: '$16-24/hr' },
+        { title: 'Epidemiology Research Intern', why: 'Track and analyze disease patterns and health trends', growth: '26%', pay: '$20-28/hr' },
+        { title: 'Healthcare Data Analyst Intern', why: 'Apply public health training to analyzing health data at scale', growth: '23%', pay: '$22-30/hr' },
+        { title: 'Community Health Worker Intern', why: 'Connect communities with health resources', growth: '12%', pay: '$15-22/hr' },
+        { title: 'Nonprofit Program Intern', why: 'Manage public health programs at government agencies and nonprofits', growth: '9%', pay: '$16-24/hr' },
+        { title: 'Health Policy Research Intern', why: 'Analyze health policy at government agencies and think tanks', growth: '6%', pay: '$18-26/hr' }
+      ]
+    },
+
+    'Architecture': {
+      traditional: 'Architecture Intern',
+      alternatives: [
+        { title: 'Interior Design Intern', why: 'Apply spatial design skills to interior environments', growth: '4%', pay: '$16-24/hr' },
+        { title: 'Construction Management Intern', why: 'Your technical knowledge makes you a credible construction PM', growth: '8%', pay: '$22-30/hr' },
+        { title: 'UX/Product Designer Intern', why: 'Design thinking and spatial reasoning translate to digital product design', growth: '16%', pay: '$22-32/hr' },
+        { title: 'BIM/CAD Specialist Intern', why: 'Digital design tools are transforming architecture and construction', growth: '10%', pay: '$18-26/hr' },
+        { title: 'Urban Planning Intern', why: 'Shape communities and infrastructure at a larger scale', growth: '4%', pay: '$18-26/hr' },
+        { title: 'Sustainability Consultant Intern', why: 'Green building and LEED certification — growing rapidly', growth: '14%', pay: '$20-28/hr' }
+      ]
+    },
+
+    'Communication Sciences/Speech Pathology': {
+      traditional: 'Speech-Language Pathology Intern',
+      alternatives: [
+        { title: 'Early Intervention Specialist Intern', why: 'Work with young children with developmental delays', growth: '12%', pay: '$16-24/hr' },
+        { title: 'Clinical Research Coordinator Intern', why: 'Support communication disorders research without clinical degree', growth: '14%', pay: '$18-26/hr' },
+        { title: 'Healthcare Administrator Intern', why: 'Manage operations at clinics and therapy practices', growth: '20%', pay: '$18-26/hr' },
+        { title: 'Health Educator Intern', why: 'Teach communities about communication health and wellness', growth: '7%', pay: '$16-24/hr' },
+        { title: 'Special Education Aide Intern', why: 'Support students with communication and learning differences', growth: '8%', pay: '$15-22/hr' },
+        { title: 'Nonprofit Program Intern', why: 'Work with organizations serving people with communication disorders', growth: '9%', pay: '$16-22/hr' }
+      ]
+    },
+
+    'Healthcare Administration': {
+      traditional: 'Healthcare Administration Intern',
+      alternatives: [
+        { title: 'Healthcare Analyst Intern', why: 'Analyze healthcare data to improve operations and outcomes', growth: '23%', pay: '$20-28/hr' },
+        { title: 'Medical Practice Manager Intern', why: 'Run the business side of medical practices', growth: '20%', pay: '$18-26/hr' },
+        { title: 'Health Information Management Intern', why: 'Manage patient data and health records', growth: '17%', pay: '$18-26/hr' },
+        { title: 'Healthcare Compliance Intern', why: 'Ensure healthcare organizations meet HIPAA and regulatory requirements', growth: '12%', pay: '$20-28/hr' },
+        { title: 'Hospital Operations Intern', why: 'Manage day-to-day operations at healthcare facilities', growth: '15%', pay: '$18-26/hr' },
+        { title: 'Public Health Intern', why: 'Your healthcare background applies to population health programs', growth: '13%', pay: '$16-24/hr' }
+      ]
+    },
+
+    'Nutrition/Dietetics': {
+      traditional: 'Dietetics/Nutrition Intern',
+      alternatives: [
+        { title: 'Health Education Intern', why: 'Teach nutrition in community settings and wellness programs', growth: '7%', pay: '$16-24/hr' },
+        { title: 'Food Industry Intern', why: 'Work in food product development, quality, or regulatory compliance', growth: '6%', pay: '$18-26/hr' },
+        { title: 'Corporate Wellness Intern', why: 'Companies investing in employee wellness need nutrition expertise', growth: '12%', pay: '$16-24/hr' },
+        { title: 'Healthcare Data Analyst Intern', why: 'Analyze nutrition and health outcome data', growth: '23%', pay: '$20-28/hr' },
+        { title: 'Public Health Intern', why: 'Apply nutrition knowledge to population health programs', growth: '13%', pay: '$16-24/hr' },
+        { title: 'Marketing Intern (Health/Food Brands)', why: 'Your nutrition knowledge is valuable for health-focused brands', growth: '10%', pay: '$17-24/hr' }
+      ]
+    },
+
+    'Sports Management': {
+      traditional: 'Sports Management Intern',
+      alternatives: [
+        { title: 'Event Coordinator Intern', why: 'Your event production experience transfers to corporate events', growth: '18%', pay: '$16-24/hr' },
+        { title: 'Marketing Intern (Sports/Brands)', why: 'Sports marketing skills transfer to consumer brand marketing', growth: '10%', pay: '$17-24/hr' },
+        { title: 'Operations Intern', why: 'Facility and event operations skills apply broadly', growth: '16%', pay: '$18-26/hr' },
+        { title: 'Sales Development Intern', why: 'Relationship skills and hustle from sports apply to sales', growth: '15%', pay: '$18-26/hr' },
+        { title: 'Sponsorship/Partnership Intern', why: 'Business development through sponsorship deals', growth: '10%', pay: '$16-24/hr' },
+        { title: 'Social Media Manager Intern', why: 'Sports content creation translates to brand social media', growth: '10%', pay: '$16-24/hr' }
+      ]
+    },
+
+    'Urban Planning': {
+      traditional: 'Urban Planning Intern',
+      alternatives: [
+        { title: 'Transportation Planning Intern', why: 'Plan transit systems and transportation infrastructure', growth: '6%', pay: '$20-28/hr' },
+        { title: 'Community Development Intern', why: 'Support housing and economic development in communities', growth: '7%', pay: '$18-26/hr' },
+        { title: 'GIS Analyst Intern', why: 'Spatial data analysis is central to planning — strong transferable skill', growth: '14%', pay: '$20-28/hr' },
+        { title: 'Sustainability Consultant Intern', why: 'Green infrastructure and climate resilience planning', growth: '14%', pay: '$20-28/hr' },
+        { title: 'Real Estate Development Intern', why: 'Your planning knowledge is valuable in private development', growth: '5%', pay: '$20-28/hr' },
+        { title: 'Policy Research Intern', why: 'Analyze land use, housing, and transportation policy', growth: '6%', pay: '$18-26/hr' }
+      ]
+    },
   };
 
   const data = selectedMajor ? majorData[selectedMajor] : null;
@@ -593,7 +847,7 @@ const stemMajors = ['Biochemistry', 'Biology', 'Chemistry', 'Computer Informatio
     'Industrial Engineering',
     'Materials Science Engineering',
     'Mechanical Engineering',
-     ];
+    ];
   const otherMajors = ['Architecture', 'Communication Sciences/Speech Pathology','Criminal Justice', 'Education', 'Graphic Design', 'Healthcare Administration','Kinesiology', 'Nutrition/Dietetics','Social Work', 'Sports Management', 'Urban Planning'];
 
   return (
@@ -674,6 +928,18 @@ const stemMajors = ['Biochemistry', 'Biology', 'Chemistry', 'Computer Informatio
                 ))}
               </optgroup>
 
+              <optgroup label="COMPUTER SCIENCE & TECH">
+                {csMajors.map((major) => (
+                  <option key={major} value={major}>{major}</option>
+                ))}
+              </optgroup>
+
+              <optgroup label="ENGINEERING MAJORS">
+                {engineeringMajors.map((major) => (
+                  <option key={major} value={major}>{major}</option>
+                ))}
+              </optgroup>
+
               <optgroup label="LIBERAL ARTS MAJORS">
                 {liberalArtsMajors.map((major) => (
                   <option key={major} value={major}>{major}</option>
@@ -682,12 +948,6 @@ const stemMajors = ['Biochemistry', 'Biology', 'Chemistry', 'Computer Informatio
 
               <optgroup label="STEM MAJORS">
                 {stemMajors.map((major) => (
-                  <option key={major} value={major}>{major}</option>
-                ))}
-              </optgroup>
-
-              <optgroup label="ENGINEERING MAJORS">
-                {engineeringMajors.map((major) => (
                   <option key={major} value={major}>{major}</option>
                 ))}
               </optgroup>

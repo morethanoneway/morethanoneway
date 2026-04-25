@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Briefcase, TrendingUp, DollarSign, ExternalLink, BookOpen, FileText, Search } from 'lucide-react';
 
-// Replace the entire CAREER_KEY_MAP object in MajorPage.jsx with this
+
 
 const CAREER_KEY_MAP = {
   // UX / Research
@@ -196,6 +196,7 @@ const CAREER_KEY_MAP = {
   'GIS Analyst': 'gis-analyst',
   'Sustainability Analyst': 'sustainability-analyst',
   'Process Improvement Engineer': 'process-engineer',
+  'Data Analyst (Manufacturing)': 'manufacturing-data-analyst',
 
   // Healthcare / Nursing
   'Healthcare Administrator': 'healthcare-administrator',
@@ -1061,19 +1062,65 @@ const CAREER_PIVOTS = {
     honest: 'Materials science is genuinely niche but has strong demand in semiconductor, aerospace, and clean energy sectors. Grad school is common but not required. Semiconductor roles are particularly hot right now due to chip manufacturing investment.',
   },
   'mechanical-engineering': {
-    title: 'Mechanical Engineering',
-    intro: 'Mechanical engineering is the broadest and most foundational engineering degree. If something moves, has parts, or uses energy — a mechanical engineer was involved. The degree opens doors across virtually every industry.',
-    careers: [
-      { career: 'Mechanical Design Engineer', growth: '7%', why: 'Design physical products — from consumer goods to industrial equipment', salary: '$70k-95k' },
-      { career: 'Manufacturing Engineer', growth: '8%', why: 'Improve how products are made — high demand in reshoring manufacturing', salary: '$68k-90k' },
-      { career: 'Product Development Engineer', growth: '8%', why: 'Bring new products from concept to production', salary: '$72k-100k' },
-      { career: 'HVAC/Building Systems Engineer', growth: '6%', why: 'Building systems — steady demand, less competitive than product development', salary: '$65k-90k' },
-      { career: 'Technical Sales Engineer', growth: '6%', why: 'Sell complex equipment — combines engineering knowledge with business skills', salary: '$75k-115k' },
-      { career: 'Data Analyst (Manufacturing)', growth: '23%', why: 'Manufacturing analytics is growing fast — your engineering instincts help', salary: '$65k-90k' },
+  title: 'Mechanical Engineering',
+  intro: 'Mechanical engineering is the broadest and most foundational engineering degree. If something moves, has parts, or uses energy — a mechanical engineer was involved. The degree opens doors across virtually every industry.',
+
+  careers: [
+    { career: 'Mechanical Design Engineer', growth: '7%', why: 'Design physical products — from consumer goods to industrial equipment', salary: '$70k-95k' },
+    { career: 'Manufacturing Engineer', growth: '8%', why: 'Improve how products are made — high demand in reshoring and advanced manufacturing', salary: '$68k-90k' },
+    { career: 'Product Development Engineer', growth: '8%', why: 'Bring new products from concept to production', salary: '$72k-100k' },
+    { career: 'Technical Sales Engineer', growth: '6%', why: 'Sell complex equipment — great for engineers who like people, problem-solving, and business', salary: '$75k-115k' },
+    { career: 'Supply Chain Analyst', growth: '18%', why: 'Use engineering thinking to improve sourcing, logistics, costs, and operations', salary: '$60k-85k' },
+    { career: 'Data Analyst (Manufacturing)', growth: '23%', why: 'Use production and operations data to improve quality, output, and efficiency', salary: '$65k-90k' },
+  ],
+
+  morePaths: {
+    'Hands-On / Plant Floor': [
+      'Quality Engineer',
+      'Reliability Engineer',
+      'Validation Engineer',
+      'Process Engineer',
+      'Field Service Engineer'
     ],
-    struggles: 'Mechanical engineering is the most common engineering degree which means more competition for the same roles. Standing out requires either strong internship experience, a specialty, or both.',
-    honest: 'ME is stable and versatile but starting salaries ($68-78k) are lower than CS or ChemE. The strongest career paths are in product development, automotive, and aerospace. Manufacturing is seeing a renaissance with reshoring investment.',
+    'Design / Product': [
+      'R&D Engineer',
+      'Test Engineer',
+      'CAD Designer',
+      'Applications Engineer',
+      'Packaging Engineer'
+    ],
+    'Business + Engineering': [
+      'Sales Engineer',
+      'Project Engineer',
+      'Product Manager',
+      'Procurement Specialist',
+      'Operations Analyst'
+    ],
+    'Tech + Data': [
+      'Automation Engineer',
+      'Controls Engineer',
+      'Manufacturing Data Analyst',
+      'Systems Engineer',
+      'Industrial Engineer'
+    ]
   },
+
+  searchTerms: [
+    'Mechanical Engineering Intern',
+    'Manufacturing Intern',
+    'Product Development Intern',
+    'Process Engineer Intern',
+    'Quality Engineer Intern',
+    'Reliability Intern',
+    'Operations Intern',
+    'Supply Chain Intern',
+    'Technical Sales Engineer Intern'
+  ],
+
+  struggles: 'Mechanical engineering is the most common engineering degree which means more competition for the same roles. Standing out requires either strong internship experience, a specialty, or both.',
+
+  honest: 'ME is stable and versatile but starting salaries ($68-78k) are lower than CS or ChemE. The strongest career paths are in product development, automotive, and aerospace. Manufacturing is seeing a renaissance with reshoring investment.',
+},
   'software-engineering': {
     title: 'Software Engineering',
     intro: 'Software engineering is one of the most in-demand degrees in the world. Unlike computer science which is more theoretical, software engineering is specifically designed for building production software systems.',
