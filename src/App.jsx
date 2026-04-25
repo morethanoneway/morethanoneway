@@ -529,7 +529,7 @@ const PivotPage = ({ setCurrentPage }) => {
   const majorGroups = [
     {
       label: 'Engineering',
-      color: 'border-blue-400 bg-blue-50 hover:bg-blue-100',
+      color: '',
       iconBg: 'bg-blue-100 text-blue-700',
       majors: [
         { name: 'Aerospace Engineering', slug: 'aerospace-engineering', paths: '4 career paths' },
@@ -548,7 +548,7 @@ const PivotPage = ({ setCurrentPage }) => {
     },
     {
       label: 'Computer Science & Tech',
-      color: 'border-purple-400 bg-purple-50 hover:bg-purple-100',
+      color: '',
       iconBg: 'bg-purple-100 text-purple-700',
       majors: [
         { name: 'Computer Science', slug: 'computer-science', paths: '5 career paths' },
@@ -561,7 +561,7 @@ const PivotPage = ({ setCurrentPage }) => {
     },
     {
       label: 'Business',
-      color: 'border-green-400 bg-green-50 hover:bg-green-100',
+      color: '',
       iconBg: 'bg-green-100 text-green-700',
       majors: [
         { name: 'Accounting', slug: 'accounting', paths: '4 career paths' },
@@ -580,7 +580,7 @@ const PivotPage = ({ setCurrentPage }) => {
     },
     {
       label: 'Liberal Arts & Humanities',
-      color: 'border-orange-400 bg-orange-50 hover:bg-orange-100',
+      color: '',
       iconBg: 'bg-orange-100 text-orange-700',
       majors: [
         { name: 'Anthropology', slug: 'anthropology', paths: '4 career paths' },
@@ -603,7 +603,7 @@ const PivotPage = ({ setCurrentPage }) => {
     },
     {
       label: 'STEM',
-      color: 'border-teal-400 bg-teal-50 hover:bg-teal-100',
+      color: '',
       iconBg: 'bg-teal-100 text-teal-700',
       majors: [
         { name: 'Biochemistry', slug: 'biochemistry', paths: '4 career paths' },
@@ -621,7 +621,7 @@ const PivotPage = ({ setCurrentPage }) => {
     },
     {
       label: 'Other',
-      color: 'border-red-400 bg-red-50 hover:bg-red-100',
+      color: '',
       iconBg: 'bg-red-100 text-red-700',
       majors: [
         { name: 'Architecture', slug: 'architecture', paths: '4 career paths' },
@@ -679,7 +679,7 @@ const PivotPage = ({ setCurrentPage }) => {
                   <button
                     key={major.slug}
                     onClick={() => setCurrentPage('major/' + major.slug)}
-                    className={`text-left p-4 rounded-xl border-l-4 transition-all hover:-translate-y-0.5 hover:shadow-md ${group.color}`}
+                   className={`text-left p-5 rounded-2xl border transition-all hover:bg-teal-50 hover:border-teal-200 hover:-translate-y-[2px] hover:shadow-md bg-white/90 border-gray-100`}
                   >
                     <p className="font-semibold text-gray-900 text-sm leading-tight">{major.name}</p>
                     <p className="text-xs text-gray-500 mt-1">{major.paths} + live job counts</p>
