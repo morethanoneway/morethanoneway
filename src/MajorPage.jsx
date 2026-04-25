@@ -430,7 +430,7 @@ const MajorPage = ({ setCurrentPage }) => {
                         <Briefcase className="w-4 h-4 text-orange-500 flex-shrink-0 mt-0.5" />
                         <div>
                           <span className="font-semibold text-orange-700">{formattedCount} open jobs today</span>
-                          <span className="text-gray-500 text-xs block">includes all experience levels</span>
+                          <span className="text-gray-500 text-xs block">includes all experience levels • via Adzuna</span>
                         </div>
                       </div>
                     )}

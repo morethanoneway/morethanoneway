@@ -715,14 +715,29 @@ return (
             </div>
           ))}
 
+<div className="bg-teal-50 border border-teal-200 rounded-xl p-5 text-center">
+  <p className="font-semibold text-gray-900 mb-3">
+    Want the complete guide for {selectedMajor} majors?
+  </p>
+  <button
+    onClick={() => setCurrentPage('major/' + selectedMajor.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-'))}
+    className="bg-[#006581] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#005A73] transition-all"
+  >
+    See Full {selectedMajor} Career Guide →
+  </button>
+  <p className="text-xs text-gray-500 mt-2">Includes live job counts, honest reality check, and next steps</p>
+</div>
+
           <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
             <h4 className="font-bold mb-2">Remember:</h4>
-            <ul className="space-y-1 text-sm text-gray-700">
-              <li>‣ These are real career paths that value your existing skills</li>
-              <li>‣ Growth rates from Bureau of Labor Statistics (2023-2033 projections)</li>
-              <li>‣ Many people who succeed in these fields didn't start there</li>
-              <li>‣ Your "non-traditional" background can be an advantage</li>
-            </ul>
+<ul className="space-y-1 text-sm text-gray-700">
+  <li>‣ These are real career paths that value your existing skills</li>
+  <li>‣ Growth rates from <a href="https://www.bls.gov/ooh/" target="_blank" rel="noopener noreferrer" className="text-teal-600 underline hover:text-teal-800">Bureau of Labor Statistics</a> (2023-2033 projections)</li>
+  <li>‣ Salary ranges reflect entry to mid-level positions (BLS + NACE 2025 data)</li>
+  <li>‣ Live job counts from Adzuna — updated daily, includes all experience levels</li>
+  <li>‣ Many people who succeed in these fields didn't start there</li>
+  <li>‣ Your "non-traditional" background can be an advantage</li>
+</ul>
           </div>
         </div>
       )}
