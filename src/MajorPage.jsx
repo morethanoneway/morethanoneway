@@ -1372,6 +1372,66 @@ const MajorPage = ({ setCurrentPage }) => {
             })}
           </div>
 
+          {/* More Paths + Search Terms */}
+{(majorData.morePaths || majorData.searchTerms) && (
+  <div className="grid md:grid-cols-2 gap-6 mb-12">
+
+    {majorData.morePaths && (
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+        <h3 className="font-bold text-xl text-gray-900 mb-2">
+          More Paths You Can Pivot Into
+        </h3>
+        <p className="text-sm text-gray-600 mb-5">
+          These may not be the first titles students search, but they often use similar skills.
+        </p>
+
+        <div className="space-y-5">
+          {Object.entries(majorData.morePaths).map(([category, paths]) => (
+            <div key={category}>
+              <h4 className="font-semibold text-gray-800 mb-2 text-sm">
+                {category}
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {paths.map((path) => (
+                  <span
+                    key={path}
+                    className="bg-teal-50 text-teal-800 border border-teal-100 px-3 py-1 rounded-full text-xs font-medium"
+                  >
+                    {path}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {majorData.searchTerms && (
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+        <h3 className="font-bold text-xl text-gray-900 mb-2">
+          Search These Job Titles Too
+        </h3>
+        <p className="text-sm text-gray-600 mb-5">
+          Employers use different titles. Try these on LinkedIn, Indeed, Handshake, and company career pages.
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+          {majorData.searchTerms.map((term) => (
+            <span
+              key={term}
+              className="bg-orange-50 text-orange-800 border border-orange-100 px-3 py-1 rounded-full text-xs font-medium"
+            >
+              {term}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+  </div>
+)}
+
           {/* Honest talk section */}
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             <div className="bg-amber-50 border-l-4 border-amber-400 rounded-2xl p-6">

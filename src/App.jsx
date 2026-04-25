@@ -695,7 +695,7 @@ const PivotPage = ({ setCurrentPage }) => {
         <div className="mt-10 bg-white rounded-2xl border border-gray-200 p-5">
           <h3 className="font-bold text-gray-900 mb-3 text-sm">About This Data</h3>
           <ul className="space-y-1 text-sm text-gray-600">
-            <li>‣ Growth rates from <a href="https://www.bls.gov/ooh/" target="_blank" rel="noopener noreferrer" className="text-teal-600 underline hover:text-teal-800">Bureau of Labor Statistics</a> (2023-2033 projections)</li>
+            <li>‣ Growth rates from <a href="https://www.bls.gov/ooh/" target="_blank" rel="noopener noreferrer" className="text-teal-600 underline hover:text-teal-800">Bureau of Labor Statistics</a> (2024-2034 projections)</li>
             <li>‣ Salary ranges reflect entry to mid-level positions (BLS + NACE 2025 data)</li>
             <li>‣ Live job counts from Adzuna — updated daily, includes all experience levels</li>
             <li>‣ Career paths selected for accessibility without additional degrees unless noted</li>
