@@ -1329,21 +1329,57 @@ const CrisisPage = ({ setCurrentPage }) => {
           </div>
 
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
-            <h3 className="font-bold text-gray-900 mb-4">Helpful Apps (100% Free)</h3>
-            <div className="space-y-4">
-              {[
-                ['Calm Harm', 'Helps when you want to self-harm. Provides distractions and activities when you’re overwhelmed.'],
-                ['Sanvello', 'Anxiety and mood tracking with coping tools. Free basic features.'],
-                ['MindShift', 'CBT-based app for anxiety management. Completely free.'],
-                ['PTSD Coach', 'From the VA — helps manage PTSD symptoms. Completely free.'],
-              ].map(([title, desc], i) => (
-                <div key={i} className="bg-white rounded-2xl border border-gray-200 p-5 hover:bg-teal-50 hover:border-teal-200 hover:shadow-sm transition-all">
-                  <h4 className="font-semibold text-gray-900 mb-1">{title}</h4>
-                  <p className="text-sm text-gray-600">{desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+  <h3 className="font-bold text-gray-900 mb-4">Helpful Apps (100% Free)</h3>
+
+  <div className="space-y-4">
+    {[
+      {
+        title: 'Calm Harm',
+        desc: 'Helps when you want to self-harm. Provides distractions and activities when you’re overwhelmed.',
+        link: 'https://calmharm.co.uk/',
+        label: 'Download here',
+      },
+      {
+        title: 'Sanvello',
+        desc: 'Anxiety and mood tracking with coping tools. Free basic features.',
+        link: 'https://www.sanvello.com/',
+        label: 'Visit Sanvello.com',
+      },
+      {
+        title: 'MindShift',
+        desc: 'CBT-based app for anxiety management. Completely free.',
+        link: 'https://www.anxietycanada.com/resources/mindshift-cbt/',
+        label: 'Download MindShift',
+      },
+      {
+        title: 'PTSD Coach',
+        desc: 'From the VA — helps manage PTSD symptoms. Completely free.',
+        link: 'https://www.ptsd.va.gov/appvid/mobile/ptsdcoach_app.asp',
+        label: 'Get PTSD Coach',
+      },
+    ].map((app, i) => (
+      <div
+        key={i}
+        className="bg-white rounded-2xl border border-gray-200 p-5 hover:bg-teal-50 hover:border-teal-200 hover:shadow-sm transition-all"
+      >
+        <h4 className="font-semibold text-gray-900 mb-1">{app.title}</h4>
+
+        <p className="text-sm text-gray-600 mb-3">
+          {app.desc}
+        </p>
+
+        <a
+          href={app.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-teal-600 hover:text-teal-800 underline text-sm font-medium"
+        >
+          {app.label}
+        </a>
+      </div>
+    ))}
+  </div>
+</div>
 
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7">
             <h3 className="font-bold text-gray-900 mb-4">Things That Might Help Right Now</h3>
