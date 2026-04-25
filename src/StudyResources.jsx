@@ -876,10 +876,10 @@ const Card = ({ children, className = "", id }) => (
               <div className="text-sm text-gray-700">
                 Want to suggest a resource? Email:{" "}
                 <a
-                  href="mailto:morethanoneway.org@gmail.com"
+                  href="mailto:support@morethanoneway.org"
                   className="font-semibold text-tealBrand/90 hover:text-orange-600"
                 >
-                  morethanoneway.org@gmail.com
+                  support@morethanoneway.org
                 </a>
               </div>
               <div className="text-xs text-gray-500 italic">
