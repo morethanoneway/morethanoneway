@@ -562,9 +562,25 @@ const FindInternshipsPage = ({ setCurrentPage }) => {
   const data = selectedMajor ? majorData[selectedMajor] : null;
 
   // Group majors by category (in specific order, not alphabetical)
-  const businessMajors = ['Accounting', 'Economics', 'Entrepreneurship', 'Finance', 'Hospitality Management', 'Information Systems', 'International Business', 'Management', 'Marketing', 'Supply Chain Management'];
-  const liberalArtsMajors = ['Anthropology', 'Art', 'Communications', 'English', 'History', 'Journalism', 'Music', 'Philosophy', 'Political Science', 'Psychology', 'Sociology', 'Theater'];
-  const stemMajors = ['Biology', 'Chemistry', 'Computer Science', 'Data Science', 'Information Technology', 'Mathematics', 'Nursing', 'Physics', 'Statistics'];
+ const businessMajors = ['Business Administration','Accounting', 'Economics', 'Entrepreneurship', 'Finance', 'Hospitality Management', 'Information Systems', 'International Business', 'Management', 'Management Information Systems', 'Marketing', 'Supply Chain Management'];
+ const liberalArtsMajors = [
+  'Anthropology', 'Communications', 'Creative Writing', 'English',
+  'Film/Media Studies', 'Fine Arts/Studio Art', 'Foreign Languages',
+  "Gender/Women's Studies", 'History', 'Journalism', 'Music',
+  'Philosophy', 'Political Science', 'Psychology', 'Religious Studies',
+  'Sociology', 'Theater'
+];
+const csMajors = [
+  'AI/Machine Learning',
+  'Computer Science',
+  'Cybersecurity',
+  'Data Science',
+  'Information Technology',
+  'Software Engineering'
+];
+const stemMajors = ['Biochemistry', 'Biology', 'Chemistry', 'Computer Information Systems', 
+  'Environmental Science', 'Mathematics', 'Neuroscience', 'Nursing', 
+  'Physics', 'Public Health', 'Statistics'];
   const engineeringMajors = [
     'Aerospace Engineering',
     'Biomedical Engineering',
@@ -577,9 +593,8 @@ const FindInternshipsPage = ({ setCurrentPage }) => {
     'Industrial Engineering',
     'Materials Science Engineering',
     'Mechanical Engineering',
-    'Software Engineering'
-  ];
-  const otherMajors = ['Criminal Justice', 'Education', 'Graphic Design', 'Kinesiology', 'Social Work'];
+     ];
+  const otherMajors = ['Architecture', 'Communication Sciences/Speech Pathology','Criminal Justice', 'Education', 'Graphic Design', 'Healthcare Administration','Kinesiology', 'Nutrition/Dietetics','Social Work', 'Sports Management', 'Urban Planning'];
 
   return (
    <> 
