@@ -68,51 +68,63 @@ const JobToolsHub = ({ setCurrentPage }) => {
 
         </div>
 
-        <div className="mt-0 grid gap-6 md:grid-cols-3">
-          <Tile
-            title="Find Internships & Co-ops"
-            desc="Pre-filtered searches by major. Traditional roles plus adjacent paths that hire the same skills."
-            icon={<Search />}
-            onClick={() => setCurrentPage("find-internships")}
-          />
+       <div className="mt-0 grid gap-6 md:grid-cols-3">
+  <Tile
+    title="Career Paths"
+    desc="See what your degree can actually do. Real career paths with live job counts."
+    icon={<TrendingUp />}
+    onClick={() => setCurrentPage("pivot")}
+  />
 
-          <Tile
-            title="Search Guide"
-            desc="A realistic job-search process — from preparation through rejection — built for today’s market."
-            icon={<BookOpen />}
-            onClick={() => setCurrentPage("search-guide")}
-          />
+  <Tile
+    title="Resume Builder"
+    desc="Turn experience into strong bullets and build an ATS-friendly resume that still sounds human."
+    icon={<FileText />}
+    onClick={() => setCurrentPage("resume-builder")}
+  />
 
-          <Tile
-            title="Job Alert Guide"
-            desc="Set alerts once on Indeed, LinkedIn, Handshake, and ZipRecruiter so opportunities come to you."
-            icon={<Bell />}
-            onClick={() => setCurrentPage("job-alert")}
-          />
+  <Tile
+    title="Cover Letter Generator"
+    desc="Free cover letter builder with AI flag checker and keyword matcher. No sign-up."
+    icon={<BookOpen />}
+    onClick={() => setCurrentPage("cover-letter")}
+  />
 
-          <Tile
-            title="Resume Builder"
-            desc="Turn experience into strong bullets and build an ATS-friendly resume that still sounds human."
-            icon={<FileText />}
-            onClick={() => setCurrentPage("resume-builder")}
-          />
+  <Tile
+    title="ATS Guide"
+    desc="Make sure your resume gets through applicant tracking systems before a human sees it."
+    icon={<Search />}
+    onClick={() => setCurrentPage("ats-guide")}
+  />
 
-          <Tile
-            title="Interview Prep"
-            desc="Common questions, real answers, and prep without sounding scripted."
-            icon={<MessageCircle />}
-            onClick={() => setCurrentPage("interview-prep")}
-          />
+  <Tile
+    title="Application Tracker"
+    desc="Log every application. Never lose a posting link. Track your progress."
+    icon={<Bell />}
+    onClick={() => setCurrentPage("tracker")}
+  />
 
-          <Tile
-            title="Explore Career Paths"
-            desc="See adjacent roles that value your skills — even if your major feels narrow."
-            icon={<TrendingUp />}
-            onClick={() => setCurrentPage("pivot")}
-          />
-          <div className="grid md:grid-cols-3 gap-6 mb-5">
-          </div>
-        </div>
+  <Tile
+    title="Search Guide"
+    desc="A realistic job-search process — from preparation through rejection — built for today's market."
+    icon={<MessageCircle />}
+    onClick={() => setCurrentPage("search-guide")}
+  />
+
+  <Tile
+    title="Job Alert Guide"
+    desc="Set alerts once on Indeed, LinkedIn, Handshake, and ZipRecruiter so opportunities come to you."
+    icon={<Bell />}
+    onClick={() => setCurrentPage("job-alert")}
+  />
+
+  <Tile
+    title="Interview Prep"
+    desc="Common questions, real answers, and prep without sounding scripted."
+    icon={<MessageCircle />}
+    onClick={() => setCurrentPage("interview-prep")}
+  />
+</div>
 
 
         {/* Additional Resources */}
