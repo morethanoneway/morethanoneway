@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Briefcase, TrendingUp, DollarSign, ExternalLink, BookOpen, FileText, Search } from 'lucide-react';
+import { ArrowLeft, Briefcase, TrendingUp, DollarSign, ExternalLink, BookOpen, FileText, Search, Info } from 'lucide-react';
 
 
 
@@ -1321,6 +1321,42 @@ const MajorPage = ({ setCurrentPage }) => {
             </div>
           )}
 
+{/* Traditional Intern Search Block */}
+<div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
+  <h3 className="font-bold text-xl text-gray-900 mb-1">
+    Search: {majorData.title.replace(' Degree', '')} Intern
+  </h3>
+  <p className="text-gray-600 text-sm mb-4">
+    Run this search on major job boards:
+  </p>
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <a href={`https://www.indeed.com/jobs?q=${encodeURIComponent(majorData.title.replace(' Degree', '') + ' intern')}&fromage=30`}
+      target="_blank" rel="noopener noreferrer"
+      className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-3 py-2 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-sm">
+      Indeed <ExternalLink className="w-3 h-3" />
+    </a>
+    <a href={`https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent(majorData.title.replace(' Degree', '') + ' intern')}`}
+      target="_blank" rel="noopener noreferrer"
+      className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-3 py-2 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-sm">
+      LinkedIn <ExternalLink className="w-3 h-3" />
+    </a>
+    <a href="https://app.joinhandshake.com/"
+      target="_blank" rel="noopener noreferrer"
+      className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-3 py-2 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-sm">
+      Handshake <ExternalLink className="w-3 h-3" />
+    </a>
+    <a href={`https://www.ziprecruiter.com/candidate/search?search=${encodeURIComponent(majorData.title.replace(' Degree', '') + ' intern')}`}
+      target="_blank" rel="noopener noreferrer"
+      className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-3 py-2 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-sm">
+      ZipRecruiter <ExternalLink className="w-3 h-3" />
+    </a>
+  </div>
+  <p className="text-xs text-[#006581]/60 mt-3 flex items-center gap-1">
+    <Info className="w-3 h-3" />
+    Each button opens a pre-filtered search for this exact job title — not a general search.
+  </p>
+</div>
+
           {/* Career Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {majorData.careers.map((career, idx) => {
@@ -1367,6 +1403,32 @@ const MajorPage = ({ setCurrentPage }) => {
                       </div>
                     )}
                   </div>
+                  {/* Per-career search buttons */}
+<div className="mt-4 pt-4 border-t border-gray-100">
+  <p className="text-xs text-gray-500 mb-2">Search "{career.career} intern":</p>
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+    <a href={`https://www.indeed.com/jobs?q=${encodeURIComponent(career.career + ' intern')}&fromage=30`}
+      target="_blank" rel="noopener noreferrer"
+      className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-2 py-1.5 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-xs">
+      Indeed <ExternalLink className="w-3 h-3" />
+    </a>
+    <a href={`https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent(career.career + ' intern')}`}
+      target="_blank" rel="noopener noreferrer"
+      className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-2 py-1.5 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-xs">
+      LinkedIn <ExternalLink className="w-3 h-3" />
+    </a>
+    <a href="https://app.joinhandshake.com/"
+      target="_blank" rel="noopener noreferrer"
+      className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-2 py-1.5 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-xs">
+      Handshake <ExternalLink className="w-3 h-3" />
+    </a>
+    <a href={`https://www.ziprecruiter.com/candidate/search?search=${encodeURIComponent(career.career + ' intern')}`}
+      target="_blank" rel="noopener noreferrer"
+      className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-2 py-1.5 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-xs">
+      ZipRecruiter <ExternalLink className="w-3 h-3" />
+    </a>
+  </div>
+</div>
                 </div>
               );
             })}
