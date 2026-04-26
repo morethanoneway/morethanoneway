@@ -85,55 +85,61 @@ export default function NavBar({ currentPage, setCurrentPage }) {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
             {/* Opportunities */}
-            <Dropdown
-              label="Opportunities"
-              open={openMenu === "opportunities"}
-              setOpen={(v) => setOpenMenu(v ? "opportunities" : null)}
-            >
-              <MenuItem
-                label="Find Internships"
-                desc="Search + filters"
-                onClick={() => go("find-internships")}
-              />
-              <MenuItem
-                label="Search Guide"
-                desc="Where to look (fast)"
-                onClick={() => go("search-guide")}
-              />
-              <MenuItem
-                label="Job Alerts Guide"
-                desc="Set alerts that actually work"
-                onClick={() => go("job-alert-guide")}
-              />
-            </Dropdown>
-
+            
             {/* Job Tools */}
-            <Dropdown
-              label="Job Tools"
-              open={openMenu === "jobtools"}
-              setOpen={(v) => setOpenMenu(v ? "jobtools" : null)}
-            >
-              <MenuItem
-                label="Resume Builder"
-                desc="Turn projects into bullets"
-                onClick={() => go("resume-builder")}
-              />
-              <MenuItem
-                label="Application Tracker"
-                desc="Stay organized"
-                onClick={() => go("application-tracker")}
-              />
-              <MenuItem
-                label="Interview Prep"
-                desc="Practice without sounding scripted"
-                onClick={() => go("interview-prep")}
-              />
-              <MenuItem
-                label="Career Paths"
-                desc="Non-linear options"
-                onClick={() => go("career-paths")}
-              />
-            </Dropdown>
+           <Dropdown
+  label="Job Tools"
+  open={openMenu === "jobtools"}
+  setOpen={(v) => setOpenMenu(v ? "jobtools" : null)}
+>
+  <div className="px-3 pt-1 pb-1 text-xs font-semibold text-gray-400">EXPLORE</div>
+  <MenuItem
+    label="Career Paths"
+    desc="See what your degree can do"
+    onClick={() => go("pivot")}
+  />
+
+  <div className="px-3 pt-2 pb-1 text-xs font-semibold text-gray-400">BUILD</div>
+  <MenuItem
+    label="Resume Builder"
+    desc="Turn projects into bullets"
+    onClick={() => go("resume-builder")}
+  />
+  <MenuItem
+    label="Cover Letter Generator"
+    desc="Free, no sign-up"
+    onClick={() => go("cover-letter")}
+  />
+  <MenuItem
+    label="ATS Guide"
+    desc="Make sure it gets through"
+    onClick={() => go("ats-guide")}
+  />
+
+  <div className="px-3 pt-2 pb-1 text-xs font-semibold text-gray-400">APPLY & TRACK</div>
+  <MenuItem
+    label="Application Tracker"
+    desc="Stay organized"
+    onClick={() => go("application-tracker")}
+  />
+  <MenuItem
+    label="Search Guide"
+    desc="Search smarter, not longer"
+    onClick={() => go("search-guide")}
+  />
+  <MenuItem
+    label="Job Alert Guide"
+    desc="Let opportunities come to you"
+    onClick={() => go("job-alert")}
+  />
+
+  <div className="px-3 pt-2 pb-1 text-xs font-semibold text-gray-400">PREPARE</div>
+  <MenuItem
+    label="Interview Prep"
+    desc="Answer well without sounding scripted"
+    onClick={() => go("interview-prep")}
+  />
+</Dropdown>
 
             {/* Stories */}
             <NavLink
@@ -205,30 +211,37 @@ export default function NavBar({ currentPage, setCurrentPage }) {
                   Home
                 </button>
 
-                <div className="px-3 pt-2 text-xs font-semibold text-gray-500">OPPORTUNITIES</div>
-                <button onClick={() => go("find-internships")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
-                  Find Internships
-                </button>
-                <button onClick={() => go("search-guide")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
-                  Search Guide
-                </button>
-                <button onClick={() => go("job-alert-guide")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
-                  Job Alerts Guide
-                </button>
+<div className="px-3 pt-2 text-xs font-semibold text-gray-500">EXPLORE</div>
+<button onClick={() => go("pivot")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
+  Career Paths
+</button>
 
-                <div className="px-3 pt-2 text-xs font-semibold text-gray-500">JOB TOOLS</div>
-                <button onClick={() => go("resume-builder")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
-                  Resume Builder
-                </button>
-                <button onClick={() => go("application-tracker")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
-                  Application Tracker
-                </button>
-                <button onClick={() => go("interview-prep")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
-                  Interview Prep
-                </button>
-                <button onClick={() => go("career-paths")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
-                  Career Paths
-                </button>
+<div className="px-3 pt-2 text-xs font-semibold text-gray-500">BUILD</div>
+<button onClick={() => go("resume-builder")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
+  Resume Builder
+</button>
+<button onClick={() => go("cover-letter")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
+  Cover Letter Generator
+</button>
+<button onClick={() => go("ats-guide")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
+  ATS Guide
+</button>
+
+<div className="px-3 pt-2 text-xs font-semibold text-gray-500">APPLY & TRACK</div>
+<button onClick={() => go("application-tracker")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
+  Application Tracker
+</button>
+<button onClick={() => go("search-guide")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
+  Search Guide
+</button>
+<button onClick={() => go("job-alert")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
+  Job Alert Guide
+</button>
+
+<div className="px-3 pt-2 text-xs font-semibold text-gray-500">PREPARE</div>
+<button onClick={() => go("interview-prep")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
+  Interview Prep
+</button>
 
                 <div className="px-3 pt-2 text-xs font-semibold text-gray-500">STORIES</div>
                 <button onClick={() => go("stories")} className="text-left px-3 py-2 rounded-lg hover:bg-gray-50">
