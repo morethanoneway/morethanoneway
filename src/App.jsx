@@ -243,16 +243,16 @@ const supportGroups = [
     <nav className="bg-[#FFFBF7] text-gray-800 shadow-sm sticky top-0 z-50 border-b border-gray-200">
 
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-        <div className="flex justify-between items-center py-4">
-          <div className="flex items-center space-x-2">
-            <h1 className="text-xl font-bold cursor-pointer" onClick={() => setCurrentPage('home')}>
-              More Than One Way
-            </h1>
-          </div>
+        <div className="flex items-center justify-between py-4">
+        {/* Logo - left */}
+        <div className="flex-1">
+          <h1 className="text-xl font-bold cursor-pointer" onClick={() => setCurrentPage('home')}>
+            More Than One Way
+          </h1>
+        </div>
 
-        {/* Centered Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-
+        {/* Nav - center */}
+        <div className="hidden md:flex items-center gap-8">
             {/* Desktop menu */}
             <div className="hidden md:flex items-center gap-8">
 
@@ -302,14 +302,17 @@ const supportGroups = [
               >
                 About
               </button>
-
-              <button
-                onClick={() => setCurrentPage('crisis')}
-                className="bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-400 whitespace-nowrap transition-colors"
-              >
-                Need Help Now
-              </button>
-            </div>
+          </div>
+              {/* Orange button - right (desktop) */}
+                <div className="flex-1 hidden md:flex justify-end">
+                  <button
+                    onClick={() => setCurrentPage('crisis')}
+                    className="bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-400 whitespace-nowrap transition-colors"
+                  >
+                    Need Help Now
+                  </button>
+                </div>
+          
 
             {/* Mobile controls */}
             <div className="flex md:hidden items-center gap-3">
