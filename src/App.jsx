@@ -251,90 +251,85 @@ const supportGroups = [
           </h1>
         </div>
 
-        {/* Nav - center */}
+{/* Nav - center */}
         <div className="hidden md:flex items-center gap-8">
-            {/* Desktop menu */}
-            <div className="hidden md:flex items-center gap-8">
+          <button
+            onClick={() => setCurrentPage('home')}
+            className="hover:text-blue-200"
+          >
+            Home
+          </button>
 
-              <button
-                onClick={() => setCurrentPage('home')}
-                className="hover:text-blue-200"
-              >
-                Home
-              </button>
+          <DropdownMenu
+            title="Job Tools"
+            onTitleClick={() => setCurrentPage('job-tools-hub')}
+            groups={jobToolsGroups}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            isMobile={false}
+          />
 
-              <DropdownMenu
-                title="Job Tools"
-                onTitleClick={() => setCurrentPage('job-tools-hub')}
-                groups={jobToolsGroups}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                isMobile={false}
-              />
+          <DropdownMenu
+            title="Support"
+            onTitleClick={() => setCurrentPage('youre-not-alone')}
+            groups={supportGroups}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            isMobile={false}
+          />
 
-              <DropdownMenu
-                title="Support"
-                onTitleClick={() => setCurrentPage('youre-not-alone')}
-                groups={supportGroups}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                isMobile={false}
-              />
-              <button
-                onClick={() => setCurrentPage('stories')}
-                className="hover:text-blue-200"
-              >
-                Stories
-              </button>
+          <button
+            onClick={() => setCurrentPage('stories')}
+            className="hover:text-blue-200"
+          >
+            Stories
+          </button>
 
-              <DropdownMenu
-                title="Resources"
-                onTitleClick={() => setCurrentPage('resources-hub')}
-                items={resourcesItems}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                isMobile={false}
-              />
+          <DropdownMenu
+            title="Resources"
+            onTitleClick={() => setCurrentPage('resources-hub')}
+            items={resourcesItems}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            isMobile={false}
+          />
 
-              <button
-                onClick={() => setCurrentPage('about')}
-                className="hover:text-blue-200"
-              >
-                About
-              </button>
-          </div>
-              {/* Orange button - right (desktop) */}
-                <div className="flex-1 hidden md:flex justify-end">
-                  <button
-                    onClick={() => setCurrentPage('crisis')}
-                    className="bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-400 whitespace-nowrap transition-colors"
-                  >
-                    Need Help Now
-                  </button>
-                </div>
-          
-
-            {/* Mobile controls */}
-            <div className="flex md:hidden items-center gap-3">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-
-              <button
-                onClick={() => setCurrentPage('crisis')}
-                className="bg-orange-500 px-3 py-2 rounded text-sm font-semibold hover:bg-orange-400 whitespace-nowrap transition-colors"
-              >
-                Need Help Now
-              </button>
-            </div>
-
-          </div>
-
+          <button
+            onClick={() => setCurrentPage('about')}
+            className="hover:text-blue-200"
+          >
+            About
+          </button>
         </div>
+
+        {/* Orange button - right */}
+        <div className="flex-1 hidden md:flex justify-end">
+          <button
+            onClick={() => setCurrentPage('crisis')}
+            className="bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-400 whitespace-nowrap transition-colors"
+          >
+            Need Help Now
+          </button>
+        </div>
+
+        {/* Mobile controls */}
+        <div className="flex md:hidden items-center gap-3">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+          <button
+            onClick={() => setCurrentPage('crisis')}
+            className="bg-orange-500 px-3 py-2 rounded text-sm font-semibold hover:bg-orange-400 whitespace-nowrap transition-colors"
+          >
+            Need Help Now
+          </button>
+        </div>
+
+      </div>
 
         {/* Unified Navigation Menu - Works on Desktop AND Mobile */}
         {mobileMenuOpen && (
