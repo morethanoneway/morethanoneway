@@ -123,7 +123,6 @@ const CAREER_KEY_MAP = {
   'Content Marketing Manager': 'content-marketing',
   'Digital Marketing Specialist': 'digital-marketing',
   'Digital Marketing Analyst': 'digital-marketing',
-  'UX Writer': 'ux-writer',
   'Content Strategist': 'content-strategist',
   'Grant Writer': 'grant-writer',
   'Copywriter': 'copywriter',

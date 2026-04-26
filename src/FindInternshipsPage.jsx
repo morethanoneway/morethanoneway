@@ -559,19 +559,6 @@ const FindInternshipsPage = ({ setCurrentPage }) => {
     },
     // Add these entries to the majorData object in FindInternshipsPage.jsx
 // Also rename 'Art' key to 'Fine Arts/Studio Art'
-
-    'Fine Arts/Studio Art': {
-      traditional: 'Graphic Design Intern',
-      alternatives: [
-        { title: 'UX/UI Designer Intern', why: 'Your visual training applies directly to digital product design', growth: '16%', pay: '$22-32/hr' },
-        { title: 'Brand Designer Intern', why: 'Every company needs visual identity and branding', growth: '8%', pay: '$18-28/hr' },
-        { title: 'Art Director Intern', why: 'Lead creative vision for campaigns and brands', growth: '6%', pay: '$20-30/hr' },
-        { title: 'Motion Graphics Designer Intern', why: 'Video and animation increasingly important for brands', growth: '14%', pay: '$20-28/hr' },
-        { title: 'Social Media Content Creator Intern', why: 'Visual content creation — every brand needs quality creative', growth: '10%', pay: '$16-24/hr' },
-        { title: 'Exhibit/Experience Designer Intern', why: 'Design physical and digital experiences for museums and brands', growth: '8%', pay: '$18-26/hr' }
-      ]
-    },
-
     'Business Administration': {
       traditional: 'Business Administration Intern',
       alternatives: [
