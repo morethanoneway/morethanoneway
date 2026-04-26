@@ -1505,19 +1505,77 @@ const MajorPage = ({ setCurrentPage }) => {
               <p className="text-gray-700 text-sm leading-relaxed">{majorData.honest}</p>
             </div>
           </div>
+{/* Small Companies Section */}
+<div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
+  <h3 className="font-bold text-xl text-gray-900 mb-1">Don't overlook smaller companies</h3>
+  <p className="text-gray-600 text-sm mb-4">Startups and smaller teams can be less competitive — and they often give interns real work, not just shadowing.</p>
 
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+    <div className="flex items-center gap-2 text-sm text-gray-700">
+      <div className="w-4 h-4 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+        <div className="w-2 h-2 rounded-full bg-teal-600"></div>
+      </div>
+      Fewer applicants
+    </div>
+    <div className="flex items-center gap-2 text-sm text-gray-700">
+      <div className="w-4 h-4 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+        <div className="w-2 h-2 rounded-full bg-teal-600"></div>
+      </div>
+      More responsibility
+    </div>
+    <div className="flex items-center gap-2 text-sm text-gray-700">
+      <div className="w-4 h-4 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+        <div className="w-2 h-2 rounded-full bg-teal-600"></div>
+      </div>
+      Direct access to senior people
+    </div>
+    <div className="flex items-center gap-2 text-sm text-gray-700">
+      <div className="w-4 h-4 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+        <div className="w-2 h-2 rounded-full bg-teal-600"></div>
+      </div>
+      Your work actually ships
+    </div>
+  </div>
+
+  <div className="bg-gray-50 rounded-xl border border-gray-100 p-4 mb-4">
+    <p className="text-xs text-gray-500 mb-3">Where to look (good for small-company internships):</p>
+    <div className="grid grid-cols-3 gap-3 mb-3">
+      <a href="https://wellfound.com/jobs"
+        target="_blank" rel="noopener noreferrer"
+        className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-3 py-2 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-sm">
+        Wellfound <ExternalLink className="w-3 h-3" />
+      </a>
+      <a href="https://builtin.com/jobs"
+        target="_blank" rel="noopener noreferrer"
+        className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-3 py-2 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-sm">
+        Built In <ExternalLink className="w-3 h-3" />
+      </a>
+      <a href="https://www.ycombinator.com/jobs"
+        target="_blank" rel="noopener noreferrer"
+        className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-3 py-2 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-sm">
+        YC Companies <ExternalLink className="w-3 h-3" />
+      </a>
+    </div>
+    <p className="text-xs text-gray-400">Tip: add your city + "intern" (ex: "Boston startup intern") and check each company's careers page directly.</p>
+  </div>
+
+  <div className="flex items-start gap-2">
+    <Info className="w-4 h-4 text-[#006581] flex-shrink-0 mt-0.5" />
+    <p className="text-xs text-gray-500">Most summer internships post between September and February. Co-ops often post earlier. Set up job alerts so you don't miss the window.</p>
+  </div>
+</div>
           {/* Next Steps */}
           <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
             <h3 className="font-bold text-xl text-gray-900 mb-5">Your Next Steps</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <button onClick={() => setCurrentPage('find-internships')}
-                className="flex items-center gap-3 bg-gray-900 text-white p-4 rounded-xl hover:bg-gray-700 transition-all text-left">
-                <Search className="w-5 h-5 flex-shrink-0" />
-                <div>
-                  <p className="font-semibold text-sm">Find Internships</p>
-                  <p className="text-xs text-gray-300">Search by your major</p>
-                </div>
-              </button>
+              <button onClick={() => navigate('/tracker')}
+              className="flex items-center gap-3 bg-gray-900 text-white p-4 rounded-xl hover:bg-gray-700 transition-all text-left">
+              <Briefcase className="w-5 h-5 flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-sm">Application Tracker</p>
+                <p className="text-xs text-gray-300">Track every application</p>
+              </div>
+            </button>
               <button onClick={() => setCurrentPage('resume-builder')}
                 className="flex items-center gap-3 bg-teal-600 text-white p-4 rounded-xl hover:bg-teal-700 transition-all text-left">
                 <FileText className="w-5 h-5 flex-shrink-0" />
