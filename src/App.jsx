@@ -168,21 +168,36 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const findOpportunitiesItems = [
-    { page: 'find-internships', label: 'Find Internships', icon: <Search className="w-4 h-4" /> },
-    { page: 'search-guide', label: 'Search Guide', icon: <BookOpen className="w-4 h-4" /> },
-    { page: 'job-alert', label: 'Job Alert Guide', icon: <Target className="w-4 h-4" /> },
-  ];
-
-  const jobToolsItems = [
-    { page: 'job-tools-hub', label: 'Job Tools Hub', icon: <Briefcase className="w-4 h-4" /> },
-    { page: 'resume-builder', label: 'Resume Builder', icon: <FileText className="w-4 h-4" /> },
-    { page: 'cover-letter', label: 'Cover Letter Generator', icon: <FileText className="w-4 h-4" /> },
-    { page: 'ats-guide', label: 'ATS Guide', icon: <Search className="w-4 h-4" /> },
-    { page: 'tracker', label: 'Application Tracker', icon: <Target className="w-4 h-4" /> },
-    { page: 'interview-prep', label: 'Interview Prep', icon: <MessageCircle className="w-4 h-4" /> },
-    { page: 'pivot', label: 'Career Paths', icon: <TrendingUp className="w-4 h-4" /> },
-  ];
+const jobToolsGroups = [
+  {
+    label: 'Explore',
+    items: [
+      { page: 'pivot', label: 'Career Paths', icon: <TrendingUp className="w-4 h-4" /> },
+    ]
+  },
+  {
+    label: 'Build',
+    items: [
+      { page: 'resume-builder', label: 'Resume Builder', icon: <FileText className="w-4 h-4" /> },
+      { page: 'cover-letter', label: 'Cover Letter Generator', icon: <FileText className="w-4 h-4" /> },
+      { page: 'ats-guide', label: 'ATS Guide', icon: <Search className="w-4 h-4" /> },
+    ]
+  },
+  {
+    label: 'Apply & Track',
+    items: [
+      { page: 'tracker', label: 'Application Tracker', icon: <Target className="w-4 h-4" /> },
+      { page: 'search-guide', label: 'Search Guide', icon: <BookOpen className="w-4 h-4" /> },
+      { page: 'job-alert', label: 'Job Alert Guide', icon: <Target className="w-4 h-4" /> },
+    ]
+  },
+  {
+    label: 'Prepare',
+    items: [
+      { page: 'interview-prep', label: 'Interview Prep', icon: <MessageCircle className="w-4 h-4" /> },
+    ]
+  },
+];
 
 const supportGroups = [
   {
@@ -249,18 +264,9 @@ const supportGroups = [
               </button>
 
               <DropdownMenu
-                title="Find Opportunities"
-                onTitleClick={() => setCurrentPage('find-opportunities-hub')}
-                items={findOpportunitiesItems}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                isMobile={false}
-              />
-
-              <DropdownMenu
                 title="Job Tools"
                 onTitleClick={() => setCurrentPage('job-tools-hub')}
-                items={jobToolsItems}
+                groups={jobToolsGroups}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 isMobile={false}
@@ -351,19 +357,8 @@ const supportGroups = [
             </button>
 
             <DropdownMenu
-              title="Find Opportunities"
-              items={findOpportunitiesItems}
-              currentPage={currentPage}
-              setCurrentPage={(page) => {
-                setCurrentPage(page);
-                setMobileMenuOpen(false);
-              }}
-              isMobile={true}
-            />
-
-            <DropdownMenu
               title="Job Tools"
-              items={jobToolsItems}
+              groups={jobToolsGroups}
               currentPage={currentPage}
               setCurrentPage={(page) => {
                 setCurrentPage(page);
@@ -371,8 +366,7 @@ const supportGroups = [
               }}
               isMobile={true}
             />
-
-            <DropdownMenu
+                        <DropdownMenu
               title="Support"
               groups={supportGroups}
               currentPage={currentPage}
