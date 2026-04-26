@@ -22,7 +22,6 @@ import BlogPage from './BlogPage';
 import BlogPost from './BlogPost';
 import PageHero from "./components/PageHero";
 import ATSGuide from './Atsguide';
-import FindInternshipsPage from './FindInternshipsPage';
 import './warm-design.css';
 import StoryDetail from './StoryDetail';
 import FindOpportunitiesHub from './FindOpportunitiesHub';
@@ -1424,7 +1423,6 @@ export default function App() {
       <main className="w-full px-6 lg:px-12 py-10">
         <Routes>
           <Route path="/" element={<WarmHomePage setCurrentPage={setCurrentPage} />} />
-          <Route path="/find-internships" element={<FindInternshipsPage setCurrentPage={setCurrentPage} />} />
           <Route path="/resume-builder" element={<ResumeBuilder onBack={() => setCurrentPage('home')} setCurrentPage={setCurrentPage} />} />
           <Route path="/ats-guide" element={<ATSGuide setCurrentPage={setCurrentPage} />} />
           <Route path="/study-resources" element={<StudyResources onBack={() => setCurrentPage('home')} />} />
