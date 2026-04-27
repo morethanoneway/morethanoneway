@@ -2440,11 +2440,7 @@ Builder</span>
                 )}
               </div>
 
-{/* ATS Writing Guide - moved here */}
-              <div ref={atsGuideRef}>
-                <ATSGuide />
-              </div>
-              
+
               {/* Full Resume AI Review */}
               <div ref={fullAIReviewRef} className="mb-8 scroll-mt-24">
                 <FullResumeAIReview
@@ -2555,7 +2551,11 @@ Builder</span>
                 </div>
               )}
 
-{/* ONE RESUME, MANY PATHS (collapsible) */}
+{/* ATS Writing Guide - moved here */}
+              <div ref={atsGuideRef}>
+                <ATSGuide />
+              </div>
+
 {/* ONE RESUME, MANY PATHS (collapsible) */}
 <div className="bg-white rounded-3xl border border-purple-200 shadow-sm overflow-hidden mt-8">
   <button
@@ -2610,24 +2610,10 @@ Builder</span>
         )}
       </div>
 
-      {/* Tailor steps */}
-      <div className="bg-white rounded-2xl border border-purple-200 p-5">
-        <h3 className="font-bold text-lg mb-3 text-purple-900">
-          💡 How to Tailor Your Resume
-        </h3>
-        <ol className="space-y-2 text-sm text-gray-700">
-          <li><strong>1.</strong> Copy your base resume (the one you built above)</li>
-          <li><strong>2.</strong> Reorder bullets to put the most relevant ones first</li>
-          <li><strong>3.</strong> Adjust 2–3 words to match the job description language</li>
-          <li><strong>4.</strong> Move the most relevant skills to the front</li>
-          <li><strong>5.</strong> Same experience + different emphasis = different roles</li>
-        </ol>
-      </div>
-
       {/* CTA */}
       <div className="text-center">
         <p className="text-gray-700 mb-3">
-          <strong>Not sure which alternative paths exist for your major?</strong>
+          <strong>Not sure which career paths exist for your major?</strong>
         </p>
         <button
           type="button"
@@ -2635,7 +2621,7 @@ Builder</span>
           className="bg-purple-600 text-white px-6 py-3 rounded-xl hover:bg-purple-800 font-semibold inline-flex items-center gap-2"
         >
           <Search className="w-5 h-5" />
-          Explore Career Paths on Find Internships
+          Explore Career Paths
         </button>
       </div>
     </div>
