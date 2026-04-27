@@ -124,6 +124,13 @@ const JobToolsHub = ({ setCurrentPage }) => {
     icon={<MessageCircle />}
     onClick={() => setCurrentPage("interview-prep")}
   />
+
+  <Tile
+    title="Job Search Playbook"
+    desc="A proven step-by-step system — resume, applications, interviews, and follow-up. How to actually get a job."
+    icon={<BookOpen />}
+    onClick={() => setCurrentPage("job-search-playbook")}
+  />
 </div>
 
 

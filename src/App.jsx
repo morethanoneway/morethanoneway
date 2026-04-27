@@ -195,6 +195,7 @@ const jobToolsGroups = [
     label: 'Prepare',
     items: [
       { page: 'interview-prep', label: 'Interview Prep', icon: <MessageCircle className="w-4 h-4" /> },
+       { page: 'job-search-playbook', label: 'Job Search Playbook', icon: <BookOpen className="w-4 h-4" /> },
     ]
   },
 ];

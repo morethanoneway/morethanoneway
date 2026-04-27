@@ -207,9 +207,10 @@ export const FullResumeAIReview = ({ resumeText, major }) => {
               </div>
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Get AI Feedback on Your Entire Resume</h2>
-            <p className="text-gray-700 text-sm">Comprehensive feedback on ATS optimization, grammar, clarity, and professional presentation</p>
+<p className="text-gray-700 text-sm">Comprehensive feedback on ATS optimization, grammar, clarity, and professional presentation</p>
+            <p className="text-gray-600 text-sm mt-2">Get feedback on clarity, impact, and ATS-readability — without making it sound robotic.</p>
+            <p className="text-xs text-gray-500 mt-1 italic">Tip: This won't replace your voice — it just tightens wording and highlights gaps.</p>
           </div>
-
           <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-4 mb-6">
             <h3 className="font-bold text-purple-900 mb-3 text-sm">What the AI will check:</h3>
             <ul className="grid md:grid-cols-2 gap-2 text-sm text-gray-800">
