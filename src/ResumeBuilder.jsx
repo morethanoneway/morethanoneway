@@ -2283,7 +2283,7 @@ Builder</span>
                           />
 
                          <div className="space-y-3">
-                            {(proj.bullets || [proj.description]).map((bullet, bulletIdx) => (
+                            {(proj.bullets && proj.bullets.length > 0 ? proj.bullets : [proj.description || '']).map((bullet, bulletIdx) => (
                               <div key={bulletIdx}>
                                 <textarea
                                   value={bullet}
