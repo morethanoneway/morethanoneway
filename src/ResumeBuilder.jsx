@@ -1570,7 +1570,12 @@ const ResumeBuilder = ({ onBack, setCurrentPage }) => {
   };
 
   // Scroll target for the big AI section near the bottom
-  const fullAIReviewRef = useRef(null);
+const fullAIReviewRef = useRef(null);
+  const atsGuideRef = useRef(null);
+
+  const scrollToATSGuide = () => {
+    atsGuideRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   // Locked/ready logic for AI review
   const isAIReviewReady = () => {
@@ -1592,8 +1597,38 @@ const ResumeBuilder = ({ onBack, setCurrentPage }) => {
     fullAIReviewRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  return (
+return (
     <div className="bg-[#FFFBF7]">
+
+      {/* Preview Modal */}
+      {showPreview && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[80vh] flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <h3 className="font-bold text-gray-900">Resume Preview</h3>
+              <button onClick={() => setShowPreview(false)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition">
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+            </div>
+            <div className="overflow-y-auto p-6">
+              <pre className="text-sm text-gray-800 whitespace-pre-wrap font-mono leading-relaxed">
+                {generateResumeText()}
+              </pre>
+            </div>
+            <div className="p-4 border-t border-gray-200 flex gap-3">
+              <button onClick={copyToClipboard}
+                className="px-4 py-2 rounded-xl bg-[#006581] text-white text-sm font-semibold hover:bg-[#005470]">
+                Copy Resume
+              </button>
+              <button onClick={() => setShowPreview(false)}
+                className="px-4 py-2 rounded-xl border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10 space-y-8">
 
         <header className="text-center max-w-5xl mx-auto pt-2">
@@ -1736,6 +1771,13 @@ Builder</span>
                         {aiReq.ready ? "AI Review" : "AI Review (Locked)"}
                       </button>
                       <button
+                        onClick={scrollToATSGuide}
+                        className="px-4 py-2 rounded-xl border border-[#006581] text-sm font-semibold text-[#006581] hover:bg-[#006581]/10"
+                      >
+                        ATS Writing Guide
+                      </button>
+
+                      <button
                         onClick={clearAllData}
                         className="px-4 py-2 rounded-xl border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-50"
                       >
@@ -1751,77 +1793,6 @@ Builder</span>
                   </div>
                 </div>
               </div>
-
-              {/* ATS guide: make them match the clean card look */}
-              <ATSGuide />
-
-              {/* AI Review (surfaced early) */}
-              <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm mb-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-start gap-3 min-w-0">
-                    <div className="rounded-2xl bg-gray-100 ring-1 ring-gray-200 p-3">
-                      <Sparkles className="w-6 h-6 text-gray-700" strokeWidth={1.75} />
-                    </div>
-
-                    <div className="min-w-0">
-                      <h3 className="text-lg font-extrabold text-gray-900">Review & refine with AI (optional)</h3>
-                      <p className="mt-1 text-sm text-gray-600">
-                        Get feedback on clarity, impact, and ATS-readability — without making it sound robotic.
-                      </p>
-
-                      {!aiReq.ready && (
-                        <div className="mt-3 w-full rounded-2xl bg-gray-50 border border-gray-200 p-4">
-                          <div className="flex items-center gap-3 min-w-0">
-                            <p className="text-sm font-semibold text-gray-800 shrink-0">
-                              Locked until you add:
-                            </p>
-
-                            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto whitespace-nowrap min-w-0">
-                              <span className={`px-2 py-0 rounded-full border shrink-0 ${aiReq.hasContact ? "line-through text-gray-400 bg-gray-100 border-gray-200" : "text-gray-700 bg-white border-gray-300"
-                                }`}>Contact</span>
-
-                              <span className={`px-2 py-0 rounded-full border shrink-0 ${aiReq.hasEducation ? "line-through text-gray-400 bg-gray-100 border-gray-200" : "text-gray-700 bg-white border-gray-300"
-                                }`}>Education</span>
-
-                              <span className={`px-2 py-0 rounded-full border shrink-0 ${aiReq.hasOneExpOrProj ? "line-through text-gray-400 bg-gray-100 border-gray-200" : "text-gray-700 bg-white border-gray-300"
-                                }`}>1 Experience or Project</span>
-                            </div>
-                          </div>
-                        </div>
-
-                      )}
-                    </div>
-                  </div>
-
-                  <span
-                    className={`shrink-0 text-xs font-semibold px-3 py-1 rounded-full border ${aiReq.ready
-                      ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                      : "bg-gray-50 text-gray-600 border-gray-200"
-                      }`}
-                  >
-                    {aiReq.ready ? "Ready" : "Locked"}
-                  </span>
-                </div>
-
-                <div className="mt-4 flex flex-wrap items-center gap-3">
-                  <button
-                    type="button"
-                    disabled={!aiReq.ready}
-                    onClick={scrollToFullAIReview}
-                    className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${aiReq.ready
-                      ? "bg-gray-900 text-white hover:bg-gray-800"
-                      : "bg-gray-200 text-gray-500 cursor-not-allowed"
-                      }`}
-                  >
-                    Run AI Review
-                  </button>
-
-                  <p className="text-xs text-gray-500">
-                    Tip: This won’t replace your voice — it just tightens wording and highlights gaps.
-                  </p>
-                </div>
-              </div>
-
 
               {/* CONTACT */}
               <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
@@ -2469,6 +2440,11 @@ Builder</span>
                 )}
               </div>
 
+{/* ATS Writing Guide - moved here */}
+              <div ref={atsGuideRef}>
+                <ATSGuide />
+              </div>
+              
               {/* Full Resume AI Review */}
               <div ref={fullAIReviewRef} className="mb-8 scroll-mt-24">
                 <FullResumeAIReview
