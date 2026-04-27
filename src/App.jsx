@@ -41,6 +41,7 @@ import AcademicProbation from './AcademicProbation';
 import BurntOut from './BurntOut';
 import ThinkingAboutTransferring from './ThinkingAboutTransferring';
 import MajorPage from './MajorPage';
+import JobSearchPlaybook from './JobSearchPlaybook';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -651,9 +652,9 @@ const PivotPage = ({ setCurrentPage }) => {
               className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all">
               Job Search Guide
             </button>
-            <button onClick={() => setCurrentPage('find-internships')}
+            <button onClick={() => setCurrentPage('resources')}
               className="bg-white text-gray-700 px-7 py-4 rounded-xl font-semibold border border-gray-200 hover:bg-gray-100 transition-all">
-              Find Internships
+              Career Resources
             </button>
           </div>
         </div>
@@ -1459,6 +1460,7 @@ export default function App() {
           <Route path="/academic-probation" element={<AcademicProbation setCurrentPage={setCurrentPage} />} />
           <Route path="/burnt-out" element={<BurntOut setCurrentPage={setCurrentPage} />} />
           <Route path="/thinking-about-transferring" element={<ThinkingAboutTransferring setCurrentPage={setCurrentPage} />} />
+          <Route path="/job-search-playbook" element={<JobSearchPlaybook setCurrentPage={setCurrentPage} />} />
           <Route path="/major/:majorSlug" element={<MajorPage setCurrentPage={setCurrentPage} />} />
           {/* Catch-all: redirect unknown URLs to home */}
         </Routes>
