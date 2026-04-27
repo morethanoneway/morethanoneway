@@ -2551,9 +2551,11 @@ Builder</span>
                 </div>
               )}
 
-{/* ATS Writing Guide - moved here */}
+      {/* ATS Writing Guide - moved here */}
+      <div className= "mt-8">
               <div ref={atsGuideRef}>
                 <ATSGuide />
+              </div>
               </div>
 
 {/* ONE RESUME, MANY PATHS (collapsible) */}
