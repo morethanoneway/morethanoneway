@@ -10,7 +10,7 @@ const steps = [
     icon: <FileText className="w-5 h-5" />,
     color: "teal",
     what: "Create one resume with everything in it — every job, project, skill, and achievement. Don't worry about length yet. This is your foundation. You'll tailor it for each job later.",
-    tool: { label: "Resume Builder", page: "resume-builder" },
+    tool: null,
     prompt: `Here is my resume: [paste your resume]
 
 Please review and suggest improvements to make it:
@@ -225,7 +225,7 @@ const CopyButton = ({ text }) => {
 const StepCard = ({ step, isUnlocked, isActive, onActivate, setCurrentPage }) => {
   const colors = colorMap[step.color];
 
-  return (
+return (
     <div className={`rounded-2xl border ${isUnlocked ? 'border-gray-200 bg-white' : 'border-gray-100 bg-gray-50'} shadow-sm transition-all`}>
       {/* Step header */}
       <button
@@ -255,7 +255,16 @@ const StepCard = ({ step, isUnlocked, isActive, onActivate, setCurrentPage }) =>
         <div className="px-6 pb-6 space-y-5 border-t border-gray-100 pt-5">
 
           {/* What to do */}
-          <p className="text-gray-700 leading-relaxed">{step.what}</p>
+          <p className="text-gray-700 leading-relaxed text-base">{step.what}</p>
+
+          {/* Tool link - now BEFORE the prompt */}
+          {step.tool && (
+            <button
+              onClick={() => setCurrentPage(step.tool.page)}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition-colors ${colors.button}`}>
+              {step.tool.label} <ArrowRight className="w-4 h-4" />
+            </button>
+          )}
 
           {/* Follow-up section (Step 7 only) */}
           {step.followUp && (
@@ -312,15 +321,6 @@ const StepCard = ({ step, isUnlocked, isActive, onActivate, setCurrentPage }) =>
             </div>
           )}
 
-          {/* Tool link */}
-          {step.tool && (
-            <button
-              onClick={() => setCurrentPage(step.tool.page)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition-colors ${colors.button}`}>
-              {step.tool.label} <ArrowRight className="w-4 h-4" />
-            </button>
-          )}
-
           {/* Tip */}
           {step.tip && (
             <div className="flex items-start gap-2 bg-gray-50 rounded-xl border border-gray-200 p-3">
@@ -366,7 +366,7 @@ const JobSearchPlaybook = ({ setCurrentPage }) => {
         <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12 py-10">
 
           {/* Header */}
-          <div className="max-w-3xl mx-auto text-center mb-10">
+          <div className="max-w-4xl mx-auto text-center mb-10">
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-2">
               The Job Search <span className="text-[#006581]">Playbook</span>
             </h1>
@@ -391,7 +391,7 @@ const JobSearchPlaybook = ({ setCurrentPage }) => {
           </div>
 
           {/* Steps */}
-          <div className="max-w-3xl mx-auto space-y-4">
+          <div className="max-w-4xl mx-auto space-y-4">
             {steps.map((step) => (
               <div key={step.number}>
                 <StepCard
@@ -424,7 +424,7 @@ const JobSearchPlaybook = ({ setCurrentPage }) => {
           </div>
 
           {/* Bottom CTA */}
-          <div className="max-w-3xl mx-auto mt-12 rounded-3xl bg-[#006581] text-white p-10 text-center">
+          <div className="max-w-4xl mx-auto mt-12 rounded-3xl bg-[#006581] text-white p-10 text-center">
             <h3 className="text-2xl font-semibold mb-3">The system works if you work it.</h3>
             <p className="text-white/80 text-base leading-relaxed mb-6">
               Most students apply to jobs the same way everyone else does and wonder why they get the same results. This approach is different. It takes more effort per application — and gets dramatically better results.
