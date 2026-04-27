@@ -36,11 +36,16 @@ const checkResumeFlags = (text) => {
   return RESUME_AI_FLAGS.filter(flag => lower.includes(flag.phrase.toLowerCase()));
 };
 
-const extractKeywords = (text) => {
-  if (!text) return [];
-  const stopWords = new Set(['the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','is','are','was','were','be','been','have','has','had','do','does','did','will','would','could','should','may','might','can','that','this','these','those','it','its','we','our','you','your','they','their','i','my','me','as','if','when','which','who','what','how','all','any','both','each','more','most','other','some','into','through','before','after','about','while','also','than','very','just','not','no','nor','so','yet','either','whether','must','shall','need']);
-  return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(w => w.length > 3 && !stopWords.has(w)).filter((w, i, arr) => arr.indexOf(w) === i).slice(0, 60);
-};
+const stopWords = new Set([
+  // Common words
+  'the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','is','are','was','were','be','been','have','has','had','do','does','did','will','would','could','should','may','might','can','that','this','these','those','it','its','we','our','you','your','they','their','i','my','me','as','if','when','which','who','what','how','all','any','both','each','more','most','other','some','into','through','before','after','about','while','also','than','very','just','not','no','nor','so','yet','either','whether','must','shall','need',
+  // Job posting filler words
+  'apply','applying','applicant','applicants','candidate','candidates','equal','opportunity','employer','employment','qualified','qualify','position','role','join','team','company','organization','including','include','includes','included','such','please','submit','resume','cover','letter','email','send','contact','click','here','learn','more','about','view','see','visit','website','page','link','click','related','relevant','required','requirements','preferred','plus','bonus','nice','have','strong','ability','work','working','works','worked','experience','years','year','degree','field','knowledge','understanding','familiarity','familiar','demonstrated','proven','track','record','record','history','background','skill','skills','using','use','used','uses','make','making','made','take','taking','taken','help','helping','helped','support','supporting','supported','ensure','ensuring','ensures','provide','providing','provided','manage','managing','managed','develop','developing','developed','build','building','built','create','creating','created','lead','leading','led','drive','driving','drove','grow','growing','grew','increase','increasing','increased','improve','improving','improved','maintain','maintaining','maintained','collaborate','collaborating','collaborated','communicate','communicating','communicated','learn','learning','learned','identify','identifying','identified','implement','implementing','implemented','monitor','monitoring','monitored','review','reviewing','reviewed','report','reporting','reported','perform','performing','performed','complete','completing','completed','assist','assisting','assisted','participate','participating','participated','contribute','contributing','contributed','utilize','utilizing','utilized','leverage','leveraging','leveraged','spearhead','spearheading','spearheaded',
+  // Generic business words
+  'fast','paced','dynamic','innovative','passionate','dedicated','motivated','proactive','detail','oriented','results','driven','self','starter','team','player','various','multiple','different','new','current','future','next','first','last','high','low','large','small','great','good','best','top','key','main','primary','secondary','additional','general','specific','overall','based','related','focused','driven','oriented','ready','able','willing','excited','looking','seeking','interested','opportunity','opportunities','responsibilities','responsibility','duties','tasks','projects','initiatives','goals','objectives','mission','vision','values','culture','environment','growth','success','impact','value','quality','excellence','innovation','collaboration','communication','leadership','management','development','strategy','process','system','solution','approach','method','framework','model','platform','product','service','customer','client','user','market','industry','business','company','organization','team','group','department','division','function',
+  // Numbers and short words that slip through
+  'iscore','match','missing','adding','chances','getting','interview','resume','learn','role','chance','rate','score'
+]);
 
 const FULL_RESUME_PROMPTS = {
   'Engineering/STEM': (resume) => `I am an engineering/STEM student. Review my entire resume for ATS optimization and effectiveness. Be honest and specific.
@@ -168,7 +173,7 @@ export const FullResumeAIReview = ({ resumeText, major }) => {
           <div className="mt-4 space-y-4">
             <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)}
               placeholder="Paste the full job description here..."
-              rows={5} className="w-full p-3 border border-gray-200 rounded-xl text-sm resize-none" />
+              rows={5} className="w-full p-3 border border-gray-200 rounded-xl text-sm resize-y min-h-[120px]" />
 
             {jobDescription.trim().length > 50 && (
               <div className="space-y-3">
