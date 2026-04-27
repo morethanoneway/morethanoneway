@@ -1429,9 +1429,31 @@ const ResumeBuilder = ({ onBack, setCurrentPage }) => {
       return { ...prev, experience: newExp };
     });
   };
+  const updateProjectBullet = (projIndex, bulletIndex, value) => {
+    setResumeData(prev => {
+      const newProj = [...prev.projects];
+      const bullets = [...newProj[projIndex].bullets];
+      bullets[bulletIndex] = value;
+      newProj[projIndex] = { ...newProj[projIndex], bullets };
+      return { ...prev, projects: newProj };
+    });
+  };
+
+  const addProjectBullet = (projIndex) => {
+    setResumeData(prev => {
+      const newProj = [...prev.projects];
+      newProj[projIndex].bullets.push('');
+      return { ...prev, projects: newProj };
+    });
+  };
   const deleteExperience = (index) => setResumeData(prev => ({ ...prev, experience: prev.experience.filter((_, i) => i !== index) }));
 
-  const addProject = () => setResumeData(prev => ({ ...prev, projects: [...prev.projects, { name: '', technologies: '', description: '', link: '' }] }));
+const addProject = () => {
+    setResumeData(prev => ({
+      ...prev,
+      projects: [...prev.projects, { name: '', technologies: '', description: '', bullets: [''], link: '' }]
+    }));
+  };
   const updateProject = (index, field, value) => {
     setResumeData(prev => {
       const newProj = [...prev.projects];
@@ -1648,10 +1670,10 @@ Builder</span>
                   Build a Resume That Opens <span className="text-tealBrand">Multiple Doors</span>
                 </h2>
 
-                <p className="text-gray-700 text-base md:text-lg mb-5 leading-relaxed">
-                  Your degree doesn’t lock you into one path. This resume builder helps you apply to
-                  traditional roles <strong>and</strong> the alternative career paths you’ll discover
-                  on our Find Internships page.
+               <p className="text-gray-700 text-base md:text-lg mb-5 leading-relaxed">
+                  Your degree doesn't lock you into one path. This resume builder helps you apply to
+                  traditional roles <strong>and</strong> the alternative career paths you'll discover
+                  on our <button onClick={() => setCurrentPage('pivot')} className="text-tealBrand underline hover:text-tealBrand/70">Career Paths</button> page.
                 </p>
 
                 {/* Sub-callout */}
@@ -2260,19 +2282,31 @@ Builder</span>
                             className="w-full p-3 border border-gray-200 rounded-xl bg-white"
                           />
 
-                          <textarea
-                            value={proj.description}
-                            onChange={(e) =>
-                              updateProject(projIdx, "description", e.target.value)
-                            }
-                            placeholder={config.projectPlaceholders.description}
-                            rows={2}
-                            className="w-full p-3 border border-gray-200 rounded-xl bg-white"
-                          />
+                         <div className="space-y-3">
+                            {(proj.bullets || [proj.description]).map((bullet, bulletIdx) => (
+                              <div key={bulletIdx}>
+                                <textarea
+                                  value={bullet}
+                                  onChange={(e) =>
+                                    updateProjectBullet(projIdx, bulletIdx, e.target.value)
+                                  }
+                                  placeholder={config.projectPlaceholders.description}
+                                  rows={2}
+                                  className="w-full p-3 border border-gray-200 rounded-xl bg-white"
+                                />
+                                <InstantBulletChecker text={bullet} major={major} />
+                                <BulletAIHelper bullet={bullet} major={major} />
+                              </div>
+                            ))}
+                          </div>
 
-                          {/* IMPORTANT: this was a bug in your version — "bullet" isn't defined here */}
-                          <InstantBulletChecker text={proj.description} major={major} />
-                          <BulletAIHelper bullet={proj.description} major={major} />
+                          <button
+                            type="button"
+                            onClick={() => addProjectBullet(projIdx)}
+                            className="mt-1 inline-flex items-center gap-2 text-sm font-semibold text-yellow-600 hover:text-yellow-700"
+                          >
+                            <Plus className="w-4 h-4" /> Add Bullet
+                          </button>
 
                           <input
                             type="url"
@@ -2449,7 +2483,6 @@ Builder</span>
                 />
               </div>
 
-              {/* Your Resume is Ready! */}
 {/* YOUR RESUME IS READY */}
 <div className="bg-white rounded-3xl border border-emerald-200 shadow-sm mt-8">
   <div className="flex items-start gap-4 p-6">
@@ -2469,7 +2502,7 @@ Builder</span>
         <li>1️⃣ Copy your resume</li>
         <li>2️⃣ Paste into Word or Google Docs</li>
         <li>3️⃣ Customize for each role or career path</li>
-        <li>4️⃣ Explore alternative opportunities</li>
+        <li>4️⃣ Explore career paths for your major</li>
       </ol>
 
       <div className="mt-5 flex flex-wrap gap-3">
@@ -2487,11 +2520,11 @@ Builder</span>
           Font Recommendations
         </button>
 
-        <button
-          onClick={() => setCurrentPage("find-internships")}
+       <button
+          onClick={() => setCurrentPage("pivot")}
           className="px-5 py-2 rounded-xl bg-emerald-100 text-emerald-900 font-semibold hover:bg-emerald-300"
         >
-          Find Internships
+          Career Paths
         </button>
       </div>
     </div>
