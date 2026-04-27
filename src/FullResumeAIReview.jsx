@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Check, ExternalLink, Sparkles, MessageCircle, Flag, ChevronDown, ChevronUp } from 'lucide-react';
 
 const AI_PROVIDERS = {
-  chatgpt: { name: 'ChatGPT', url: 'https://chat.openai.com', color: 'bg-green-600 hover:bg-green-700' },
+  copilot: { name: 'Copilot', url: 'https://copilot.microsoft.com', color: 'bg-blue-600 hover:bg-blue-700' },
   claude: { name: 'Claude', url: 'https://claude.ai', color: 'bg-orange-600 hover:bg-orange-700' },
-  gemini: { name: 'Gemini', url: 'https://gemini.google.com', color: 'bg-blue-600 hover:bg-blue-700' }
+  gemini: { name: 'Gemini', url: 'https://gemini.google.com', color: 'bg-green-600 hover:bg-green-700' }
 };
 
 const RESUME_AI_FLAGS = [

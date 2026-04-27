@@ -289,7 +289,7 @@ return (
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">AI Prompt</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Copy and paste into ChatGPT, Claude, or Gemini</p>
+                  <p className="text-xs text-gray-500 mt-0.5">Copy and paste into CoPilot, Claude, or Gemini</p>
                 </div>
                 <CopyButton text={step.prompt} />
               </div>
