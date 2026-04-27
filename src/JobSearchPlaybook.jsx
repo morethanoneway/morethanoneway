@@ -3,23 +3,15 @@ import { Helmet } from 'react-helmet-async';
 import { CheckCircle, Copy, Check, ChevronDown, ChevronUp, ExternalLink, FileText, Search, Briefcase, MessageCircle, TrendingUp, Mail, ArrowRight } from 'lucide-react';
 
 const steps = [
-  {
+{
     number: 1,
     title: "Build Your Master Resume",
     subtitle: "Do this once. Everything else builds from it.",
     icon: <FileText className="w-5 h-5" />,
     color: "teal",
-    what: "Create one resume with everything in it — every job, project, skill, and achievement. Don't worry about length yet. This is your foundation. You'll tailor it for each job later.",
-    tool: null,
-    prompt: `Here is my resume: [paste your resume]
-
-Please review and suggest improvements to make it:
-- ATS-friendly (no tables, graphics, or special formatting)
-- Action verb driven (no "helped with" or "was responsible for")
-- Quantified where possible (add numbers, percentages, scale)
-- Concise (each bullet under 2 lines)
-
-Give me specific rewrite suggestions, not just general advice.`,
+    what: "Create one resume with everything in it — every job, project, skill, and achievement. Don't worry about length yet. This is your foundation. You'll tailor it down for each job later. The Resume Builder walks you through it section by section with major-specific tips, and has AI review built in so you don't need a separate prompt for this step.",
+    tool: { label: "Resume Builder", page: "resume-builder" },
+    prompt: null,
     example: null,
     tip: "Save this as \"Master Resume [Your Name].pdf\" — never send this version directly. It's your starting point for every application."
   },
@@ -48,7 +40,7 @@ Here is the job description: [paste job description]
     icon: <FileText className="w-5 h-5" />,
     color: "orange",
     what: "Take your master resume and adjust it specifically for this job. Add keywords from the posting, reorder bullets to match what they care about most, and cut anything irrelevant. Save the tailored version with the company and role in the filename.",
-    tool: { label: "Resume Builder", page: "resume-builder" },
+    tool: null,
     prompt: `Here is my resume: [paste your master resume]
 Here is the job description: [paste job description]
 
