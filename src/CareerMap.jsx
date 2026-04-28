@@ -158,6 +158,30 @@ const SECTIONS = [
         minLength: 40
       },
       {
+  id: 'hobbies',
+  label: 'What do you do in your free time? What are your hobbies and interests outside of school or work?',
+  hint: 'Include everything — gaming, reading, sports, volunteering, building things, cooking, music, anything. If there are things you find hard to do — like sitting still, reading for long periods, or waiting around — mention that too. It\'s just as useful as what you enjoy.',
+  placeholder: 'Example: I game a lot — I can focus for hours when something engages me. I play pickup basketball twice a week. I hate sitting still and reading is hard for me so I avoid it. Or: I cook, hike, and read constantly — I\'m happiest when I\'m learning something new on my own.',
+  type: 'textarea',
+  minLength: 30
+},
+      {
+  id: 'strengthsWeaknesses',
+  label: 'What are your strengths and weaknesses — be honest about both?',
+  hint: 'Strengths: what you do well, what comes naturally, what others rely on you for. Weaknesses: what you avoid, what drains you, what you know needs work. Both matter for building a realistic plan.',
+  placeholder: 'Example: Strengths — I am highly analytical, I finish work quickly, I explain complex things clearly. Weaknesses — I get bored when work is slow, I sometimes make fast decisions without enough research, I tend to ask others before trusting my own judgment.',
+  type: 'textarea',
+  minLength: 40
+},
+{
+  id: 'targetRoles',
+  label: 'Are there specific companies, roles, or industries you\'re drawn to — even if you\'re not sure why?',
+  hint: 'Name them. Even a gut feeling counts. "I want to work somewhere like Raytheon" is useful information. "I don\'t know" is also fine — just say that.',
+  placeholder: 'Example: I keep looking at defense companies like Raytheon and Lockheed Martin — I think it\'s the scale and the technical complexity. Or: I\'m drawn to startups but not sure if I could handle the instability. Or: Honestly no idea yet.',
+  type: 'textarea',
+  minLength: 20
+},
+      {
         id: 'workForFree',
         label: 'If money wasn\'t a factor, what kind of work would you want to spend your days doing?',
         hint: 'Think about the activity, not the job title — teaching, building, researching, helping, creating, organizing, leading, performing, fixing, protecting. We\'re not asking what you\'d do if you won the lottery. We\'re asking what kind of work feels right when money isn\'t the barrier.',
@@ -254,6 +278,13 @@ RULES:
 - Focus on strategy, not motivation
 - Be specific about timing — no "eventually"
 - The financial constraints above are hard limits on every recommendation
+- Do not moralize about personal habits (gaming, sleep schedule,
+  hobbies). Only flag a habit if it directly conflicts with a
+  specific career goal the student stated. Strategy only.
+- Do not criticize who the student turns to for support. If they
+  rely on a parent, friend, or mentor for guidance, that is their
+  support system. Acknowledge it and suggest adding professional
+  voices alongside it — never instead of it.
 
 ---
 
@@ -296,6 +327,12 @@ WHAT I KNOW ABOUT MYSELF:
 What has made me miserable or drained me and why: ${answers.miserable || '[not answered]'}
 
 What I naturally do well: ${answers.naturallyGoodAt || '[not answered]'}
+
+Hobbies and free time activities (including things I find hard or avoid): ${answers.hobbies || '[not answered]'}
+
+My strengths and weaknesses: ${answers.strengthsWeaknesses || '[not answered]'}
+
+Specific companies, roles, or industries I am drawn to: ${answers.targetRoles || '[not answered]'}
 
 What kind of work I would do if money was not a factor: ${answers.workForFree || '[not answered]'}
 
@@ -591,19 +628,29 @@ export default function CareerMap({ setCurrentPage }) {
               </div>
 
               <div className="p-5 border-t border-gray-100">
-                <p className="text-sm font-semibold text-gray-900 mb-3">Paste into any of these:</p>
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-4">
+  <p className="text-sm text-amber-900 leading-relaxed">
+    <strong>Heads up:</strong> The output will be long — that's normal. Read all of it. 
+    The diagnosis at the top and the three things at the end are the most important parts. 
+    Everything in between is context for why.
+  </p>
+</div>
+<p className="text-sm font-semibold text-gray-900 mb-3">Paste into any of these:</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {[
-                    { name: 'Claude', url: 'https://claude.ai', color: 'bg-orange-600 hover:bg-orange-700' },
-                    { name: 'ChatGPT', url: 'https://chat.openai.com', color: 'bg-green-600 hover:bg-green-700' },
-                    { name: 'Gemini', url: 'https://gemini.google.com', color: 'bg-blue-600 hover:bg-blue-700' },
-                    { name: 'Other AI Tools', url: 'https://www.google.com/search?q=free+AI+chat+tool', color: 'bg-gray-700 hover:bg-gray-800' }
-                  ].map(tool => (
-                    <a key={tool.name} href={tool.url} target="_blank" rel="noopener noreferrer"
-                      className={`${tool.color} text-white text-center py-2.5 rounded-xl text-sm font-semibold transition-colors`}>
-                      {tool.name}
-                    </a>
-                  ))}
+{[
+  { name: 'Claude', url: 'https://claude.ai', color: 'bg-orange-600 hover:bg-orange-700', desc: 'Best for honest diagnosis — catches contradictions and challenges assumptions directly.' },
+  { name: 'ChatGPT', url: 'https://chat.openai.com', color: 'bg-green-600 hover:bg-green-700', desc: 'Best for structure — produces thorough, well-organized plans.' },
+  { name: 'Gemini', url: 'https://gemini.google.com', color: 'bg-blue-600 hover:bg-blue-700', desc: 'Most creative paths — good at unexpected connections. Read critically.' },
+  { name: 'Other AI Tools', url: 'https://www.google.com/search?q=free+AI+chat+tool', color: 'bg-gray-700 hover:bg-gray-800', desc: 'Already use something else? The prompt works across platforms.' }
+].map(tool => (
+  <div key={tool.name} className="flex flex-col gap-1">
+    <a href={tool.url} target="_blank" rel="noopener noreferrer"
+      className={`${tool.color} text-white text-center py-2.5 rounded-xl text-sm font-semibold transition-colors`}>
+      {tool.name}
+    </a>
+    <p className="text-xs text-gray-500 text-center leading-snug px-1">{tool.desc}</p>
+  </div>
+))}
                 </div>
                 <p className="text-xs text-gray-500 mt-3">
                   Click an AI tool above, then paste your prompt (Ctrl+V or Cmd+V) and press Enter.
