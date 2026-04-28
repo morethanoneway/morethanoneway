@@ -286,6 +286,20 @@ RULES:
   support system. Acknowledge it and suggest adding professional
   voices alongside it — never instead of it.
 
+  PERSONAL JOB FILTER:
+Based on my specific constraints above, create a personalized
+3-question filter I can screenshot or write down and use every
+time I find a job listing. Format it as a simple table or list:
+
+Before applying to any job, ask:
+1. [Question based on my degree/credential status]
+2. [Question based on my financial floor]
+3. [Question based on my timeline/relocation constraints]
+
+If YES to any → Close the tab. Not this one. Not now.
+If NO to all three → Worth researching further.
+
+Label this section clearly: "YOUR PERSONAL JOB FILTER"
 ---
 
 MY SITUATION:
@@ -369,6 +383,7 @@ const CopyButton = ({ text, label = 'Copy' }) => {
     </button>
   );
 };
+
 
 export default function CareerMap({ setCurrentPage }) {
   const [answers, setAnswers] = useState({});

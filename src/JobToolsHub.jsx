@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, BookOpen, FileText, MessageCircle, TrendingUp, Bell, Newspaper, Sparkles, Target } from 'lucide-react';
+import { Search, BookOpen, FileText, MessageCircle, Compass, TrendingUp, Bell, Newspaper, Sparkles, Target } from 'lucide-react';
 import Tile from "./components/Tile";
 import { Helmet } from 'react-helmet-async';
 
@@ -21,7 +21,8 @@ const JobToolsHub = ({ setCurrentPage }) => {
         {/* Hero Section */}
         <div>
           <h1 className="text-center text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">Job Tools {" "}
-            <span className="block md:inline text-tealBrand">
+            <span className="block md:inline text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
+
               Hub</span> </h1>
           <p className="mt-3 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
             Everything you need to find opportunities, apply effectively, and track your progress.
@@ -69,6 +70,13 @@ const JobToolsHub = ({ setCurrentPage }) => {
         </div>
 
        <div className="mt-0 grid gap-6 md:grid-cols-3">
+  <Tile
+    title="Career Clarity & Decision System"
+    desc="Not sure where to start? Fill in your situation and get a personalized career map — built around your real constraints."
+    icon={<Compass />}
+    onClick={() => setCurrentPage("career-map")}
+  />
+
   <Tile
     title="Career Paths"
     desc="See what your degree can actually do. Real career paths with live job counts."

@@ -114,12 +114,12 @@ const WarmHomePage = ({ setCurrentPage }) => {
         icon={<TrendingUp />}
       />
 
-      <Tile
-        title="Find Internships & Co-Ops"
-        desc="Pre-filtered searches that don’t waste your time. Search for traditional roles in your major AND explore alternative paths that value your skills."
-        onClick={() => setCurrentPage("find-internships")}
-        icon={<Search />}
-      />
+<Tile
+  title="Career Clarity & Decision System"
+  desc="Not sure where to start? Fill in your situation and get a personalized career map built around your real life — not generic advice."
+  onClick={() => setCurrentPage("career-map")}
+  icon={<Compass />}
+/>
 
       <Tile
         title="Resume Builder"
