@@ -1381,7 +1381,7 @@ const ResumeBuilder = ({ onBack, setCurrentPage }) => {
   const [resumeData, setResumeData] = useState({
     contact: { name: '', email: '', phone: '', linkedin: '', location: '' },
     education: { school: '', degree: '', major: '', gpa: '', graduation: '', coursework: '' },
-    skills: { category1: '', category2: '', category3: '', category4: '' },
+    skills: { category1: '', category2: '', category3: '', category4: '', categoryLabel1: '', categoryLabel2: '', categoryLabel3: '', categoryLabel4: '' },
     experience: [],
     projects: [],
     activities: []
@@ -1508,9 +1508,11 @@ const addProject = () => {
 
     if (config && Object.values(resumeData.skills).some(v => v)) {
       text += `SKILLS\n`;
-      config.skills.categories.forEach((category, idx) => {
+config.skills.categories.forEach((category, idx) => {
         const skillValue = resumeData.skills[`category${idx + 1}`];
-        if (skillValue) text += `${category}: ${skillValue}\n`;
+        const customLabel = resumeData.skills[`categoryLabel${idx + 1}`];
+        const label = customLabel && customLabel.trim() ? customLabel : category;
+        if (skillValue) text += `${label}: ${skillValue}\n`;
       });
       text += `\n`;
     }
@@ -2030,9 +2032,14 @@ Builder</span>
                       </div>
                     </div>
 
-                    {config.skills.categories.map((category, idx) => (
+                   {config.skills.categories.map((category, idx) => (
                       <div key={idx}>
-                        <label className="block font-semibold mb-1">{category}</label>
+                        <input
+                          type="text"
+                          value={resumeData.skills[`categoryLabel${idx + 1}`] || category}
+                          onChange={(e) => updateSkills(`categoryLabel${idx + 1}`, e.target.value)}
+                          className="block font-semibold mb-1 w-full bg-transparent border-b border-dashed border-gray-300 focus:border-tealBrand focus:outline-none text-sm text-gray-900 pb-0.5"
+                        />
                         <textarea
                           value={resumeData.skills[`category${idx + 1}`]}
                           onChange={(e) => updateSkills(`category${idx + 1}`, e.target.value)}

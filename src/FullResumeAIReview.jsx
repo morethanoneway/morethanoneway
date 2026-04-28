@@ -33,9 +33,14 @@ const RESUME_AI_FLAGS = [
 const checkResumeFlags = (text) => {
   if (!text) return [];
   const lower = text.toLowerCase();
-  return RESUME_AI_FLAGS.filter(flag => lower.includes(flag.phrase.toLowerCase()));
+  return RESUME_AI_FLAGS.filter(flag => lower.includes(flag.phrase.toLowerCase())).map(flag => {
+    const idx = lower.indexOf(flag.phrase.toLowerCase());
+    const start = Math.max(0, idx - 30);
+    const end = Math.min(text.length, idx + flag.phrase.length + 30);
+    const snippet = (start > 0 ? '...' : '') + text.slice(start, end).trim() + (end < text.length ? '...' : '');
+    return { ...flag, snippet };
+  });
 };
-
 const stopWords = new Set([
   // Common words
   'the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','is','are','was','were','be','been','have','has','had','do','does','did','will','would','could','should','may','might','can','that','this','these','those','it','its','we','our','you','your','they','their','i','my','me','as','if','when','which','who','what','how','all','any','both','each','more','most','other','some','into','through','before','after','about','while','also','than','very','just','not','no','nor','so','yet','either','whether','must','shall','need',
@@ -158,7 +163,12 @@ export const FullResumeAIReview = ({ resumeText, major }) => {
               {resumeFlags.map((flag, i) => (
                 <div key={i} className="text-sm flex items-start gap-2">
                   <span className="text-red-500 font-bold flex-shrink-0">x</span>
-                  <span><strong>"{flag.phrase.trim()}"</strong> — {flag.suggestion}</span>
+                  <div>
+                    <span><strong>"{flag.phrase.trim()}"</strong> — {flag.suggestion}</span>
+                    {flag.snippet && (
+                      <p className="text-xs text-yellow-700 mt-0.5 italic">Found: "{flag.snippet}"</p>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>

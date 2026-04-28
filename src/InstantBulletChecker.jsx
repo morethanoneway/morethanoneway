@@ -43,33 +43,66 @@ export const InstantBulletChecker = ({ text, major }) => {
       }
     });
     
-    if (hasWeakVerb && weakVerbFound) {
+if (hasWeakVerb && weakVerbFound) {
       issues.push({
         icon: '❌',
         text: `Weak phrase: "${weakVerbFound}"`,
         suggestion: `Try: ${WEAK_VERBS[weakVerbFound].join(', ')}`
       });
     } else {
-      const firstWord = lowerText.split(' ')[0];
-      const strongVerbs = ['led', 'managed', 'developed', 'built', 'designed', 'analyzed', 'created', 'implemented', 'coordinated', 'presented', 'achieved', 'improved', 'increased', 'reduced'];
+      const firstWord = lowerText.split(' ')[0].replace(/[^a-z]/g, '');
+      const strongVerbs = ['led', 'managed', 'developed', 'built', 'designed', 'analyzed', 'created', 'implemented', 'coordinated', 'presented', 'achieved', 'improved', 'increased', 'reduced', 'conducted', 'performed', 'executed', 'established', 'launched', 'delivered', 'optimized', 'streamlined', 'supported', 'collaborated', 'researched', 'evaluated', 'assessed', 'maintained', 'ensured', 'verified', 'reviewed', 'trained', 'mentored', 'identified', 'resolved', 'generated', 'produced', 'facilitated', 'oversaw', 'directed', 'supervised', 'negotiated', 'secured', 'earned', 'authored', 'drafted', 'compiled', 'processed', 'automated', 'integrated', 'deployed', 'configured', 'tested', 'validated', 'documented', 'tracked', 'monitored', 'reported', 'calculated', 'modeled', 'simulated', 'programmed', 'coded', 'debugged', 'engineered', 'fabricated', 'assembled', 'installed', 'operated', 'inspected', 'measured', 'calibrated', 'troubleshot'];
+      
       if (strongVerbs.includes(firstWord)) {
         successes.push({ icon: '✓', text: 'Strong action verb' });
+      } else if (firstWord.length > 0) {
+        issues.push({
+          icon: '❌',
+          text: 'Start with a strong action verb',
+          suggestion: 'Try: Led, Built, Designed, Analyzed, Implemented, Conducted, Developed...'
+        });
       }
     }
-    
-    // Check 2: Numbers/metrics
+
+   // Check 2: Numbers/metrics
     const hasNumbers = /\d/.test(text);
     const hasPercentage = /%/.test(text);
     const hasDollar = /\$/.test(text);
     const hasMetrics = hasNumbers || hasPercentage || hasDollar;
-    
-    if (!hasMetrics) {
-      issues.push({
-        icon: '❌',
-        text: 'No numbers or metrics found',
-        suggestion: 'Add specific numbers: How many? What %? How much $ or time?'
+
+    // Some bullets don't need metrics — compliance, process, methodology bullets
+    const metricsNotRequired = [
+      // Methodologies
+      '5s', 'six sigma', 'lean', 'kaizen', 'kanban', 'scrum', 'agile',
+      'waterfall', 'prince2', 'pmp', 'tpm', 'pdca',
+      // Regulatory & compliance
+      'compliance', 'gmp', 'iso', 'fda', 'osha', 'gdp', 'gxp',
+      'regulatory', 'validation', 'qualification', 'calibration',
+      'inspection', 'safety', 'hazard', 'risk assessment', 'corrective',
+      'preventive', 'quality management', 'standard operating',
+      // Process & documentation
+      'protocol', 'procedure', 'sop', 'documentation', 'audit',
+      'methodology', 'framework', 'process improvement', 'best practice',
+      'root cause', 'corrective action', 'standard', 'policy',
+      // Collaboration & communication
+      'collaborated', 'communicated', 'presented', 'trained', 'mentored',
+      'onboarding', 'orientation', 'coaching', 'stakeholder',
+      'cross-functional', 'cross functional', 'interdepartmental',
+      // Technical tools (using these doesn't need a metric)
+      'solidworks', 'autocad', 'matlab', 'python', 'excel', 'sap',
+      // Action verbs that don't always need metrics
+      'maintained', 'ensured', 'verified', 'reviewed', 'assessed',
+      'implemented', 'established', 'developed', 'created', 'designed',
+      'researched', 'analyzed', 'evaluated', 'identified'
+    ].some(term => lowerText.includes(term));
+
+    if (!hasMetrics && !metricsNotRequired) {
+      warnings.push({
+        icon: '⚠️',
+        text: 'Consider adding numbers or metrics',
+        suggestion: 'If possible: How many? What %? How much $ or time saved?'
       });
-    } else {
+    } else if (hasMetrics) {
       successes.push({ icon: '✓', text: 'Includes metrics' });
     }
     
@@ -148,9 +181,9 @@ export const InstantBulletChecker = ({ text, major }) => {
           type === 'warning' ? 'text-yellow-800' :
           'text-red-800'
         }`}>
-          {type === 'success' ? '✅ Strong bullet!' :
-           type === 'warning' ? '⚠️ Could be stronger' :
-           '❌ Needs improvement'}
+          {type === 'success' ? 'Strong bullet!' :
+           type === 'warning' ? 'Could be stronger' :
+           'Needs improvement'}
         </h4>
       </div>
 
@@ -165,13 +198,13 @@ export const InstantBulletChecker = ({ text, major }) => {
         </div>
       )}
 
-      {warnings.length > 0 && (
+{warnings.length > 0 && (
         <div className="space-y-2 mb-2">
           {warnings.map((warning, idx) => (
             <div key={idx} className="text-sm">
-              <p className="text-yellow-800 font-semibold">{warning.icon} {warning.text}</p>
+              <p className="text-yellow-800 font-semibold">→ {warning.text}</p>
               {warning.suggestion && (
-                <p className="text-yellow-700 text-xs ml-5">→ {warning.suggestion}</p>
+                <p className="text-yellow-700 text-xs ml-4">{warning.suggestion}</p>
               )}
             </div>
           ))}
