@@ -1370,6 +1370,14 @@ const ATSGuide = () => {
 const ResumeBuilder = ({ onBack, setCurrentPage }) => {
   const [major, setMajor] = useState('');
   const [expandedSection, setExpandedSection] = useState(null);
+
+const toggleSection = (section) => {
+  const scrollY = window.scrollY;
+  setExpandedSection(prev => prev === section ? null : section);
+  requestAnimationFrame(() => {
+    window.scrollTo(0, scrollY);
+  });
+};
   const [copied, setCopied] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [showFontGuide, setShowFontGuide] = useState(false);
@@ -1819,11 +1827,9 @@ Builder</span>
               </div>
 
               {/* CONTACT */}
-              <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
+<div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
                 <button
-                  onClick={() =>
-                    setExpandedSection(expandedSection === "contact" ? null : "contact")
-                  }
+                  onClick={() => toggleSection("contact")}
                   className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
                 >
                   <div className="flex items-center gap-4 min-w-0">
@@ -1902,9 +1908,7 @@ Builder</span>
               {/* EDUCATION */}
               <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
                 <button
-                  onClick={() =>
-                    setExpandedSection(expandedSection === "education" ? null : "education")
-                  }
+                  onClick={() => toggleSection("education")}
                   className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
                 >
                   <div className="flex items-center gap-4 min-w-0">
@@ -1992,7 +1996,7 @@ Builder</span>
               {/* SKILLS */}
               <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
                 <button
-                  onClick={() => setExpandedSection(expandedSection === "skills" ? null : "skills")}
+                  onClick={() => toggleSection("skills")}
                   className="w-full p-6 text-left hover:bg-gray-50 flex items-center justify-between gap-4"
                 >
                   <div className="flex items-center gap-4 min-w-0">
@@ -2057,9 +2061,7 @@ Builder</span>
               {/* EXPERIENCE */}
               <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
                 <button
-                  onClick={() =>
-                    setExpandedSection(expandedSection === "experience" ? null : "experience")
-                  }
+                  onClick={() => toggleSection("experience")}
                   className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
                 >
                   <div className="flex items-center gap-4 min-w-0">
@@ -2201,9 +2203,7 @@ Builder</span>
               {/* PROJECTS */}
               <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
                 <button
-                  onClick={() =>
-                    setExpandedSection(expandedSection === "projects" ? null : "projects")
-                  }
+                  onClick={() => toggleSection("projects")}
                   className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
                 >
                   <div className="flex items-center gap-4 min-w-0">
@@ -2341,9 +2341,7 @@ Builder</span>
               {/* ACTIVITIES */}
               <div className="bg-white rounded-3xl border border-gray-200 shadow-sm mb-4 overflow-hidden">
                 <button
-                  onClick={() =>
-                    setExpandedSection(expandedSection === "activities" ? null : "activities")
-                  }
+                  onClick={() => toggleSection("activities")}
                   className="w-full p-6 text-left hover:bg-gray-100 flex items-center justify-between gap-4"
                 >
                  <div className="flex items-center gap-4 min-w-0">
@@ -2602,7 +2600,7 @@ Builder</span>
 <div className="bg-white rounded-3xl border border-purple-200 shadow-sm overflow-hidden mt-8">
   <button
     type="button"
-    onClick={() => setExpandedSection(expandedSection === "paths" ? null : "paths")}
+    onClick={() => toggleSection("paths")}
     className="w-full p-6 text-left hover:bg-purple-50 flex items-center justify-between gap-4"
   >
     <div className="flex items-center gap-4 min-w-0">
