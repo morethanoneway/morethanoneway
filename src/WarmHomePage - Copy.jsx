@@ -58,27 +58,27 @@ const WarmHomePage = ({ setCurrentPage }) => {
     </p>
 
     <div className="flex flex-col md:flex-row gap-3 justify-center">
-      <button
-        onClick={() => setCurrentPage('youre-not-alone')}
-        className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-800 transition-all"
-      >
-        Get support & guidance
-      </button>
+  <button
+    onClick={() => setCurrentPage('job-search-playbook')}
+    className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all"
+  >
+    Start Here — Follow the System
+  </button>
 
-      <button
-        onClick={() => setCurrentPage('job-tools-hub')}
-        className="bg-white text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-gray-50 transition-all"
-      >
-        Job tools hub
-      </button>
+  <button
+    onClick={() => setCurrentPage('youre-not-alone')}
+    className="bg-gray-500 text-white px-7 py-4 rounded-xl font-semibold hover:bg-white hover:text-gray-900 border border-gray-500 transition-all"
+  >
+    Support & Guidance
+  </button>
 
-      <button
-        onClick={() => setCurrentPage('stories')}
-        className="bg-white text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-gray-50 transition-all"
-      >
-        Read real stories
-      </button>
-    </div>
+  <button
+    onClick={() => setCurrentPage('stories')}
+    className="bg-white text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-gray-50 transition-all"
+  >
+    Read real stories
+  </button>
+</div>
   </div>
 </div>
 </section>

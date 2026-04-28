@@ -71,27 +71,27 @@ const WarmHomePage = ({ setCurrentPage }) => {
       </p>
 
       <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
-        <button
-          onClick={() => setCurrentPage('youre-not-alone')}
-          className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all"
-        >
-          Get support & guidance
-        </button>
+  <button
+    onClick={() => setCurrentPage('job-search-playbook')}
+    className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all"
+  >
+    Get the Job Search Playbook →
+  </button>
 
-        <button
-          onClick={() => setCurrentPage('job-tools-hub')}
-          className="bg-white text-gray-700 px-7 py-4 rounded-xl font-semibold border border-gray-200 hover:bg-gray-100 transition-all"
-        >
-          Job tools hub
-        </button>
+  <button
+    onClick={() => setCurrentPage('youre-not-alone')}
+    className="bg-gray-100 text-gray-900 px-7 py-4 rounded-xl font-semibold hover:bg-white hover:text-gray-900 border border-gray-300 transition-all"
+  >
+    Support & Guidance
+  </button>
 
-        <button
-          onClick={() => setCurrentPage('stories')}
-          className="bg-white text-gray-700 px-7 py-4 rounded-xl font-semibold border border-gray-200 hover:bg-gray-100 transition-all"
-        >
-          Read real stories
-        </button>
-      </div>
+  <button
+    onClick={() => setCurrentPage('stories')}
+    className="bg-white text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-gray-50 transition-all"
+  >
+    Read real stories
+  </button>
+</div>
     </div>
   </div>
 </section>
