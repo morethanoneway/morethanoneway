@@ -22,7 +22,6 @@ const JobToolsHub = ({ setCurrentPage }) => {
         <div>
           <h1 className="text-center text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">Job Tools {" "}
             <span className="block md:inline text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
-
               Hub</span> </h1>
           <p className="mt-3 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
             Everything you need to find opportunities, apply effectively, and track your progress.

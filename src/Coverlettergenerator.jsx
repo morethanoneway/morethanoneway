@@ -307,7 +307,7 @@ Give 2-3 alternative versions.`;
           <header className="text-center max-w-5xl mx-auto pt-2 mb-10">
   <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
     Cover Letter{" "}
-    <span className="block md:inline text-tealBrand">
+    <span className="block md:inline text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
       Generator
     </span>
   </h1>
