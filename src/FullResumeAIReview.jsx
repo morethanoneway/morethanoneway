@@ -166,7 +166,7 @@ export const FullResumeAIReview = ({ resumeText, major }) => {
         </div>
       )}
 
-      {/* Job Description Matcher */}
+      {/* Job Description Matcher this is test text*/}
       <div className="bg-white border-2 border-teal-200 rounded-xl p-5">
         <button onClick={() => setShowJobMatcher(!showJobMatcher)} className="w-full flex items-center justify-between">
           <div className="text-left">
