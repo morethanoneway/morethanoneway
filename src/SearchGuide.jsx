@@ -566,26 +566,16 @@ const SearchGuide = ({ onBack, setCurrentPage }) => {
           <p className="mt-3 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
             A realistic job-search roadmap — built for how things actually work.
           </p>
-          <p className="mt-3 text-base md:text-md text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            Most students know <span className="font-semibold">where</span> to apply (Indeed, LinkedIn, etc.) — but not{" "}
-            <span className="font-semibold">how</span> to search effectively.
-          </p>
-
-          <p className="mt-2 text-sm md:text-base text-gray-700 max-w-3xl mx-auto">
-            This guide focuses on process, not hacks, so you don’t burn out doing the wrong things.
-          </p>
-
-          <p className="mt-2 text-sm md:text-base text-gray-700 max-w-3xl mx-auto">
-            It’s not about quick wins.
-            It’s about building a strategy that holds up when the market is rough.
-          </p>
+         <p className="mt-2 text-base text-gray-700 max-w-3xl mx-auto">
+  No hacks, no quick wins. Just a process that holds up when the market is rough.
+</p>
 
 
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
 
             <button
               onClick={() => setShowPrintModal(true)}
-              className="px-5 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-gray-700 transition inline-flex items-center gap-2"
+               className="bg-[#006581] text-white px-5 py-3 rounded-xl font-semibold hover:bg-[#005570] hover:shadow-sm transition inline-flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
               Print checklist

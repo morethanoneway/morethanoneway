@@ -647,12 +647,12 @@ const PivotPage = ({ setCurrentPage }) => {
               Career Paths
             </span>
           </h1>
-          <p className="mt-4 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
-            Your major doesn't lock you in. Pick yours to see real career paths — with live job counts, salary data, and an honest reality check.
-          </p>
+          <p className="mt-5 max-w-3xl mx-auto text-lg md:text-xl text-gray-700 leading-relaxed">
+  Most students think their major decides their career. It usually doesn't. Pick yours and see what's actually out there — real paths, real job counts, no sugarcoating.
+</p>
           <div className="mt-6 flex flex-col md:flex-row gap-3 justify-center">
             <button onClick={() => setCurrentPage('search-guide')}
-              className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all">
+              className="bg-[#006581] text-white px-7 py-4 rounded-xl font-semibold hover:bg-[#005570] hover:shadow-sm transition-all">
               Job Search Guide
             </button>
             <button onClick={() => setCurrentPage('resources')}
@@ -866,14 +866,17 @@ const TrackerPage = ({ setCurrentPage }) => {
           </h2>
 
           <p className="mt-3 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
-            Because someone wanted you to know there's more than one way forward.
+            Sending applications into the void is exhausting. 
+          </p>
+          <p className="mt-1 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
+            Track everything so rejection feels like data, not failure.
           </p>
         </header>
       </div>
       <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
         <button
           onClick={() => setCurrentPage("find-internships")}
-          className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all"
+           className="bg-[#006581] text-white px-7 py-4 rounded-xl font-semibold hover:bg-[#005570] hover:shadow-sm transition-all"
         >
           Find opportunities
         </button>

@@ -31,26 +31,26 @@ const JobToolsHub = ({ setCurrentPage }) => {
           <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
 
 
-            <button
-              onClick={() => setCurrentPage('resources')}
-              className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all"
-            >
-              Career resources
-            </button>
+           <button
+  onClick={() => setCurrentPage('resources')}
+  className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
+>
+  Career resources
+</button>
 
-            <button
-              onClick={() => setCurrentPage('stories')}
-              className="bg-white text-gray-700 px-7 py-4 rounded-xl font-semibold border border-gray-200 hover:bg-gray-100 transition-all"
-            >
-              Read real stories
-            </button>
+<button
+  onClick={() => setCurrentPage('stories')}
+  className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
+>
+  Read real stories
+</button>
 
-            <button
-              onClick={() => setCurrentPage('youre-not-alone')}
-              className="bg-white text-gray-700 px-7 py-4 rounded-xl font-semibold border border-gray-200 hover:bg-gray-100 transition-all"
-            >
-              Get support & guidance
-            </button>
+<button
+  onClick={() => setCurrentPage('youre-not-alone')}
+  className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
+>
+  Get support & guidance
+</button>
           </div>
         </div>
 

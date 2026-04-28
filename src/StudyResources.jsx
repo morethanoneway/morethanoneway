@@ -486,7 +486,7 @@ const Card = ({ children, className = "", id }) => (
           <div className="flex flex-wrap justify-center gap-3">
   <a
     href="#youtube-section"
-    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-teal-500 transition-all"
+     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-900 font-semibold hover:bg-teal-50 hover:border-teal-200 transition-all"
   >
     YouTube Channels
   </a>

@@ -56,10 +56,8 @@ const StoriesPage = () => {
                     </span>
                   </h1>
                   <p className="mt-6 mb-0 max-w-3xl mx-auto text-lg md:text-xl text-gray-700 leading-relaxed">
-                    Not because they had some superpower — <br className="hidden md:block" />because they kept going.
-                    <br className="hidden md:block" />
-                    You can too.
-                  </p>
+  Not because they had it figured out — because they kept going. You can too.
+</p>
                 </div>
 
                 {/* Share Your Story */}
@@ -79,7 +77,7 @@ const StoriesPage = () => {
                           Your 5 minutes could be the thing that makes someone choose to keep going.
                         </p>
                         <p className="text-xs text-gray-700">
-                          We share survival stories—the messy truth—so students see there's more than one way forward.
+                         We share the real version — not the highlight reel — so students see there's more than one way through.
                         </p>
                       </div>
                       <a

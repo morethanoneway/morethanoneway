@@ -105,22 +105,20 @@ const JobAlertGuide = ({ setCurrentPage }) => {
         <div>
           <h1 className="text-center text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">Job Alert Setup {" "}
             <span className="block md:inline text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">Guide</span> </h1>
-          <p className="mt-3 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">Set up automated job alerts and let opportunities come to you instead of constantly searching.</p>
-          <p className="mt-2 text-center text-sm md:text-base text-gray-700 max-w-3xl mx-auto">
-            Never miss new postings - Get notified within hours of jobs being posted.
-            <p className="mt-2 text-center text-sm md:text-base text-gray-700 max-w-3xl mx-auto">
-              Save time - Spend 30 minutes setting up now, save hours every week </p>
-            <p className="mt-2 text-center text-sm md:text-base text-gray-700 max-w-3xl mx-auto">
-              Apply early- Early applicants have better odds (companies get flooded later) </p>
-          </p>
+          <p className="mt-3 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
+  Stop refreshing job boards. Set this up once and let opportunities come to you.
+</p>
+<p className="mt-2 text-center text-sm md:text-base text-gray-600 max-w-3xl mx-auto">
+  30 minutes now saves hours every week — and early applicants get seen before the flood hits.
+</p>
 
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button
-              onClick={handlePrint}
-              className="px-5 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-gray-800 transition inline-flex items-center gap-2"
-            >
-              Print guide
-            </button>
+        <button
+  onClick={handlePrint}
+  className="px-5 py-3 rounded-xl bg-[#006581] text-white font-semibold hover:bg-[#005570] transition inline-flex items-center gap-2"
+>
+  Print guide
+</button>
 
 
 

@@ -69,25 +69,24 @@ const WarmHomePage = ({ setCurrentPage }) => {
       <p className="mt-4 text-sm md:text-base text-gray-500">
         Free resources, tools, and real student stories. Not therapy — just practical support.
       </p>
-
-      <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
+<div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
   <button
     onClick={() => setCurrentPage('job-search-playbook')}
-    className="bg-gray-900 text-white px-7 py-4 rounded-xl font-semibold hover:bg-gray-700 transition-all"
+    className="bg-[#006581] text-white px-7 py-4 rounded-xl font-semibold hover:bg-[#005570] hover:shadow-sm transition-all"
   >
     Get the Job Search Playbook →
   </button>
 
   <button
     onClick={() => setCurrentPage('youre-not-alone')}
-    className="bg-gray-100 text-gray-900 px-7 py-4 rounded-xl font-semibold hover:bg-white hover:text-gray-900 border border-gray-300 transition-all"
+    className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
   >
     Support & Guidance
   </button>
 
   <button
     onClick={() => setCurrentPage('stories')}
-    className="bg-white text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-gray-50 transition-all"
+    className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
   >
     Read real stories
   </button>
@@ -100,12 +99,13 @@ const WarmHomePage = ({ setCurrentPage }) => {
 <section className="pt-6 pb-12 bg-[#FFFBF7]">
   <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12">
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+
       <Tile
         title="You're Not Alone"
-        desc="College can be hard. If you’re struggling right now, this page offers practical paths forward — not judgment, not platitudes."
+        desc="College can be hard. If you're struggling right now, this page offers practical paths forward — not judgment, not platitudes."
         onClick={() => setCurrentPage("youre-not-alone")}
         icon={<Users />}
-              />
+      />
 
       <Tile
         title="Different Paths Work"
@@ -114,54 +114,55 @@ const WarmHomePage = ({ setCurrentPage }) => {
         icon={<TrendingUp />}
       />
 
-<Tile
-  title="Career Clarity & Decision System"
-  desc="Not sure where to start? Fill in your situation and get a personalized career map built around your real life — not generic advice."
-  onClick={() => setCurrentPage("career-map")}
-  icon={<Compass />}
-/>
+      <Tile
+        title="Career Clarity & Decision System"
+        desc="Not sure where to start? Answer a few questions about your real situation and get a career path built around your actual life — not generic advice."
+        onClick={() => setCurrentPage("career-map")}
+        icon={<Compass />}
+      />
 
       <Tile
         title="Resume Builder"
-        desc="Turn projects into strong bullet points. Build an ATS-friendly resume that showcases YOUR experience."
+        desc="Your resume is probably getting rejected before a person ever sees it. Most students don't have a bad resume — they have an unreadable one. Fix that first."
         onClick={() => setCurrentPage("resume-builder")}
         icon={<FileText />}
       />
 
       <Tile
         title="Application Tracker"
-        desc="Track your applications and celebrate small wins — every single one is progress."
+        desc="Sending applications into the void is exhausting. Track everything so rejection feels like data, not failure."
         onClick={() => setCurrentPage("tracker")}
         icon={<ClipboardList />}
       />
 
       <Tile
         title="Interview Prep"
-        desc="Everything you need to walk into your interview confident and prepared. Answer well without sounding scripted."
+        desc="Interviews feel different when you actually know what's happening in the room. Here's what nobody explains."
         onClick={() => setCurrentPage("interview-prep")}
         icon={<MessageCircle />}
       />
 
       <Tile
         title="Search Guide"
-        desc="How to search smarter (not longer). It's about building a sustainable strategy that works even when the job market is brutal."
+        desc="Most students aren't bad at job searching — they're using bad advice. Here's the process that actually works."
         onClick={() => setCurrentPage("search-guide")}
         icon={<BookOpen />}
       />
 
       <Tile
         title="Job Alert Guide"
-        desc="Let alerts do the heavy lifting. Set up automated job alerts and let opportunities come to you instead of constantly searching."
+        desc="Stop refreshing job boards. Set this up once and let opportunities come to you."
         onClick={() => setCurrentPage("job-alert")}
         icon={<Bell />}
       />
 
       <Tile
         title="Job Tools Hub"
-        desc="Everything you need to find opportunities, apply effectively, and track your progress — resumes, tracking, interviews, and more. "
+        desc="When everything feels overwhelming, start here. Everything in one place. No fluff. Just what helps."
         onClick={() => setCurrentPage("job-tools-hub")}
         icon={<Briefcase />}
       />
+
     </div>
   </div>
 </section>
@@ -179,6 +180,9 @@ const WarmHomePage = ({ setCurrentPage }) => {
           <p className="mt-1 text-base text-gray-600 italic">
             Because sugarcoating doesn't help when you're struggling
           </p>
+          <p className="mt-4 mb-2 text-base text-gray-700">
+  Before you do anything else — a few things that are probably true about your situation right now.
+</p>
             </div>
 
         <ul className="space-y-3 text-gray-700">
@@ -276,7 +280,7 @@ const WarmHomePage = ({ setCurrentPage }) => {
         path than you expected — and that’s okay.
       </p>
 
-      <p className="mt-6 text-sm md:text-base font-medium text-white/75">
+      <p className="mt-6 text-sm md:text-base font-medium text-white">
         Keep going. You’re doing better than you think.
       </p>
     </div>

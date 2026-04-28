@@ -5,11 +5,11 @@ import { Heart, BookOpen, Users, AlertCircle, Building, DollarSign, HelpCircle, 
 import ShareButtons from './Sharebuttons';
 
 const TILES = [
- {
+  {
     id: 'failing',
     icon: <BookOpen />,
     title: "I'm Failing or Struggling in Classes",
-    desc: "Practical steps, professor email templates, accommodation help",
+    desc: "You're not the only one. Real steps, professor email templates, and accommodation help.",
     path: '/struggling-in-classes',
     bg: 'bg-white border-blue-200',
     iconBg: 'bg-white text-blue-600',
@@ -20,7 +20,7 @@ const TILES = [
     id: 'family',
     icon: <Heart />,
     title: "My Family Isn't Supportive",
-    desc: "Chosen family resources, first-gen support, holiday survival",
+    desc: "You shouldn't have to do this alone. Chosen family resources, first-gen support, and how to survive the hard conversations.",
     path: '/family-not-supportive',
     bg: 'bg-white border-purple-200',
     iconBg: 'bg-white text-purple-600',
@@ -31,7 +31,7 @@ const TILES = [
     id: 'alone',
     icon: <Users />,
     title: "I Feel Completely Alone",
-    desc: "Where to find real connection — on campus and off",
+    desc: "That feeling is more common than anyone admits. Here's where to find real connection — on campus and off.",
     path: '/feeling-alone',
     bg: 'bg-white border-emerald-200',
     iconBg: 'bg-white text-emerald-600',
@@ -42,7 +42,7 @@ const TILES = [
     id: 'dont-want',
     icon: <AlertCircle />,
     title: "I Don't Even Want to Be Here",
-    desc: "Leave of absence, major changes, alternative paths — real options",
+    desc: "Leave of absence, major changes, alternative paths — real options.",
     path: '/dont-want-to-be-here',
     bg: 'bg-white border-amber-200',
     iconBg: 'bg-white text-amber-600',
@@ -53,7 +53,7 @@ const TILES = [
     id: 'career-services',
     icon: <Building />,
     title: "Went to Career Services, Still Have No Idea",
-    desc: "How to ask better questions and actually get somewhere",
+    desc: "You're not the problem. Here's how to actually get something useful out of it.",
     path: '/career-services-no-idea',
     bg: 'bg-white border-indigo-200',
     iconBg: 'bg-white text-indigo-600',
@@ -64,7 +64,7 @@ const TILES = [
     id: 'afford',
     icon: <DollarSign />,
     title: "I Can't Afford This",
-    desc: "Emergency funds, food resources, textbook help — free",
+    desc: "Emergency funds, food resources, textbook help — free.",
     path: '/cant-afford-college',
     bg: 'bg-white border-orange-200',
     iconBg: 'bg-white text-orange-600',
@@ -75,7 +75,7 @@ const TILES = [
     id: 'no-idea',
     icon: <HelpCircle />,
     title: "No Idea What I Want to Do",
-    desc: "Career exploration without the pressure or the lectures",
+    desc: "Career exploration without the pressure or the lectures.",
     path: '/no-idea-what-to-do',
     bg: 'bg-white border-cyan-200',
     iconBg: 'bg-white text-cyan-600',
@@ -86,7 +86,7 @@ const TILES = [
     id: 'everything',
     icon: <AlertCircle />,
     title: "It's Just... Everything",
-    desc: "When everything is falling apart at once — triage guide",
+    desc: "When you can't even name what's wrong — start here. A triage guide for when it's all too much.",
     path: '/everything-is-too-much',
     bg: 'bg-white border-rose-200',
     iconBg: 'bg-white text-rose-600',
@@ -97,7 +97,7 @@ const TILES = [
     id: 'hate-major',
     icon: <BookOpen />,
     title: "I Hate My Major",
-    desc: "Changing majors is more common than you think — here's how to decide",
+    desc: "Changing majors is more common than you think — here's how to decide.",
     path: '/hate-my-major',
     bg: 'bg-white border-yellow-200',
     iconBg: 'bg-white text-yellow-600',
@@ -108,7 +108,7 @@ const TILES = [
     id: 'first-gen',
     icon: <GraduationCap />,
     title: "I'm a First-Generation Student",
-    desc: "Navigating a system nobody prepared you for — real resources",
+    desc: "Navigating a system nobody prepared you for — real resources.",
     path: '/first-generation-student',
     bg: 'bg-white border-sky-200',
     iconBg: 'bg-white text-sky-600',
@@ -119,7 +119,7 @@ const TILES = [
     id: 'probation',
     icon: <AlertCircle />,
     title: "I Failed a Class or Got Put on Probation",
-    desc: "This feels catastrophic. It's not. Here's what to do next.",
+    desc: "It feels catastrophic right now. It isn't. Here's what actually matters next.",
     path: '/academic-probation',
     bg: 'bg-white border-red-200',
     iconBg: 'bg-white text-red-600',
@@ -141,7 +141,7 @@ const TILES = [
     id: 'transfer',
     icon: <Building />,
     title: "I'm Thinking About Transferring",
-    desc: "What to consider before you decide — and common mistakes to avoid",
+    desc: "What to consider before you decide — and common mistakes to avoid.",
     path: '/thinking-about-transferring',
     bg: 'bg-white border-teal-200',
     iconBg: 'bg-white text-teal-600',
@@ -152,7 +152,7 @@ const TILES = [
     id: 'crisis',
     icon: <Phone />,
     title: "I'm in Crisis Right Now",
-    desc: "Immediate crisis resources — call or text 988 right now",
+    desc: "Immediate crisis resources — call or text 988 right now.",
     path: '/crisis',
     bg: 'bg-white border-red-200',
     iconBg: 'bg-white text-red-600',
@@ -210,7 +210,7 @@ const YoureNotAlone = ({ setCurrentPage }) => {
             {/* Quick action buttons */}
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto">
               <button onClick={() => setOpenQuick('crisis')}
-                className="bg-gray-900 text-white px-5 py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all text-sm">
+                className="bg-[#006581] text-white px-7 py-4 rounded-xl font-semibold hover:bg-[#005570] hover:shadow-sm transition-all">
                 Need help right now?
               </button>
               <button onClick={() => setOpenQuick('campus')}
@@ -227,7 +227,9 @@ const YoureNotAlone = ({ setCurrentPage }) => {
           {/* Intro */}
           <div className="bg-white rounded-2xl border border-gray-200 p-7 mb-8">
             <p className="text-gray-700 leading-relaxed mb-3">
-              We're not here to judge or tell you to "just push through." We're here to remind you that you have more options — and more strength — than you might realize.
+             <p className="text-gray-700 leading-relaxed mb-3">
+  Nobody here is going to tell you to just push through. We're here to remind you that you have more options — and more strength — than you probably realize right now.
+</p>
             </p>
             <p className="font-semibold text-gray-900">
               Click on what you're going through below. Each page has real options — not platitudes, not judgment, just practical paths forward.

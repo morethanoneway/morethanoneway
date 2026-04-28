@@ -415,7 +415,7 @@ export default function CareerMap({ setCurrentPage }) {
       </Helmet>
 
       <div className="min-h-screen bg-[#FFFBF7]">
-        <div className="mx-auto w-full max-w-3xl px-6 lg:px-8 py-10">
+        <div className="mx-auto w-full max-w-5xl px-6 lg:px-8 py-10">
 
           {/* Header */}
           <div className="text-center mb-10">
