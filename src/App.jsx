@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Routes, Route, useParams, Navigate } from 'react-router-dom';
 
-import { Heart, MessageCircle, Sparkles, GraduationCap, Phone, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, Building, DollarSign, HelpCircle, AlertCircle, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
+import { Heart, MessageCircle, Sparkles, GraduationCap, Phone, Compass, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, Building, DollarSign, HelpCircle, AlertCircle, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
 import ResumeBuilder from './ResumeBuilder';
 import YoureNotAlone from './YoureNotAlone';
 import Contact from './Contact';
@@ -42,6 +42,7 @@ import BurntOut from './BurntOut';
 import ThinkingAboutTransferring from './ThinkingAboutTransferring';
 import MajorPage from './MajorPage';
 import JobSearchPlaybook from './JobSearchPlaybook';
+import CareerMap from './CareerMap';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -169,12 +170,13 @@ const NavBar = ({ currentPage, setCurrentPage, mobileMenuOpen, setMobileMenuOpen
   }, []);
 
 const jobToolsGroups = [
-  {
-    label: 'Explore',
-    items: [
-      { page: 'pivot', label: 'Career Paths', icon: <TrendingUp className="w-4 h-4" /> },
-    ]
-  },
+{
+  label: 'Explore',
+  items: [
+    { page: 'pivot', label: 'Career Paths', icon: <TrendingUp className="w-4 h-4" /> },
+    { page: 'career-map', label: 'Career Map', icon: <Compass className="w-4 h-4" /> },
+  ]
+},
   {
     label: 'Build',
     items: [
@@ -641,7 +643,7 @@ const PivotPage = ({ setCurrentPage }) => {
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
             Explore{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-orange-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
               Career Paths
             </span>
           </h1>
@@ -858,7 +860,7 @@ const TrackerPage = ({ setCurrentPage }) => {
         <header className="text-center max-w-5xl mx-auto pt-2">
           <h2 className="text-center text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
             Application {" "}
-            <span className="block md:inline text-tealBrand">
+            <span className="block md:inline text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
               Tracker
             </span>
           </h2>
@@ -1463,6 +1465,7 @@ export default function App() {
           <Route path="/thinking-about-transferring" element={<ThinkingAboutTransferring setCurrentPage={setCurrentPage} />} />
           <Route path="/job-search-playbook" element={<JobSearchPlaybook setCurrentPage={setCurrentPage} />} />
           <Route path="/major/:majorSlug" element={<MajorPage setCurrentPage={setCurrentPage} />} />
+          <Route path="/career-map" element={<CareerMap setCurrentPage={setCurrentPage} />} />
           {/* Catch-all: redirect unknown URLs to home */}
         </Routes>
       </main>

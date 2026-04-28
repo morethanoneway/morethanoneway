@@ -360,7 +360,7 @@ const JobSearchPlaybook = ({ setCurrentPage }) => {
           {/* Header */}
           <div className="max-w-4xl mx-auto text-center mb-10">
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-2">
-              The Job Search <span className="text-[#006581]">Playbook</span>
+              The Job Search <span className="block md:inline text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">Playbook</span>
             </h1>
             <p className="text-lg text-gray-500 italic mb-6">How to actually get a job</p>
             <p className="text-gray-700 text-base leading-relaxed mb-8">

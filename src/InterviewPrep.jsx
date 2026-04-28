@@ -87,7 +87,7 @@ const InterviewPrep = () => {
             <header className="text-center max-w-5xl mx-auto">
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
                 Interviews Are Just {" "}
-               <span className="block md:inline text-tealBrand">
+               <span className="block md:inline text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
 
                   Conversations
                 </span>
