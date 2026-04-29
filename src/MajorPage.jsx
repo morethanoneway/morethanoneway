@@ -5607,11 +5607,19 @@ const formatJobCount = (count) => {
 const MajorPage = ({ setCurrentPage }) => {
   const { majorSlug } = useParams();
   const navigate = useNavigate();
+   const navigateTo = (path) => {
+    window.scrollTo(0, 0);
+    navigate(path);
+  };
   const [jobCounts, setJobCounts] = useState(null);
   const [jobsUpdated, setJobsUpdated] = useState(null);
   const [loadingJobs, setLoadingJobs] = useState(true);
 
   const majorData = CAREER_PIVOTS[majorSlug];
+
+useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
 
   useEffect(() => {
     const fetchJobCounts = async () => {
@@ -5991,7 +5999,7 @@ const MajorPage = ({ setCurrentPage }) => {
           <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
             <h3 className="font-bold text-xl text-gray-900 mb-5">Your Next Steps</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <button onClick={() => navigate('/tracker')}
+              <button onClick={() => navigateTo('/tracker')}
               className="flex items-center gap-3 bg-gray-900 text-white p-4 rounded-xl hover:bg-gray-700 transition-all text-left">
               <Briefcase className="w-5 h-5 flex-shrink-0" />
               <div>
@@ -5999,7 +6007,7 @@ const MajorPage = ({ setCurrentPage }) => {
                 <p className="text-xs text-gray-300">Track every application</p>
               </div>
             </button>
-              <button onClick={() => setCurrentPage('resume-builder')}
+              <button onClick={() => navigateTo('/resume-builder')}
                 className="flex items-center gap-3 bg-teal-600 text-white p-4 rounded-xl hover:bg-teal-700 transition-all text-left">
                 <FileText className="w-5 h-5 flex-shrink-0" />
                 <div>
@@ -6007,7 +6015,7 @@ const MajorPage = ({ setCurrentPage }) => {
                   <p className="text-xs text-teal-100">Free, ATS-friendly</p>
                 </div>
               </button>
-              <button onClick={() => setCurrentPage('cover-letter')}
+              <button onClick={() => navigateTo('/cover-letter')}
                 className="flex items-center gap-3 bg-purple-600 text-white p-4 rounded-xl hover:bg-purple-700 transition-all text-left">
                 <BookOpen className="w-5 h-5 flex-shrink-0" />
                 <div>
@@ -6020,7 +6028,7 @@ const MajorPage = ({ setCurrentPage }) => {
 
           {/* All majors link */}
           <div className="text-center">
-            <button onClick={() => setCurrentPage('pivot')}
+            <button onClick={() => navigateTo('/pivot')}
               className="text-teal-600 font-semibold hover:text-teal-800 flex items-center gap-2 mx-auto">
               <ArrowLeft className="w-4 h-4" /> Browse all majors
             </button>

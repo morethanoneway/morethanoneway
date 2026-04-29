@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, Routes, Route, useParams, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate, Routes, Route, useParams, useLocation } from 'react-router-dom';
 
 import { Heart, MessageCircle, Sparkles, GraduationCap, Phone, Compass, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, Building, DollarSign, HelpCircle, AlertCircle, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
 import ResumeBuilder from './ResumeBuilder';
@@ -1404,6 +1404,15 @@ const BlogPostWrapper = ({ setCurrentPage }) => {
   );
 };
 
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 export default function App() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -1426,7 +1435,7 @@ export default function App() {
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
       />
-
+<ScrollToTop />
       <main className="w-full px-6 lg:px-12 py-10">
         <Routes>
           <Route path="/" element={<WarmHomePage setCurrentPage={setCurrentPage} />} />

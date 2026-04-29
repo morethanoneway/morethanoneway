@@ -3,9 +3,15 @@ import ShareButtons from './Sharebuttons';
 import { Heart, Users, Mail, TrendingUp, Compass, Shuffle, HeartHandshake, Briefcase, Clock, GraduationCap, ArrowUpRight, ChevronRight, Phone, MessageSquare, ClipboardList, Bell, MessageCircle, BookOpen, Search, FileText } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import Tile from "./components/Tile";
+import { useNavigate } from 'react-router-dom';
 
 
 const WarmHomePage = ({ setCurrentPage }) => {
+    const navigate = useNavigate();
+  const navigateTo = (path) => {
+    window.scrollTo(0, 0);
+    navigate(path);
+  };
   return (
     <>
       <Helmet>
@@ -71,21 +77,21 @@ const WarmHomePage = ({ setCurrentPage }) => {
       </p>
 <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
   <button
-    onClick={() => setCurrentPage('job-search-playbook')}
+    onClick={() => navigateTo('/job-search-playbook')}
     className="bg-[#006581] text-white px-7 py-4 rounded-xl font-semibold hover:bg-[#005570] hover:shadow-sm transition-all"
   >
     Get the Job Search Playbook →
   </button>
 
   <button
-    onClick={() => setCurrentPage('youre-not-alone')}
+    onClick={() => navigateTo('youre-not-alone')}
     className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
   >
     Support & Guidance
   </button>
 
   <button
-    onClick={() => setCurrentPage('stories')}
+    onClick={() => navigateTo('stories')}
     className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
   >
     Read real stories
@@ -103,63 +109,63 @@ const WarmHomePage = ({ setCurrentPage }) => {
       <Tile
         title="You're Not Alone"
         desc="College can be hard. If you're struggling right now, this page offers practical paths forward — not judgment, not platitudes."
-        onClick={() => setCurrentPage("youre-not-alone")}
+        onClick={() => navigateTo("youre-not-alone")}
         icon={<Users />}
       />
 
       <Tile
         title="Different Paths Work"
         desc="Your major doesn't lock you in. See what adjacent careers are actually hiring — and how your degree might be exactly what they need."
-        onClick={() => setCurrentPage("pivot")}
+        onClick={() => navigateTo("pivot")}
         icon={<TrendingUp />}
       />
 
       <Tile
         title="Career Clarity & Decision System"
         desc="Not sure where to start? Answer a few questions about your real situation and get a career path built around your actual life — not generic advice."
-        onClick={() => setCurrentPage("career-map")}
+        onClick={() => navigateTo("career-map")}
         icon={<Compass />}
       />
 
       <Tile
         title="Resume Builder"
         desc="Your resume is probably getting rejected before a person ever sees it. Most students don't have a bad resume — they have an unreadable one. Fix that first."
-        onClick={() => setCurrentPage("resume-builder")}
+        onClick={() => navigateTo("resume-builder")}
         icon={<FileText />}
       />
 
       <Tile
         title="Application Tracker"
         desc="Sending applications into the void is exhausting. Track everything so rejection feels like data, not failure."
-        onClick={() => setCurrentPage("tracker")}
+        onClick={() => navigateTo("tracker")}
         icon={<ClipboardList />}
       />
 
       <Tile
         title="Interview Prep"
         desc="Interviews feel different when you actually know what's happening in the room. Here's what nobody explains."
-        onClick={() => setCurrentPage("interview-prep")}
+        onClick={() => navigateTo("interview-prep")}
         icon={<MessageCircle />}
       />
 
       <Tile
         title="Search Guide"
         desc="Most students aren't bad at job searching — they're using bad advice. Here's the process that actually works."
-        onClick={() => setCurrentPage("search-guide")}
+        onClick={() => navigateTo("search-guide")}
         icon={<BookOpen />}
       />
 
       <Tile
         title="Job Alert Guide"
         desc="Stop refreshing job boards. Set this up once and let opportunities come to you."
-        onClick={() => setCurrentPage("job-alert")}
+        onClick={() => navigateTo("job-alert")}
         icon={<Bell />}
       />
 
       <Tile
         title="Job Tools Hub"
         desc="When everything feels overwhelming, start here. Everything in one place. No fluff. Just what helps."
-        onClick={() => setCurrentPage("job-tools-hub")}
+        onClick={() => navigateTo("job-tools-hub")}
         icon={<Briefcase />}
       />
 
@@ -225,14 +231,14 @@ const WarmHomePage = ({ setCurrentPage }) => {
 
     <div className="mt-6 space-y-3">
       <button
-        onClick={() => setCurrentPage("job-tools-hub")}
+        onClick={() => navigateTo("job-tools-hub")}
         className="w-full px-4 py-2.5 rounded-lg bg-gray-900 text-white font-semibold hover:bg-gray-800 transition"
       >
         Open job tools
       </button>
 
       <button
-        onClick={() => setCurrentPage("youre-not-alone")}
+        onClick={() => navigateTo("youre-not-alone")}
         className="w-full px-4 py-2.5 rounded-lg border border-gray-200 font-semibold hover:bg-gray-50 transition"
       >
         Get support
@@ -240,7 +246,7 @@ const WarmHomePage = ({ setCurrentPage }) => {
         {/* Need a laugh */}
     
       <button
-        onClick={() => setCurrentPage("need-a-laugh")}
+        onClick={() => navigateTo("need-a-laugh")}
         className="w-full px-4 py-2.5 rounded-lg border border-gray-200 font-semibold hover:bg-gray-50 hover:text-gray-900 transition"
       >
         Need a laugh?
@@ -300,7 +306,7 @@ const WarmHomePage = ({ setCurrentPage }) => {
       </p>
 
       <button
-        onClick={() => setCurrentPage('crisis')}
+        onClick={() => navigateTo('crisis')}
         className="bg-orange-500 text-white px-7 py-3 rounded-xl font-semibold hover:bg-orange-400 transition-all"
       >
         View all crisis resources →

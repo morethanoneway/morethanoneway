@@ -2,11 +2,17 @@ import React from 'react';
 import { Search, BookOpen, FileText, MessageCircle, Compass, TrendingUp, Bell, Newspaper, Sparkles, Target } from 'lucide-react';
 import Tile from "./components/Tile";
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const JobToolsHub = ({ setCurrentPage }) => {
+    const navigate = useNavigate();
+  const navigateTo = (path) => {
+    window.scrollTo(0, 0);
+    navigate(path);
+  };
   return (
     <>
     <Helmet>
@@ -73,70 +79,70 @@ const JobToolsHub = ({ setCurrentPage }) => {
     title="Career Clarity & Decision System"
     desc="Not sure where to start? Fill in your situation and get a personalized career map — built around your real constraints."
     icon={<Compass />}
-    onClick={() => setCurrentPage("career-map")}
+    onClick={() => navigateTo("/career-map")}
   />
 
   <Tile
     title="Career Paths"
     desc="See what your degree can actually do. Real career paths with live job counts."
     icon={<TrendingUp />}
-    onClick={() => setCurrentPage("pivot")}
+    onClick={() => navigateTo("/pivot")}
   />
 
   <Tile
     title="Resume Builder"
     desc="Turn experience into strong bullets and build an ATS-friendly resume that still sounds human."
     icon={<FileText />}
-    onClick={() => setCurrentPage("resume-builder")}
+    onClick={() => navigateTo("/resume-builder")}
   />
 
   <Tile
     title="Cover Letter Generator"
     desc="Free cover letter builder with AI flag checker and keyword matcher. No sign-up."
     icon={<BookOpen />}
-    onClick={() => setCurrentPage("cover-letter")}
+    onClick={() => navigateTo("/cover-letter")}
   />
 
   <Tile
     title="ATS Guide"
     desc="Make sure your resume gets through applicant tracking systems before a human sees it."
     icon={<Search />}
-    onClick={() => setCurrentPage("ats-guide")}
+    onClick={() => navigateTo("/ats-guide")}
   />
 
   <Tile
     title="Application Tracker"
     desc="Log every application. Never lose a posting link. Track your progress."
     icon={<Bell />}
-    onClick={() => setCurrentPage("tracker")}
+    onClick={() => navigateTo("/tracker")}
   />
 
   <Tile
     title="Search Guide"
     desc="A realistic job-search process — from preparation through rejection — built for today's market."
     icon={<MessageCircle />}
-    onClick={() => setCurrentPage("search-guide")}
+    onClick={() => navigateTo("/search-guide")}
   />
 
   <Tile
     title="Job Alert Guide"
     desc="Set alerts once on Indeed, LinkedIn, Handshake, and ZipRecruiter so opportunities come to you."
     icon={<Bell />}
-    onClick={() => setCurrentPage("job-alert")}
+    onClick={() => navigateTo("/job-alert")}
   />
 
   <Tile
     title="Interview Prep"
     desc="Common questions, real answers, and prep without sounding scripted."
     icon={<MessageCircle />}
-    onClick={() => setCurrentPage("interview-prep")}
+    onClick={() => navigateTo("/interview-prep")}
   />
 
   <Tile
     title="Job Search Playbook"
     desc="A proven step-by-step system — resume, applications, interviews, and follow-up. How to actually get a job."
     icon={<BookOpen />}
-    onClick={() => setCurrentPage("job-search-playbook")}
+    onClick={() => navigateTo("/job-search-playbook")}
   />
 </div>
 
@@ -151,26 +157,26 @@ const JobToolsHub = ({ setCurrentPage }) => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Recommended Reading */}
-            <div className="bg-white rounded-xl p-6 border-2 border-tealBrand/20 hover:border-tealBrand/40 transition-all">
-              <div className="flex items-start gap-4">
-                <div className=" w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-6 h-6 text-tealBrand/60" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">Recommended Reading</h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Curated articles and resources to help you succeed in your job search and career.
-                  </p>
-                  <button
-                    onClick={() => setCurrentPage('recommended-reading')}
-                    className="bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-400 transition-all"
-                  >
-                    Browse Articles
-                  </button>
-                </div>
-              </div>
-            </div>
+{/* Blog */}
+<div className="bg-white rounded-xl p-6 border-2 border-tealBrand/20 hover:border-tealBrand/40 transition-all">
+  <div className="flex items-start gap-4">
+    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
+      <Newspaper className="w-6 h-6 text-tealBrand/60" />
+    </div>
+    <div className="flex-1">
+      <h3 className="text-lg font-bold text-gray-800 mb-2">Blog</h3>
+      <p className="text-sm text-gray-600 mb-4">
+        Real advice, honest takes, and practical tips for students navigating school, job searching, and everything in between.
+      </p>
+      <button
+        onClick={() => navigateTo('/blog')}
+        className="bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-400 transition-all"
+      >
+        Read the Blog
+      </button>
+    </div>
+  </div>
+</div>
 
             {/* Free Study Help */}
             <div className="bg-white rounded-xl p-6 border-2 border-tealBrand/20 hover:border-tealBrand/40 transition-all">
@@ -184,7 +190,7 @@ const JobToolsHub = ({ setCurrentPage }) => {
                     Free tutoring, study materials, and academic support to help you succeed in classes.
                   </p>
                   <button
-                    onClick={() => setCurrentPage('study-resources')}
+                    onClick={() => navigateTo('/study-resources')}
                     className="bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-400 transition-all"
                   >
                     Get Study Help
