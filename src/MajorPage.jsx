@@ -273,7 +273,25 @@ const CAREER_PIVOTS = {
 'anthropology': {
   title: 'Anthropology',
   intro: 'Anthropology teaches you to understand human behavior, culture, and systems — skills that translate surprisingly well into tech, business, research, and social impact work.',
-
+quickReality: {
+  bestPayingPivots: [
+    'UX Researcher',
+    'Market Research Analyst',
+    'Human Resources Specialist'
+  ],
+  fastestHiringRoles: [
+    'Research Assistant',
+    'Community Program Coordinator',
+    'HR Assistant'
+  ],
+  mostUnderratedPath: 'UX Researcher',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'UX Research Intern',
+    'Market Research Intern',
+    'Human Resources Intern'
+  ]
+},
   careers: [
     { career: 'UX Researcher', growth: '18%', why: 'Understanding human behavior and culture is exactly what product teams need', salary: '$70k-95k' },
     { career: 'Market Research Analyst', growth: '13%', why: 'Study consumer behavior, trends, and cultural patterns for companies', salary: '$55k-80k' },
@@ -333,7 +351,25 @@ const CAREER_PIVOTS = {
 'biochemistry': {
   title: 'Biochemistry',
   intro: 'Biochemistry sits at the intersection of biology and chemistry — giving you one of the strongest science foundations for careers in pharma, biotech, medicine, and research.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Medical Science Liaison',
+    'Regulatory Affairs Specialist',
+    'Clinical Research Manager'
+  ],
+  fastestHiringRoles: [
+    'Research Associate',
+    'Quality Control Analyst',
+    'Clinical Research Coordinator'
+  ],
+  mostUnderratedPath: 'Regulatory Affairs Specialist',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Biochemistry Research Intern',
+    'Clinical Research Intern',
+    'Regulatory Affairs Intern'
+  ]
+},
   careers: [
     { career: 'Research Associate', growth: '10%', why: 'Lab research roles at pharma, biotech, and university labs — the most direct path', salary: '$50k-70k' },
     { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA approval processes — your biochem knowledge is essential', salary: '$65k-95k' },
@@ -394,7 +430,25 @@ const CAREER_PIVOTS = {
 'biology': {
   title: 'Biology',
   intro: 'A biology degree opens more doors than most students realize — especially if you are not going to medical school. Life sciences employment continues to grow across pharma, biotech, and healthcare.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Regulatory Affairs Specialist',
+    'Healthcare Data Analyst',
+    'Pharmaceutical Sales Rep'
+  ],
+  fastestHiringRoles: [
+    'Lab Technician',
+    'Clinical Research Coordinator',
+    'Quality Control Analyst'
+  ],
+  mostUnderratedPath: 'Regulatory Affairs Specialist',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Clinical Research Intern',
+    'Lab Technician Intern',
+    'Regulatory Affairs Intern'
+  ]
+},
   careers: [
     { career: 'Clinical Research Coordinator', growth: '14%', why: 'Your science background without needing a PhD — manages clinical trials', salary: '$50k-70k' },
     { career: 'Pharmaceutical Sales Rep', growth: '6%', why: 'Biology knowledge plus communication skills — accessible with strong pay', salary: '$55k-75k + commission' },
@@ -452,24 +506,89 @@ const CAREER_PIVOTS = {
   honest: 'Entry-level biology salaries start lower than some fields, especially for lab roles, but growth can be strong. Pharma sales, regulatory affairs, and healthcare data analytics often offer the best pay without requiring medical school or a PhD.',
 },
 
- 'chemistry': {
-    title: 'Chemistry',
-    intro: 'Chemistry is one of the most practical science degrees. Your lab skills and analytical thinking apply directly to pharma, food, manufacturing, environmental sectors, and increasingly to data roles.',
-    careers: [
-      { career: 'Lab Technician', growth: '5%', why: 'Your lab skills apply directly across pharma, food, and manufacturing', salary: '$45k-60k' },
-      { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA/EPA compliance — chemistry knowledge is essential', salary: '$65k-90k' },
-      { career: 'Pharmaceutical Sales Rep', growth: '6%', why: 'Your chemistry background gives credibility with medical professionals', salary: '$55k-75k + commission' },
-      { career: 'Quality Control Analyst', growth: '9%', why: 'Every pharma, food, and manufacturing company needs QC', salary: '$50k-70k' },
-      { career: 'Environmental Scientist', growth: '6%', why: 'Apply chemistry to address pollution and sustainability challenges', salary: '$55k-80k' },
+'chemistry': {
+  title: 'Chemistry',
+  intro: 'Chemistry is one of the most practical science degrees. Your lab skills and analytical thinking apply directly to pharma, food, manufacturing, environmental sectors, and increasingly to data roles.',
+quickReality: { bestPayingPivots: [ 'Regulatory Affairs Specialist', 'Pharmaceutical Sales Rep', 'Environmental Scientist' ], fastestHiringRoles: [ 'Lab Technician', 'Quality Control Analyst', 'Research Assistant' ], mostUnderratedPath: 'Regulatory Affairs Specialist', gradSchoolRequired: 'Sometimes', strongestInternshipSearches: [ 'Lab Technician Intern', 'Quality Control Intern', 'Regulatory Affairs Intern' ] },
+  careers: [
+    { career: 'Lab Technician', growth: '5%', why: 'Your lab skills apply directly across pharma, food, and manufacturing', salary: '$45k-60k' },
+    { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA/EPA compliance — chemistry knowledge is essential', salary: '$65k-90k' },
+    { career: 'Quality Control Analyst', growth: '9%', why: 'Every pharma, food, and manufacturing company needs QC', salary: '$50k-70k' },
+    { career: 'Environmental Scientist', growth: '6%', why: 'Apply chemistry to address pollution and sustainability challenges', salary: '$55k-80k' },
+    { career: 'Pharmaceutical Sales Rep', growth: '6%', why: 'Your chemistry background gives credibility with medical professionals', salary: '$55k-75k + commission' },
+    { career: 'Validation Specialist', growth: '9%', why: 'Pharma and biotech companies need people who understand testing, documentation, and regulated processes', salary: '$60k-85k' },
+  ],
+
+  morePaths: {
+    'Lab + Testing': [
+      'Lab Technician',
+      'Quality Control Analyst',
+      'Analytical Chemist',
+      'Research Assistant',
+      'Formulation Chemist'
     ],
-    struggles: 'Many chemistry grads feel pressure to go to graduate school. You do not have to. Regulatory affairs and pharma sales are strong paths that value your degree without requiring more school.',
-    honest: 'Chemistry entry-level roles often start lower than other STEM fields but grow well with experience. Regulatory affairs is the highest-paying non-grad-school path for most chemistry majors.',
+    'Pharma + Compliance': [
+      'Regulatory Affairs Specialist',
+      'Validation Specialist',
+      'GMP Associate',
+      'Quality Assurance Specialist',
+      'Technical Operations Associate'
+    ],
+    'Environment + Safety': [
+      'Environmental Scientist',
+      'EHS Specialist',
+      'Water Quality Analyst',
+      'Environmental Consultant',
+      'Hazardous Materials Specialist'
+    ],
+    'Business + Science': [
+      'Pharmaceutical Sales Rep',
+      'Technical Sales Specialist',
+      'Medical Writer',
+      'Product Specialist',
+      'Scientific Recruiter'
+    ]
   },
+
+  searchTerms: [
+    'Chemistry Intern',
+    'Lab Technician Intern',
+    'Quality Control Intern',
+    'Regulatory Affairs Intern',
+    'Validation Intern',
+    'Environmental Science Intern',
+    'Pharmaceutical Intern',
+    'Research Assistant Intern',
+    'Analytical Chemistry Intern'
+  ],
+
+  struggles: 'Many chemistry grads feel pressure to go to graduate school. You do not have to. Regulatory affairs, validation, quality, and pharma sales are strong paths that value your degree without requiring more school.',
+
+  honest: 'Chemistry entry-level roles often start lower than other STEM fields, especially in lab technician roles, but they can grow well with experience. Regulatory affairs, validation, and quality roles are often the strongest non-grad-school paths for chemistry majors.',
+},
 
 'computer-information-systems': {
   title: 'Computer Information Systems',
   intro: 'Computer information systems is a practical, applied degree that prepares you to work with technology in business contexts. You are more immediately job-ready than CS grads in many business-facing roles.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Cloud Administrator',
+    'IT Project Manager',
+    'Database Administrator'
+  ],
+  fastestHiringRoles: [
+    'Systems Analyst',
+    'Business Analyst',
+    'Help Desk / IT Support'
+  ],
+  mostUnderratedPath: 'Cloud Administrator',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'CIS Internship',
+    'Business Analyst Intern',
+    'Cloud Support Intern'
+  ]
+},
   careers: [
     { career: 'Systems Analyst', growth: '9%', why: 'Analyze and improve information systems — your degree is exactly right for this', salary: '$60k-85k' },
     { career: 'Business Analyst', growth: '14%', why: 'Bridge between IT and business — CIS grads are well-positioned', salary: '$60k-85k' },
@@ -530,7 +649,25 @@ const CAREER_PIVOTS = {
 'environmental-science': {
   title: 'Environmental Science',
   intro: 'Environmental science is growing steadily as climate change, sustainability regulations, and infrastructure investment create ongoing demand. You understand both the science and the systems.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Sustainability Analyst',
+    'Environmental Consultant',
+    'Environmental Health and Safety Specialist'
+  ],
+  fastestHiringRoles: [
+    'Environmental Scientist',
+    'GIS Analyst',
+    'Field Technician'
+  ],
+  mostUnderratedPath: 'Environmental Health and Safety Specialist',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Environmental Science Internship',
+    'Sustainability Intern',
+    'EHS Internship'
+  ]
+},
   careers: [
     { career: 'Environmental Scientist', growth: '6%', why: 'Monitor, assess, and protect the environment — core environmental science role', salary: '$55k-80k' },
     { career: 'Environmental Consultant', growth: '8%', why: 'Help companies comply with environmental regulations and reduce impact', salary: '$55k-85k' },
@@ -587,71 +724,184 @@ const CAREER_PIVOTS = {
 
   honest: 'Environmental science has strong long-term prospects as climate regulations tighten. Starting salaries are modest, but sustainability, GIS, EHS, and corporate ESG roles can offer better pay and clearer growth than traditional field-only roles.',
 },
-
-'communications': {
-  title: 'Communications',
-  intro: 'Communications teaches you to craft messages, understand audiences, and navigate media — skills every organization needs. The field has shifted heavily toward digital, analytics, and content strategy.',
-
+'journalism': {
+  title: 'Journalism',
+  intro: 'Journalism teaches research, interviewing, clear writing, fast decision-making, and how to communicate under pressure. Those skills are highly valuable — even as traditional newsroom jobs have contracted — especially in content strategy, communications, UX writing, and business storytelling roles.',
+quickReality: {
+  bestPayingPivots: [
+    'UX Writer',
+    'Content Strategist',
+    'Communications Manager'
+  ],
+  fastestHiringRoles: [
+    'Communications Assistant',
+    'Content Marketing Intern',
+    'Public Relations Coordinator'
+  ],
+  mostUnderratedPath: 'UX Writer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Communications Intern',
+    'Content Strategy Intern',
+    'UX Writing Intern'
+  ]
+},
   careers: [
-    { career: 'Social Media Manager', growth: '10%', why: 'Your understanding of messaging and audience engagement applies directly', salary: '$50k-75k' },
-    { career: 'Corporate Communications Specialist', growth: '8%', why: 'Every company needs internal and external communication strategy', salary: '$55k-80k' },
-    { career: 'Content Marketing Manager', growth: '15%', why: 'Plan and create content that drives business results and brand growth', salary: '$55k-80k' },
-    { career: 'Digital Marketing Specialist', growth: '17%', why: 'Data-driven marketing with strong growth and better earning potential', salary: '$50k-70k' },
-    { career: 'Public Relations Specialist', growth: '8%', why: 'Manage company reputation, press relationships, and public messaging', salary: '$50k-70k' },
-    { career: 'UX Writer', growth: '23%', why: 'Clear communication inside apps and products is a strong modern path for strong writers', salary: '$75k-100k' },
+    { career: 'Content Strategist', growth: '15%', why: 'Editorial judgment, audience understanding, and strong writing transfer directly to content strategy', salary: '$60k-85k' },
+    { career: 'Communications Manager', growth: '8%', why: 'Organizations need people who can manage messaging clearly and credibly', salary: '$60k-85k' },
+    { career: 'UX Writer', growth: '23%', why: 'Writing clearly for real people inside products is a natural journalism pivot', salary: '$75k-100k' },
+    { career: 'Public Relations Specialist', growth: '8%', why: 'Understanding how media works makes you much stronger in PR', salary: '$50k-70k' },
+    { career: 'Technical Writer', growth: '7%', why: 'Explaining complex topics simply is one of journalism’s strongest transferable skills', salary: '$60k-80k' },
+    { career: 'Brand Content Manager', growth: '14%', why: 'Companies need editorial thinkers who understand story, trust, and audience behavior', salary: '$65k-90k' },
   ],
 
   morePaths: {
-    'Content + Marketing': [
-      'Content Marketing Manager',
-      'Social Media Manager',
-      'Digital Marketing Specialist',
-      'SEO Specialist',
-      'Brand Strategist'
-    ],
-    'Corporate + PR': [
-      'Corporate Communications Specialist',
-      'Public Relations Specialist',
-      'Media Relations Coordinator',
-      'Internal Communications Manager',
-      'Crisis Communications Specialist'
-    ],
-    'Product + Writing': [
-      'UX Writer',
+    'Writing + Editorial': [
       'Content Strategist',
+      'UX Writer',
       'Technical Writer',
-      'Product Content Designer',
-      'Documentation Specialist'
+      'Grant Writer',
+      'Editorial Content Manager'
     ],
-    'Analytics + Strategy': [
-      'Marketing Analyst',
-      'Audience Development Manager',
-      'Communications Analyst',
-      'Campaign Strategist',
-      'Consumer Insights Analyst'
+    'Communications + PR': [
+      'Communications Manager',
+      'PR Specialist',
+      'Corporate Communications',
+      'Internal Communications',
+      'Media Relations'
+    ],
+    'Business + Brand Storytelling': [
+      'Brand Content Manager',
+      'Content Marketing',
+      'Customer Education',
+      'Thought Leadership',
+      'Marketing Strategy'
+    ],
+    'Traditional Media + Reporting': [
+      'Reporter',
+      'Producer',
+      'Digital News Editor',
+      'Broadcast Support',
+      'Investigative Research'
+    ]
+  },
+
+  searchTerms: [
+    'Journalism Intern',
+    'Communications Intern',
+    'Content Strategy Intern',
+    'UX Writing Intern',
+    'PR Intern',
+    'Editorial Intern',
+    'Brand Content Intern',
+    'Corporate Communications Intern',
+    'Technical Writing Intern'
+  ],
+
+  struggles: 'Traditional journalism jobs — newspapers, magazines, and broadcast — have contracted dramatically. Local news is in real crisis, and many entry-level newsroom roles offer low pay with high burnout and limited stability.',
+
+  honest: 'If your goal is traditional journalism, go in with clear eyes — it is meaningful work, but often financially difficult. Content strategy, communications, UX writing, and brand storytelling offer similar intellectual work with significantly better pay, stability, and long-term growth.',
+},
+'communications': {
+  title: 'Communications',
+  intro: 'Communications teaches messaging, audience psychology, storytelling, and how to influence people through media. The strongest careers today are digital-first, data-aware, and tied directly to business results — not just traditional PR or social media posting.',
+quickReality: {
+  bestPayingPivots: [
+    'Content Marketing Manager',
+    'Corporate Communications Manager',
+    'Product Marketing Manager'
+  ],
+  fastestHiringRoles: [
+    'Social Media Coordinator',
+    'Digital Marketing Specialist',
+    'Communications Assistant'
+  ],
+  mostUnderratedPath: 'Corporate Communications Specialist',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Communications Intern',
+    'Digital Marketing Intern',
+    'Corporate Communications Intern'
+  ]
+},
+  careers: [
+    { career: 'Content Marketing Manager', growth: '15%', why: 'Plan and create content that drives revenue, trust, and business growth', salary: '$55k-80k' },
+    { career: 'Digital Marketing Specialist', growth: '17%', why: 'Data-driven marketing using SEO, paid media, and analytics — strong growth path', salary: '$50k-70k' },
+    { career: 'Corporate Communications Specialist', growth: '8%', why: 'Every company needs strong internal and external communication strategy', salary: '$55k-80k' },
+    { career: 'Social Media Manager', growth: '10%', why: 'Audience engagement and brand storytelling are core communications strengths', salary: '$50k-75k' },
+    { career: 'Public Relations Specialist', growth: '8%', why: 'Manage reputation, media relationships, and public messaging', salary: '$50k-70k' },
+    { career: 'Customer Success Manager', growth: '20%', why: 'Communication skills tied to retention and revenue make this a strong business pivot', salary: '$55k-80k' },
+  ],
+
+  morePaths: {
+    'Marketing + Growth': [
+      'Content Marketing Manager',
+      'Digital Marketing Specialist',
+      'Growth Marketing',
+      'Product Marketing',
+      'SEO + Paid Media'
+    ],
+    'Corporate + Brand': [
+      'Corporate Communications',
+      'PR Specialist',
+      'Internal Communications',
+      'Brand Strategy',
+      'Employer Branding'
+    ],
+    'Client + Revenue Roles': [
+      'Customer Success Manager',
+      'Account Manager',
+      'Sales Enablement',
+      'Client Services',
+      'Business Development'
+    ],
+    'Media + Content': [
+      'Social Media Manager',
+      'Content Producer',
+      'Community Manager',
+      'Creative Operations',
+      'Brand Content Strategy'
     ]
   },
 
   searchTerms: [
     'Communications Intern',
-    'Marketing Intern',
     'Content Marketing Intern',
-    'Social Media Intern',
-    'PR Intern',
-    'Corporate Communications Intern',
-    'UX Writing Intern',
     'Digital Marketing Intern',
-    'Brand Marketing Intern'
+    'PR Intern',
+    'Customer Success Intern',
+    'Corporate Communications Intern',
+    'Brand Marketing Intern',
+    'Social Media Intern',
+    'Marketing Analytics Intern'
   ],
 
-  struggles: 'Traditional PR and journalism have been heavily disrupted by digital media. Communications grads without digital skills like SEO, analytics, paid media, and content strategy are at a disadvantage.',
+  struggles: 'Traditional PR and communications roles have been heavily disrupted by digital media and AI tools. Graduates without skills in analytics, SEO, paid media, or content strategy are at a major disadvantage in the current market.',
 
-  honest: 'Starting salaries in communications can feel low for a degree, especially early on. Specializing in digital marketing, content strategy, analytics, or UX writing can significantly improve earning potential and long-term career stability.',
+  honest: 'Starting salaries in communications often feel low for a degree. The students who earn the most usually move toward product marketing, growth marketing, customer success, or content strategy — roles where communication directly drives revenue, not just visibility.',
 },
 'data-science': {
   title: 'Data Science',
   intro: 'Data science is one of the fastest growing fields in the economy. Companies across every industry are trying to make sense of their data — and they need people who can do it.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Machine Learning Engineer',
+    'Data Engineer',
+    'Data Scientist'
+  ],
+  fastestHiringRoles: [
+    'Data Analyst',
+    'Business Intelligence Analyst',
+    'Reporting Analyst'
+  ],
+  mostUnderratedPath: 'Data Engineer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Data Analyst Intern',
+    'Business Intelligence Intern',
+    'Data Engineering Intern'
+  ]
+},
   careers: [
     { career: 'Data Scientist', growth: '35%', why: 'Build models and extract insights from complex datasets', salary: '$85k-120k' },
     { career: 'Data Analyst', growth: '23%', why: 'More accessible entry point — analyze data and communicate findings', salary: '$65k-90k' },
@@ -712,7 +962,25 @@ const CAREER_PIVOTS = {
 'cybersecurity': {
   title: 'Cybersecurity',
   intro: 'Cybersecurity has one of the largest talent shortages of any field — organizations across every industry need people who can protect systems, data, and infrastructure.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Security Engineer',
+    'Penetration Tester',
+    'Cloud Security Engineer'
+  ],
+  fastestHiringRoles: [
+    'Cybersecurity Analyst',
+    'SOC Analyst',
+    'Compliance/Risk Analyst'
+  ],
+  mostUnderratedPath: 'Compliance/Risk Analyst',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Cybersecurity Internship',
+    'SOC Analyst Intern',
+    'Security Operations Intern'
+  ]
+},
   careers: [
     { career: 'Cybersecurity Analyst', growth: '32%', why: 'Monitor and protect systems from threats — high demand almost everywhere', salary: '$70k-95k' },
     { career: 'Penetration Tester', growth: '28%', why: 'Ethically hack systems to find vulnerabilities — specialized and well-paid', salary: '$80k-120k' },
@@ -773,7 +1041,25 @@ const CAREER_PIVOTS = {
 'ai-machine-learning': {
   title: 'AI / Machine Learning',
   intro: 'AI and machine learning is one of the fastest-moving fields in tech. The rise of generative AI created massive demand for people who understand how models are built, deployed, and improved in the real world.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Machine Learning Engineer',
+    'MLOps Engineer',
+    'AI Product Manager'
+  ],
+  fastestHiringRoles: [
+    'Data Analyst',
+    'Machine Learning Intern',
+    'Software Engineering Intern'
+  ],
+  mostUnderratedPath: 'MLOps Engineer',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Machine Learning Intern',
+    'Data Science Intern',
+    'AI Engineering Internship'
+  ]
+},
   careers: [
     { career: 'Machine Learning Engineer', growth: '40%', why: 'Build and deploy ML models at scale — one of the fastest growing roles in tech', salary: '$100k-145k' },
     { career: 'AI Research Scientist', growth: '35%', why: 'Push the boundaries of what AI can do — usually requires graduate study', salary: '$110k-160k' },
@@ -834,7 +1120,25 @@ const CAREER_PIVOTS = {
 'information-technology': {
   title: 'Information Technology',
   intro: 'IT is the backbone of every organization. Unlike CS, which is more theoretical, IT focuses on keeping systems running, secure, and efficient — making IT graduates useful from day one.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Cloud Engineer',
+    'Cybersecurity Analyst',
+    'IT Project Manager'
+  ],
+  fastestHiringRoles: [
+    'IT Support Specialist',
+    'Systems Administrator',
+    'Help Desk Technician'
+  ],
+  mostUnderratedPath: 'Cloud Engineer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'IT Internship',
+    'Systems Administrator Intern',
+    'Cloud Engineering Intern'
+  ]
+},
   careers: [
     { career: 'IT Support Specialist', growth: '6%', why: 'Most accessible entry point — help organizations keep systems running and people productive', salary: '$45k-65k' },
     { career: 'Systems Administrator', growth: '3%', why: 'Manage servers, networks, users, and core IT infrastructure', salary: '$60k-85k' },
@@ -895,6 +1199,25 @@ const CAREER_PIVOTS = {
   title: 'Computer Science',
   intro: 'Computer science is one of the most in-demand degrees in the world. The theoretical foundation you build — algorithms, data structures, systems — opens doors across nearly every industry.',
 
+  quickReality: {
+  bestPayingPivots: [
+    'Software Engineer',
+    'Product Manager',
+    'Data Scientist'
+  ],
+  fastestHiringRoles: [
+    'QA Engineer',
+    'Technical Support Engineer',
+    'Data Analyst'
+  ],
+  mostUnderratedPath: 'Technical Writer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Software Engineering Intern',
+    'Data Analyst Intern',
+    'Product Management Intern'
+  ]
+},
   careers: [
     { career: 'Software Engineer', growth: '22%', why: 'Core CS path — building products, platforms, and systems at every type of company', salary: '$90k-130k' },
     { career: 'Data Scientist', growth: '35%', why: 'Your CS foundation translates well into ML, modeling, and data-driven systems', salary: '$85k-120k' },
@@ -953,106 +1276,141 @@ const CAREER_PIVOTS = {
 },
 'architecture': {
   title: 'Architecture',
-  intro: 'Architecture combines technical precision, creative design, and project management — skills that apply both to traditional architectural practice and to adjacent fields in design, construction, and tech.',
-
+  intro: 'Architecture combines design, technical systems, problem-solving, and project management. You learn how spaces function, how buildings get built, and how to balance creativity with real-world constraints — skills that transfer beyond traditional architecture firms.',
+quickReality: {
+  bestPayingPivots: [
+    'Construction Project Manager',
+    'Real Estate Development Associate',
+    'UX/Product Designer'
+  ],
+  fastestHiringRoles: [
+    'Architectural Designer',
+    'BIM Specialist',
+    'Construction Coordinator'
+  ],
+  mostUnderratedPath: 'BIM Specialist',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Architecture Intern',
+    'BIM Intern',
+    'Construction Management Intern'
+  ]
+},
   careers: [
-    { career: 'Architectural Designer', growth: '5%', why: 'Design buildings and spaces at architecture firms — core path, licensure matters long-term', salary: '$50k-70k' },
-    { career: 'Interior Designer', growth: '4%', why: 'Design interior spaces for residential and commercial clients', salary: '$50k-75k' },
-    { career: 'Construction Project Manager', growth: '8%', why: 'Your technical knowledge makes you a strong construction PM', salary: '$70k-100k' },
-    { career: 'BIM Specialist', growth: '10%', why: 'Building Information Modeling is transforming architecture and construction workflows', salary: '$60k-85k' },
-    { career: 'UX/Product Designer', growth: '16%', why: 'Design thinking and spatial reasoning transfer surprisingly well to digital product design', salary: '$70k-100k' },
-    { career: 'Facilities Planner', growth: '7%', why: 'Corporate campuses, hospitals, and universities need people who understand how spaces function', salary: '$60k-85k' },
+    { career: 'Architectural Designer', growth: '5%', why: 'Core path — design buildings and spaces at architecture firms, with licensure later', salary: '$50k-70k' },
+    { career: 'Interior Designer', growth: '4%', why: 'Design functional and aesthetic spaces for residential and commercial clients', salary: '$50k-75k' },
+    { career: 'Construction Project Manager', growth: '8%', why: 'Your technical and design knowledge makes you highly credible in construction leadership', salary: '$70k-100k' },
+    { career: 'UX/Product Designer', growth: '16%', why: 'Design thinking and systems thinking transfer surprisingly well to digital products', salary: '$70k-100k' },
+    { career: 'BIM Specialist', growth: '10%', why: 'Building Information Modeling is one of the strongest technical architecture paths', salary: '$60k-85k' },
+    { career: 'Real Estate Development Associate', growth: '5%', why: 'Understanding buildings and land use creates strong crossover into development', salary: '$55k-85k' },
   ],
 
   morePaths: {
-    'Design + Architecture': [
+    'Traditional Architecture': [
       'Architectural Designer',
       'Interior Designer',
-      'Urban Designer',
-      'Landscape Designer',
-      'Exhibit Designer'
-    ],
-    'Construction + Project Work': [
-      'Construction Project Manager',
-      'Project Engineer',
-      'Estimator',
-      'Field Coordinator',
-      'Owner’s Rep'
-    ],
-    'Digital + Technical': [
       'BIM Specialist',
-      'CAD Manager',
-      'Facilities Planner',
-      'Building Systems Coordinator',
-      'Visualization Specialist'
+      'Project Architect Track',
+      'Licensure Path'
     ],
-    'Design Pivots': [
+    'Construction + Real Estate': [
+      'Construction Project Manager',
+      'Real Estate Development Associate',
+      'Site Planning Coordinator',
+      'Facilities Manager',
+      'Construction Operations'
+    ],
+    'Design + Tech': [
       'UX/Product Designer',
-      'Brand Designer',
+      'Exhibit Designer',
       'Experience Designer',
-      'Retail Space Planner',
-      'Product Designer'
+      'Space Planning Specialist',
+      'Visualization Designer'
+    ],
+    'Higher ROI Pivots': [
+      'Owner’s Rep',
+      'Development Project Manager',
+      'Corporate Real Estate',
+      'Product Design',
+      'Design Strategy Roles'
     ]
   },
 
   searchTerms: [
     'Architecture Intern',
     'Architectural Design Intern',
-    'BIM Intern',
     'Construction Management Intern',
-    'Interior Design Intern',
-    'Project Engineer Intern',
-    'Facilities Planning Intern',
+    'BIM Intern',
+    'Real Estate Development Intern',
     'UX Design Intern',
-    'Urban Design Intern'
+    'Interior Design Intern',
+    'Facilities Management Intern',
+    'Project Management Intern'
   ],
 
-  struggles: 'Architecture starting salaries are lower than many other professional degrees despite the length and intensity of the program. Licensure takes years after graduation, and many architects earn less than engineers with similar education.',
+  struggles: 'Architecture starting salaries are lower than many students expect given how difficult and time-intensive the degree is. Licensure takes years after graduation, and many architects earn less early on than engineers with similar workloads.',
 
-  honest: 'Architecture requires real passion because the early-career pay often does not match the workload. Students who pivot into construction management, BIM, facilities planning, or UX design often earn more faster. Licensure significantly improves long-term earning potential.',
+  honest: 'Architecture requires real interest in the work because the early pay rarely matches the effort. Students who pivot into construction management, real estate development, BIM, or UX design often increase both salary and flexibility. Licensure improves long-term earning potential, but it is a long road.',
 },
-
 'communication-sciences': {
   title: 'Communication Sciences / Speech Pathology',
-  intro: 'Communication sciences and disorders prepares you to assess and support speech, language, and hearing development. It is a meaningful and growing field, but students need to understand the education path clearly.',
-
+  intro: 'Communication sciences and disorders prepares you to assess and support speech, language, hearing, and swallowing disorders. It is a meaningful and growing field — but the most important thing to know is this: becoming a Speech-Language Pathologist requires graduate school, not just a bachelor’s degree.',
+quickReality: {
+  bestPayingPivots: [
+    'Speech-Language Pathologist',
+    'Audiologist',
+    'Clinical Research Coordinator'
+  ],
+  fastestHiringRoles: [
+    'Early Intervention Specialist',
+    'Rehabilitation Assistant',
+    'Clinical Support Roles'
+  ],
+  mostUnderratedPath: 'Clinical Research Coordinator',
+  gradSchoolRequired: 'Yes',
+  strongestInternshipSearches: [
+    'Speech Pathology Internship',
+    'Clinical Research Intern',
+    'Early Intervention Internship'
+  ]
+},
   careers: [
-    { career: 'Speech-Language Pathologist', growth: '19%', why: 'Treat communication disorders in schools, hospitals, and private practice — requires a master’s degree', salary: '$70k-95k' },
-    { career: 'Audiologist', growth: '11%', why: 'Assess and treat hearing disorders — requires a doctoral degree (AuD)', salary: '$75k-100k' },
+    { career: 'Speech-Language Pathologist', growth: '19%', why: 'Treat communication disorders in schools, hospitals, and private practice — requires master’s degree', salary: '$70k-95k' },
+    { career: 'Audiologist', growth: '11%', why: 'Assess and treat hearing disorders — requires doctoral degree (AuD)', salary: '$75k-100k' },
     { career: 'Early Intervention Specialist', growth: '12%', why: 'Work with young children with developmental delays — some roles accessible with a bachelor’s degree', salary: '$45k-65k' },
-    { career: 'Rehabilitation Specialist', growth: '10%', why: 'Help patients regain communication abilities after injury or illness', salary: '$50k-70k' },
-    { career: 'Clinical Research Coordinator', growth: '14%', why: 'Support communication disorders research without requiring a clinical license', salary: '$50k-70k' },
-    { career: 'Behavioral Therapist', growth: '13%', why: 'Strong path in developmental support and therapy settings, especially with children', salary: '$45k-65k' },
+    { career: 'Rehabilitation Specialist', growth: '10%', why: 'Support patients recovering communication abilities after injury or illness', salary: '$50k-70k' },
+    { career: 'Clinical Research Coordinator', growth: '14%', why: 'Work in communication disorders research without needing a clinical license', salary: '$50k-70k' },
+    { career: 'Patient Care Coordinator', growth: '9%', why: 'Healthcare operations role that values communication and patient support skills', salary: '$45k-65k' },
   ],
 
   morePaths: {
-    'Clinical + Therapy': [
+    'Clinical Graduate School Path': [
       'Speech-Language Pathologist',
       'Audiologist',
-      'Behavioral Therapist',
-      'Rehabilitation Specialist',
-      'Occupational Therapy Assistant'
+      'School-Based SLP',
+      'Medical SLP',
+      'Private Practice Path'
     ],
-    'Education + Early Support': [
+    'Bachelor-Level Healthcare Roles': [
       'Early Intervention Specialist',
-      'School Support Specialist',
-      'Special Education Assistant',
-      'Child Development Specialist',
-      'Educational Therapist'
-    ],
-    'Healthcare + Research': [
-      'Clinical Research Coordinator',
+      'Rehabilitation Specialist',
       'Patient Care Coordinator',
-      'Healthcare Administrator',
-      'Clinical Trial Assistant',
-      'Medical Office Manager'
+      'Case Manager',
+      'Behavioral Health Support'
     ],
-    'Alternative People-Focused Paths': [
-      'HR Specialist',
-      'Customer Success Manager',
-      'Patient Advocate',
-      'Program Coordinator',
-      'Community Outreach Coordinator'
+    'Research + Healthcare': [
+      'Clinical Research Coordinator',
+      'Research Assistant',
+      'Healthcare Program Coordinator',
+      'Clinical Operations Associate',
+      'Hospital Program Assistant'
+    ],
+    'Education + Child Development': [
+      'Special Education Support',
+      'Developmental Services Coordinator',
+      'School Program Specialist',
+      'Youth Services Coordinator',
+      'Child Development Assistant'
     ]
   },
 
@@ -1060,82 +1418,118 @@ const CAREER_PIVOTS = {
     'Speech Pathology Intern',
     'Clinical Research Intern',
     'Early Intervention Intern',
-    'Behavioral Therapy Intern',
     'Rehabilitation Intern',
-    'Healthcare Intern',
+    'Healthcare Coordinator Intern',
     'Patient Care Intern',
-    'School Support Intern',
-    'Child Development Intern'
+    'Child Development Intern',
+    'Special Education Support Intern',
+    'Hospital Program Intern'
   ],
 
-  struggles: 'You cannot practice as a speech-language pathologist with only a bachelor’s degree. This is one of the biggest things students misunderstand — graduate school is required.',
+  struggles: 'Many students enter this major without realizing they cannot practice as a Speech-Language Pathologist with only a bachelor’s degree. Graduate school is not optional for the main career path, and admission can be competitive and expensive.',
 
-  honest: 'SLP is a strong, stable, and meaningful career with good job security, but graduate school is not optional. Plan financially and academically for that reality early. The bachelor’s degree alone does not qualify you for most clinical positions.',
+  honest: 'SLP is a rewarding career with strong job security and good pay, but the master’s degree and clinical hours are required. The bachelor’s degree alone does not unlock most clinical roles. If graduate school is not part of your plan, you should know that early and build around different healthcare paths.',
 },
 'criminal-justice': {
   title: 'Criminal Justice',
-  intro: 'Criminal justice teaches you how legal systems, enforcement, investigations, and compliance work. Those skills transfer well beyond policing into corporate compliance, security, investigations, and risk management.',
-
+  intro: 'Criminal justice teaches how legal systems, law enforcement, investigations, and risk management work. While many students think only of policing, the strongest career options often include corporate security, compliance, investigations, and risk management roles outside traditional law enforcement.',
+quickReality: {
+  bestPayingPivots: [
+    'Compliance Officer',
+    'Fraud Investigator',
+    'Corporate Security Analyst'
+  ],
+  fastestHiringRoles: [
+    'Loss Prevention Intern',
+    'Probation Officer',
+    'Court Services Coordinator'
+  ],
+  mostUnderratedPath: 'Compliance Officer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Compliance Intern',
+    'Corporate Security Intern',
+    'Fraud Investigation Intern'
+  ]
+},
   careers: [
-    { career: 'Compliance Officer', growth: '8%', why: 'Ensure companies follow laws and regulations — underrated and often better paid than expected', salary: '$60k-85k' },
-    { career: 'Corporate Security Analyst', growth: '9%', why: 'Risk assessment, investigations, and security planning for organizations', salary: '$55k-80k' },
-    { career: 'Probation/Parole Officer', growth: '4%', why: 'Government role supervising offenders in the community with steady demand', salary: '$50k-70k' },
-    { career: 'Loss Prevention Manager', growth: '6%', why: 'Retail and corporate asset protection, investigations, and fraud prevention', salary: '$50k-75k' },
-    { career: 'Emergency Management Specialist', growth: '6%', why: 'Disaster planning, crisis response, and operational coordination', salary: '$55k-80k' },
-    { career: 'Fraud Analyst', growth: '12%', why: 'Banks, insurance, and fintech companies need investigators who understand risk and behavior', salary: '$60k-85k' },
+    { career: 'Compliance Officer', growth: '8%', why: 'Help companies follow laws and regulations — one of the best-paying underrated paths', salary: '$60k-85k' },
+    { career: 'Corporate Security Analyst', growth: '9%', why: 'Risk assessment, investigations, and business security planning for private companies', salary: '$55k-80k' },
+    { career: 'Probation / Parole Officer', growth: '4%', why: 'Government role supporting offender supervision and rehabilitation', salary: '$50k-70k' },
+    { career: 'Loss Prevention Manager', growth: '6%', why: 'Retail and corporate asset protection with strong operational crossover', salary: '$50k-75k' },
+    { career: 'Emergency Management Specialist', growth: '6%', why: 'Disaster planning, crisis response, and public safety coordination', salary: '$55k-80k' },
+    { career: 'Fraud Investigator', growth: '10%', why: 'Banks, insurance companies, and corporations need people who can investigate risk and misconduct', salary: '$60k-85k' },
   ],
 
   morePaths: {
-    'Compliance + Corporate': [
-      'Compliance Officer',
-      'Fraud Analyst',
-      'Risk Analyst',
-      'Corporate Security Analyst',
-      'Internal Investigator'
-    ],
-    'Government + Public Service': [
+    'Law Enforcement + Government': [
       'Probation Officer',
       'Parole Officer',
       'Emergency Management Specialist',
       'Court Services Coordinator',
-      'Victim Advocate'
+      'Federal Agency Track'
     ],
-    'Security + Investigations': [
+    'Corporate + Compliance': [
+      'Compliance Officer',
+      'Corporate Security Analyst',
+      'Fraud Investigator',
+      'Risk Analyst',
+      'Regulatory Affairs Associate'
+    ],
+    'Investigations + Protection': [
       'Loss Prevention Manager',
-      'Security Operations Analyst',
       'Private Investigator',
-      'Background Investigator',
-      'Asset Protection Manager'
+      'Insurance Claims Investigator',
+      'Asset Protection Specialist',
+      'Internal Investigations Coordinator'
     ],
-    'Law + Policy Paths': [
-      'Legal Assistant',
-      'Policy Analyst',
-      'Government Relations Assistant',
-      'Public Affairs Coordinator',
-      'Law School Track'
+    'Strong Long-Term Paths': [
+      'Law School Track',
+      'Corporate Compliance Leadership',
+      'Government Security Clearance Roles',
+      'Homeland Security',
+      'Public Administration'
     ]
   },
 
   searchTerms: [
     'Criminal Justice Intern',
     'Compliance Intern',
-    'Fraud Analyst Intern',
-    'Security Intern',
+    'Corporate Security Intern',
+    'Fraud Investigation Intern',
+    'Government Affairs Intern',
     'Emergency Management Intern',
-    'Government Intern',
-    'Legal Assistant Intern',
-    'Investigations Intern',
-    'Policy Intern'
+    'Loss Prevention Intern',
+    'Risk Management Intern',
+    'Court Services Intern'
   ],
 
-  struggles: 'Many criminal justice grads default to law enforcement without realizing those roles require physical testing, background checks, shift work, and can be difficult to break into. Corporate paths are often overlooked.',
+  struggles: 'Many criminal justice students default to law enforcement without fully understanding the realities — physical testing, background checks, shift work, slow hiring processes, and significant competition. It is not the only path, and often not the best financial one.',
 
-  honest: 'Law enforcement is only one path. Corporate compliance, fraud analysis, investigations, and security often offer better starting pay and less physical risk. Law school is also a strong path if you want to significantly expand long-term options.',
+  honest: 'Corporate compliance, fraud investigation, and security roles often offer better starting pay, more stability, and less physical risk than traditional law enforcement. Law school can be a strong option, but it should be a deliberate decision — not the default next step.',
 },
 'education': {
   title: 'Education',
   intro: 'Education majors develop the ability to teach, facilitate learning, communicate complex ideas, and understand how people develop — skills valued far beyond K-12 classrooms.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Instructional Designer',
+    'Learning & Development Specialist',
+    'Corporate Trainer'
+  ],
+  fastestHiringRoles: [
+    'Teaching Assistant',
+    'Substitute Teacher',
+    'Education Program Coordinator'
+  ],
+  mostUnderratedPath: 'Instructional Designer',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Teaching Internship',
+    'Instructional Design Intern',
+    'Learning and Development Intern'
+  ]
+},
   careers: [
     { career: 'Teacher (K-12)', growth: '4%', why: 'Direct path — teaching positions in public and private schools', salary: '$45k-65k' },
     { career: 'Corporate Trainer', growth: '11%', why: 'Companies need people who can teach — often pays significantly better than K-12', salary: '$55k-85k' },
@@ -1196,7 +1590,25 @@ const CAREER_PIVOTS = {
 'graphic-design': {
   title: 'Graphic Design',
   intro: 'Graphic design gives you visual communication skills that are genuinely in demand — every company needs design. The field has expanded far beyond print into digital products, motion, branding, and UX.',
-
+quickReality: {
+  bestPayingPivots: [
+    'UX/UI Designer',
+    'Art Director',
+    'Product Designer'
+  ],
+  fastestHiringRoles: [
+    'Graphic Design Intern',
+    'Marketing Design Intern',
+    'Content Design Intern'
+  ],
+  mostUnderratedPath: 'UX/UI Designer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Graphic Design Intern',
+    'UX Design Intern',
+    'Marketing Design Intern'
+  ]
+},
   careers: [
     { career: 'Graphic Designer', growth: '3%', why: 'Core path — design for brands, marketing, and communications', salary: '$45k-65k' },
     { career: 'UX/UI Designer', growth: '16%', why: 'Apply your visual skills to digital product design — significantly stronger pay than traditional design', salary: '$70k-100k' },
@@ -1257,7 +1669,25 @@ const CAREER_PIVOTS = {
 'healthcare-administration': {
   title: 'Healthcare Administration',
   intro: 'Healthcare administration is one of the fastest-growing fields in the economy. As healthcare systems become more complex, the need for people who can manage them — without being clinicians — keeps growing.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Healthcare Administrator',
+    'Healthcare Analyst',
+    'Compliance Officer (Healthcare)'
+  ],
+  fastestHiringRoles: [
+    'Medical Office Coordinator',
+    'Healthcare Operations Intern',
+    'Patient Services Coordinator'
+  ],
+  mostUnderratedPath: 'Healthcare Analyst',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Healthcare Administration Internship',
+    'Healthcare Operations Intern',
+    'Hospital Administration Intern'
+  ]
+},
   careers: [
     { career: 'Healthcare Administrator', growth: '29%', why: 'Manage operations at hospitals, clinics, and healthcare systems — one of the fastest growing management roles', salary: '$60k-90k' },
     { career: 'Health Information Manager', growth: '17%', why: 'Manage patient data, records, and healthcare information systems', salary: '$55k-85k' },
@@ -1317,130 +1747,182 @@ const CAREER_PIVOTS = {
 
 'kinesiology': {
   title: 'Kinesiology',
-  intro: 'Kinesiology is the study of human movement — giving you a foundation in exercise science, anatomy, and biomechanics that applies to healthcare, fitness, sports, rehabilitation, and wellness industries.',
-
+  intro: 'Kinesiology is the study of human movement — exercise science, anatomy, biomechanics, and performance. It is a strong foundation for healthcare, rehab, sports, and wellness careers, but students need to know early that many of the highest-paying clinical roles require graduate school.',
+quickReality: {
+  bestPayingPivots: [
+    'Physical Therapist',
+    'Corporate Wellness Manager',
+    'Exercise Physiologist'
+  ],
+  fastestHiringRoles: [
+    'Physical Therapy Aide',
+    'Rehabilitation Specialist',
+    'Personal Trainer'
+  ],
+  mostUnderratedPath: 'Corporate Wellness Coordinator',
+  gradSchoolRequired: 'Usually',
+  strongestInternshipSearches: [
+    'Physical Therapy Intern',
+    'Rehabilitation Intern',
+    'Exercise Science Internship'
+  ]
+},
   careers: [
-    { career: 'Physical Therapist Assistant', growth: '24%', why: 'Support physical therapists in patient rehabilitation — strong growth and accessible path', salary: '$50k-65k' },
-    { career: 'Occupational Therapist Assistant', growth: '24%', why: 'Help patients regain functional abilities and independence', salary: '$55k-70k' },
-    { career: 'Athletic Trainer', growth: '14%', why: 'Prevent and treat sports injuries in schools, clinics, and athletics', salary: '$50k-65k' },
+    { career: 'Physical Therapist Assistant', growth: '24%', why: 'Support physical therapists in patient rehabilitation — accessible through a shorter certification path', salary: '$50k-65k' },
+    { career: 'Personal Trainer / Fitness Coach', growth: '14%', why: 'Direct application of exercise science knowledge — flexible path with certifications', salary: '$40k-65k' },
+    { career: 'Occupational Therapist Assistant', growth: '24%', why: 'Help patients regain daily living skills — strong demand and stable growth', salary: '$55k-70k' },
+    { career: 'Athletic Trainer', growth: '14%', why: 'Prevent and treat sports injuries in schools, clinics, and teams', salary: '$50k-65k' },
     { career: 'Corporate Wellness Coordinator', growth: '12%', why: 'Companies increasingly invest in employee health and wellness programs', salary: '$50k-70k' },
-    { career: 'Personal Trainer / Fitness Coach', growth: '14%', why: 'Direct use of your movement and exercise knowledge — flexible but income varies', salary: '$40k-65k' },
-    { career: 'Exercise Physiologist', growth: '10%', why: 'Use exercise science in clinical and rehab settings to improve patient outcomes', salary: '$50k-70k' },
+    { career: 'Rehabilitation Specialist', growth: '10%', why: 'Support patient recovery programs in hospitals, clinics, and rehab centers', salary: '$45k-65k' },
   ],
 
   morePaths: {
-    'Rehab + Clinical': [
+    'Rehab + Clinical Support': [
       'Physical Therapist Assistant',
       'Occupational Therapist Assistant',
-      'Exercise Physiologist',
       'Rehabilitation Specialist',
+      'Exercise Physiologist',
       'Patient Care Coordinator'
     ],
     'Sports + Performance': [
       'Athletic Trainer',
       'Strength and Conditioning Coach',
-      'Sports Performance Coach',
-      'Recreation Coordinator',
-      'Sports Medicine Assistant'
-    ],
-    'Fitness + Wellness': [
+      'Sports Performance Specialist',
       'Personal Trainer',
-      'Corporate Wellness Coordinator',
-      'Health Coach',
-      'Wellness Program Manager',
       'Fitness Director'
     ],
-    'Alternative Healthcare Paths': [
-      'Physical Therapy Track',
-      'Occupational Therapy Track',
-      'Physician Assistant Track',
-      'Healthcare Administration',
-      'Clinical Research Coordinator'
+    'Health + Wellness': [
+      'Corporate Wellness Coordinator',
+      'Health Coach',
+      'Community Wellness Specialist',
+      'Recreation Program Manager',
+      'Wellness Program Coordinator'
+    ],
+    'Graduate School Paths': [
+      'Physical Therapy (DPT)',
+      'Occupational Therapy',
+      'Physician Assistant',
+      'Sports Medicine',
+      'Exercise Physiology Advanced Practice'
     ]
   },
 
   searchTerms: [
     'Kinesiology Intern',
-    'Athletic Training Intern',
     'Physical Therapy Intern',
-    'Exercise Physiology Intern',
-    'Corporate Wellness Intern',
-    'Fitness Intern',
-    'Sports Performance Intern',
     'Rehabilitation Intern',
-    'Healthcare Intern'
+    'Athletic Training Intern',
+    'Wellness Intern',
+    'Sports Performance Intern',
+    'Exercise Science Intern',
+    'Healthcare Support Intern',
+    'Fitness Internship'
   ],
 
-  struggles: 'Kinesiology has a difficult direct career path at the bachelor’s level. Most high-paying clinical roles like PT and OT require graduate school, and many graduates end up in lower-paying fitness roles than they expected.',
+  struggles: 'Many kinesiology students assume becoming a physical therapist is a direct bachelor-level path. It is not. PT and OT require graduate school, and many graduates feel stuck if they did not plan for that early.',
 
-  honest: 'If your goal is physical therapy, occupational therapy, or physician assistant work, plan for graduate school early — it is required. With only a bachelor’s degree, athletic training, wellness, and rehab-adjacent roles are usually the strongest paths. Personal training often pays less than students expect.',
+  honest: 'If your goal is PT, OT, or another clinical rehab role, plan for graduate school from the beginning. Without that, bachelor-level paths are usually in fitness, wellness, rehab support, or athletics — which can be meaningful, but often pay less than students expect.',
 },
-
 'nutrition-dietetics': {
   title: 'Nutrition / Dietetics',
-  intro: 'Nutrition and dietetics prepares you to help people improve health through food, lifestyle, and clinical care. It is meaningful work, but licensing requirements shape the entire career path.',
-
+  intro: 'Nutrition and dietetics prepares you to help people improve health through food, behavior, and lifestyle. It is meaningful work with growing demand, but students need to understand early that becoming a Registered Dietitian requires specific licensing steps — not just the degree.',
+quickReality: {
+  bestPayingPivots: [
+    'Registered Dietitian',
+    'Food Industry Specialist',
+    'Corporate Wellness Manager'
+  ],
+  fastestHiringRoles: [
+    'Nutrition Educator',
+    'Health Coach',
+    'Food Service Coordinator'
+  ],
+  mostUnderratedPath: 'Food Industry Specialist',
+  gradSchoolRequired: 'Usually',
+  strongestInternshipSearches: [
+    'Nutrition Internship',
+    'Dietetic Internship',
+    'Food Science Internship'
+  ]
+},
   careers: [
-    { career: 'Registered Dietitian (RD)', growth: '11%', why: 'Core credential for clinical nutrition and counseling — requires internship and exam', salary: '$60k-80k' },
-    { career: 'Nutrition Educator', growth: '7%', why: 'Teach nutrition in schools, wellness programs, and community health settings', salary: '$45k-65k' },
-    { career: 'Food Service Manager', growth: '5%', why: 'Manage food operations in hospitals, schools, and institutional settings', salary: '$50k-70k' },
-    { career: 'Health Coach', growth: '12%', why: 'Guide clients through nutrition and lifestyle changes — certification helps significantly', salary: '$40k-65k' },
-    { career: 'Food Industry Specialist', growth: '6%', why: 'Work in product development, quality, and food compliance roles', salary: '$55k-75k' },
-    { career: 'Wellness Program Coordinator', growth: '10%', why: 'Corporate and healthcare organizations need professionals focused on preventive health', salary: '$50k-70k' },
+    { career: 'Registered Dietitian (RD)', growth: '11%', why: 'Core clinical credential for hospitals, counseling, and medical nutrition work — requires internship and RD exam', salary: '$60k-80k' },
+    { career: 'Nutrition Educator', growth: '7%', why: 'Teach nutrition in schools, community programs, and wellness organizations', salary: '$45k-65k' },
+    { career: 'Food Service Manager', growth: '5%', why: 'Manage food operations in hospitals, schools, and institutions', salary: '$50k-70k' },
+    { career: 'Health Coach', growth: '12%', why: 'Guide clients through lifestyle and nutrition changes — certifications strengthen this path', salary: '$40k-65k' },
+    { career: 'Food Industry Specialist', growth: '6%', why: 'Work in product development, quality, compliance, or food operations', salary: '$55k-75k' },
+    { career: 'Wellness Program Coordinator', growth: '10%', why: 'Corporate and healthcare wellness programs need nutrition-focused professionals', salary: '$50k-70k' },
   ],
 
   morePaths: {
-    'Clinical + Dietetics': [
+    'Clinical + Licensed Path': [
       'Registered Dietitian',
-      'Clinical Nutrition Specialist',
-      'Patient Nutrition Coordinator',
-      'Renal Dietitian',
-      'Sports Nutrition Track'
+      'Clinical Dietitian',
+      'Sports Dietitian',
+      'Pediatric Nutrition',
+      'Private Practice Nutrition'
     ],
-    'Community + Wellness': [
+    'Bachelor-Level Nutrition Roles': [
       'Nutrition Educator',
       'Health Coach',
       'Wellness Program Coordinator',
-      'Community Health Worker',
-      'Corporate Wellness Specialist'
+      'Community Health Specialist',
+      'Patient Support Services'
     ],
-    'Food + Industry': [
+    'Food Industry + Operations': [
       'Food Service Manager',
       'Food Industry Specialist',
-      'Quality Assurance Specialist',
-      'Regulatory Affairs Associate',
-      'Product Development Assistant'
+      'Quality Assurance',
+      'Regulatory Compliance',
+      'Product Development Support'
     ],
-    'Alternative Health Paths': [
-      'Healthcare Administration',
-      'Public Health Analyst',
-      'Clinical Research Coordinator',
-      'Health Communications Specialist',
-      'Medical Sales Representative'
+    'Strong Career Multipliers': [
+      'RD Credential',
+      'Internship Placement',
+      'Sports Nutrition Specialization',
+      'Corporate Wellness',
+      'Graduate School Path'
     ]
   },
 
   searchTerms: [
     'Nutrition Intern',
     'Dietetic Intern',
-    'Clinical Nutrition Intern',
     'Wellness Intern',
-    'Food Science Intern',
-    'Health Coach Intern',
+    'Food Service Intern',
+    'Healthcare Wellness Intern',
     'Community Health Intern',
-    'Healthcare Intern',
-    'Food Service Intern'
+    'Sports Nutrition Intern',
+    'Hospital Nutrition Intern',
+    'Corporate Wellness Intern'
   ],
 
-  struggles: 'Becoming a Registered Dietitian requires completing an accredited internship and passing the RD exam. Without the RD credential, career options become much more limited and usually lower paying.',
+  struggles: 'Many students do not realize that becoming a Registered Dietitian requires completing an accredited internship and passing the RD exam. Without the credential, career options are much more limited and often lower paying.',
 
-  honest: 'The RD credential is basically required for clinical dietitian work. Plan for the internship early because it is competitive. Without RD, food industry, wellness, and health coaching are the strongest alternatives, but pay is usually lower.',
+  honest: 'The RD credential is basically the unlock for clinical dietitian careers. Plan early, because internship placement can be competitive. Without RD, strong paths still exist in food industry, wellness, and health coaching — but pay and advancement are usually lower.',
 },
-
 'social-work': {
   title: 'Social Work',
   intro: 'Social work is one of the most meaningful degrees — you help people navigate crisis, access resources, and build more stable lives. The demand is strong and the work matters deeply.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Clinical Social Worker',
+    'Nonprofit Program Director',
+    'School Social Worker'
+  ],
+  fastestHiringRoles: [
+    'Case Manager',
+    'Behavioral Health Technician',
+    'Community Outreach Coordinator'
+  ],
+  mostUnderratedPath: 'School Social Worker',
+  gradSchoolRequired: 'Usually',
+  strongestInternshipSearches: [
+    'Social Work Internship',
+    'Case Management Intern',
+    'Community Services Intern'
+  ]
+},
   careers: [
     { career: 'Case Manager', growth: '12%', why: 'Connect clients with services, support systems, and resources — core social work role', salary: '$40k-55k' },
     { career: 'Child Protective Services Worker', growth: '8%', why: 'Investigate and respond to child abuse and neglect reports', salary: '$40k-55k' },
@@ -1500,68 +1982,104 @@ const CAREER_PIVOTS = {
 
 'foreign-languages': {
   title: 'Foreign Languages',
-  intro: 'Global companies need people who can navigate different cultures and languages — and there are far more opportunities than most students realize beyond teaching or translation.',
-
+  intro: 'Foreign languages prepares you to work across cultures, communicate clearly, and navigate global business relationships. The strongest career paths are rarely pure translation — they come from combining language skills with business, marketing, operations, or client-facing work.',
+quickReality: {
+  bestPayingPivots: [
+    'Customer Success Manager',
+    'Corporate Communications Specialist',
+    'International Business Coordinator'
+  ],
+  fastestHiringRoles: [
+    'HR Assistant',
+    'Customer Support Specialist',
+    'Marketing Coordinator'
+  ],
+  mostUnderratedPath: 'Customer Success Manager',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Customer Success Intern',
+    'International Business Intern',
+    'Corporate Communications Intern'
+  ]
+},
   careers: [
-    { career: 'Corporate Communications Specialist', growth: '8%', why: 'Multilingual communication skills are increasingly valuable in global companies', salary: '$55k-80k' },
-    { career: 'Content Marketing Specialist', growth: '15%', why: 'Companies need content adapted for international audiences and markets', salary: '$50k-70k' },
-    { career: 'HR Specialist', growth: '10%', why: 'Multilingual HR professionals help support global teams and recruiting', salary: '$50k-70k' },
-    { career: 'Customer Success Manager', growth: '20%', why: 'Serving international clients requires communication, empathy, and language skills', salary: '$55k-80k' },
-    { career: 'International Sales Coordinator', growth: '12%', why: 'Global sales teams value people who can build trust across languages and cultures', salary: '$55k-80k' },
-    { career: 'Localization Specialist', growth: '14%', why: 'Help companies adapt products, websites, and content for international markets', salary: '$60k-85k' },
+    { career: 'Corporate Communications Specialist', growth: '8%', why: 'Multilingual communication skills are increasingly valuable in global organizations', salary: '$55k-80k' },
+    { career: 'Content Marketing Specialist', growth: '15%', why: 'Companies need messaging created for international audiences and markets', salary: '$50k-70k' },
+    { career: 'HR Specialist', growth: '10%', why: 'Global companies need people who can support multilingual teams and employees', salary: '$50k-70k' },
+    { career: 'Customer Success Manager', growth: '20%', why: 'Serving international clients requires relationship-building and strong communication', salary: '$55k-80k' },
+    { career: 'International Sales Coordinator', growth: '12%', why: 'Language skills plus business communication make this a strong and practical path', salary: '$55k-80k' },
+    { career: 'Global Operations Coordinator', growth: '10%', why: 'Support international teams, vendors, and logistics across regions', salary: '$55k-80k' },
   ],
 
   morePaths: {
     'Business + Global Work': [
       'International Sales Coordinator',
-      'Customer Success Manager',
-      'Account Manager',
-      'Global Operations Specialist',
-      'Procurement Coordinator'
+      'Global Operations Coordinator',
+      'Business Development Associate',
+      'Supply Chain Coordinator',
+      'International Trade Assistant'
     ],
-    'Marketing + Communications': [
+    'Communication + Marketing': [
       'Corporate Communications Specialist',
       'Content Marketing Specialist',
       'Localization Specialist',
-      'Brand Marketing Coordinator',
-      'Public Relations Specialist'
+      'Brand Coordinator',
+      'Social Media Manager'
     ],
-    'People + Support': [
+    'People + Client Roles': [
+      'Customer Success Manager',
       'HR Specialist',
-      'Recruiting Coordinator',
-      'Community Outreach Coordinator',
-      'Program Coordinator',
-      'Employee Experience Specialist'
+      'Account Manager',
+      'Recruiter',
+      'Client Relations Specialist'
     ],
-    'Traditional + Language-Focused': [
+    'Traditional Language Paths': [
       'Translator',
       'Interpreter',
-      'Language Instructor',
+      'Language Teacher',
       'Study Abroad Advisor',
-      'International Admissions Counselor'
+      'International Program Coordinator'
     ]
   },
 
   searchTerms: [
     'International Business Intern',
-    'Communications Intern',
-    'Content Marketing Intern',
     'Customer Success Intern',
-    'HR Intern',
-    'Localization Intern',
     'Global Operations Intern',
-    'Study Abroad Office Intern',
-    'International Sales Intern'
+    'Marketing Intern',
+    'Communications Intern',
+    'Sales Intern',
+    'Localization Intern',
+    'HR Intern',
+    'Study Abroad Program Intern'
   ],
 
-  struggles: 'Foreign language majors often feel limited to teaching or translation. In reality, the strongest opportunities are usually in business roles where language is one advantage, not the entire job.',
+  struggles: 'Foreign language majors often feel limited to teaching or translation. In reality, the strongest professional outcomes usually come when language becomes one advantage among several — not the entire job.',
 
-  honest: 'Language skills alone rarely create high salaries. The strongest path is combining language ability with something else — business, tech, marketing, healthcare, or operations. Bilingual talent becomes much more valuable when paired with practical skills employers already need.',
+  honest: 'Language skills alone rarely command premium salaries. The best path is combining them with business, tech, marketing, healthcare, or operations skills where bilingual ability becomes a real differentiator instead of just a nice bonus.',
 },
 'history': {
   title: 'History',
   intro: 'History trains you to analyze complex information, build strong arguments, understand systems over time, and write clearly — skills that are far more transferable than the degree’s reputation suggests.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Compliance Officer',
+    'Policy Analyst',
+    'Content Strategist'
+  ],
+  fastestHiringRoles: [
+    'Research Assistant',
+    'Program Coordinator',
+    'Grant Writing Intern'
+  ],
+  mostUnderratedPath: 'Compliance Officer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Policy Intern',
+    'Research Internship',
+    'Grant Writing Intern'
+  ]
+},
   careers: [
     { career: 'Content Strategist', growth: '15%', why: 'Research, analysis, and storytelling — your core skills applied to business content', salary: '$60k-85k' },
     { career: 'Compliance Officer', growth: '8%', why: 'Understanding regulations, documentation, and institutional systems fits strong analytical thinkers', salary: '$60k-85k' },
@@ -1621,7 +2139,25 @@ const CAREER_PIVOTS = {
 'accounting': {
   title: 'Accounting',
   intro: 'Accounting is one of the most stable and recession-resistant degrees available. Every organization — business, nonprofit, government, and startups — needs accountants. The CPA credential can completely change your earning potential.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Financial Analyst',
+    'Forensic Accountant',
+    'CPA Track (Audit/Tax)'
+  ],
+  fastestHiringRoles: [
+    'Staff Accountant',
+    'Audit Intern',
+    'Tax Intern'
+  ],
+  mostUnderratedPath: 'Forensic Accountant',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Accounting Intern',
+    'Audit Intern',
+    'Tax Intern'
+  ]
+},
   careers: [
     { career: 'Staff Accountant', growth: '6%', why: 'Most accessible entry point — public accounting firms hire large classes every year', salary: '$50k-65k' },
     { career: 'Auditor', growth: '6%', why: 'Review financial records for accuracy, compliance, and risk management', salary: '$55k-75k' },
@@ -1680,68 +2216,104 @@ const CAREER_PIVOTS = {
 },
 'business-administration': {
   title: 'Business Administration',
-  intro: 'Business administration is the broadest business degree — and that is both its strength and its challenge. You can work in almost any industry, but you need a clear specialization to stand out.',
-
+  intro: 'Business administration teaches how organizations actually run — operations, finance, people, strategy, and decision-making. It is the broadest business degree, which creates flexibility, but also means you need a clear direction to stand out.',
+quickReality: {
+  bestPayingPivots: [
+    'Project Manager',
+    'Customer Success Manager',
+    'Business Analyst'
+  ],
+  fastestHiringRoles: [
+    'Sales Development Representative',
+    'Operations Coordinator',
+    'Customer Success Associate'
+  ],
+  mostUnderratedPath: 'Customer Success Manager',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Business Analyst Intern',
+    'Operations Intern',
+    'Customer Success Intern'
+  ]
+},
   careers: [
-    { career: 'Operations Analyst', growth: '16%', why: 'Help businesses run more efficiently — broad business knowledge is a real advantage here', salary: '$55k-80k' },
-    { career: 'Business Analyst', growth: '14%', why: 'Bridge business needs and technical solutions across teams and departments', salary: '$60k-85k' },
-    { career: 'Sales Development Representative', growth: '15%', why: 'Most accessible high-earning entry point — often the fastest path to strong income growth', salary: '$45k-65k + commission' },
-    { career: 'Customer Success Manager', growth: '20%', why: 'Relationship-focused role helping clients succeed and stay with the company', salary: '$55k-80k' },
-    { career: 'Project Manager', growth: '9%', why: 'Coordinate teams, timelines, and execution across business functions', salary: '$65k-95k' },
-    { career: 'Human Resources Specialist', growth: '10%', why: 'Your broad understanding of how businesses operate applies well to HR', salary: '$50k-70k' },
+    { career: 'Operations Analyst', growth: '16%', why: 'Improve how businesses run — strong fit for broad business problem-solving', salary: '$55k-80k' },
+    { career: 'Business Analyst', growth: '14%', why: 'Bridge business needs and practical solutions across teams', salary: '$60k-85k' },
+    { career: 'Sales Development Representative', growth: '15%', why: 'Most accessible high-income entry point — often the fastest path to $80k+', salary: '$45k-65k + commission' },
+    { career: 'Customer Success Manager', growth: '20%', why: 'Relationship-focused role with strong growth and transferable skills', salary: '$55k-80k' },
+    { career: 'Project Manager', growth: '9%', why: 'Coordinate teams, timelines, and execution across departments', salary: '$65k-95k' },
+    { career: 'Human Resources Specialist', growth: '10%', why: 'Business operations and people management make this a strong fit', salary: '$50k-70k' },
   ],
 
   morePaths: {
     'Operations + Strategy': [
       'Operations Analyst',
       'Business Analyst',
-      'Project Manager',
-      'Program Coordinator',
-      'Process Improvement Specialist'
+      'Project Coordinator',
+      'Process Improvement Specialist',
+      'Program Coordinator'
     ],
-    'Sales + Client-Facing': [
+    'Revenue + Client Work': [
       'Sales Development Representative',
-      'Account Executive',
       'Customer Success Manager',
       'Account Manager',
+      'Business Development Associate',
       'Partnerships Coordinator'
     ],
-    'People + Internal Roles': [
+    'People + Leadership': [
       'Human Resources Specialist',
       'Recruiter',
-      'Training Coordinator',
-      'Employee Experience Specialist',
-      'Office Operations Manager'
+      'Training & Development Specialist',
+      'Office Operations Manager',
+      'Team Lead Track'
     ],
-    'Growth + Business Pivots': [
-      'Marketing Coordinator',
-      'Procurement Analyst',
+    'Higher ROI Pivots': [
+      'Product Operations',
+      'Consulting Track',
+      'Revenue Operations Analyst',
       'Supply Chain Analyst',
-      'Financial Analyst',
-      'Consulting Track'
+      'Corporate Strategy Associate'
     ]
   },
 
   searchTerms: [
     'Business Intern',
-    'Business Analyst Intern',
     'Operations Intern',
+    'Business Analyst Intern',
     'Sales Intern',
     'Customer Success Intern',
     'Project Management Intern',
     'HR Intern',
-    'Account Management Intern',
-    'Operations Analyst Intern'
+    'Business Development Intern',
+    'Program Coordinator Intern'
   ],
 
-  struggles: 'Business administration is one of the most common degrees, which means heavy competition. Employers often prefer candidates with a more specific concentration like finance, marketing, supply chain, or MIS over general business.',
+  struggles: 'Business administration is one of the most common degrees, which means heavy competition. Employers often prefer candidates with a specific concentration like finance, MIS, or supply chain over general business unless you show clear specialization.',
 
-  honest: 'General business admin graduates need to work harder to differentiate themselves. Pick a lane early, get internships, and add something concrete like Excel, Salesforce, SQL, project management, or a certification. The degree opens doors, but specificity gets you hired.',
+  honest: 'General business majors need to work harder to differentiate themselves. Internships matter more than almost anything. Pick a lane early — operations, sales, analytics, HR, or project management — and build experience around that instead of trying to be “good at everything.”',
 },
 'economics': {
   title: 'Economics',
   intro: 'Economics teaches you to think analytically about how the world works — incentives, markets, trade-offs, and decision-making. Those skills transfer extremely well into finance, consulting, policy, and data-driven business roles.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Management Consultant',
+    'Financial Analyst',
+    'Data Analyst'
+  ],
+  fastestHiringRoles: [
+    'Financial Analyst Intern',
+    'Research Assistant',
+    'Market Research Analyst'
+  ],
+  mostUnderratedPath: 'Data Analyst',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Financial Analyst Intern',
+    'Economic Research Intern',
+    'Data Analyst Intern'
+  ]
+},
   careers: [
     { career: 'Financial Analyst', growth: '9%', why: 'Your quantitative economics training is strong preparation for finance and forecasting roles', salary: '$65k-90k' },
     { career: 'Data Analyst', growth: '23%', why: 'Econometrics and statistical thinking translate directly to analytics roles', salary: '$60k-85k' },
@@ -1801,7 +2373,25 @@ const CAREER_PIVOTS = {
 'entrepreneurship': {
   title: 'Entrepreneurship',
   intro: 'Entrepreneurship teaches you to spot opportunities, solve problems, build things from scratch, and think like an owner. Those skills are valuable whether you start your own company or work inside someone else’s.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Product Manager',
+    'Business Development Manager',
+    'Management Consultant'
+  ],
+  fastestHiringRoles: [
+    'Sales Development Representative',
+    'Startup Operations Associate',
+    'Business Development Intern'
+  ],
+  mostUnderratedPath: 'Startup Generalist',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Business Development Intern',
+    'Startup Internship',
+    'Product Management Intern'
+  ]
+},
   careers: [
     { career: 'Business Development Manager', growth: '12%', why: 'Find and grow new business opportunities — entrepreneurial thinking fits naturally here', salary: '$60k-90k' },
     { career: 'Product Manager', growth: '19%', why: 'Build products people actually want — founder mindset makes you stronger here', salary: '$80k-120k' },
@@ -1862,6 +2452,25 @@ const CAREER_PIVOTS = {
   title: 'Finance',
   intro: 'Finance is one of the highest-paying business degrees at entry level. You learn how money moves, how companies make decisions, and how risk gets managed — skills valued across banking, corporate finance, investing, and fintech.',
 
+  quickReality: {
+  bestPayingPivots: [
+    'Investment Banking Analyst',
+    'Corporate Finance Analyst',
+    'Risk Analyst'
+  ],
+  fastestHiringRoles: [
+    'Financial Analyst',
+    'Credit Analyst',
+    'Operations Analyst'
+  ],
+  mostUnderratedPath: 'Corporate Finance Analyst',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Financial Analyst Intern',
+    'Corporate Finance Intern',
+    'Risk Management Intern'
+  ]
+},
   careers: [
     { career: 'Financial Analyst', growth: '9%', why: 'Core finance path — analyze performance, build models, and support business decisions', salary: '$65k-90k' },
     { career: 'Investment Banking Analyst', growth: '6%', why: 'Highest-paying entry-level finance role — intense hours but exceptional compensation', salary: '$100k-150k' },
@@ -1918,70 +2527,262 @@ const CAREER_PIVOTS = {
 
   honest: 'Finance has some of the strongest starting salaries in business, but prestige can distort decision-making. Wall Street is not the only path. Corporate finance, fintech, and FP&A often provide better balance with strong pay. CFA helps, but internships matter first.',
 },
-'hospitality-management': {
-  title: 'Hospitality Management',
-  intro: 'Hospitality management teaches operations, customer service, and people management at a level most business degrees never touch. Those skills transfer far beyond hotels and restaurants.',
-
+'urban-planning': {
+  title: 'Urban Planning',
+  intro: 'Urban planning shapes how cities and communities grow — transportation, housing, land use, sustainability, and economic development. It is meaningful work with steady public-sector demand and strong private-sector crossover.',
+quickReality: {
+  bestPayingPivots: [
+    'Transportation Planner',
+    'Urban Planner',
+    'Real Estate Development Associate'
+  ],
+  fastestHiringRoles: [
+    'GIS Analyst',
+    'Planning Assistant',
+    'Community Development Coordinator'
+  ],
+  mostUnderratedPath: 'GIS Analyst',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Urban Planning Internship',
+    'GIS Internship',
+    'Transportation Planning Intern'
+  ]
+},
   careers: [
-    { career: 'Hotel / Resort Manager', growth: '8%', why: 'Direct path — manage operations at hotels, resorts, and hospitality venues', salary: '$50k-80k' },
-    { career: 'Event Manager', growth: '18%', why: 'Plan and execute corporate events, conferences, and large experiences', salary: '$45k-70k' },
-    { career: 'Customer Success Manager', growth: '20%', why: 'Your service mindset translates extremely well to SaaS and tech companies', salary: '$55k-80k' },
-    { career: 'Operations Manager', growth: '10%', why: 'Run day-to-day operations across many industries using hospitality operations skills', salary: '$55k-80k' },
-    { career: 'Sales Manager', growth: '5%', why: 'Relationship-driven selling is a natural fit for hospitality graduates', salary: '$60k-90k' },
-    { career: 'Venue Manager', growth: '9%', why: 'Sports venues, event spaces, and entertainment locations need strong operators', salary: '$50k-75k' },
+    { career: 'Urban Planner', growth: '4%', why: 'Work for cities and municipalities planning land use, zoning, and development', salary: '$60k-85k' },
+    { career: 'Transportation Planner', growth: '6%', why: 'Plan roads, transit systems, and infrastructure — strong demand with infrastructure investment', salary: '$60k-85k' },
+    { career: 'Community Development Specialist', growth: '7%', why: 'Support housing, revitalization, and economic development projects', salary: '$55k-75k' },
+    { career: 'GIS Analyst', growth: '14%', why: 'Spatial data analysis is one of the strongest transferable technical skills in planning', salary: '$55k-80k' },
+    { career: 'Real Estate Development Associate', growth: '5%', why: 'Planning knowledge translates well to private development and land use decisions', salary: '$55k-80k' },
+    { career: 'Sustainability Coordinator', growth: '12%', why: 'Cities and companies increasingly need planners focused on climate and resilience', salary: '$60k-85k' },
   ],
 
   morePaths: {
-    'Hospitality + Events': [
+    'City + Government': [
+      'Urban Planner',
+      'Transportation Planner',
+      'Zoning Administrator',
+      'Public Works Coordinator',
+      'Housing Program Specialist'
+    ],
+    'GIS + Technical': [
+      'GIS Analyst',
+      'Mapping Specialist',
+      'Land Use Analyst',
+      'Environmental Planning Analyst',
+      'Infrastructure Planning Associate'
+    ],
+    'Development + Real Estate': [
+      'Real Estate Development Associate',
+      'Community Development Specialist',
+      'Property Development Coordinator',
+      'Site Selection Analyst',
+      'Construction Project Coordinator'
+    ],
+    'Sustainability + Future Growth': [
+      'Sustainability Coordinator',
+      'Climate Resilience Planner',
+      'Environmental Consultant',
+      'ESG Analyst',
+      'Smart Cities Project Associate'
+    ]
+  },
+
+  searchTerms: [
+    'Urban Planning Intern',
+    'City Planning Intern',
+    'GIS Intern',
+    'Transportation Planning Intern',
+    'Community Development Intern',
+    'Real Estate Development Intern',
+    'Sustainability Intern',
+    'Public Works Intern',
+    'Land Use Planning Intern'
+  ],
+
+  struggles: 'Urban planning is heavily government-dependent, which means hiring can be slow and tied to budgets and election cycles. Many students also discover that advancement increasingly favors a master’s degree (MUP/MURP).',
+
+  honest: 'Urban planning offers stable and meaningful work, but starting salaries are usually modest compared to business or engineering majors. GIS is the single best skill multiplier in this field — it improves both salary and flexibility. Many planners eventually pursue graduate school, but strong internships matter first.',
+},
+'sports-management': {
+  title: 'Sports Management',
+  intro: 'Sports management combines business, marketing, operations, and leadership within the sports industry. It prepares you for careers in events, facilities, athletic departments, sponsorships, and sports business operations — but competition is much higher than most students expect.',
+quickReality: {
+  bestPayingPivots: [
+    'Corporate Event Manager',
+    'Facility Manager',
+    'Sports Marketing Manager'
+  ],
+  fastestHiringRoles: [
+    'Event Coordinator',
+    'Athletic Department Assistant',
+    'Guest Services Coordinator'
+  ],
+  mostUnderratedPath: 'Corporate Event Manager',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Sports Management Internship',
+    'Event Management Intern',
+    'Athletic Department Internship'
+  ]
+},
+  careers: [
+    { career: 'Event Coordinator', growth: '18%', why: 'Manage sports events and venue operations — often the most accessible entry point', salary: '$40k-60k' },
+    { career: 'Assistant Athletic Director', growth: '6%', why: 'Support athletic departments at schools and universities', salary: '$45k-65k' },
+    { career: 'Sports Marketing Coordinator', growth: '8%', why: 'Marketing for teams, brands, and sponsors — competitive but strong fit for passionate students', salary: '$40k-60k' },
+    { career: 'Facility Manager', growth: '6%', why: 'Manage arenas, stadiums, gyms, and sports facilities', salary: '$50k-70k' },
+    { career: 'Corporate Event Manager', growth: '18%', why: 'Your event management skills transfer well outside sports with better pay and less competition', salary: '$50k-75k' },
+    { career: 'Partnerships Coordinator', growth: '10%', why: 'Work with sponsors, brand deals, and business partnerships for teams and organizations', salary: '$50k-75k' },
+  ],
+
+  morePaths: {
+    'Sports Industry Core': [
+      'Event Coordinator',
+      'Sports Marketing Coordinator',
+      'Facility Manager',
+      'Assistant Athletic Director',
+      'Partnerships Coordinator'
+    ],
+    'School + College Athletics': [
+      'Athletic Department Coordinator',
+      'Compliance Assistant',
+      'Student-Athlete Services',
+      'Athletic Operations Coordinator',
+      'Recreation Program Manager'
+    ],
+    'Better Paying Pivots': [
+      'Corporate Event Manager',
+      'Customer Success Manager',
+      'Sales Development Representative',
+      'Account Manager',
+      'Brand Partnerships Associate'
+    ],
+    'Business + Revenue': [
+      'Sponsorship Sales',
+      'Ticket Sales Manager',
+      'Corporate Partnerships',
+      'Marketing Manager',
+      'Operations Manager'
+    ]
+  },
+
+  searchTerms: [
+    'Sports Management Intern',
+    'Sports Marketing Intern',
+    'Athletic Department Intern',
+    'Event Management Intern',
+    'Corporate Events Intern',
+    'Facility Operations Intern',
+    'Partnerships Intern',
+    'Recreation Management Intern',
+    'Sports Sales Intern'
+  ],
+
+  struggles: 'The sports industry has far more applicants than openings. Starting salaries are often low, unpaid internships are common, and prestige makes people accept bad opportunities they would reject elsewhere.',
+
+  honest: 'Sports management is one of the hardest business fields to break into and sustain financially. Many graduates build better long-term careers by pivoting into corporate events, partnerships, or sales where the skills transfer and the pay improves significantly. Networking matters enormously in sports.',
+},
+'hospitality-management': {
+  title: 'Hospitality Management',
+  intro: 'Hospitality management teaches operations, customer experience, leadership, and people management at a level most business degrees never touch. These skills apply far beyond hotels and restaurants — especially in events, operations, customer success, and business leadership roles.',
+quickReality: {
+  bestPayingPivots: [
+    'Customer Success Manager',
+    'Operations Manager',
+    'Sales Manager'
+  ],
+  fastestHiringRoles: [
+    'Event Coordinator',
+    'Hotel Management Trainee',
+    'Guest Services Manager'
+  ],
+  mostUnderratedPath: 'Customer Success Manager',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Hospitality Internship',
+    'Event Management Intern',
+    'Customer Success Intern'
+  ]
+},
+  careers: [
+    { career: 'Hotel/Resort Manager', growth: '8%', why: 'Direct path — manage day-to-day operations of hotels, resorts, and hospitality venues', salary: '$50k-80k' },
+    { career: 'Event Manager', growth: '18%', why: 'Plan and run conferences, corporate events, and large experiences', salary: '$45k-70k' },
+    { career: 'Customer Success Manager', growth: '20%', why: 'Service, retention, and relationship-building make this a strong pivot into tech', salary: '$55k-80k' },
+    { career: 'Operations Manager', growth: '10%', why: 'Hospitality operations experience transfers well into business operations roles', salary: '$55k-80k' },
+    { career: 'Sales Manager', growth: '5%', why: 'Relationship-driven and service-focused — hospitality grads often excel in sales', salary: '$60k-90k' },
+    { career: 'Venue Operations Manager', growth: '12%', why: 'Manage stadiums, conference centers, and entertainment venues', salary: '$55k-85k' },
+  ],
+
+  morePaths: {
+    'Hospitality Core': [
       'Hotel Manager',
-      'Event Manager',
-      'Venue Manager',
-      'Conference Coordinator',
+      'Resort Operations',
+      'Restaurant Operations',
+      'Venue Operations Manager',
       'Guest Experience Manager'
+    ],
+    'Events + Experiences': [
+      'Event Manager',
+      'Conference Coordinator',
+      'Corporate Events Manager',
+      'Wedding/Event Planner',
+      'Experiential Marketing Coordinator'
+    ],
+    'Business + Client Roles': [
+      'Customer Success Manager',
+      'Sales Manager',
+      'Account Manager',
+      'Business Development Associate',
+      'Client Services Manager'
     ],
     'Operations + Leadership': [
       'Operations Manager',
       'Program Coordinator',
-      'Facilities Manager',
-      'Business Operations Associate',
-      'Regional Manager'
-    ],
-    'Client + Service Roles': [
-      'Customer Success Manager',
-      'Account Manager',
-      'Sales Manager',
-      'Client Relations Manager',
-      'Partnerships Coordinator'
-    ],
-    'Strong Pivots': [
-      'Corporate Event Manager',
-      'Recruiter',
-      'HR Coordinator',
-      'Training Manager',
-      'Real Estate Operations'
+      'Regional Operations',
+      'Project Coordinator',
+      'Facilities Manager'
     ]
   },
 
   searchTerms: [
     'Hospitality Intern',
     'Hotel Management Intern',
-    'Event Planning Intern',
-    'Customer Success Intern',
+    'Event Management Intern',
     'Operations Intern',
-    'Venue Management Intern',
+    'Customer Success Intern',
+    'Venue Operations Intern',
     'Sales Intern',
-    'Guest Services Intern',
-    'Corporate Events Intern'
+    'Conference Services Intern',
+    'Guest Experience Intern'
   ],
 
-  struggles: 'Hospitality was hit hard by COVID and recovery has been uneven. Starting salaries are often lower than other business degrees, and nights, weekends, and holiday work are common — students underestimate that lifestyle impact.',
+  struggles: 'Hospitality was hit hard by COVID and recovery has been uneven. Starting salaries are often lower than other business majors, and the hours can be demanding — nights, weekends, holidays, and high-pressure service environments are common.',
 
-  honest: 'Hospitality skills are genuinely transferable, but you may need to explain that to employers outside the industry. Customer success, operations, and corporate events are some of the strongest pivots because your service mindset becomes a major advantage there.',
+  honest: 'Hospitality skills are genuinely transferable, but many students underestimate how valuable they are outside the industry. Customer success, operations, and event management often offer better pay and more stable hours than traditional hospitality paths while using the exact same strengths.',
 },
 'information-systems': {
   title: 'Information Systems',
   intro: 'Information systems sits at the intersection of business and technology — you understand both sides, which makes you valuable in roles that require translating between technical teams and business stakeholders.',
-
+quickReality: {
+  bestPayingPivots: [
+    'ERP Consultant',
+    'IT Project Manager',
+    'Business Analyst'
+  ],
+  fastestHiringRoles: [
+    'Systems Analyst',
+    'Data Analyst',
+    'Business Analyst'
+  ],
+  mostUnderratedPath: 'ERP Consultant',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Business Analyst Intern',
+    'Systems Analyst Intern',
+    'ERP Consulting Intern'
+  ]
+},
   careers: [
     { career: 'Business Analyst', growth: '14%', why: 'Bridge business needs and technical solutions — your IS background is ideal here', salary: '$60k-85k' },
     { career: 'Systems Analyst', growth: '9%', why: 'Analyze and improve business systems inside organizations', salary: '$65k-90k' },
@@ -2040,68 +2841,104 @@ const CAREER_PIVOTS = {
 },
 'international-business': {
   title: 'International Business',
-  intro: 'International business prepares you to work across borders — global markets, trade, cross-cultural communication, and international operations. The strongest opportunities come when you combine business skills with language ability and real global experience.',
-
+  intro: 'International business prepares you to work across borders — managing global markets, supply chains, trade, operations, and cross-cultural communication. It works best when paired with language skills, real international experience, or a clear business specialization.',
+quickReality: {
+  bestPayingPivots: [
+    'Business Development Manager',
+    'Global Supply Chain Analyst',
+    'Government Relations Specialist'
+  ],
+  fastestHiringRoles: [
+    'Import Export Coordinator',
+    'Supply Chain Analyst',
+    'Market Research Assistant'
+  ],
+  mostUnderratedPath: 'Global Supply Chain Analyst',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'International Business Intern',
+    'Global Supply Chain Intern',
+    'Trade Compliance Intern'
+  ]
+},
   careers: [
-    { career: 'International Trade Specialist', growth: '6%', why: 'Help companies navigate import/export regulations, compliance, and global shipping', salary: '$55k-80k' },
-    { career: 'Global Supply Chain Analyst', growth: '18%', why: 'Manage supply chains across countries — one of the strongest practical paths for this degree', salary: '$60k-85k' },
-    { career: 'Market Research Analyst', growth: '13%', why: 'Research international markets and customer behavior for expansion decisions', salary: '$55k-75k' },
-    { career: 'Business Development Manager', growth: '12%', why: 'Help companies grow into new markets — strong fit for relationship-driven people', salary: '$65k-95k' },
-    { career: 'Foreign Service Officer', growth: '5%', why: 'Represent the U.S. government abroad — competitive but meaningful public service path', salary: '$60k-90k' },
-    { career: 'Procurement Specialist', growth: '10%', why: 'Global sourcing and vendor relationships make this a strong underrated path', salary: '$60k-85k' },
+    { career: 'International Trade Specialist', growth: '6%', why: 'Help companies manage import/export regulations and global trade operations', salary: '$55k-80k' },
+    { career: 'Global Supply Chain Analyst', growth: '18%', why: 'International logistics and sourcing make this one of the strongest practical paths', salary: '$60k-85k' },
+    { career: 'Market Research Analyst', growth: '13%', why: 'Research international markets, customer behavior, and expansion opportunities', salary: '$55k-75k' },
+    { career: 'Business Development Manager', growth: '12%', why: 'Help companies grow into new markets and build international partnerships', salary: '$65k-95k' },
+    { career: 'Foreign Service Officer', growth: '5%', why: 'Government path representing U.S. interests abroad — highly competitive but meaningful', salary: '$60k-90k' },
+    { career: 'Global Operations Coordinator', growth: '10%', why: 'Support vendors, teams, and operations across multiple countries and regions', salary: '$55k-80k' },
   ],
 
   morePaths: {
-    'Global Operations': [
+    'Global Business Core': [
+      'International Trade Specialist',
       'Global Supply Chain Analyst',
-      'Procurement Specialist',
-      'Operations Coordinator',
+      'Global Operations Coordinator',
       'Import Export Specialist',
-      'Logistics Manager'
+      'Procurement Specialist'
     ],
-    'Growth + Markets': [
-      'Business Development Manager',
+    'Markets + Growth': [
       'Market Research Analyst',
-      'International Sales Representative',
-      'Partnerships Coordinator',
-      'Account Manager'
+      'Business Development Manager',
+      'International Sales Coordinator',
+      'Partnerships Associate',
+      'Regional Account Manager'
     ],
     'Government + Policy': [
       'Foreign Service Officer',
-      'Trade Compliance Analyst',
       'Government Relations Associate',
+      'Trade Compliance Specialist',
       'Policy Analyst',
       'Economic Development Coordinator'
     ],
-    'Strong Add-On Paths': [
-      'Customer Success Manager',
-      'Corporate Communications Specialist',
-      'HR Specialist',
-      'Localization Specialist',
-      'Consulting Track'
+    'Strong Career Multipliers': [
+      'Language Fluency',
+      'Study Abroad Experience',
+      'Supply Chain Specialization',
+      'Finance + Trade Knowledge',
+      'International Internship Experience'
     ]
   },
 
   searchTerms: [
     'International Business Intern',
-    'Supply Chain Intern',
+    'Global Supply Chain Intern',
     'Trade Compliance Intern',
-    'Global Operations Intern',
-    'Procurement Intern',
+    'International Sales Intern',
     'Business Development Intern',
     'Market Research Intern',
-    'International Sales Intern',
-    'Government Affairs Intern'
+    'Global Operations Intern',
+    'Import Export Intern',
+    'Foreign Affairs Intern'
   ],
 
-  struggles: 'International business is broad and can feel vague. Employers often are not sure what to do with the degree unless you have specific language skills, regional expertise, study abroad experience, or strong internships.',
+  struggles: 'International business can feel too broad if you do not build a specialization. Without language fluency, international experience, or a clear functional focus like supply chain or finance, it can end up feeling like general business with a different label.',
 
-  honest: 'International business works best when paired with something concrete — language fluency, supply chain experience, analytics, or operations. Without that, it can feel like general business with better branding. The strongest students make the degree specific.',
+  honest: 'International business works best when paired with something concrete — supply chain, finance, sales, or operations. Language fluency and real global experience matter far more than the degree title alone. Without those, employers may not see much difference from general business.',
 },
 'management': {
   title: 'Management',
   intro: 'Management focuses on leading people, organizing resources, and driving results — skills every organization needs. The catch is that most people do not get hired directly into management; they grow into it.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Project Manager',
+    'Sales Manager',
+    'Operations Manager'
+  ],
+  fastestHiringRoles: [
+    'Operations Coordinator',
+    'Management Trainee',
+    'Sales Development Representative'
+  ],
+  mostUnderratedPath: 'Operations Manager',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Management Internship',
+    'Operations Intern',
+    'Project Management Intern'
+  ]
+},
   careers: [
     { career: 'Operations Manager', growth: '10%', why: 'Run day-to-day business operations across industries and teams', salary: '$55k-80k' },
     { career: 'Human Resources Manager', growth: '5%', why: 'Lead hiring, employee development, and workplace systems', salary: '$60k-90k' },
@@ -2161,7 +2998,25 @@ const CAREER_PIVOTS = {
 'management-information-systems': {
   title: 'Management Information Systems',
   intro: 'MIS is consistently one of the highest-paying business degrees. You combine business understanding with technical skills, which makes you valuable in roles where companies need both — and most companies do.',
-
+quickReality: {
+  bestPayingPivots: [
+    'ERP Consultant',
+    'IT Project Manager',
+    'Business Intelligence Analyst'
+  ],
+  fastestHiringRoles: [
+    'Business Analyst',
+    'Systems Analyst',
+    'Data Analyst'
+  ],
+  mostUnderratedPath: 'ERP Consultant',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Business Analyst Intern',
+    'MIS Internship',
+    'ERP Consulting Intern'
+  ]
+},
   careers: [
     { career: 'Business Analyst', growth: '14%', why: 'Ideal MIS role — understand business problems and help design technical solutions', salary: '$65k-90k' },
     { career: 'Data Analyst', growth: '23%', why: 'Database and reporting skills translate directly into strong analytics roles', salary: '$65k-90k' },
@@ -2221,7 +3076,25 @@ const CAREER_PIVOTS = {
 'marketing': {
   title: 'Marketing',
   intro: 'Marketing has changed completely — the strongest roles today are digital, data-driven, and tied directly to revenue. Creativity still matters, but the students who win know how to measure results.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Product Marketing Manager',
+    'Growth Marketing Manager',
+    'Customer Success Manager'
+  ],
+  fastestHiringRoles: [
+    'Digital Marketing Specialist',
+    'Sales Development Representative',
+    'Content Marketing Coordinator'
+  ],
+  mostUnderratedPath: 'Product Marketing Manager',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Digital Marketing Intern',
+    'Product Marketing Intern',
+    'Content Marketing Intern'
+  ]
+},
   careers: [
     { career: 'Digital Marketing Specialist', growth: '17%', why: 'SEO, paid ads, analytics, and performance marketing drive modern business growth', salary: '$45k-65k' },
     { career: 'Content Marketing Manager', growth: '15%', why: 'Create and manage content strategy across brands and platforms', salary: '$50k-70k' },
@@ -2281,7 +3154,25 @@ const CAREER_PIVOTS = {
 'supply-chain-management': {
   title: 'Supply Chain Management',
   intro: 'Supply chain management went from invisible to essential after COVID exposed how fragile global operations really are. Companies now pay serious attention to logistics, sourcing, procurement, and resilience.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Operations Research Analyst',
+    'Supply Chain Manager',
+    'Procurement Manager'
+  ],
+  fastestHiringRoles: [
+    'Supply Chain Analyst',
+    'Logistics Coordinator',
+    'Procurement Specialist'
+  ],
+  mostUnderratedPath: 'Procurement Specialist',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Supply Chain Intern',
+    'Procurement Intern',
+    'Operations Intern'
+  ]
+},
   careers: [
     { career: 'Supply Chain Analyst', growth: '18%', why: 'Core SCM role — analyze and improve operations across sourcing, production, and delivery', salary: '$60k-85k' },
     { career: 'Logistics Coordinator', growth: '10%', why: 'Coordinate transportation, warehousing, and shipping operations', salary: '$50k-70k' },
@@ -2341,7 +3232,25 @@ const CAREER_PIVOTS = {
 'mathematics': {
   title: 'Mathematics',
   intro: 'Mathematics is one of the strongest degrees for today’s job market. Analytical thinking and quantitative problem-solving are valuable across finance, tech, insurance, consulting, and nearly every data-heavy industry.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Data Scientist',
+    'Actuarial Analyst',
+    'Quantitative Analyst'
+  ],
+  fastestHiringRoles: [
+    'Data Analyst',
+    'Financial Analyst',
+    'Operations Research Analyst'
+  ],
+  mostUnderratedPath: 'Actuarial Analyst',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Data Analyst Intern',
+    'Actuarial Intern',
+    'Financial Analyst Intern'
+  ]
+},
   careers: [
     { career: 'Data Analyst', growth: '23%', why: 'Your statistical and analytical skills are directly in demand across industries', salary: '$65k-90k' },
     { career: 'Actuarial Analyst', growth: '21%', why: 'Math is the perfect foundation for risk modeling — clear exam path and strong pay', salary: '$70k-100k' },
@@ -2401,7 +3310,25 @@ const CAREER_PIVOTS = {
 'neuroscience': {
   title: 'Neuroscience',
   intro: 'Neuroscience is a rigorous major that develops scientific thinking, research skills, and an understanding of human behavior — but the direct career path is less obvious than students expect.',
-
+quickReality: {
+  bestPayingPivots: [
+    'UX Researcher',
+    'Healthcare Data Analyst',
+    'Medical Science Liaison'
+  ],
+  fastestHiringRoles: [
+    'Clinical Research Coordinator',
+    'Behavioral Health Technician',
+    'Research Assistant'
+  ],
+  mostUnderratedPath: 'UX Researcher',
+  gradSchoolRequired: 'Usually',
+  strongestInternshipSearches: [
+    'Clinical Research Intern',
+    'Neuroscience Research Intern',
+    'Healthcare Data Internship'
+  ]
+},
   careers: [
     { career: 'Clinical Research Coordinator', growth: '14%', why: 'Your research training and scientific background are directly applicable', salary: '$50k-70k' },
     { career: 'UX Researcher', growth: '18%', why: 'Understanding behavior, attention, and decision-making translates well to product research', salary: '$70k-95k' },
@@ -2461,7 +3388,44 @@ const CAREER_PIVOTS = {
 'nursing': {
   title: 'Nursing',
   intro: 'Nursing is one of the most reliable and meaningful career paths available. The job market is consistently strong, salaries are competitive, and the work directly helps people.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Travel Nurse',
+    'Informatics Nurse',
+    'Healthcare Administrator'
+  ],
+  fastestHiringRoles: [
+    'Registered Nurse',
+    'Clinical Support Roles',
+    'Patient Care Coordinator'
+  ],
+  mostUnderratedPath: 'Informatics Nurse',
+  gradSchoolRequired: 'Yes',
+  strongestInternshipSearches: [
+    'Nurse Extern',
+    'Clinical Nursing Internship',
+    'Hospital Student Nurse Program'
+  ]
+},
+  quickReality: {
+  bestPayingPivots: [
+    'Travel Nurse',
+    'Informatics Nurse',
+    'Nurse Case Manager'
+  ],
+  fastestHiringRoles: [
+    'Registered Nurse',
+    'Patient Care Coordinator',
+    'Clinical Support Roles'
+  ],
+  mostUnderratedPath: 'Informatics Nurse',
+  gradSchoolRequired: 'Yes',
+  strongestInternshipSearches: [
+    'Nurse Extern',
+    'Clinical Nursing Internship',
+    'Hospital Nursing Student Program'
+  ]
+},
   careers: [
     { career: 'Registered Nurse (RN)', growth: '6%', why: 'Core nursing path — hospitals, clinics, and healthcare systems always need RNs', salary: '$65k-90k' },
     { career: 'Travel Nurse', growth: '10%', why: 'Work at different hospitals on contract — often pays more than staff nursing', salary: '$80k-120k' },
@@ -2520,68 +3484,104 @@ const CAREER_PIVOTS = {
 },
 'music': {
   title: 'Music',
-  intro: 'Music training develops discipline, precision, collaboration, creative problem-solving, and the ability to perform under pressure — skills that transfer into surprising professional contexts.',
-
+  intro: 'Music develops discipline, performance under pressure, collaboration, creative problem-solving, and strong listening skills. The best career paths often come from applying those strengths to production, education, training, media, and people-focused work — not only traditional performance careers.',
+quickReality: {
+  bestPayingPivots: [
+    'Instructional Designer',
+    'Corporate Trainer',
+    'Audio / Video Producer'
+  ],
+  fastestHiringRoles: [
+    'Events Assistant',
+    'Production Assistant',
+    'Teaching Assistant'
+  ],
+  mostUnderratedPath: 'Instructional Designer',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Audio Production Intern',
+    'Instructional Design Intern',
+    'Event Management Intern'
+  ]
+},
   careers: [
-    { career: 'Corporate Trainer', growth: '11%', why: 'Teaching and performing skills make you strong at presenting and facilitating', salary: '$55k-80k' },
-    { career: 'Instructional Designer', growth: '9%', why: 'Creating engaging learning experiences draws on your teaching and performance instincts', salary: '$60k-90k' },
-    { career: 'Audio/Video Producer', growth: '12%', why: 'Every company needs multimedia content — your technical audio and production skills apply', salary: '$50k-75k' },
-    { career: 'Music Therapist', growth: '9%', why: 'Clinical work using musical training — requires board certification', salary: '$45k-65k' },
-    { career: 'Events Manager', growth: '18%', why: 'Production and performance management experience transfers well to corporate events', salary: '$50k-70k' },
-    { career: 'Content Creator', growth: '10%', why: 'Music, audio, and storytelling skills can support brands, media, and digital platforms', salary: '$45k-70k' },
+    { career: 'Audio / Video Producer', growth: '12%', why: 'Corporate media, podcasting, branded content, and digital production need strong technical and creative skills', salary: '$50k-75k' },
+    { career: 'Corporate Trainer', growth: '11%', why: 'Teaching, presenting, and audience engagement make this a strong pivot', salary: '$55k-80k' },
+    { career: 'Instructional Designer', growth: '9%', why: 'Creating engaging learning experiences draws on performance and teaching instincts', salary: '$60k-90k' },
+    { career: 'Music Therapist', growth: '9%', why: 'Clinical work using music to support health and recovery — requires certification (MT-BC)', salary: '$45k-65k' },
+    { career: 'Events Manager', growth: '18%', why: 'Production planning and live performance coordination transfer naturally', salary: '$50k-70k' },
+    { career: 'Creative Producer', growth: '10%', why: 'Coordinate content, talent, and production across creative teams and projects', salary: '$55k-80k' },
   ],
 
   morePaths: {
-    'Teaching + Training': [
-      'Music Teacher',
-      'Corporate Trainer',
-      'Instructional Designer',
-      'Private Lesson Instructor',
-      'Learning & Development Specialist'
+    'Performance + Creative': [
+      'Performance Career',
+      'Session Musician',
+      'Production Coordinator',
+      'Creative Producer',
+      'Live Event Production'
     ],
-    'Production + Media': [
+    'Media + Production': [
       'Audio Producer',
       'Video Producer',
-      'Podcast Producer',
-      'Sound Designer',
-      'Content Creator'
+      'Podcast Production',
+      'Content Production',
+      'Studio Operations'
     ],
-    'Events + Arts Admin': [
-      'Events Manager',
-      'Arts Administrator',
-      'Program Coordinator',
-      'Venue Coordinator',
-      'Talent Coordinator'
+    'Teaching + Learning': [
+      'Corporate Trainer',
+      'Instructional Designer',
+      'Music Education',
+      'Learning & Development',
+      'Training Specialist'
     ],
-    'Clinical + Community': [
+    'Healthcare + Wellness': [
       'Music Therapist',
-      'Recreation Therapist',
-      'Community Outreach Coordinator',
-      'Youth Program Director',
-      'Nonprofit Program Manager'
+      'Recreation Therapy Support',
+      'Community Arts Programs',
+      'Wellness Programming',
+      'Healthcare Education'
     ]
   },
 
   searchTerms: [
     'Music Intern',
     'Audio Production Intern',
-    'Video Production Intern',
-    'Events Intern',
-    'Arts Administration Intern',
-    'Instructional Design Intern',
+    'Creative Production Intern',
     'Corporate Training Intern',
-    'Podcast Intern',
-    'Music Therapy Intern'
+    'Instructional Design Intern',
+    'Events Intern',
+    'Media Production Intern',
+    'Content Production Intern',
+    'Learning and Development Intern'
   ],
 
-  struggles: 'Performance careers are genuinely competitive. Most musicians supplement with teaching, session work, production, or other income throughout their careers. Financial instability is real.',
+  struggles: 'Performance careers are genuinely competitive and financially unstable for many people, especially early on. Most musicians build careers through a mix of teaching, production work, freelance projects, and multiple income streams rather than one single performance job.',
 
-  honest: 'If performance is your passion, pursue it — but build parallel skills. Music therapy requires additional certification. Corporate training, instructional design, events, and media production can provide stable income while still using your music background.',
+  honest: 'If performing is your goal, pursue it — but treat production, education, and media skills as part of the same career, not a backup plan. Audio production, instructional design, and corporate training often provide the financial stability that allows people to keep music in their life long-term.',
 },
 'philosophy': {
   title: 'Philosophy',
   intro: 'Philosophy trains you to think clearly, argue rigorously, identify weak logic, and understand complex ethical systems — skills that are far more practical in business, law, and tech than most people realize.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Business Analyst',
+    'UX Researcher',
+    'Compliance Officer'
+  ],
+  fastestHiringRoles: [
+    'Policy Assistant',
+    'Research Assistant',
+    'Operations Coordinator'
+  ],
+  mostUnderratedPath: 'UX Researcher',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'UX Research Intern',
+    'Policy Intern',
+    'Business Analyst Intern'
+  ]
+},
   careers: [
     { career: 'Business Analyst', growth: '14%', why: 'Critical thinking and structured problem-solving are exactly what this role requires', salary: '$70k-95k' },
     { career: 'UX Researcher', growth: '18%', why: 'Understanding how people think and make decisions translates directly to product research', salary: '$75k-105k' },
@@ -2641,7 +3641,25 @@ const CAREER_PIVOTS = {
 'physics': {
   title: 'Physics',
   intro: 'Physics is one of the most versatile STEM degrees. Your problem-solving, mathematical modeling, and analytical skills are valuable across finance, tech, engineering, research, and data-heavy industries.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Quantitative Analyst',
+    'Data Scientist',
+    'Software Engineer'
+  ],
+  fastestHiringRoles: [
+    'Data Analyst',
+    'Research Assistant',
+    'Software Engineering Intern'
+  ],
+  mostUnderratedPath: 'Quantitative Analyst',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Data Science Intern',
+    'Research Internship',
+    'Software Engineering Intern'
+  ]
+},
   careers: [
     { career: 'Data Scientist', growth: '35%', why: 'Physics problem-solving and math skills are ideal for advanced data work', salary: '$85k-120k' },
     { career: 'Software Engineer', growth: '22%', why: 'Analytical problem-solving transfers extremely well into coding and systems work', salary: '$80k-130k' },
@@ -2702,7 +3720,25 @@ const CAREER_PIVOTS = {
 'public-health': {
   title: 'Public Health',
   intro: 'Public health focuses on improving health outcomes at the population level — through prevention, policy, education, and data. It is meaningful work with strong long-term demand, but students should understand the salary reality early.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Healthcare Data Analyst',
+    'Epidemiologist',
+    'Public Health Program Manager'
+  ],
+  fastestHiringRoles: [
+    'Community Health Worker',
+    'Health Educator',
+    'Clinical Research Coordinator'
+  ],
+  mostUnderratedPath: 'Healthcare Data Analyst',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Public Health Internship',
+    'Community Health Intern',
+    'Healthcare Data Intern'
+  ]
+},
   careers: [
     { career: 'Health Educator', growth: '7%', why: 'Design and deliver health education programs in communities and organizations', salary: '$50k-70k' },
     { career: 'Epidemiologist', growth: '26%', why: 'Track disease patterns and public health risks — one of the strongest growth paths', salary: '$60k-90k' },
@@ -2763,7 +3799,25 @@ const CAREER_PIVOTS = {
 'statistics': {
   title: 'Statistics',
   intro: 'Statistics is one of the most employable quantitative degrees available. Companies everywhere are trying to make better decisions with data, and statisticians are the people who know whether the numbers actually mean anything.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Data Scientist',
+    'Biostatistician',
+    'Actuarial Analyst'
+  ],
+  fastestHiringRoles: [
+    'Data Analyst',
+    'Research Analyst',
+    'Business Intelligence Analyst'
+  ],
+  mostUnderratedPath: 'Biostatistician',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Data Analyst Intern',
+    'Biostatistics Intern',
+    'Research Analytics Intern'
+  ]
+},
   careers: [
     { career: 'Data Analyst', growth: '23%', why: 'Your statistical foundation is exactly what modern analytics roles require', salary: '$65k-90k' },
     { career: 'Data Scientist', growth: '35%', why: 'Statistics is the real backbone of data science, not just coding', salary: '$85k-120k' },
@@ -2823,7 +3877,25 @@ const CAREER_PIVOTS = {
 'political-science': {
   title: 'Political Science',
   intro: 'Political science teaches you how institutions work, how policy gets made, and how power, incentives, and communication shape decisions. Those skills apply far beyond government and law school.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Government Relations Specialist',
+    'Compliance Officer',
+    'Policy Analyst'
+  ],
+  fastestHiringRoles: [
+    'Legislative Assistant',
+    'Program Coordinator',
+    'Communications Associate'
+  ],
+  mostUnderratedPath: 'Government Relations Specialist',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Government Affairs Intern',
+    'Policy Intern',
+    'Legislative Intern'
+  ]
+},
   careers: [
     { career: 'Policy Analyst', growth: '6%', why: 'Analyze policy for government agencies, nonprofits, and think tanks', salary: '$60k-90k' },
     { career: 'Government Relations Specialist', growth: '7%', why: 'Help companies navigate regulation and public policy — strong corporate path', salary: '$70k-110k' },
@@ -2883,7 +3955,25 @@ const CAREER_PIVOTS = {
 'psychology': {
   title: 'Psychology',
   intro: 'Psychology teaches you to understand human behavior — one of the most valuable skills in the modern workplace. People, motivation, decision-making, and behavior drive almost every industry.',
-
+quickReality: {
+  bestPayingPivots: [
+    'UX Researcher',
+    'Market Research Analyst',
+    'Training & Development Specialist'
+  ],
+  fastestHiringRoles: [
+    'Behavioral Health Technician',
+    'Case Manager',
+    'Human Resources Assistant'
+  ],
+  mostUnderratedPath: 'UX Researcher',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'UX Research Intern',
+    'Behavioral Health Intern',
+    'Human Resources Intern'
+  ]
+},
   careers: [
     { career: 'UX Researcher', growth: '18%', why: 'Understanding human behavior is exactly what product and tech teams need', salary: '$70k-95k' },
     { career: 'Human Resources Specialist', growth: '10%', why: 'People systems, hiring, and employee development are strong fits', salary: '$50k-70k' },
@@ -2943,7 +4033,25 @@ const CAREER_PIVOTS = {
 'sociology': {
   title: 'Sociology',
   intro: 'Sociology teaches you to understand how people, groups, and systems work — skills that apply directly to HR, market research, policy, community development, and organizational strategy.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Diversity & Inclusion Manager',
+    'Policy Analyst',
+    'Market Research Analyst'
+  ],
+  fastestHiringRoles: [
+    'Human Resources Assistant',
+    'Case Manager',
+    'Community Outreach Coordinator'
+  ],
+  mostUnderratedPath: 'Market Research Analyst',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Human Resources Intern',
+    'Community Services Intern',
+    'Market Research Intern'
+  ]
+},
   careers: [
     { career: 'Human Resources Specialist', growth: '10%', why: 'Understanding group dynamics and workplace behavior makes HR a strong fit', salary: '$50k-75k' },
     { career: 'Market Research Analyst', growth: '13%', why: 'Study social trends, behavior patterns, and consumer decision-making', salary: '$55k-80k' },
@@ -3004,7 +4112,25 @@ const CAREER_PIVOTS = {
 'aerospace-engineering': {
   title: 'Aerospace Engineering',
   intro: 'Aerospace engineering is one of the most specialized and prestigious engineering degrees. The skills you build — thermodynamics, fluid mechanics, systems thinking — transfer well beyond aviation and defense.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Systems Engineer',
+    'Project Engineer',
+    'Technical Sales Engineer'
+  ],
+  fastestHiringRoles: [
+    'Manufacturing Engineer',
+    'Quality Engineer',
+    'Data Analyst (Engineering)'
+  ],
+  mostUnderratedPath: 'Technical Sales Engineer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Aerospace Engineering Intern',
+    'Systems Engineering Intern',
+    'Manufacturing Engineering Intern'
+  ]
+},
   careers: [
     { career: 'Systems Engineer', growth: '6%', why: 'Your systems thinking applies to any complex product — defense, tech, manufacturing', salary: '$75k-105k' },
     { career: 'Project Engineer', growth: '8%', why: 'Managing technical projects is a natural fit for your structured training', salary: '$70k-95k' },
@@ -3064,7 +4190,25 @@ const CAREER_PIVOTS = {
   'biomedical-engineering': {
   title: 'Biomedical Engineering',
   intro: 'Biomedical engineering sits at the intersection of engineering and medicine — one of the fastest growing fields as healthcare technology expands rapidly.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Research & Development Engineer',
+    'Regulatory Affairs Specialist',
+    'Quality Engineer (Medical Devices)'
+  ],
+  fastestHiringRoles: [
+    'Clinical Engineer',
+    'Quality Engineer',
+    'Regulatory Affairs Intern'
+  ],
+  mostUnderratedPath: 'Regulatory Affairs Specialist',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Biomedical Engineering Intern',
+    'Medical Device Intern',
+    'Clinical Engineering Intern'
+  ]
+},
   careers: [
     { career: 'Clinical Engineer', growth: '10%', why: 'Maintain and improve medical equipment in hospitals — high demand everywhere', salary: '$60k-85k' },
     { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Navigate FDA approval for medical devices — your technical background is essential', salary: '$65k-95k' },
@@ -3124,7 +4268,25 @@ const CAREER_PIVOTS = {
 'chemical-engineering': {
   title: 'Chemical Engineering',
   intro: 'Chemical engineering is one of the highest-paying engineering degrees at entry level. Your process thinking, thermodynamics, and analytical skills are valuable across energy, pharma, food, and manufacturing.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Process Engineer',
+    'Data Scientist (Manufacturing)',
+    'Petroleum Engineer'
+  ],
+  fastestHiringRoles: [
+    'Process Engineer Intern',
+    'Quality Engineer',
+    'Manufacturing Engineer'
+  ],
+  mostUnderratedPath: 'Regulatory Affairs Specialist',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Chemical Engineering Intern',
+    'Process Engineer Intern',
+    'Manufacturing Engineering Intern'
+  ]
+},
   careers: [
     { career: 'Process Engineer', growth: '8%', why: 'Optimize manufacturing and production processes — core ChemE role, high demand', salary: '$70k-95k' },
     { career: 'Regulatory Affairs Specialist', growth: '12%', why: 'Your chemistry knowledge is essential for FDA/EPA compliance roles', salary: '$65k-95k' },
@@ -3184,7 +4346,25 @@ const CAREER_PIVOTS = {
   'civil-engineering': {
   title: 'Civil Engineering',
   intro: 'Civil engineering builds the infrastructure that society runs on. The job market is steady and driven significantly by government spending on infrastructure — making it more recession-resistant than many fields.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Construction Project Manager',
+    'Transportation Engineer',
+    'Structural Engineer'
+  ],
+  fastestHiringRoles: [
+    'Civil Engineering Intern',
+    'Field Engineer',
+    'Project Engineer'
+  ],
+  mostUnderratedPath: 'GIS Analyst',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Civil Engineering Intern',
+    'Construction Management Intern',
+    'Transportation Engineering Intern'
+  ]
+},
   careers: [
     { career: 'Structural Engineer', growth: '5%', why: 'Design buildings, bridges, and infrastructure — core civil engineering path', salary: '$65k-90k' },
     { career: 'Transportation Engineer', growth: '6%', why: 'Plan and design roads, highways, transit systems, and mobility projects', salary: '$65k-90k' },
@@ -3244,7 +4424,25 @@ const CAREER_PIVOTS = {
 'computer-engineering': {
   title: 'Computer Engineering',
   intro: 'Computer engineering combines electrical engineering and computer science — making you one of the most versatile engineers in the job market. You can work on hardware, software, or the critical layer between them.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Embedded Systems Engineer',
+    'Cybersecurity Engineer',
+    'Systems Architect'
+  ],
+  fastestHiringRoles: [
+    'Hardware Test Engineer',
+    'Embedded Systems Intern',
+    'QA Automation Engineer'
+  ],
+  mostUnderratedPath: 'Embedded Systems Engineer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Embedded Systems Intern',
+    'Hardware Engineering Intern',
+    'Firmware Engineering Intern'
+  ]
+},
   careers: [
     { career: 'Embedded Systems Engineer', growth: '7%', why: 'Program the computers inside devices — cars, appliances, medical equipment, robotics, and IoT products', salary: '$80k-115k' },
     { career: 'Hardware Engineer', growth: '5%', why: 'Design and test computer chips, circuit boards, and hardware systems', salary: '$80k-115k' },
@@ -3304,7 +4502,25 @@ const CAREER_PIVOTS = {
   'electrical-engineering': {
   title: 'Electrical Engineering',
   intro: 'Electrical engineering is foundational to nearly every technology industry. From power grids to consumer electronics to autonomous vehicles — EEs are in demand across more sectors than almost any other engineering discipline.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Embedded Systems Engineer',
+    'Power Systems Engineer',
+    'RF/Communications Engineer'
+  ],
+  fastestHiringRoles: [
+    'Electrical Design Engineer',
+    'Test Engineer',
+    'Controls Engineer'
+  ],
+  mostUnderratedPath: 'Power Systems Engineer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Electrical Engineering Intern',
+    'Embedded Systems Intern',
+    'Power Systems Intern'
+  ]
+},
   careers: [
     { career: 'Electrical Design Engineer', growth: '6%', why: 'Design electrical systems for buildings, products, and infrastructure', salary: '$75k-105k' },
     { career: 'Power Systems Engineer', growth: '5%', why: 'Grid modernization and renewable energy are driving significant demand', salary: '$75k-105k' },
@@ -3365,6 +4581,25 @@ const CAREER_PIVOTS = {
   title: 'Engineering Physics',
   intro: 'Engineering physics is one of the most rigorous and flexible degrees available. You graduate with deep analytical skills that apply to cutting-edge fields — quantum computing, photonics, advanced materials, and more.',
 
+  quickReality: {
+  bestPayingPivots: [
+    'Quantitative Analyst',
+    'Data Scientist',
+    'Optical / Photonics Engineer'
+  ],
+  fastestHiringRoles: [
+    'Research Engineer',
+    'Data Analyst',
+    'Systems Engineer'
+  ],
+  mostUnderratedPath: 'Optical / Photonics Engineer',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Research Engineering Intern',
+    'Data Science Intern',
+    'Photonics Internship'
+  ]
+},
   careers: [
     { career: 'Research Engineer', growth: '8%', why: 'National labs, R&D departments, and tech companies need your analytical depth', salary: '$75k-110k' },
     { career: 'Data Scientist', growth: '35%', why: 'Your mathematical and physics background is ideal for complex data problems', salary: '$85k-120k' },
@@ -3424,7 +4659,25 @@ const CAREER_PIVOTS = {
   'environmental-engineering': {
   title: 'Environmental Engineering',
   intro: 'Environmental engineering is growing steadily as climate change, sustainability regulations, and infrastructure investment create ongoing demand. You sit at the intersection of engineering, science, and policy.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Water Resources Engineer',
+    'Sustainability Engineer',
+    'Environmental Consultant'
+  ],
+  fastestHiringRoles: [
+    'Environmental Engineer',
+    'EHS Specialist',
+    'Remediation Engineer'
+  ],
+  mostUnderratedPath: 'Water Resources Engineer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Environmental Engineering Intern',
+    'Water Resources Intern',
+    'EHS Internship'
+  ]
+},
   careers: [
     { career: 'Environmental Engineer', growth: '4%', why: 'Water treatment, air quality, waste management — core environmental engineering roles', salary: '$60k-85k' },
     { career: 'Sustainability Engineer', growth: '12%', why: 'Companies increasingly need engineers who understand environmental impact and ESG goals', salary: '$65k-90k' },
@@ -3484,7 +4737,25 @@ const CAREER_PIVOTS = {
   'industrial-engineering': {
   title: 'Industrial Engineering',
   intro: 'Industrial engineering is one of the most versatile engineering degrees — you optimize systems, processes, and operations. This applies to manufacturing, healthcare, logistics, tech, and consulting.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Operations Research Analyst',
+    'Management Consultant',
+    'Supply Chain Engineer'
+  ],
+  fastestHiringRoles: [
+    'Process Improvement Engineer',
+    'Supply Chain Analyst',
+    'Operations Analyst'
+  ],
+  mostUnderratedPath: 'Supply Chain Engineer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Industrial Engineering Intern',
+    'Operations Intern',
+    'Supply Chain Intern'
+  ]
+},
   careers: [
     { career: 'Operations Research Analyst', growth: '23%', why: 'Optimize complex systems using mathematical models — exactly what IE trains you for', salary: '$70k-100k' },
     { career: 'Supply Chain Analyst', growth: '18%', why: 'Improve sourcing, logistics, inventory, and flow across complex operations', salary: '$60k-85k' },
@@ -3544,7 +4815,25 @@ const CAREER_PIVOTS = {
 'materials-science-engineering': {
   title: 'Materials Science Engineering',
   intro: 'Materials science engineering is foundational to every physical product — from semiconductors to medical implants to aerospace components. The field is growing rapidly with clean energy and advanced manufacturing.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Process Engineer (Semiconductor)',
+    'Materials Engineer',
+    'Research Scientist (Industry)'
+  ],
+  fastestHiringRoles: [
+    'Quality Engineer',
+    'Materials Lab Technician',
+    'Manufacturing Engineer'
+  ],
+  mostUnderratedPath: 'Process Engineer (Semiconductor)',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Materials Engineering Intern',
+    'Semiconductor Process Intern',
+    'Quality Engineering Intern'
+  ]
+},
   careers: [
     { career: 'Materials Engineer', growth: '6%', why: 'Develop, test, and improve materials for products across industries', salary: '$70k-95k' },
     { career: 'Process Engineer (Semiconductor)', growth: '9%', why: 'Semiconductor manufacturing needs materials expertise urgently', salary: '$80k-110k' },
@@ -3604,7 +4893,25 @@ const CAREER_PIVOTS = {
   'mechanical-engineering': {
   title: 'Mechanical Engineering',
   intro: 'Mechanical engineering is the broadest and most foundational engineering degree. If something moves, has parts, or uses energy — a mechanical engineer was involved. The degree opens doors across virtually every industry.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Product Development Engineer',
+    'Technical Sales Engineer',
+    'Systems Engineer'
+  ],
+  fastestHiringRoles: [
+    'Manufacturing Engineer',
+    'Quality Engineer',
+    'Process Engineer'
+  ],
+  mostUnderratedPath: 'Technical Sales Engineer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Mechanical Engineering Intern',
+    'Manufacturing Engineer Intern',
+    'Process Engineer Intern'
+  ]
+},
   careers: [
     { career: 'Mechanical Design Engineer', growth: '7%', why: 'Design physical products — from consumer goods to industrial equipment', salary: '$70k-95k' },
     { career: 'Manufacturing Engineer', growth: '8%', why: 'Improve how products are made — high demand in reshoring and advanced manufacturing', salary: '$68k-90k' },
@@ -3664,7 +4971,25 @@ const CAREER_PIVOTS = {
 'software-engineering': {
   title: 'Software Engineering',
   intro: 'Software engineering is one of the most in-demand degrees in the world. Unlike computer science, which is more theoretical, software engineering is specifically designed for building production software systems.',
-
+quickReality: {
+  bestPayingPivots: [
+    'Software Engineer',
+    'DevOps / Platform Engineer',
+    'Product Manager (Technical)'
+  ],
+  fastestHiringRoles: [
+    'QA Engineer',
+    'Full Stack Developer',
+    'Support Engineer'
+  ],
+  mostUnderratedPath: 'DevOps / Platform Engineer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Software Engineering Intern',
+    'Full Stack Developer Intern',
+    'DevOps Intern'
+  ]
+},
   careers: [
     { career: 'Software Engineer', growth: '22%', why: 'Core role — building applications, systems, and platforms', salary: '$90k-130k' },
     { career: 'DevOps/Platform Engineer', growth: '19%', why: 'Build and maintain the infrastructure that software runs on', salary: '$90k-130k' },
@@ -3724,7 +5049,25 @@ const CAREER_PIVOTS = {
 'creative-writing': {
   title: 'Creative Writing',
   intro: 'Creative writing develops your ability to communicate with precision, empathy, and clarity — skills that are genuinely rare and valuable in the professional world, even if the path is not obvious.',
-
+quickReality: {
+  bestPayingPivots: [
+    'UX Writer',
+    'Content Strategist',
+    'Technical Writer'
+  ],
+  fastestHiringRoles: [
+    'Copywriting Intern',
+    'Content Marketing Intern',
+    'Technical Writing Intern'
+  ],
+  mostUnderratedPath: 'Technical Writer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'UX Writing Intern',
+    'Technical Writing Intern',
+    'Content Strategy Intern'
+  ]
+},
   careers: [
     { career: 'UX Writer', growth: '23%', why: 'Write the words inside apps and websites — storytelling applied to digital products', salary: '$75k-100k' },
     { career: 'Content Strategist', growth: '15%', why: 'Plan and manage content across organizations — your writing judgment is central', salary: '$60k-85k' },
@@ -3783,15 +5126,35 @@ const CAREER_PIVOTS = {
 },
 'english': {
   title: 'English',
-  intro: 'Strong writing and analytical thinking are genuinely rare. In a world flooded with content, the ability to write with clarity, structure, and precision is valuable — especially in tech, where many people cannot explain things well.',
+  intro: 'English teaches writing, research, analysis, and clear communication — skills that transfer into tech, business, nonprofits, education, and media. The strongest paths usually come from applying writing to a specific industry, not just searching for “English jobs.”',
+
+  quickReality: {
+    bestPayingPivots: [
+      'UX Writer',
+      'Content Strategist',
+      'Technical Writer'
+    ],
+    fastestHiringRoles: [
+      'Technical Writer',
+      'Customer Education Specialist',
+      'Content Marketing'
+    ],
+    mostUnderratedPath: 'Technical Writer',
+    gradSchoolRequired: 'No',
+    strongestInternshipSearches: [
+      'Technical Writing Intern',
+      'UX Writing Intern',
+      'Content Strategy Intern'
+    ]
+  },
 
   careers: [
-    { career: 'UX Writer', growth: '23%', why: 'Write the words inside digital products — storytelling applied to technology', salary: '$75k-100k' },
-    { career: 'Content Strategist', growth: '15%', why: 'Plan and manage content across organizations — your editorial judgment is central', salary: '$65k-90k' },
-    { career: 'Technical Writer', growth: '7%', why: 'Explain complex things simply — your core skill applied to technical documentation', salary: '$60k-80k' },
-    { career: 'Grant Writer', growth: '8%', why: 'Write compelling funding proposals — research and persuasion are your strengths', salary: '$50k-70k' },
-    { career: 'Copywriter', growth: '8%', why: 'Write marketing and advertising copy — English grads often excel here', salary: '$50k-75k' },
-    { career: 'Corporate Communications Specialist', growth: '8%', why: 'Companies need clear writers for internal messaging, leadership communication, and brand voice', salary: '$55k-80k' },
+    { career: 'UX Writer', growth: '23%', why: 'Write the words inside digital products — one of the strongest tech pivots for English majors', salary: '$75k-100k' },
+    { career: 'Content Strategist', growth: '15%', why: 'Plan content across websites, brands, and organizations — editorial judgment becomes business value', salary: '$65k-90k' },
+    { career: 'Technical Writer', growth: '7%', why: 'Explain complex systems clearly — one of the smartest and most underrated writing careers', salary: '$60k-80k' },
+    { career: 'Corporate Communications Specialist', growth: '8%', why: 'Write internal updates, leadership messages, and brand communications for organizations', salary: '$55k-80k' },
+    { career: 'Grant Writer', growth: '8%', why: 'Use research and persuasive writing to help nonprofits, schools, and universities secure funding', salary: '$50k-70k' },
+    { career: 'Copywriter', growth: '8%', why: 'Write marketing and advertising copy that drives attention, trust, and action', salary: '$50k-75k' },
   ],
 
   morePaths: {
@@ -3826,380 +5189,410 @@ const CAREER_PIVOTS = {
   },
 
   searchTerms: [
-    'English Intern',
+    'Technical Writing Intern',
     'UX Writing Intern',
     'Content Strategy Intern',
-    'Technical Writing Intern',
+    'Communications Intern',
+    'Content Marketing Intern',
     'Copywriting Intern',
     'Grant Writing Intern',
-    'Communications Intern',
     'Editorial Intern',
-    'Content Marketing Intern'
+    'Customer Education Intern'
   ],
 
-  struggles: 'Traditional publishing and journalism careers have contracted significantly. English grads who only look for “English jobs” often run into low pay and limited openings. The pivot to digital, tech, nonprofit, and business writing opens much stronger options.',
+  struggles: 'Traditional publishing and journalism careers have contracted significantly. English grads who only look for “English jobs” often run into low pay and limited openings because the better opportunities usually use different titles.',
 
-  honest: 'UX writing, content strategy, and technical writing often pay far more than traditional editorial roles. If you are an English major, learning Figma basics, SEO, content strategy, and documentation tools can make your degree much more marketable.',
+  honest: 'UX writing, content strategy, and technical writing often pay far more than traditional editorial roles. If you are an English major, learning basic UX, SEO, documentation tools, and content strategy can make your degree much more marketable.',
 },
 'film-media-studies': {
   title: 'Film / Media Studies',
-  intro: 'Film and media studies teaches you to understand how stories are told, how audiences respond, and how media shapes culture. These analytical and creative skills apply in surprising ways.',
-
+  intro: 'Film and media studies teaches storytelling, audience psychology, content production, and how media shapes behavior. The strongest career paths usually come from applying those skills to business, marketing, content strategy, and digital experiences — not relying only on traditional film and TV industry jobs.',
+quickReality: {
+  bestPayingPivots: [
+    'UX Researcher',
+    'Content Marketing Manager',
+    'Video Producer'
+  ],
+  fastestHiringRoles: [
+    'Social Media Coordinator',
+    'Production Assistant',
+    'Communications Assistant'
+  ],
+  mostUnderratedPath: 'UX Researcher',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Content Marketing Intern',
+    'Video Production Intern',
+    'Social Media Internship'
+  ]
+},
   careers: [
-    { career: 'Content Marketing Manager', growth: '15%', why: 'Every brand needs compelling video and media content — your production skills apply', salary: '$55k-80k' },
-    { career: 'Social Media Manager', growth: '10%', why: 'Your understanding of visual storytelling and audience engagement is directly applicable', salary: '$50k-75k' },
-    { career: 'UX Researcher', growth: '18%', why: 'Your media analysis skills translate to understanding how people interact with products', salary: '$70k-95k' },
-    { career: 'Video Producer', growth: '12%', why: 'Every company needs video content — corporate video is a growing field', salary: '$50k-75k' },
-    { career: 'Communications Specialist', growth: '8%', why: 'Your storytelling and media literacy make you an effective communicator', salary: '$50k-70k' },
-    { career: 'Public Relations Specialist', growth: '8%', why: 'Understanding audiences and messaging makes PR a strong fit', salary: '$50k-70k' },
+    { career: 'Content Marketing Manager', growth: '15%', why: 'Every company needs strong video, storytelling, and content strategy', salary: '$55k-80k' },
+    { career: 'Social Media Manager', growth: '10%', why: 'Visual storytelling and audience engagement are directly transferable', salary: '$50k-75k' },
+    { career: 'UX Researcher', growth: '18%', why: 'Understanding how people engage with media translates well to product behavior research', salary: '$70k-95k' },
+    { career: 'Video Producer', growth: '12%', why: 'Corporate video, branded content, and digital media are growing fast', salary: '$50k-75k' },
+    { career: 'Communications Specialist', growth: '8%', why: 'Strong storytelling and media literacy make you valuable in business communication', salary: '$50k-70k' },
+    { career: 'Brand Content Strategist', growth: '14%', why: 'Companies need people who understand story, audience, and digital attention', salary: '$60k-85k' },
   ],
 
   morePaths: {
-    'Content + Marketing': [
-      'Content Marketing Specialist',
-      'Brand Strategist',
-      'Social Media Manager',
-      'Digital Marketing Specialist',
-      'Campaign Coordinator'
-    ],
-    'Production + Creative': [
+    'Content + Media': [
       'Video Producer',
-      'Video Editor',
-      'Creative Producer',
-      'Podcast Producer',
-      'Content Creator'
+      'Content Marketing Manager',
+      'Social Media Manager',
+      'Brand Content Strategist',
+      'Creative Producer'
+    ],
+    'Business + Communication': [
+      'Communications Specialist',
+      'Corporate Communications',
+      'Internal Communications',
+      'PR Coordinator',
+      'Marketing Operations'
     ],
     'Research + Product': [
       'UX Researcher',
-      'Consumer Insights Analyst',
+      'Audience Research',
+      'Consumer Insights',
       'Market Research Analyst',
-      'Audience Development Specialist',
-      'User Research Coordinator'
+      'Product Research Support'
     ],
-    'Communications + PR': [
-      'Communications Specialist',
-      'Public Relations Specialist',
-      'Corporate Communications',
-      'Media Relations Coordinator',
-      'Internal Communications Specialist'
+    'Creative Industry + Production': [
+      'Production Coordinator',
+      'Post-Production Support',
+      'Studio Operations',
+      'Agency Project Coordinator',
+      'Creative Project Manager'
     ]
   },
 
   searchTerms: [
     'Media Intern',
     'Content Marketing Intern',
-    'Social Media Intern',
     'Video Production Intern',
-    'UX Research Intern',
+    'Social Media Intern',
     'Communications Intern',
-    'PR Intern',
-    'Marketing Intern',
-    'Creative Producer Intern'
+    'Creative Producer Intern',
+    'UX Research Intern',
+    'Marketing Content Intern',
+    'Production Coordinator Intern'
   ],
 
-  struggles: 'Traditional film and TV industry jobs are extremely competitive, geographically concentrated (LA, NYC), and increasingly disrupted by streaming. The industry has contracted significantly with Hollywood strikes and streaming cutbacks.',
+  struggles: 'Traditional film and TV industry jobs are extremely competitive, concentrated in a few cities like LA and NYC, and have become less stable with streaming disruption, strikes, and shrinking studio budgets. Many students underestimate how difficult that path can be.',
 
-  honest: 'Film industry careers are genuinely difficult to break into and sustain. Corporate video production, content marketing, communications, and social media often offer more stable and accessible paths using the same storytelling skills. Many film grads build hybrid careers instead of one traditional film path.',
+  honest: 'Film industry careers are real, but they are hard to break into and often unstable early on. Corporate video, content strategy, brand storytelling, and UX research usually offer better pay, more stability, and still let you use the exact same creative skills.',
 },
 'fine-arts': {
   title: 'Fine Arts / Studio Art',
-  intro: 'Fine arts develops your visual thinking, creative problem-solving, and ability to communicate through imagery — skills that are surprisingly in demand in the digital economy.',
-
+  intro: 'Fine arts develops visual thinking, creative problem-solving, design judgment, and the ability to communicate through imagery. The strongest professional paths usually come from applying those skills to business, tech, branding, and digital experiences — not relying only on traditional gallery or studio work.',
+quickReality: {
+  bestPayingPivots: [
+    'UX/UI Designer',
+    'Art Director',
+    'Exhibit / Experience Designer'
+  ],
+  fastestHiringRoles: [
+    'Graphic Design Intern',
+    'Content Creator',
+    'Marketing Design Assistant'
+  ],
+  mostUnderratedPath: 'Exhibit / Experience Designer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'UX Design Intern',
+    'Graphic Design Intern',
+    'Creative Design Internship'
+  ]
+},
   careers: [
-    { career: 'UX/UI Designer', growth: '16%', why: 'Your visual training and design sensibility directly apply to digital product design', salary: '$70k-100k' },
-    { career: 'Graphic Designer', growth: '3%', why: 'Apply visual skills to commercial design — corporate design often pays better than freelance', salary: '$50k-70k' },
-    { career: 'Art Director', growth: '6%', why: 'Lead creative teams and visual strategy — requires experience but strong pay', salary: '$75k-110k' },
-    { career: 'Social Media Content Creator', growth: '10%', why: 'Visual content creation is your strength — brands pay well for strong creative', salary: '$45k-70k' },
-    { career: 'Exhibit/Experience Designer', growth: '8%', why: 'Design physical and digital experiences for museums, brands, and events', salary: '$50k-75k' },
-    { career: 'Brand Designer', growth: '12%', why: 'Companies need strong visual identity across web, print, and campaigns', salary: '$60k-85k' },
+    { career: 'UX/UI Designer', growth: '16%', why: 'Visual design and creative problem-solving transfer directly to digital product design', salary: '$70k-100k' },
+    { career: 'Graphic Designer', growth: '3%', why: 'Apply artistic skills to branding, marketing, and commercial design work', salary: '$50k-70k' },
+    { career: 'Art Director', growth: '6%', why: 'Lead creative strategy and visual direction for campaigns and brands', salary: '$75k-110k' },
+    { career: 'Social Media Content Creator', growth: '10%', why: 'Brands pay for strong visual storytelling and original content', salary: '$45k-70k' },
+    { career: 'Exhibit / Experience Designer', growth: '8%', why: 'Design physical and digital experiences for museums, events, and branded spaces', salary: '$50k-75k' },
+    { career: 'Brand Designer', growth: '8%', why: 'Create visual identity systems for companies and products', salary: '$55k-80k' },
   ],
 
   morePaths: {
     'Design + Digital': [
       'UX/UI Designer',
+      'Graphic Designer',
       'Brand Designer',
-      'Visual Designer',
-      'Product Designer',
+      'Product Design Support',
       'Motion Graphics Designer'
     ],
-    'Creative + Marketing': [
-      'Graphic Designer',
-      'Content Creator',
-      'Social Media Designer',
-      'Creative Strategist',
-      'Marketing Designer'
-    ],
-    'Experiential + Physical': [
-      'Exhibit Designer',
-      'Experience Designer',
-      'Retail Display Designer',
-      'Event Designer',
-      'Museum Coordinator'
-    ],
-    'Leadership + Direction': [
+    'Creative Leadership': [
       'Art Director',
-      'Creative Director',
-      'Design Manager',
-      'Studio Manager',
-      'Creative Producer'
+      'Creative Strategist',
+      'Visual Content Lead',
+      'Marketing Design Manager',
+      'Experience Designer'
+    ],
+    'Media + Content': [
+      'Social Media Content Creator',
+      'Content Producer',
+      'Visual Storytelling Specialist',
+      'Video Production Support',
+      'Creative Marketing Coordinator'
+    ],
+    'Applied Creative Paths': [
+      'Exhibit Designer',
+      'Retail Display Designer',
+      'Museum Programs',
+      'Event Experience Design',
+      'Corporate Creative Services'
     ]
   },
 
   searchTerms: [
-    'Graphic Design Intern',
+    'Design Intern',
     'UX Design Intern',
-    'Visual Design Intern',
+    'Graphic Design Intern',
     'Creative Intern',
     'Brand Design Intern',
-    'Content Creation Intern',
-    'Exhibit Design Intern',
     'Marketing Design Intern',
-    'Product Design Intern'
+    'Content Creation Intern',
+    'Art Direction Intern',
+    'Experience Design Intern'
   ],
 
-  struggles: 'Fine arts has one of the most challenging direct career paths of any degree. The starving artist stereotype exists for a reason — pure studio art careers are difficult to sustain financially.',
+  struggles: 'Fine arts has one of the hardest direct career paths when students focus only on being a traditional artist. Freelance instability is real, gallery careers are limited, and pure studio art rarely provides reliable income early on.',
 
-  honest: 'The fine arts grads who do best financially usually make a deliberate pivot to applied design — UX, branding, product design, and art direction. Learning Figma, Adobe Suite, portfolio presentation, and basic web design dramatically improves your options. Your aesthetic sense is genuinely valuable.',
+  honest: 'The fine arts graduates who do best financially usually make a deliberate pivot into applied design — UX, branding, creative strategy, and digital product work. Learning Figma, Adobe Creative Suite, and basic web or motion design can change your entire career trajectory.',
 },
 'gender-womens-studies': {
   title: "Gender / Women's Studies",
-  intro: "Gender and women's studies develops your ability to analyze systems, understand power dynamics, and advocate for equity — skills that are increasingly valuable in HR, nonprofit work, policy, advocacy, and organizational leadership.",
-
+  intro: "Gender and women's studies teaches you to analyze systems, understand power dynamics, communicate across differences, and advocate for equity. The strongest career paths are usually in HR, nonprofit leadership, policy, program management, and organizational operations — not just traditional DEI roles.",
+quickReality: {
+  bestPayingPivots: [
+    'Policy Analyst',
+    'Human Resources Specialist',
+    'Diversity, Equity & Inclusion Specialist'
+  ],
+  fastestHiringRoles: [
+    'Program Coordinator',
+    'Community Outreach Assistant',
+    'HR Assistant'
+  ],
+  mostUnderratedPath: 'Human Resources Specialist',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Policy Intern',
+    'Human Resources Intern',
+    'Nonprofit Program Internship'
+  ]
+},
   careers: [
-    { career: 'Diversity, Equity & Inclusion Specialist', growth: '15%', why: 'Your analytical framework for understanding equity and systems is directly applicable', salary: '$60k-90k' },
-    { career: 'Nonprofit Program Manager', growth: '9%', why: 'Run advocacy, education, and social service programs aligned with your values', salary: '$50k-75k' },
-    { career: 'Human Resources Specialist', growth: '10%', why: 'Your understanding of workplace equity, policy, and people systems fits HR well', salary: '$50k-70k' },
-    { career: 'Policy Analyst', growth: '6%', why: 'Analyze policy issues and advocate for change in government and nonprofit settings', salary: '$55k-80k' },
-    { career: 'Community Outreach Coordinator', growth: '8%', why: 'Lead programs, partnerships, and advocacy work within communities', salary: '$45k-65k' },
-    { career: 'Grant Writer', growth: '8%', why: 'Mission-driven organizations need strong writers who can secure funding and tell compelling stories', salary: '$50k-70k' },
+    { career: 'Human Resources Specialist', growth: '10%', why: 'Workplace culture, policy, and people systems make HR a strong and practical fit', salary: '$50k-70k' },
+    { career: 'Nonprofit Program Manager', growth: '9%', why: 'Lead advocacy, education, and social service programs aligned with mission-driven work', salary: '$50k-75k' },
+    { career: 'Policy Analyst', growth: '6%', why: 'Analyze and improve policy for government agencies, nonprofits, and think tanks', salary: '$55k-80k' },
+    { career: 'Diversity, Equity & Inclusion Specialist', growth: '15%', why: 'Apply your equity framework directly inside organizations and institutions', salary: '$60k-90k' },
+    { career: 'Community Outreach Coordinator', growth: '8%', why: 'Build relationships, advocacy efforts, and community-based programs', salary: '$45k-65k' },
+    { career: 'Program Coordinator', growth: '10%', why: 'Operations and leadership role supporting mission-driven teams and organizations', salary: '$50k-70k' },
   ],
 
   morePaths: {
-    'People + HR': [
-      'HR Specialist',
-      'Talent Development Coordinator',
-      'Employee Relations Specialist',
-      'Recruiting Coordinator',
-      'Learning & Development Specialist'
+    'People + Organizations': [
+      'Human Resources Specialist',
+      'DEI Specialist',
+      'Recruiter',
+      'Employee Experience Coordinator',
+      'Training & Development Specialist'
     ],
-    'Policy + Advocacy': [
-      'Policy Analyst',
-      'Government Relations Specialist',
-      'Legislative Assistant',
-      'Advocacy Coordinator',
-      'Public Affairs Associate'
-    ],
-    'Nonprofit + Community': [
+    'Nonprofit + Advocacy': [
       'Nonprofit Program Manager',
       'Community Outreach Coordinator',
-      'Program Coordinator',
-      'Volunteer Manager',
-      'Development Associate'
-    ],
-    'Writing + Strategy': [
       'Grant Writer',
-      'Communications Specialist',
-      'Corporate Social Responsibility Coordinator',
-      'Content Strategist',
-      'Program Evaluation Analyst'
+      'Advocacy Specialist',
+      'Volunteer Program Manager'
+    ],
+    'Policy + Government': [
+      'Policy Analyst',
+      'Government Program Coordinator',
+      'Legislative Assistant',
+      'Public Affairs Associate',
+      'Compliance Specialist'
+    ],
+    'Higher ROI Pivots': [
+      'Corporate HR',
+      'Healthcare Program Management',
+      'University Administration',
+      'Consulting Track',
+      'Graduate School Path'
     ]
   },
 
   searchTerms: [
-    'Human Resources Intern',
-    'Policy Intern',
+    'HR Intern',
     'Nonprofit Intern',
-    'Community Outreach Intern',
+    'Policy Intern',
     'Program Coordinator Intern',
-    'Grant Writing Intern',
+    'Community Outreach Intern',
+    'Government Affairs Intern',
     'DEI Intern',
-    'Advocacy Intern',
-    'Government Relations Intern'
+    'University Administration Intern',
+    'Advocacy Internship'
   ],
 
-  struggles: 'Gender studies is not well understood by many employers and requires strong translation work. DEI roles, while important, have also faced political backlash and hiring shifts in some corporate environments.',
+  struggles: 'This degree often requires stronger translation than students expect because employers do not hire for the major title — they hire for skills like project management, policy analysis, operations, and people leadership. DEI roles alone are also narrower and more volatile than many students realize.',
 
-  honest: 'This degree works best when combined with practical skills like data analysis, project management, grant writing, and program operations. The strongest careers usually come from showing measurable impact, not just good intentions. Graduate school is common for higher-level leadership roles.',
-},
-'journalism': {
-  title: 'Journalism',
-  intro: 'Journalism trains you to find truth, communicate clearly, work under pressure, and make complex ideas understandable. These skills are genuinely valuable — even as traditional newsroom careers have contracted dramatically.',
-
-  careers: [
-    { career: 'Content Strategist', growth: '15%', why: 'Your editorial judgment and audience understanding apply directly to content strategy', salary: '$60k-85k' },
-    { career: 'Communications Manager', growth: '8%', why: 'Write and manage communications for organizations — your journalism skills transfer well', salary: '$60k-85k' },
-    { career: 'UX Writer', growth: '23%', why: 'Journalism trains you to write clearly for audiences — UX writing is a strong modern fit', salary: '$75k-100k' },
-    { career: 'Public Relations Specialist', growth: '8%', why: 'Understanding how journalists think makes you much stronger in PR and media relations', salary: '$50k-70k' },
-    { career: 'Technical Writer', growth: '7%', why: 'Explaining complex topics clearly is one of the strongest transferable journalism skills', salary: '$60k-80k' },
-    { career: 'Corporate Communications Specialist', growth: '8%', why: 'Companies need strong internal and external storytelling far beyond the newsroom', salary: '$55k-80k' },
-  ],
-
-  morePaths: {
-    'Writing + Editorial': [
-      'Content Strategist',
-      'Editorial Assistant',
-      'Copy Editor',
-      'Technical Writer',
-      'Content Marketing Specialist'
-    ],
-    'Communications + PR': [
-      'Communications Manager',
-      'Public Relations Specialist',
-      'Corporate Communications',
-      'Media Relations Coordinator',
-      'Internal Communications Specialist'
-    ],
-    'Digital + Product': [
-      'UX Writer',
-      'SEO Content Specialist',
-      'Newsletter Editor',
-      'Audience Development Manager',
-      'Product Content Designer'
-    ],
-    'Research + Analysis': [
-      'Market Research Analyst',
-      'Research Associate',
-      'Policy Research Assistant',
-      'Consumer Insights Analyst',
-      'Communications Analyst'
-    ]
-  },
-
-  searchTerms: [
-    'Editorial Intern',
-    'Communications Intern',
-    'Content Writing Intern',
-    'PR Intern',
-    'Corporate Communications Intern',
-    'UX Writing Intern',
-    'Technical Writing Intern',
-    'Marketing Content Intern',
-    'Research Intern'
-  ],
-
-  struggles: 'Traditional journalism jobs — newspapers, magazines, broadcast — have contracted dramatically. Thousands of newsroom jobs have disappeared in the past decade, and local news is in genuine crisis.',
-
-  honest: 'If your goal is traditional journalism, go in with clear eyes — the industry is difficult and pay is often lower than people expect. Content strategy, communications, UX writing, and technical writing often offer similar intellectual work with significantly better pay and stability.',
+  honest: 'This degree works best when paired with practical skills like Excel, project management, grant writing, HR systems, or data analysis. HR, program management, and policy roles are often stronger and more stable than relying only on dedicated DEI roles.',
 },
 'theater': {
   title: 'Theater / Drama',
-  intro: 'Theater training develops discipline, presence, collaboration, and the ability to connect with audiences — skills that translate into surprising places in the professional world.',
-
+  intro: 'Theater develops communication, presence, adaptability, collaboration, and the ability to connect with people under pressure. Those skills translate far beyond acting — especially in training, client-facing roles, events, leadership, and communication-heavy careers.',
+quickReality: {
+  bestPayingPivots: [
+    'UX Researcher',
+    'Corporate Trainer',
+    'Customer Success Manager'
+  ],
+  fastestHiringRoles: [
+    'Events Coordinator',
+    'Communications Assistant',
+    'Training Coordinator'
+  ],
+  mostUnderratedPath: 'Corporate Trainer',
+  gradSchoolRequired: 'No',
+  strongestInternshipSearches: [
+    'Event Management Intern',
+    'Training and Development Intern',
+    'Communications Intern'
+  ]
+},
   careers: [
-    { career: 'Corporate Trainer', growth: '11%', why: 'Your performance and teaching skills make you exceptional at presenting, facilitating, and leading workshops', salary: '$55k-80k' },
-    { career: 'User Experience Researcher', growth: '18%', why: 'Empathy, observation, and human behavior — core theater skills applied to product design', salary: '$70k-95k' },
-    { career: 'Customer Success Manager', growth: '20%', why: 'Your ability to connect with people and adapt to your audience is a real differentiator', salary: '$55k-80k' },
-    { career: 'Communications Specialist', growth: '8%', why: 'Comfort speaking, presenting, and storytelling translates strongly to professional communication roles', salary: '$50k-70k' },
-    { career: 'Events Manager', growth: '18%', why: 'Production, logistics, and live coordination transfer directly to event planning and operations', salary: '$50k-70k' },
-    { career: 'Sales Engineer', growth: '6%', why: 'Confidence, presentation, and relationship-building make theater grads surprisingly strong in people-facing sales roles', salary: '$75k-110k' },
+    { career: 'Corporate Trainer', growth: '11%', why: 'Presentation, facilitation, and audience engagement make this one of the strongest theater pivots', salary: '$55k-80k' },
+    { career: 'UX Researcher', growth: '18%', why: 'Observation, empathy, and understanding human behavior translate directly to product research', salary: '$70k-95k' },
+    { career: 'Customer Success Manager', growth: '20%', why: 'Connecting with people and adapting to your audience is a major advantage here', salary: '$55k-80k' },
+    { career: 'Communications Specialist', growth: '8%', why: 'Public speaking, storytelling, and message delivery are core theater strengths', salary: '$50k-70k' },
+    { career: 'Events Manager', growth: '18%', why: 'Production coordination and live event experience transfer naturally', salary: '$50k-70k' },
+    { career: 'Sales Enablement Specialist', growth: '12%', why: 'Training teams, presenting ideas, and communication-heavy work fit theater grads well', salary: '$60k-85k' },
   ],
 
   morePaths: {
+    'Performance + Creative': [
+      'Acting',
+      'Production Coordinator',
+      'Stage Management',
+      'Casting Support',
+      'Creative Producer'
+    ],
     'People + Communication': [
       'Corporate Trainer',
       'Customer Success Manager',
       'Communications Specialist',
-      'Recruiter',
-      'Learning & Development Specialist'
+      'Sales Enablement',
+      'Public Speaking Roles'
     ],
-    'Research + Product': [
+    'Research + Human Behavior': [
       'UX Researcher',
-      'Market Research Analyst',
-      'User Research Coordinator',
-      'Consumer Insights Analyst',
-      'Community Manager'
+      'Market Research',
+      'Consumer Insights',
+      'Employee Experience',
+      'Learning & Development'
     ],
-    'Events + Production': [
+    'Events + Operations': [
       'Events Manager',
-      'Event Coordinator',
-      'Production Coordinator',
-      'Creative Producer',
-      'Program Manager'
-    ],
-    'Performance + Business': [
-      'Sales Engineer',
-      'Account Executive',
-      'Public Relations Specialist',
-      'Brand Ambassador',
-      'Corporate Facilitator'
+      'Conference Coordinator',
+      'Experiential Marketing',
+      'Program Coordinator',
+      'Corporate Event Management'
     ]
   },
 
   searchTerms: [
+    'Theater Intern',
+    'Corporate Training Intern',
+    'Events Intern',
     'Communications Intern',
     'Customer Success Intern',
-    'Corporate Training Intern',
+    'Production Intern',
     'UX Research Intern',
-    'Event Planning Intern',
-    'Recruiting Intern',
-    'Marketing Intern',
-    'Sales Intern',
+    'Sales Enablement Intern',
     'Program Coordinator Intern'
   ],
 
-  struggles: 'Professional acting and performance careers are among the most competitive in any field. Most actors supplement with other work throughout their careers. The financial instability is real.',
+  struggles: 'Professional acting and performance careers are among the most competitive in any field. Most performers work multiple jobs, freelance heavily, and face real financial instability. The gap between passion and paycheck can be significant.',
 
-  honest: 'If performance is your passion, pursue it — but build parallel skills that pay the bills. Many theater grads build deeply satisfying careers in training, UX research, communications, and events while keeping performance as a serious side pursuit instead of their only source of income.',
+  honest: 'If performance is your passion, pursue it — but build parallel skills that pay consistently. Corporate training, UX research, customer success, and communications often offer stronger financial stability while still using the same strengths that made theater a good fit in the first place.',
 },
 'religious-studies': {
   title: 'Religious Studies',
-  intro: 'Religious studies teaches you to analyze texts, understand diverse cultures, think philosophically, and engage with humanity’s deepest questions. These skills are more transferable than most people realize.',
-
+  intro: 'Religious studies teaches critical thinking, ethics, cultural understanding, deep reading, and how people build meaning and community. The strongest career paths usually come through nonprofit leadership, education, counseling support, policy, and people-focused organizational work — not just ministry or academia.',
+quickReality: {
+  bestPayingPivots: [
+    'Policy Analyst',
+    'Nonprofit Program Manager',
+    'Community Outreach Director'
+  ],
+  fastestHiringRoles: [
+    'Program Coordinator',
+    'Community Outreach Assistant',
+    'Case Manager'
+  ],
+  mostUnderratedPath: 'Policy Analyst',
+  gradSchoolRequired: 'Sometimes',
+  strongestInternshipSearches: [
+    'Nonprofit Internship',
+    'Policy Intern',
+    'Community Outreach Internship'
+  ]
+},
   careers: [
-    { career: 'Nonprofit Program Manager', growth: '9%', why: 'Many nonprofits are faith-based or values-driven — your background is directly relevant', salary: '$50k-75k' },
-    { career: 'Chaplain/Counselor', growth: '8%', why: 'Hospitals, military, universities, and prisons employ chaplains — meaningful work with steady demand', salary: '$50k-75k' },
-    { career: 'Community Outreach Coordinator', growth: '8%', why: 'Your understanding of diverse communities is valuable in outreach and relationship-building roles', salary: '$45k-65k' },
-    { career: 'Policy Analyst', growth: '6%', why: 'Religion intersects with law, politics, ethics, and culture — your analytical skills apply well', salary: '$55k-80k' },
-    { career: 'Teacher/Educator', growth: '5%', why: 'Ethics, humanities, history, and social studies education are natural fits', salary: '$45k-65k' },
-    { career: 'Grant Writer', growth: '8%', why: 'Faith-based and nonprofit organizations need strong writers who can secure funding and tell meaningful stories', salary: '$50k-70k' },
+    { career: 'Nonprofit Program Manager', growth: '9%', why: 'Many nonprofits are mission-driven and values-based — your background fits naturally', salary: '$50k-75k' },
+    { career: 'Chaplain / Counselor', growth: '8%', why: 'Hospitals, military, prisons, and universities employ chaplains and support roles', salary: '$50k-75k' },
+    { career: 'Community Outreach Coordinator', growth: '8%', why: 'Build relationships and programs across diverse communities', salary: '$45k-65k' },
+    { career: 'Policy Analyst', growth: '6%', why: 'Religion intersects with law, ethics, politics, and public policy', salary: '$55k-80k' },
+    { career: 'Teacher / Educator', growth: '5%', why: 'Social studies, ethics, philosophy, and humanities education', salary: '$45k-65k' },
+    { career: 'University Program Coordinator', growth: '10%', why: 'Student affairs, campus life, and mission-driven higher education roles fit well', salary: '$50k-70k' },
   ],
 
   morePaths: {
-    'Nonprofit + Community': [
+    'Mission + Nonprofit Work': [
       'Nonprofit Program Manager',
       'Community Outreach Coordinator',
-      'Volunteer Coordinator',
-      'Program Director',
-      'Development Associate'
+      'Grant Writing',
+      'Advocacy Programs',
+      'Faith-Based Organizations'
     ],
-    'Faith + Counseling': [
+    'Counseling + Support': [
       'Chaplain',
-      'Campus Ministry Coordinator',
-      'Pastoral Counselor',
-      'Youth Program Director',
-      'Spiritual Care Coordinator'
+      'Counselor Support Roles',
+      'Campus Ministry',
+      'Student Support Services',
+      'Community Services'
     ],
-    'Policy + Education': [
-      'Policy Analyst',
-      'Teacher/Educator',
-      'Legislative Assistant',
-      'Public Affairs Associate',
-      'Government Relations Specialist'
+    'Education + Institutions': [
+      'Teacher',
+      'University Program Coordinator',
+      'Student Affairs',
+      'Academic Advising',
+      'Humanities Education'
     ],
-    'Writing + Administration': [
-      'Grant Writer',
-      'Communications Specialist',
-      'Program Coordinator',
-      'Administrative Manager',
-      'Corporate Social Responsibility Coordinator'
+    'Long-Term Growth Paths': [
+      'Graduate School',
+      'Divinity School',
+      'Law School',
+      'Social Work',
+      'Public Administration'
     ]
   },
 
   searchTerms: [
     'Nonprofit Intern',
     'Community Outreach Intern',
+    'Student Affairs Intern',
     'Program Coordinator Intern',
     'Policy Intern',
-    'Grant Writing Intern',
-    'Campus Ministry Intern',
-    'Communications Intern',
-    'Education Intern',
-    'Government Relations Intern'
+    'University Administration Intern',
+    'Campus Ministry Internship',
+    'Education Internship',
+    'Social Services Internship'
   ],
 
-  struggles: 'Religious studies has one of the narrowest direct career paths of any humanities degree. Seminary and academic careers require significant additional education, and translating the degree into secular careers takes deliberate effort.',
+  struggles: 'Religious studies has one of the narrowest direct bachelor-level career paths if students expect ministry or academia to be the only options. Seminary and academic careers require significant additional education, and many employers will need you to clearly explain how your skills apply.',
 
-  honest: 'Religious studies works best as preparation for graduate school (divinity, law, counseling, social work) or when paired with practical skills like project management, grant writing, or nonprofit operations. Nonprofit and faith-based organizations are often the strongest professional starting points.',
+  honest: 'This degree works best when paired with practical experience — internships, nonprofit work, counseling support, education, or program management. Ministry is not the only path. Nonprofit leadership, higher education, and community-based work are often stronger and more stable professional homes.',
 },
 };
 
@@ -4332,6 +5725,60 @@ const MajorPage = ({ setCurrentPage }) => {
     Each button opens a pre-filtered search for this exact job title — not a general search.
   </p>
 </div>
+{majorData.quickReality && (
+  <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-8">
+    <h2 className="text-2xl font-bold text-gray-900 mb-2">
+      Quick Reality Check
+    </h2>
+    <p className="text-sm text-gray-600 mb-6">
+      A faster way to understand the smartest paths for this major.
+    </p>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="bg-green-50 border border-green-100 rounded-xl p-4">
+        <h3 className="font-bold text-gray-900 mb-2">Best Paying Pivots</h3>
+        <p className="text-sm text-gray-700">
+          {majorData.quickReality.bestPayingPivots.join(' • ')}
+        </p>
+      </div>
+
+      <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
+        <h3 className="font-bold text-gray-900 mb-2">Fastest Hiring Roles</h3>
+        <p className="text-sm text-gray-700">
+          {majorData.quickReality.fastestHiringRoles.join(' • ')}
+        </p>
+      </div>
+
+      <div className="bg-orange-50 border border-orange-100 rounded-xl p-4">
+        <h3 className="font-bold text-gray-900 mb-2">Most Underrated Path</h3>
+        <p className="text-sm text-gray-700">
+          {majorData.quickReality.mostUnderratedPath}
+        </p>
+      </div>
+
+      <div className="bg-purple-50 border border-purple-100 rounded-xl p-4">
+        <h3 className="font-bold text-gray-900 mb-2">Grad School Required?</h3>
+        <p className="text-sm text-gray-700">
+          {majorData.quickReality.gradSchoolRequired}
+        </p>
+      </div>
+
+      <div className="md:col-span-2 bg-gray-50 border border-gray-200 rounded-xl p-4">
+        <h3 className="font-bold text-gray-900 mb-2">Best Internship Searches</h3>
+        <div className="flex flex-wrap gap-2">
+          {majorData.quickReality.strongestInternshipSearches.map((term) => (
+            <span
+              key={term}
+              className="px-3 py-1 rounded-full bg-white border border-gray-200 text-sm text-gray-700"
+            >
+              {term}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+)}
 
           {/* Career Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
