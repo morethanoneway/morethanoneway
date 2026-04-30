@@ -5722,7 +5722,7 @@ useEffect(() => {
       className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-3 py-2 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-sm">
       Handshake <ExternalLink className="w-3 h-3" />
     </a>
-    <a href={`https://www.ziprecruiter.com/candidate/search?search=${encodeURIComponent(majorData.title.replace(' Degree', '') + ' intern')}`}
+    <a href={`https://www.ziprecruiter.com/jobs-search?q=${encodeURIComponent(majorData.title.replace(' Degree', '') + ' intern')}`}
       target="_blank" rel="noopener noreferrer"
       className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-3 py-2 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-sm">
       ZipRecruiter <ExternalLink className="w-3 h-3" />
@@ -5853,7 +5853,7 @@ useEffect(() => {
       className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-2 py-1.5 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-xs">
       Handshake <ExternalLink className="w-3 h-3" />
     </a>
-    <a href={`https://www.ziprecruiter.com/candidate/search?search=${encodeURIComponent(career.career + ' intern')}`}
+    <a href={`https://www.ziprecruiter.com/jobs-search?q=${encodeURIComponent(career.career + ' intern')}`}
       target="_blank" rel="noopener noreferrer"
       className="flex items-center justify-center gap-1 rounded-xl border border-[#006581]/25 bg-white px-2 py-1.5 font-semibold text-[#006581] hover:bg-[#006581]/10 transition-colors text-xs">
       ZipRecruiter <ExternalLink className="w-3 h-3" />

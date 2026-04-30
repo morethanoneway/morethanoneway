@@ -684,6 +684,22 @@ const PivotPage = ({ setCurrentPage }) => {
               </div>
             </div>
           ))}
+     </div>
+
+        {/* Don't see your major? */}
+        <div className="mt-10 bg-[#006581] rounded-2xl p-7 text-center text-white">
+          <h3 className="font-bold text-xl mb-2">Don't see your major?</h3>
+          <p className="text-white/80 text-sm mb-4">
+            We're adding new majors all the time. Let us know what you're studying and we'll add it.
+          </p>
+          
+            <a href="https://forms.gle/UeBShsPwDcjjX5287"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-[#006581] px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all"
+          >
+            Request your major →
+          </a>
         </div>
 
         {/* Data attribution */}

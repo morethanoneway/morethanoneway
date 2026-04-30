@@ -1,0 +1,7 @@
+<svg width="100%" viewBox="0 0 1440 500" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Hero background shapes</title>
+  <desc>Soft decorative circles for homepage hero section</desc>
+  <circle cx="1560" cy="120" r="220" fill="#006581" fill-opacity="0.07"/>
+  <circle cx="1420" cy="320" r="130" fill="#FB923C" fill-opacity="0.07"/>
+  <circle cx="-120" cy="360" r="200" fill="#006581" fill-opacity="0.07"/>
+</svg>
