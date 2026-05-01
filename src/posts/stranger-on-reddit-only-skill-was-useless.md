@@ -2,7 +2,7 @@
 id: 11
 title: "Things I Told a Stranger on Reddit Who Thought Their Only Skill Was Useless"
 slug: stranger-on-reddit-only-skill-was-useless
-date: May 10, 2026
+date: May 15, 2026
 category: Stranger on Reddit
 tags:
   - writing careers

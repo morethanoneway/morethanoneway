@@ -3388,25 +3388,6 @@ quickReality: {
 'nursing': {
   title: 'Nursing',
   intro: 'Nursing is one of the most reliable and meaningful career paths available. The job market is consistently strong, salaries are competitive, and the work directly helps people.',
-quickReality: {
-  bestPayingPivots: [
-    'Travel Nurse',
-    'Informatics Nurse',
-    'Healthcare Administrator'
-  ],
-  fastestHiringRoles: [
-    'Registered Nurse',
-    'Clinical Support Roles',
-    'Patient Care Coordinator'
-  ],
-  mostUnderratedPath: 'Informatics Nurse',
-  gradSchoolRequired: 'Yes',
-  strongestInternshipSearches: [
-    'Nurse Extern',
-    'Clinical Nursing Internship',
-    'Hospital Student Nurse Program'
-  ]
-},
   quickReality: {
   bestPayingPivots: [
     'Travel Nurse',

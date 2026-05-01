@@ -14,6 +14,14 @@ import {
   Search,
   Tag,
   X,
+  Calculator,
+  FlaskConical,
+  Zap,
+  Microscope,
+  Monitor,
+  Settings,
+  BarChart2,
+  Brain,
 } from "lucide-react";
 
 const StudyResources = ({ onBack }) => {
@@ -62,7 +70,7 @@ const StudyResources = ({ onBack }) => {
       {
         key: "math",
         label: "Mathematics",
-        icon: "📐",
+        icon: <Calculator className="w-4 h-4 text-tealBrand/80" />,
         tags: ["Math"],
         links: [
           { name: "Professor Leonard", url: "https://www.youtube.com/@ProfessorLeonard", tags: ["Math"] },
@@ -73,7 +81,7 @@ const StudyResources = ({ onBack }) => {
       {
         key: "chem",
         label: "Chemistry",
-        icon: "🧪",
+        icon: <FlaskConical className="w-4 h-4 text-tealBrand/80" />,
         tags: ["Chem"],
         links: [
           { name: "The Organic Chemistry Tutor", url: "https://www.youtube.com/@TheOrganicChemistryTutor", tags: ["Chem", "Math", "Physics"] },
@@ -83,7 +91,7 @@ const StudyResources = ({ onBack }) => {
       {
         key: "physics",
         label: "Physics",
-        icon: "⚡",
+        icon: <Zap className="w-4 h-4 text-tealBrand/80" />,
         tags: ["Physics"],
         links: [
           { name: "Michel van Biezen", url: "https://www.youtube.com/@MichelvanBiezen", tags: ["Physics", "Math"] },
@@ -94,7 +102,7 @@ const StudyResources = ({ onBack }) => {
       {
         key: "bio",
         label: "Biology",
-        icon: "🧬",
+        icon: <Microscope className="w-4 h-4 text-tealBrand/80" />,
         tags: ["Biology"],
         links: [
           { name: "Amoeba Sisters", url: "https://www.youtube.com/@AmoebaSisters", tags: ["Biology"] },
@@ -104,7 +112,7 @@ const StudyResources = ({ onBack }) => {
       {
         key: "cs",
         label: "Computer Science & Programming",
-        icon: "💻",
+        icon: <Monitor className="w-4 h-4 text-tealBrand/80" />,
         tags: ["CS"],
         links: [
           { name: "CS Dojo", url: "https://www.youtube.com/@CSDojo", tags: ["CS"] },
@@ -115,7 +123,7 @@ const StudyResources = ({ onBack }) => {
       {
         key: "econ",
         label: "Economics & Business",
-        icon: "📊",
+        icon: <BarChart2 className="w-4 h-4 text-tealBrand/80" />,
         tags: ["Business"],
         links: [
           { name: "CrashCourse Economics", url: "https://www.youtube.com/@crashcourse", tags: ["Business", "General"] },
@@ -125,7 +133,7 @@ const StudyResources = ({ onBack }) => {
       {
         key: "writing",
         label: "Writing & Humanities",
-        icon: "📚",
+        icon: <BookOpen className="w-4 h-4 text-tealBrand/80" />,
         tags: ["Writing"],
         links: [
           { name: "CrashCourse (history, etc.)", url: "https://www.youtube.com/@crashcourse", tags: ["Writing", "General"] },
@@ -204,7 +212,7 @@ const StudyResources = ({ onBack }) => {
     () => [
       {
         title: "Mathematics",
-        icon: "📐",
+        icon: <Calculator className="w-4 h-4 text-tealBrand/80" />,
         tags: ["Math"],
         items: [
           {
@@ -223,7 +231,7 @@ const StudyResources = ({ onBack }) => {
       },
       {
         title: "Chemistry",
-        icon: "🧪",
+        icon: <FlaskConical className="w-4 h-4 text-tealBrand/80" />,
         tags: ["Chem"],
         items: [
           {
@@ -236,7 +244,7 @@ const StudyResources = ({ onBack }) => {
       },
       {
         title: "Physics",
-        icon: "⚡",
+        icon: <Zap className="w-4 h-4 text-tealBrand/80" />,
         tags: ["Physics"],
         items: [
           {
@@ -249,7 +257,7 @@ const StudyResources = ({ onBack }) => {
       },
       {
         title: "Computer Science",
-        icon: "💻",
+        icon: <Monitor className="w-4 h-4 text-tealBrand/80" />,
         tags: ["CS"],
         items: [
           {
@@ -257,6 +265,195 @@ const StudyResources = ({ onBack }) => {
             url: "https://www.geeksforgeeks.org/",
             desc: "Programming tutorials, data structures, algorithms",
             tags: ["CS"],
+          },
+        ],
+      },
+    ],
+    []
+  );
+
+  const FREE_TEXTBOOKS = useMemo(
+    () => [
+      {
+        title: "Mathematics",
+        icon: <Calculator className="w-4 h-4 text-tealBrand/80" />,
+        tags: ["Math"],
+        items: [
+          {
+            name: "OpenStax — Math Titles",
+            url: "https://openstax.org/subjects/math",
+            desc: "Free peer-reviewed textbooks: Algebra, Pre-Calc, Calculus, Statistics, and more",
+          },
+          {
+            name: "LibreTexts Mathematics",
+            url: "https://math.libretexts.org/",
+            desc: "Open textbooks for every level — from arithmetic to real analysis",
+          },
+          {
+            name: "Open Textbook Library — Math",
+            url: "https://open.umn.edu/opentextbooks/subjects/mathematics",
+            desc: "Peer-reviewed free math textbooks you can read online or download",
+          },
+        ],
+      },
+      {
+        title: "Chemistry",
+        icon: <FlaskConical className="w-4 h-4 text-tealBrand/80" />,
+        tags: ["Chem"],
+        items: [
+          {
+            name: "OpenStax — Chemistry",
+            url: "https://openstax.org/subjects/science",
+            desc: "General Chemistry, Chemistry: Atoms First, and Organic Chemistry — all free",
+          },
+          {
+            name: "LibreTexts Chemistry",
+            url: "https://chem.libretexts.org/",
+            desc: "Huge library of free chemistry texts from gen chem to advanced topics",
+          },
+        ],
+      },
+      {
+        title: "Physics",
+        icon: <Zap className="w-4 h-4 text-tealBrand/80" />,
+        tags: ["Physics"],
+        items: [
+          {
+            name: "OpenStax — Physics",
+            url: "https://openstax.org/subjects/science",
+            desc: "University Physics Volumes 1–3 and College Physics — free and complete",
+          },
+          {
+            name: "LibreTexts Physics",
+            url: "https://phys.libretexts.org/",
+            desc: "Free physics textbooks from classical mechanics to quantum",
+          },
+          {
+            name: "Light and Matter (Ben Crowell)",
+            url: "https://lightandmatter.com/",
+            desc: "Free introductory physics textbooks — clear writing, good problems",
+          },
+        ],
+      },
+      {
+        title: "Biology",
+        icon: <Microscope className="w-4 h-4 text-tealBrand/80" />,
+        tags: ["Biology"],
+        items: [
+          {
+            name: "OpenStax — Biology",
+            url: "https://openstax.org/subjects/science",
+            desc: "Biology 2e, Microbiology, Anatomy & Physiology — all free",
+          },
+          {
+            name: "LibreTexts Biology",
+            url: "https://bio.libretexts.org/",
+            desc: "Open biology textbooks covering cell biology, genetics, ecology, and more",
+          },
+        ],
+      },
+      {
+        title: "Computer Science",
+        icon: <Monitor className="w-4 h-4 text-tealBrand/80" />,
+        tags: ["CS"],
+        items: [
+          {
+            name: "Open Textbook Library — CS",
+            url: "https://open.umn.edu/opentextbooks/subjects/computer-science-information-systems",
+            desc: "Free CS textbooks covering algorithms, data structures, networking, and more",
+          },
+          {
+            name: "Think Python / Think Java (Green Tea Press)",
+            url: "https://greenteapress.com/wp/",
+            desc: "Free intro programming books for Python and Java — beginner friendly",
+          },
+          {
+            name: "Structure and Interpretation of Computer Programs",
+            url: "https://mitpress.mit.edu/9780262510875/structure-and-interpretation-of-computer-programs/",
+            desc: "Classic CS text from MIT — free to read online",
+          },
+        ],
+      },
+      {
+        title: "Engineering",
+        icon: <Settings className="w-4 h-4 text-tealBrand/80" />,
+        tags: ["Physics", "Math"],
+        items: [
+          {
+            name: "LibreTexts Engineering",
+            url: "https://eng.libretexts.org/",
+            desc: "Free engineering textbooks: circuits, thermodynamics, statics, materials, and more",
+          },
+          {
+            name: "MIT OpenCourseWare — Engineering",
+            url: "https://ocw.mit.edu/search/?d=Engineering",
+            desc: "Full course materials including lecture notes and problem sets from MIT engineering courses",
+          },
+        ],
+      },
+      {
+        title: "Business & Economics",
+        icon: <BarChart2 className="w-4 h-4 text-tealBrand/80" />,
+        tags: ["Business"],
+        items: [
+          {
+            name: "OpenStax — Business & Economics",
+            url: "https://openstax.org/subjects/business",
+            desc: "Free textbooks for Intro to Business, Economics, Accounting, Finance, and more",
+          },
+          {
+            name: "LibreTexts Business",
+            url: "https://biz.libretexts.org/",
+            desc: "Open business textbooks covering management, marketing, and entrepreneurship",
+          },
+          {
+            name: "Open Textbook Library — Business",
+            url: "https://open.umn.edu/opentextbooks/subjects/business",
+            desc: "Peer-reviewed free business textbooks you can read or download",
+          },
+        ],
+      },
+      {
+        title: "Writing & Humanities",
+        icon: <BookOpen className="w-4 h-4 text-tealBrand/80" />,
+        tags: ["Writing"],
+        items: [
+          {
+            name: "OpenStax — Humanities",
+            url: "https://openstax.org/subjects/humanities",
+            desc: "Free writing, history, and communications textbooks",
+          },
+          {
+            name: "Project Gutenberg",
+            url: "https://www.gutenberg.org/",
+            desc: "70,000+ free classic books — great for lit courses, history, philosophy",
+          },
+          {
+            name: "Standard Ebooks",
+            url: "https://standardebooks.org/",
+            desc: "Beautifully formatted free ebooks — cleaner versions of public domain classics",
+          },
+          {
+            name: "Open Textbook Library — Humanities",
+            url: "https://open.umn.edu/opentextbooks/subjects/humanities",
+            desc: "Free peer-reviewed humanities textbooks across history, philosophy, and literature",
+          },
+        ],
+      },
+      {
+        title: "Social Sciences & Psychology",
+        icon: <Brain className="w-4 h-4 text-tealBrand/80" />,
+        tags: ["General"],
+        items: [
+          {
+            name: "OpenStax — Social Sciences",
+            url: "https://openstax.org/subjects/social-sciences",
+            desc: "Free textbooks for Psychology, Sociology, Government, and more",
+          },
+          {
+            name: "LibreTexts Social Sciences",
+            url: "https://socialsci.libretexts.org/",
+            desc: "Open textbooks covering psychology, sociology, anthropology, and communication",
           },
         ],
       },
@@ -362,6 +559,17 @@ const StudyResources = ({ onBack }) => {
     return STUDY_TIPS.filter((t) => tagsMatch(t.tags) && textMatch(t.title, t.body));
   }, [STUDY_TIPS, activeTags, q]);
 
+  const filteredTextbooks = useMemo(() => {
+    return FREE_TEXTBOOKS
+      .map((b) => {
+        const items = b.items.filter((it) => tagsMatch(b.tags) && textMatch(b.title, it.name, it.desc));
+        const blockHits = tagsMatch(b.tags) && textMatch(b.title);
+        if (!blockHits && items.length === 0) return null;
+        return { ...b, items };
+      })
+      .filter(Boolean);
+  }, [FREE_TEXTBOOKS, activeTags, q]);
+
   // If filtering is active, it’s nice to auto-expand matching YouTube sections
   // but keep it simple: user controls accordion.
 
@@ -416,22 +624,24 @@ const Card = ({ children, className = "", id }) => (
     filteredDiscord.howToFind.length > 0 ||
     filteredDiscord.communities.length > 0 ||
     filteredSubjectFree.length > 0 ||
-    filteredTips.length > 0;
+    filteredTips.length > 0 ||
+    filteredTextbooks.length > 0;
 
     const resultsCount = useMemo(() => {
   const ytLinks = filteredYouTube.reduce((sum, s) => sum + (s.links?.length || 0), 0);
   const redditCount = filteredReddit.general.length + filteredReddit.subject.length;
   const discordCount = filteredDiscord.howToFind.length + filteredDiscord.communities.length;
   const subjectFreeCount = filteredSubjectFree.reduce((sum, b) => sum + (b.items?.length || 0), 0);
+  const textbookCount = filteredTextbooks.reduce((sum, b) => sum + (b.items?.length || 0), 0);
 
-  // “Units” here are individual links/resources + tips
   return (
     ytLinks +
     filteredPlatforms.length +
     redditCount +
     discordCount +
     subjectFreeCount +
-    filteredTips.length
+    filteredTips.length +
+    textbookCount
   );
 }, [
   filteredYouTube,
@@ -440,6 +650,7 @@ const Card = ({ children, className = "", id }) => (
   filteredDiscord,
   filteredSubjectFree,
   filteredTips,
+  filteredTextbooks,
 ]);
 
   return (
@@ -484,6 +695,13 @@ const Card = ({ children, className = "", id }) => (
           </header>
 
           <div className="flex flex-wrap justify-center gap-3">
+  <a
+    href="#textbooks-section"
+    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-900 font-semibold hover:bg-teal-50 hover:border-teal-200 transition-all"
+  >
+    Free Textbooks
+  </a>
+
   <a
     href="#youtube-section"
      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-900 font-semibold hover:bg-teal-50 hover:border-teal-200 transition-all"
@@ -573,6 +791,64 @@ const Card = ({ children, className = "", id }) => (
                 No matches. Try a different keyword, or clear filters.
               </div>
             ) : null}
+          </Card>
+
+          {/* Free Textbooks */}
+          <Card id="textbooks-section" className="p-6 md:p-8">
+            <SectionHeader
+              icon={<BookOpen className="w-6 h-6 text-tealBrand/80" />}
+              title="Free Textbooks Online"
+              subtitle="Real textbooks, zero cost — read online or download"
+            />
+
+            <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+              Textbooks are expensive. These sites host free, legal, peer-reviewed textbooks across almost every subject.
+              No sign-up needed for most of them.
+            </p>
+
+            {filteredTextbooks.length === 0 ? (
+              <p className="mt-6 text-sm text-gray-600">No matches for your filters.</p>
+            ) : (
+              <div className="mt-6 grid md:grid-cols-2 gap-6">
+                {filteredTextbooks.map((block) => (
+                  <div key={block.title} className="rounded-2xl border border-gray-200 p-5">
+                    <p className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      {block.icon}
+                      {block.title}
+                    </p>
+                    <ul className="space-y-3">
+                      {block.items.map((it) => (
+                        <li key={it.name}>
+                          <a
+                            href={it.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group block"
+                          >
+                            <div className="flex items-start justify-between gap-4">
+                              <div className="min-w-0">
+                                <p className="font-semibold text-gray-900 group-hover:text-tealBrand transition">
+                                  {it.name}
+                                </p>
+                                <p className="text-sm text-gray-600 leading-relaxed">{it.desc}</p>
+                              </div>
+                              <External />
+                            </div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-6 rounded-2xl border border-gray-200 bg-[#FFFBF7] p-4 flex items-start gap-3">
+              <Sparkles className="w-5 h-5 text-tealBrand/80 mt-0.5" />
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Always check OpenStax and LibreTexts first — they cover the most common college courses and are completely free, no strings attached.
+              </p>
+            </div>
           </Card>
 
           {/* YouTube Channels */}
@@ -748,8 +1024,8 @@ const Card = ({ children, className = "", id }) => (
             />
 
             <div className="mt-6 grid md:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-gray-200 p-5 bg-[#FFFBF7]">
-                <p className="text-base font-bold text-gray-900 mb-3">🔍 How to Find Discord Study Communities:</p>
+              <div className="rounded-2xl border border-gray-200 p-5">
+                <p className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2"><Search className="w-4 h-4 text-tealBrand/80" /> How to Find Discord Study Communities:</p>
                 {filteredDiscord.howToFind.length === 0 ? (
                   <p className="text-sm text-gray-600">No matches.</p>
                 ) : (

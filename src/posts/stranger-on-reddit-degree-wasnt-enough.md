@@ -2,7 +2,7 @@
 id: 13
 title: "Things I Told a Stranger on Reddit Who Thought Their Degree Wasn't Enough"
 slug: stranger-on-reddit-degree-wasnt-enough
-date: May 5, 2026
+date: May 8, 2026
 category: Stranger on Reddit
 tags:
   - career advice

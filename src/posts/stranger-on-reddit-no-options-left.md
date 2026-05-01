@@ -2,7 +2,7 @@
 id: 12
 title: "Things I Told a Stranger on Reddit Who Thought There Were No Options Left"
 slug: stranger-on-reddit-no-options-left
-date: May 15, 2026
+date: May 22, 2026
 category: Stranger on Reddit
 tags:
   - career advice
