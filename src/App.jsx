@@ -238,7 +238,7 @@ const supportGroups = [
     { page: 'resources', label: 'Career Resources', icon: <Briefcase className="w-4 h-4" /> },
     { page: 'study-resources', label: 'Free Study Help', icon: <BookOpen className="w-4 h-4" /> },
     { page: 'blog', label: 'Blog', icon: <Newspaper className="w-4 h-4" /> },
-    { page: 'need-a-laugh', label: 'Need a Laugh?', icon: <Smile className="w-4 h-4" /> },
+    { page: 'need-a-laugh', label: 'Need a Break?', icon: <Smile className="w-4 h-4" /> },
     { page: 'volunteer', label: 'Volunteer Opportunities', icon: <Heart className="w-4 h-4" /> }
   ];
 

@@ -171,7 +171,7 @@ export default function NavBar({ currentPage, setCurrentPage }) {
               />
               <MenuItem
                 label="Take a Breather"
-                desc="Need a laugh?"
+                desc="Need a break?"
                 onClick={() => go("take-a-breather")}
               />
             </Dropdown>

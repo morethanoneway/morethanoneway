@@ -244,13 +244,13 @@ const WarmHomePage = ({ setCurrentPage }) => {
       >
         Get support
       </button>
-        {/* Need a laugh */}
+        {/* Need a break */}
     
       <button
         onClick={() => navigateTo("need-a-laugh")}
         className="w-full px-4 py-2.5 rounded-lg border border-gray-200 font-semibold hover:bg-gray-50 hover:text-gray-900 transition"
       >
-        Need a laugh?
+        Need a break?
       </button>
       <p className="mt-1 text-xs text-gray-500">
         Low-stakes distraction. Zero guilt.

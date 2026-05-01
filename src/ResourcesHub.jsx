@@ -72,7 +72,7 @@ const ResourcesHub = ({ setCurrentPage }) => {
               onClick={() => setCurrentPage('blog')}
             />
             <Tile
-              title="Need a Laugh?"
+              title="Need a Break?"
               desc="Sometimes you just need a break. Low-stakes distraction. Zero guilt."
               icon={<Smile />}
               onClick={() => setCurrentPage('need-a-laugh')}
