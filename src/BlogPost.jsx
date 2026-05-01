@@ -79,6 +79,8 @@ const BlogPost = ({ setCurrentPage, selectedPostSlug, setSelectedPostSlug }) => 
         '/youre-not-alone': 'youre-not-alone',
         '/job-tools': 'job-tools-hub',
         '/tracker': 'tracker',
+        '/career-map': 'career-map',
+        '/contact': 'contact',
       };
       const pageName = pageMap[href];
       if (pageName) {

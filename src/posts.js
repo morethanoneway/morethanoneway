@@ -91,7 +91,13 @@ export const posts = Object.entries(postFiles).map(([filepath, content]) => {
     image: metadata.image || null,
     content: markdown.trim()
   };
-}).filter(Boolean); // Remove any null entries
+}).filter(Boolean).filter(post => {
+  // Hide posts with future dates
+  const postDate = new Date(post.date);
+  const today = new Date();
+  today.setHours(23, 59, 59, 999); // Include all of today
+  return postDate <= today;
+}); // Remove null entries and future posts
 
 // Sort by date (descending - newest first)
 posts.sort((a, b) => {

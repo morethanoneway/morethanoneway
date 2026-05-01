@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Routes, Route, useParams, useLocation } from 'react-router-dom';
 
-import { Heart, MessageCircle, Sparkles, GraduationCap, Phone, Compass, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, Building, DollarSign, HelpCircle, AlertCircle, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
+import { Heart, MessageCircle, Sparkles, MessageSquare, GraduationCap, Phone, Compass, TrendingUp, Briefcase, Users, ChevronRight, Menu, X, BookOpen, Search, ExternalLink, Building, DollarSign, HelpCircle, AlertCircle, ChevronDown, ChevronUp, Edit2, Trash2, FileText, Target, ArrowLeft, Newspaper, Smile, Instagram, Facebook } from 'lucide-react';
 import ResumeBuilder from './ResumeBuilder';
 import YoureNotAlone from './YoureNotAlone';
 import Contact from './Contact';
@@ -43,6 +43,7 @@ import ThinkingAboutTransferring from './ThinkingAboutTransferring';
 import MajorPage from './MajorPage';
 import JobSearchPlaybook from './JobSearchPlaybook';
 import CareerMap from './CareerMap';
+import RedditStoriesPage from './RedditStoriesPage';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -237,10 +238,14 @@ const supportGroups = [
   const resourcesItems = [
     { page: 'resources', label: 'Career Resources', icon: <Briefcase className="w-4 h-4" /> },
     { page: 'study-resources', label: 'Free Study Help', icon: <BookOpen className="w-4 h-4" /> },
-    { page: 'blog', label: 'Blog', icon: <Newspaper className="w-4 h-4" /> },
     { page: 'need-a-laugh', label: 'Need a Break?', icon: <Smile className="w-4 h-4" /> },
     { page: 'volunteer', label: 'Volunteer Opportunities', icon: <Heart className="w-4 h-4" /> }
   ];
+
+  const realTalkItems = [
+  { page: 'blog', label: 'Blog', icon: <Newspaper className="w-4 h-4" /> },
+  { page: 'reddit-stories', label: 'Stranger on Reddit', icon: <MessageSquare className="w-4 h-4" /> },
+];
 
   return (
     <nav className="bg-[#FFFBF7] text-gray-800 shadow-sm sticky top-0 z-50 border-b border-gray-200">
@@ -289,6 +294,14 @@ const supportGroups = [
           </button>
 
           <DropdownMenu
+          title="Real Talk"
+          items={realTalkItems}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          isMobile={false}
+        />
+
+          <DropdownMenu
             title="Resources"
             onTitleClick={() => setCurrentPage('resources-hub')}
             items={resourcesItems}
@@ -296,6 +309,7 @@ const supportGroups = [
             setCurrentPage={setCurrentPage}
             isMobile={false}
           />
+          
 
           <button
             onClick={() => setCurrentPage('about')}
@@ -387,6 +401,16 @@ const supportGroups = [
               }}
               isMobile={true}
             />
+            <DropdownMenu
+            title="Real Talk"
+            items={realTalkItems}
+            currentPage={currentPage}
+            setCurrentPage={(page) => {
+              setCurrentPage(page);
+              setMobileMenuOpen(false);
+            }}
+            isMobile={true}
+          />
 
             <button
               onClick={() => { setCurrentPage('about'); setMobileMenuOpen(false); }}
@@ -1494,6 +1518,8 @@ export default function App() {
           <Route path="/job-search-playbook" element={<JobSearchPlaybook setCurrentPage={setCurrentPage} />} />
           <Route path="/major/:majorSlug" element={<MajorPage setCurrentPage={setCurrentPage} />} />
           <Route path="/career-map" element={<CareerMap setCurrentPage={setCurrentPage} />} />
+         <Route path="/reddit-stories" element={<RedditStoriesPage setCurrentPage={setCurrentPage} />} />
+         
           {/* Catch-all: redirect unknown URLs to home */}
         </Routes>
       </main>
