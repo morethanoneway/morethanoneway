@@ -27,68 +27,98 @@ const JobToolsHub = ({ setCurrentPage }) => {
         {/* Hero Section */}
         <div>
           <h1 className="text-center text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">Job Tools {" "}
-            <span className="block md:inline text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
-              Hub</span> </h1>
+            <span className="text-gray-900">Hub</span></h1>
           <p className="mt-3 text-center text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
             Everything you need to find opportunities, apply effectively, and track your progress.
-          </p>
-
-
-          <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
-
-
-           <button
-  onClick={() => setCurrentPage('resources')}
-  className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
->
-  Career resources
-</button>
-
-<button
-  onClick={() => setCurrentPage('stories')}
-  className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
->
-  Read real stories
-</button>
-
-<button
-  onClick={() => setCurrentPage('youre-not-alone')}
-  className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
->
-  Get support & guidance
-</button>
-          </div>
+          </p>        
         </div>
 
+{/* Start Here Section */}
+<div className="mb-8 mt-8">
+  <div className="flex items-center gap-3 mb-3">
+    <div className="w-12 h-12 rounded-xl flex items-center justify-center">
+      <Target className="w-6 h-6 text-tealBrand/60" />
+    </div>
+    <h2 className="text-2xl font-bold text-gray-800">
+      Start Here
+    </h2>
+  </div>
 
-        {/* Search & Discovery Section */}
-        <div className="mb-4 mt-10">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center">
-              <Target className="w-6 h-6 text-tealBrand/60" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-800">
-              Search & Discovery
-            </h2>
-          </div>
+  <p className="text-gray-600 max-w-2xl ml-15">
+    Not sure what to do first? Follow this simple path: get direction, see real options, then start applying with a system.
+  </p>
+</div>
 
-        </div>
-
-       <div className="mt-0 grid gap-6 md:grid-cols-3">
-  <Tile
-    title="Career Clarity & Decision System"
-    desc="Not sure where to start? Fill in your situation and get a personalized career map — built around your real constraints."
-    icon={<Compass />}
+<div className="grid gap-6 md:grid-cols-3 mb-12">
+  {/* Step 1 */}
+  <div
     onClick={() => navigateTo("/career-map")}
-  />
+    className="cursor-pointer bg-[#006581] text-white rounded-2xl p-8 ring-2 ring-[#006581]/20 scale-[1.01] hover:shadow-lg hover:-translate-y-1 transition-all"
+  >
+    <div className="text-xs font-bold tracking-wide uppercase text-white/70 mb-4">
+      Step 1 · Get Clear
+    </div>
+    <Compass className="w-7 h-7 mb-5 text-white" />
+    <h3 className="text-xl font-bold mb-3">
+      Career Clarity & Decision System
+    </h3>
+    <p className="text-white/90 leading-relaxed mb-5">
+      Not sure what direction to take? Answer questions about your real situation and get a career map built around your life.
+    </p>
+    <span className="font-semibold text-white">
+      Start Career Map →
+    </span>
+  </div>
 
-  <Tile
-    title="Career Paths"
-    desc="See what your degree can actually do. Real career paths with live job counts."
-    icon={<TrendingUp />}
+  {/* Step 2 */}
+  <div
     onClick={() => navigateTo("/pivot")}
-  />
+    className="cursor-pointer bg-[#006581] text-white rounded-2xl p-8 hover:shadow-lg hover:-translate-y-1 transition-all"
+  >
+    <div className="text-xs font-bold tracking-wide uppercase text-white/70 mb-4">
+      Step 2 · Explore Options
+    </div>
+    <TrendingUp className="w-7 h-7 mb-5 text-white" />
+    <h3 className="text-xl font-bold mb-3">
+      Career Paths
+    </h3>
+    <p className="text-white/90 leading-relaxed mb-5">
+      See what your degree can actually lead to — including adjacent careers, live job counts, and realistic options.
+    </p>
+    <span className="font-semibold text-white">
+      Explore Career Paths →
+    </span>
+  </div>
 
+  {/* Step 3 */}
+  <div
+    onClick={() => navigateTo("/job-search-playbook")}
+    className="cursor-pointer bg-[#006581] text-white rounded-2xl p-8 hover:shadow-lg hover:-translate-y-1 transition-all"
+  >
+    <div className="text-xs font-bold tracking-wide uppercase text-white/70 mb-4">
+      Step 3 · Start Applying
+    </div>
+    <BookOpen className="w-7 h-7 mb-5 text-white" />
+    <h3 className="text-xl font-bold mb-3">
+      Job Search Playbook
+    </h3>
+    <p className="text-white/90 leading-relaxed mb-5">
+      Follow a step-by-step system for resumes, applications, interviews, tracking, and follow-up.
+    </p>
+    <span className="font-semibold text-white">
+      Open the Playbook →
+    </span>
+  </div>
+</div>
+
+{/* All Tools Section */}
+<div className="mb-4 mt-10">
+  <h2 className="text-2xl font-bold text-gray-800 mb-6">
+    Tools for Each Step
+  </h2>
+</div>
+
+<div className="mt-0 grid gap-6 md:grid-cols-3">
   <Tile
     title="Resume Builder"
     desc="Turn experience into strong bullets and build an ATS-friendly resume that still sounds human."
@@ -136,13 +166,6 @@ const JobToolsHub = ({ setCurrentPage }) => {
     desc="Common questions, real answers, and prep without sounding scripted."
     icon={<MessageCircle />}
     onClick={() => navigateTo("/interview-prep")}
-  />
-
-  <Tile
-    title="Job Search Playbook"
-    desc="A proven step-by-step system — resume, applications, interviews, and follow-up. How to actually get a job."
-    icon={<BookOpen />}
-    onClick={() => navigateTo("/job-search-playbook")}
   />
 </div>
 

@@ -59,45 +59,50 @@ const WarmHomePage = ({ setCurrentPage }) => {
   <div className="mx-auto max-w-4xl px-6 lg:px-12">
     <div className="mx-auto max-w-5xl text-center">
 
-      <h1 className="text-[3.25rem] leading-[1.05] md:text-[4.5rem] md:leading-[1.05] font-extrabold tracking-tight text-gray-900">
-        You have more choices<br />{" "}
-        <span className="block md:inline text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
-          than you think.
-        </span>
-      </h1>
+<h1 className="text-[3.25rem] leading-[1.05] md:text-[4.5rem] md:leading-[1.05] font-extrabold tracking-tight text-gray-900">
+  You have more{" "}
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600">
+    choices
+  </span>
+  <br />
+  than you think.
+</h1>
 
-      <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-700 leading-relaxed">
-        Struggling with school? Job search going nowhere? Feeling stuck?
-        <br className="hidden md:block" />
-        <span className="font-semibold">You’re not alone.</span> Let’s make the next step feel doable.
-      </p>
+<p className="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-700 leading-relaxed">
+  Struggling with school? Job search going nowhere? Feeling stuck?
+  <br className="hidden md:block" />
+  <span className="font-semibold">You’re not alone.</span> Let’s make the next step feel doable.
+</p>
 
-      <p className="mt-4 text-sm md:text-base text-gray-500">
-        Free resources, tools, and real student stories. Not therapy — just practical support.
-      </p>
+<p className="mt-3 text-sm md:text-base text-gray-500">
+  Free resources, tools, and real student stories. Not therapy — just practical support.
+</p>
 
-      <div className="mt-8 flex flex-col md:flex-row gap-3 justify-center">
-        <button
-          onClick={() => navigateTo('/job-search-playbook')}
-          className="bg-[#006581] text-white px-7 py-4 rounded-xl font-semibold hover:bg-[#005570] hover:shadow-sm transition-all"
-        >
-          Get the Job Search Playbook →
-        </button>
+<div className="mt-6 flex flex-col md:flex-row gap-3 justify-center">
+  {/* Primary */}
+  <button
+    onClick={() => navigateTo('/job-search-playbook')}
+    className="bg-[#005570] text-white px-7 py-4 rounded-xl font-semibold hover:bg-[#006581] hover:shadow-md transition-all"
+  >
+    Get the Job Search Playbook →
+  </button>
 
-        <button
-          onClick={() => navigateTo('youre-not-alone')}
-          className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
-        >
-          Support & Guidance
-        </button>
+  {/* Secondary */}
+  <button
+    onClick={() => navigateTo('youre-not-alone')}
+    className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
 
-        <button
-          onClick={() => navigateTo('stories')}
-          className="bg-[#FFFBF7] text-gray-900 px-7 py-4 rounded-xl font-semibold border border-gray-300 hover:bg-white hover:border-gray-400 hover:shadow-sm transition-all"
-        >
-          Read real stories
-        </button>
-      </div>
+  >
+    Support & Guidance
+  </button>
+
+  <button
+    onClick={() => navigateTo('stories')}
+className="bg-white text-gray-500 px-7 py-4 rounded-xl font-medium border border-gray-200 hover:text-gray-700 hover:border-gray-300 transition-all"
+  >
+    Read real stories
+  </button>
+</div>
     </div>
   </div>
 </section>

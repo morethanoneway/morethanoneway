@@ -667,7 +667,7 @@ const PivotPage = ({ setCurrentPage }) => {
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
             Explore{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-700">
               Career Paths
             </span>
           </h1>
