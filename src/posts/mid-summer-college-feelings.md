@@ -1,12 +1,10 @@
 ---
-
 id: 14
 title: "The Middle of Summer Hits Different When College Is Coming"
 slug: mid-summer-college-feelings
-date: July 27, 2025
+date: July 27, 2026
 category: Student Life
 tags:
-
   - college life
   - freshman year
   - senior year
@@ -14,13 +12,11 @@ tags:
   - college advice
   - student mental health
   - job search
-
 excerpt: "Whether you're heading into freshman year or your last one, mid-summer brings a specific kind of feeling nobody really talks about. You're not alone in it."
 author: MoreThanOneWay Team
-ReadTime: 4 min read
+readTime: 4 min read
 featured: true
 image: "/images/blog/Summer2026.png"
-
 ---
 
 There's something about hitting the middle of summer that makes college feel very real, very fast.
