@@ -100,7 +100,7 @@ const JobToolsHub = ({ setCurrentPage }) => {
     </div>
     <BookOpen className="w-7 h-7 mb-5 text-white" />
     <h3 className="text-xl font-bold mb-3">
-      Job Search Playbook
+      Job Search Playbook 
     </h3>
     <p className="text-white/90 leading-relaxed mb-5">
       Follow a step-by-step system for resumes, applications, interviews, tracking, and follow-up.
