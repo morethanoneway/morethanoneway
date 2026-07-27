@@ -16,12 +16,13 @@ excerpt: "Whether you're heading into freshman year or your last one, mid-summer
 author: MoreThanOneWay Team
 readTime: 4 min read
 featured: true
-image: "/images/blog/Summer2026.png"
 ---
 
 There's something about hitting the middle of summer that makes college feel very real, very fast.
 
 If you just finished your junior year, you're probably starting to feel the weight of what comes next. If you're about to start your freshman year, the excitement and the dread are probably showing up at the same time. Both are completely normal. Neither means something is wrong with you.
+
+![Freshman year and senior year — two different feelings, both completely normal](/images/blog/Summer2026.png)
 
 ## If you're heading into freshman year
 
