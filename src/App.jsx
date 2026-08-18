@@ -44,6 +44,7 @@ import MajorPage from './MajorPage';
 import JobSearchPlaybook from './JobSearchPlaybook';
 import CareerMap from './CareerMap';
 import RedditStoriesPage from './RedditStoriesPage';
+import FindInternshipsPage from './FindInternshipsPage';
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
   <div className="mb-10">
@@ -1519,7 +1520,8 @@ export default function App() {
           <Route path="/major/:majorSlug" element={<MajorPage setCurrentPage={setCurrentPage} />} />
           <Route path="/career-map" element={<CareerMap setCurrentPage={setCurrentPage} />} />
          <Route path="/reddit-stories" element={<RedditStoriesPage setCurrentPage={setCurrentPage} />} />
-         
+         <Route path="/find-internships" element={<FindInternshipsPage setCurrentPage={setCurrentPage} />} />
+
           {/* Catch-all: redirect unknown URLs to home */}
         </Routes>
       </main>
